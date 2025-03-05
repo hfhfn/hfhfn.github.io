@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Text2SQL应用对比</title>
+    <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
+    <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
+<hr>
+<span id="more"></span>
+<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
+<ul>
+<li><strong>类型</strong>：在线工具</li>
+<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>无需安装或配置，直接在浏览器中使用。</li>
+<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
+<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
+<li>支持标准的 PostgreSQL 功能。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>快速测试 SQL 查询。</li>
+<li>教学或演示 PostgreSQL 功能。</li>
+<li>临时需要数据库环境的场景。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
+<ul>
+<li><strong>类型</strong>：AI 驱动的工具</li>
+<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
+<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
+<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
+<li>提供 Python 库，方便集成到数据工作流中。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>非技术用户需要查询数据库。</li>
+<li>快速生成复杂 SQL 查询。</li>
+<li>数据分析师或开发人员希望提高工作效率。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="对比总结"><strong>对比总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Postgres.new</th>
+<th>Vanna</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>类型</strong></td>
+<td>在线临时数据库工具</td>
+<td>AI 驱动的 SQL 生成工具</td>
+</tr>
+<tr>
+<td><strong>主要用途</strong></td>
+<td>创建临时 PostgreSQL 实例</td>
+<td>通过自然语言生成 SQL 查询</td>
+</tr>
+<tr>
+<td><strong>用户群体</strong></td>
+<td>开发者、测试人员、学习者</td>
+<td>数据分析师、非技术用户、开发者</td>
+</tr>
+<tr>
+<td><strong>技术依赖</strong></td>
+<td>无需 AI，纯数据库工具</td>
+<td>依赖 AI 模型（如 GPT）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>无</td>
+<td>支持 Python 库，可集成到工作流</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>测试、演示、学习</td>
+<td>数据分析、快速生成 SQL、简化查询</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="选择建议"><strong>选择建议</strong></h3>
+<ul>
+<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
+<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
+</ul>
+<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>AI工具</category>
+      </categories>
+      <tags>
+        <tag>AI工具</tag>
+        <tag>Text2SQL</tag>
+        <tag>自然语言操作数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo踩坑</title>
     <url>/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/</url>
     <content><![CDATA[<h1>一. 在 <strong>Hexo</strong> 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</h1>
@@ -189,119 +297,12 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 <h1>三.</h1>
 ]]></content>
       <categories>
-        <category>自媒体，博客</category>
+        <category>自媒体</category>
+        <category>博客</category>
       </categories>
       <tags>
         <tag>博客</tag>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Text2SQL应用对比</title>
-    <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
-    <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
-<hr>
-<span id="more"></span>
-<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
-<ul>
-<li><strong>类型</strong>：在线工具</li>
-<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
-<li><strong>特点</strong>：
-<ul>
-<li>无需安装或配置，直接在浏览器中使用。</li>
-<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
-<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
-<li>支持标准的 PostgreSQL 功能。</li>
-</ul>
-</li>
-<li><strong>适用场景</strong>：
-<ul>
-<li>快速测试 SQL 查询。</li>
-<li>教学或演示 PostgreSQL 功能。</li>
-<li>临时需要数据库环境的场景。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
-<ul>
-<li><strong>类型</strong>：AI 驱动的工具</li>
-<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
-<li><strong>特点</strong>：
-<ul>
-<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
-<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
-<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
-<li>提供 Python 库，方便集成到数据工作流中。</li>
-</ul>
-</li>
-<li><strong>适用场景</strong>：
-<ul>
-<li>非技术用户需要查询数据库。</li>
-<li>快速生成复杂 SQL 查询。</li>
-<li>数据分析师或开发人员希望提高工作效率。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="对比总结"><strong>对比总结</strong></h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Postgres.new</th>
-<th>Vanna</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>类型</strong></td>
-<td>在线临时数据库工具</td>
-<td>AI 驱动的 SQL 生成工具</td>
-</tr>
-<tr>
-<td><strong>主要用途</strong></td>
-<td>创建临时 PostgreSQL 实例</td>
-<td>通过自然语言生成 SQL 查询</td>
-</tr>
-<tr>
-<td><strong>用户群体</strong></td>
-<td>开发者、测试人员、学习者</td>
-<td>数据分析师、非技术用户、开发者</td>
-</tr>
-<tr>
-<td><strong>技术依赖</strong></td>
-<td>无需 AI，纯数据库工具</td>
-<td>依赖 AI 模型（如 GPT）</td>
-</tr>
-<tr>
-<td><strong>集成能力</strong></td>
-<td>无</td>
-<td>支持 Python 库，可集成到工作流</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>测试、演示、学习</td>
-<td>数据分析、快速生成 SQL、简化查询</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="选择建议"><strong>选择建议</strong></h3>
-<ul>
-<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
-<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
-</ul>
-<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>AI工具</category>
-      </categories>
-      <tags>
-        <tag>AI工具</tag>
-        <tag>Text2SQL</tag>
-        <tag>自然语言操作数据库</tag>
       </tags>
   </entry>
   <entry>
