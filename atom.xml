@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-05T09:15:23.445Z</updated>
+  <updated>2025-03-05T23:29:09.480Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,6 +17,80 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Hexo踩坑</title>
+    <link href="http://example.com/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/"/>
+    <id>http://example.com/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/</id>
+    <published>2025-03-05T23:19:00.000Z</published>
+    <updated>2025-03-05T23:29:09.480Z</updated>
+    
+    
+    <summary type="html">&lt;h1&gt;一. 在 &lt;strong&gt;Hexo&lt;/strong&gt; 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：&lt;/h1&gt;
+&lt;hr&gt;</summary>
+    
+    
+    
+    <category term="自媒体，博客" scheme="http://example.com/categories/%E8%87%AA%E5%AA%92%E4%BD%93%EF%BC%8C%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="博客" scheme="http://example.com/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+    <category term="Hexo" scheme="http://example.com/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>扩散模型和 自回归模型的对比</title>
+    <link href="http://example.com/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/"/>
+    <id>http://example.com/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/</id>
+    <published>2025-03-05T22:36:00.000Z</published>
+    <updated>2025-03-05T23:10:25.309Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;扩散模型（Diffusion Models）和自回归模型（Autoregressive Models）是生成模型中的两种重要方法，广泛应用于图像、文本和音频生成任务。它们各有特点，适用于不同的场景。&lt;/p&gt;
+&lt;hr&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="大模型" scheme="http://example.com/categories/AI/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    
+    <category term="生成模型方法" scheme="http://example.com/tags/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95/"/>
+    
+    <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Text2SQL应用对比</title>
+    <link href="http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/"/>
+    <id>http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</id>
+    <published>2025-03-05T21:36:57.497Z</published>
+    <updated>2025-03-05T22:30:46.134Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：&lt;/p&gt;
+&lt;hr&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="AI工具" scheme="http://example.com/categories/AI/AI%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="AI工具" scheme="http://example.com/tags/AI%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="Text2SQL" scheme="http://example.com/tags/Text2SQL/"/>
+    
+    <category term="自然语言操作数据库" scheme="http://example.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
     <title>翻墙机场推荐（魔法上网）</title>
     <link href="http://example.com/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/"/>
     <id>http://example.com/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</id>
@@ -24,7 +98,9 @@
     <updated>2025-03-05T09:15:23.445Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;暂时推荐这两个机场（在没有魔法的情况下网站可以登录）&quot;&gt;&lt;a href=&quot;#暂时推荐这两个机场（在没有魔法的情况下网站可以登录）&quot; class=&quot;headerlink&quot; title=&quot;暂时推荐这两个机场（在没有魔法的情况下网站可以登录）&quot;&gt;&lt;/a&gt;暂时推荐这两个机场（在没有魔法的情况下网站可以登录）&lt;/h2&gt;&lt;h4 id=&quot;1-费用自己看着选，贵的速率和稳定性都好一些&quot;&gt;&lt;a href=&quot;#1-费用自己看着选，贵的速率和稳定性都好一些&quot; class=&quot;headerlink&quot; title=&quot;1. 费用自己看着选，贵的速率和稳定性都好一些&quot;&gt;&lt;/a&gt;1. 费用自己看着选，贵的速率和稳定性都好一些&lt;/h4&gt;&lt;h4 id=&quot;2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）&quot;&gt;&lt;a href=&quot;#2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）&quot; class=&quot;headerlink&quot; title=&quot;2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）&quot;&gt;&lt;/a&gt;2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）&lt;/h4&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;暂时推荐这两个机场（在没有魔法的情况下网站可以登录）&quot;&gt;暂时推荐这两个机场（在没有魔法的情况下网站可以登录）&lt;/h2&gt;
+&lt;h4 id=&quot;1-费用自己看着选，贵的速率和稳定性都好一些&quot;&gt;1. 费用自己看着选，贵的速率和稳定性都好一些&lt;/h4&gt;
+&lt;h4 id=&quot;2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）&quot;&gt;2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）&lt;/h4&gt;</summary>
     
     
     
@@ -47,9 +123,14 @@
     <updated>2025-03-05T05:02:57.885Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;从-0-到-1-快速搭建-RAG-应用&quot;&gt;&lt;a href=&quot;#从-0-到-1-快速搭建-RAG-应用&quot; class=&quot;headerlink&quot; title=&quot;从 0 到 1 快速搭建 RAG 应用&quot;&gt;&lt;/a&gt;从 0 到 1 快速搭建 RAG 应用&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;h2 id=&quot;技术框架与选型&quot;&gt;&lt;a href=&quot;#技术框架与选型&quot; class=&quot;headerlink&quot; title=&quot;技术框架与选型&quot;&gt;&lt;/a&gt;技术框架与选型&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;h3 id=&quot;RAG-技术框架：LangChain&quot;&gt;&lt;a href=&quot;#RAG-技术框架：LangChain&quot; class=&quot;headerlink&quot; title=&quot;RAG 技术框架：LangChain&quot;&gt;&lt;/a&gt;RAG 技术框架：&lt;strong&gt;LangChain&lt;/strong&gt;&lt;/h3&gt;&lt;ul&gt;
+    <summary type="html">&lt;h1&gt;从 0 到 1 快速搭建 RAG 应用&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&quot;技术框架与选型&quot;&gt;技术框架与选型&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h3 id=&quot;RAG-技术框架：LangChain&quot;&gt;RAG 技术框架：&lt;strong&gt;LangChain&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
 &lt;li&gt;LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;

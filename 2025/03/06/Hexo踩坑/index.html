@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":{"valine":{"Order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <meta name="description" content="一. 在 Hexo 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo踩坑">
+<meta property="og:url" content="http://example.com/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/index.html">
+<meta property="og:site_name" content="打开AI世界的大门">
+<meta property="og:description" content="一. 在 Hexo 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-05T23:19:00.000Z">
+<meta property="article:modified_time" content="2025-03-05T23:29:09.480Z">
+<meta property="article:author" content="AI模型研究所">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/","path":"2025/03/06/Hexo踩坑/","title":"Hexo踩坑"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hexo踩坑 | 打开AI世界的大门</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="打开AI世界的大门" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">打开AI世界的大门</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">奔赴山海，保持热爱</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">一. 在 Hexo 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9A%E4%BD%BF%E7%94%A8-hexo-renderer-markdown-it-%E5%92%8C-markdown-it-katex"><span class="nav-number">1.0.1.</span> <span class="nav-text">方法 1：使用 hexo-renderer-markdown-it 和 markdown-it-katex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-2%EF%BC%9A%E4%BD%BF%E7%94%A8-hexo-renderer-pandoc%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">1.0.2.</span> <span class="nav-text">方法 2：使用 hexo-renderer-pandoc（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-3%EF%BC%9A%E4%BD%BF%E7%94%A8-hexo-filter-mathjax%EF%BC%88%E7%AE%80%E5%8D%95%E4%BD%86%E6%80%A7%E8%83%BD%E8%BE%83%E5%B7%AE%EF%BC%89"><span class="nav-number">1.0.3.</span> <span class="nav-text">方法 3：使用 hexo-filter-mathjax（简单但性能较差）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%85%AC%E5%BC%8F"><span class="nav-number">1.0.4.</span> <span class="nav-text">测试公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.0.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">二. Hexo Admin后台新建posts，一直显示loading</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BF%AE%E6%94%B9-Hexo-Admin-%E6%BA%90%E7%A0%81"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 修改 Hexo Admin 源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%99%8D%E7%BA%A7-js-yaml-%E7%89%88%E6%9C%AC"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. 降级 js-yaml 版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9B%B4%E6%96%B0-Hexo-Admin-%E6%8F%92%E4%BB%B6"><span class="nav-number">2.0.3.</span> <span class="nav-text">3. 更新 Hexo Admin 插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%A3%80%E6%9F%A5-Hexo-%E5%92%8C%E6%8F%92%E4%BB%B6%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-number">2.0.4.</span> <span class="nav-text">4. 检查 Hexo 和插件兼容性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%B8%85%E7%90%86%E7%BC%93%E5%AD%98%E5%B9%B6%E9%87%8D%E5%90%AF"><span class="nav-number">2.0.5.</span> <span class="nav-text">5. 清理缓存并重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%A3%80%E6%9F%A5-YAML-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.0.6.</span> <span class="nav-text">6. 检查 YAML 文件格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%85%A8%E5%B1%80%E6%9B%BF%E6%8D%A2-yaml-safeLoad"><span class="nav-number">2.0.7.</span> <span class="nav-text">7. 全局替换 yaml.safeLoad</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%8F%90%E4%BA%A4-Issue-%E7%BB%99-Hexo-Admin"><span class="nav-number">2.0.8.</span> <span class="nav-text">8. 提交 Issue 给 Hexo Admin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E4%B8%B4%E6%97%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.0.9.</span> <span class="nav-text">9. 临时解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">三.</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="AI模型研究所"
+      src="/images/avatar.ico">
+  <p class="site-author-name" itemprop="name">AI模型研究所</p>
+  <div class="site-description" itemprop="description">心有所向，无问东西</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hfhfn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hfhfn" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hfhfn@sina.com" title="E-Mail → mailto:hfhfn@sina.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://v.douyin.com/i56Pn1TV/%204@7.com" title="我的抖音主页 → https:&#x2F;&#x2F;v.douyin.com&#x2F;i56Pn1TV&#x2F; 4@7.com" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>我的抖音主页</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://pan.baidu.com/s/1XxC56NKwXaDmJIMxYzY_2w?pwd=da3c" title="https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1XxC56NKwXaDmJIMxYzY_2w?pwd&#x3D;da3c" rel="noopener" target="_blank">百度网盘Dify分享</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cgho" title="https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;12hTcfYD3qDir_-_SSr9yxw?pwd&#x3D;cgho" rel="noopener" target="_blank">百度网盘技术分享</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="AI模型研究所">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="打开AI世界的大门">
+      <meta itemprop="description" content="心有所向，无问东西">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hexo踩坑 | 打开AI世界的大门">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo踩坑
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-06 07:19:00 / 修改时间：07:29:09" itemprop="dateCreated datePublished" datetime="2025-03-06T07:19:00+08:00">2025-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%87%AA%E5%AA%92%E4%BD%93%EF%BC%8C%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">自媒体，博客</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>一. 在 <strong>Hexo</strong> 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</h1>
+<hr>
+<span id="more"></span>
+<h3 id="方法-1：使用-hexo-renderer-markdown-it-和-markdown-it-katex">方法 1：使用 <code>hexo-renderer-markdown-it</code> 和 <code>markdown-it-katex</code></h3>
+<ol>
+<li>
+<p><strong>卸载默认的 Markdown 渲染器</strong><br>
+Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式。你需要先卸载它：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>安装 <code>hexo-renderer-markdown-it</code></strong><br>
+这是一个更强大的 Markdown 渲染器，支持插件扩展：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-markdown-it --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>安装 <code>markdown-it-katex</code> 插件</strong><br>
+这个插件用于支持 LaTeX 公式渲染：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install markdown-it-katex --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>配置 <code>_config.yml</code></strong><br>
+在 Hexo 的配置文件 <code>_config.yml</code> 中添加以下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-katex</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>引入 KaTeX 的 CSS</strong><br>
+在你的主题文件（例如 <code>themes/your-theme/layout/_partial/head.ejs</code>）中，添加以下代码以引入 KaTeX 的 CSS 文件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>重启 Hexo 服务器</strong><br>
+重新启动 Hexo 服务器，查看公式是否正常渲染：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="方法-2：使用-hexo-renderer-pandoc（推荐）">方法 2：使用 <code>hexo-renderer-pandoc</code>（推荐）</h3>
+<p>如果你需要更强大的数学公式支持（如复杂的 LaTeX 公式），可以使用 <code>hexo-renderer-pandoc</code>。</p>
+<ol>
+<li>
+<p><strong>卸载默认的 Markdown 渲染器</strong><br>
+卸载 Hexo 默认的渲染器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>安装 <code>hexo-renderer-pandoc</code></strong><br>
+安装 Pandoc 渲染器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-pandoc --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>安装 Pandoc</strong><br>
+你需要在本机安装 Pandoc。根据你的操作系统选择安装方式：</p>
+<ul>
+<li><strong>Windows</strong>: 下载并安装 <a target="_blank" rel="noopener" href="https://pandoc.org/installing.html">Pandoc</a>。</li>
+<li><strong>macOS</strong>: 使用 Homebrew 安装：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install pandoc</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>Linux</strong>: 使用包管理器安装，例如：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install pandoc</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>配置 <code>_config.yml</code></strong><br>
+在 Hexo 的配置文件 <code>_config.yml</code> 中添加以下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>重启 Hexo 服务器</strong><br>
+重新启动 Hexo 服务器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="方法-3：使用-hexo-filter-mathjax（简单但性能较差）">方法 3：使用 <code>hexo-filter-mathjax</code>（简单但性能较差）</h3>
+<p>如果你不想折腾，可以使用 <code>hexo-filter-mathjax</code>，这是一个简单的插件，但性能较差。</p>
+<ol>
+<li>
+<p><strong>安装插件</strong><br>
+安装 <code>hexo-filter-mathjax</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-filter-mathjax --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>配置 <code>_config.yml</code></strong><br>
+在 Hexo 的配置文件 <code>_config.yml</code> 中添加以下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mathjax:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>重启 Hexo 服务器</strong><br>
+重新启动 Hexo 服务器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="测试公式">测试公式</h3>
+<p>在你的博客文章中，使用以下语法测试公式：</p>
+<ul>
+<li>
+<p>行内公式：<code>$E = mc^2$</code><br>
+效果：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = mc^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mrel">=</span><span class="mord mathit">m</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></p>
+</li>
+<li>
+<p>块级公式：<code>$$E = mc^2$$</code><br>
+效果：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = mc^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8641079999999999em;"></span><span class="strut bottom" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mrel">=</span><span class="mord mathit">m</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span></p>
+</li>
+</ul>
+<hr>
+<h3 id="总结">总结</h3>
+<ul>
+<li>如果你需要简单的公式支持，推荐使用 <strong>方法 1</strong>（<code>hexo-renderer-markdown-it</code> + <code>markdown-it-katex</code>）。</li>
+<li>如果你需要更强大的公式支持，推荐使用 <strong>方法 2</strong>（<code>hexo-renderer-pandoc</code>）。</li>
+<li>如果你不想折腾，可以使用 <strong>方法 3</strong>（<code>hexo-filter-mathjax</code>），但性能较差。</li>
+</ul>
+<h1>二. Hexo Admin后台新建posts，一直显示loading</h1>
+<p>从错误信息来看，问题是由于 <code>js-yaml</code> 库的版本升级导致的。在 <code>js-yaml</code> 4.0.0 及以上版本中，<code>yaml.safeLoad</code> 方法已被移除，建议使用 <code>yaml.load</code> 方法代替。Hexo Admin 插件可能还在使用旧的 <code>yaml.safeLoad</code> 方法，因此导致了错误。</p>
+<p>以下是解决该问题的步骤：</p>
+<hr>
+<h3 id="1-修改-Hexo-Admin-源码">1. <strong>修改 Hexo Admin 源码</strong></h3>
+<ul>
+<li>找到 Hexo Admin 插件中使用 <code>yaml.safeLoad</code> 的地方，将其替换为 <code>yaml.load</code>。</li>
+<li>根据错误日志，问题出现在 <code>D:\AIGC\my_blog\node_modules\.pnpm\hexo-admin@2.3.0\node_modules\hexo-admin\api.js</code> 文件的第 44 行。</li>
+<li>打开该文件，找到类似以下代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> settings = yaml.<span class="title function_">safeLoad</span>(fs.<span class="title function_">readFileSync</span>(settingsPath, <span class="string">&#x27;utf8&#x27;</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li>将其修改为：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> settings = yaml.<span class="title function_">load</span>(fs.<span class="title function_">readFileSync</span>(settingsPath, <span class="string">&#x27;utf8&#x27;</span>));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="2-降级-js-yaml-版本">2. <strong>降级 <code>js-yaml</code> 版本</strong></h3>
+<ul>
+<li>如果你不想修改源码，可以尝试将 <code>js-yaml</code> 降级到 3.x 版本，该版本仍然支持 <code>yaml.safeLoad</code>。</li>
+<li>运行以下命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install js-yaml@3.14.1 --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>然后重新启动 Hexo 服务器。</li>
+</ul>
+<hr>
+<h3 id="3-更新-Hexo-Admin-插件">3. <strong>更新 Hexo Admin 插件</strong></h3>
+<ul>
+<li>检查是否有新版本的 Hexo Admin 插件，可能已经修复了该问题。</li>
+<li>运行以下命令更新插件：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-admin@latest --save</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="4-检查-Hexo-和插件兼容性">4. <strong>检查 Hexo 和插件兼容性</strong></h3>
+<ul>
+<li>确保 Hexo 和 Hexo Admin 插件的版本兼容。</li>
+<li>查看 Hexo Admin 的官方文档或 GitHub 仓库，确认支持的 Hexo 版本。</li>
+</ul>
+<hr>
+<h3 id="5-清理缓存并重启">5. <strong>清理缓存并重启</strong></h3>
+<ul>
+<li>清理 Hexo 缓存并重新生成静态文件：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+</li>
+<li>重新启动 Hexo 服务器：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="6-检查-YAML-文件格式">6. <strong>检查 YAML 文件格式</strong></h3>
+<ul>
+<li>确保 Hexo Admin 使用的 YAML 配置文件格式正确，没有语法错误。</li>
+<li>可以使用在线 YAML 校验工具（如 <a target="_blank" rel="noopener" href="https://www.yamllint.com/">YAML Lint</a>）检查配置文件。</li>
+</ul>
+<hr>
+<h3 id="7-全局替换-yaml-safeLoad">7. <strong>全局替换 <code>yaml.safeLoad</code></strong></h3>
+<ul>
+<li>如果你的项目中还有其他地方使用了 <code>yaml.safeLoad</code>，可以全局替换为 <code>yaml.load</code>。</li>
+<li>使用代码编辑器的全局搜索功能，查找并替换所有 <code>yaml.safeLoad</code> 为 <code>yaml.load</code>。</li>
+</ul>
+<hr>
+<h3 id="8-提交-Issue-给-Hexo-Admin">8. <strong>提交 Issue 给 Hexo Admin</strong></h3>
+<ul>
+<li>如果以上方法无效，建议到 Hexo Admin 的 GitHub 仓库提交 Issue，说明你的问题和环境信息（如 Hexo 版本、Node.js 版本等）。</li>
+<li>Hexo Admin 仓库地址：<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-admin">https://github.com/hexojs/hexo-admin</a></li>
+</ul>
+<hr>
+<h3 id="9-临时解决方案">9. <strong>临时解决方案</strong></h3>
+<ul>
+<li>如果你急需解决问题，可以暂时锁定 <code>js-yaml</code> 的版本为 3.x，在 <code>package.json</code> 中添加以下内容：<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;resolutions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;js-yaml&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3.14.1&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>然后运行 <code>npm install</code> 重新安装依赖。</li>
+</ul>
+<hr>
+<p>通过以上方法，你应该能够解决 <code>yaml.safeLoad</code> 被移除的问题。如果问题仍然存在，请提供更多上下文信息，我会进一步协助你排查问题。</p>
+<h1>三.</h1>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.png" alt="AI模型研究所 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98.png" alt="AI模型研究所 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>AI模型研究所
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/" title="Hexo踩坑">http://example.com/2025/03/06/Hexo踩坑/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/" rel="prev" title="扩散模型和 自回归模型的对比">
+                  <i class="fa fa-angle-left"></i> 扩散模型和 自回归模型的对比
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">AI模型研究所</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">8k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">15 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/hfhfn" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>
