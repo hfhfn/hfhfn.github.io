@@ -1,44 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>关于我</title>
-    <url>/2025/03/05/about/</url>
-    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><p>你好！欢迎来到我的个人博客，我是一名对人工智能（AI）充满热情的开发者与研究者。这里是我分享 AI、大模型、RAG、Agent、Dify 等技术知识的小天地。</p>
-<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我目前专注于 AI 领域的学习与实践，尤其对以下方向感兴趣：</p>
-<ul>
-<li><strong>大模型（LLM）</strong>：如 GPT、LLaMA 等模型的原理与应用</li>
-<li><strong>检索增强生成（RAG）</strong>：如何结合检索与生成技术提升 AI 系统的能力</li>
-<li><strong>智能体（Agent）</strong>：多智能体系统与自动化任务的设计与实现</li>
-<li><strong>Dify</strong>：低代码 AI 应用开发平台的使用与探索</li>
-</ul>
-<p>我热爱探索新技术，也喜欢将复杂的技术知识用简单易懂的方式分享出来。希望通过这个博客，能与更多对 AI 感兴趣的朋友交流与成长。</p>
-<h2 id="博客内容"><a href="#博客内容" class="headerlink" title="博客内容"></a>博客内容</h2><p>在这里，你可以找到以下内容：</p>
-<ul>
-<li><strong>AI 技术解析</strong>：大模型、RAG、Agent 等技术的原理与实践</li>
-<li><strong>工具与框架</strong>：PyTorch、TensorFlow、LangChain 等工具的使用教程</li>
-<li><strong>实战项目</strong>：从零开始的 AI 项目实践与代码分享</li>
-<li><strong>学习资源</strong>：优质的学习资料、数据集与模型推荐</li>
-</ul>
-<h2 id="为什么写博客？"><a href="#为什么写博客？" class="headerlink" title="为什么写博客？"></a>为什么写博客？</h2><ol>
-<li><strong>记录学习</strong>：通过写作梳理自己的知识体系，加深对技术的理解。</li>
-<li><strong>分享经验</strong>：将学习过程中踩过的坑和总结的经验分享出来，帮助更多人少走弯路。</li>
-<li><strong>交流成长</strong>：希望能与志同道合的朋友一起探讨 AI 技术，共同进步。</li>
-</ol>
-<h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>如果你有任何问题、建议，或者只是想聊聊天，欢迎通过以下方式找到我：</p>
-<ul>
-<li><strong>邮箱</strong>: <a href="mailto:&#x68;&#x66;&#104;&#x66;&#x6e;&#64;&#115;&#105;&#x6e;&#x61;&#46;&#x63;&#111;&#109;">hfhfn@sina.com</a></li>
-<li><strong>GitHub</strong>: <a href="https://github.com/hfhfn">My GitHub Profile</a></li>
-<li><strong>社交媒体</strong>: [我的抖音主页](<a href="https://v.douyin.com/i56Pn1TV/">https://v.douyin.com/i56Pn1TV/</a> <a href="mailto:&#x34;&#64;&#55;&#46;&#x63;&#111;&#109;">4@7.com</a>) </li>
-<li><strong>分享链接</strong>: <a href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cgho">百度网盘技术分享</a> | <a href="https://pan.baidu.com/s/1XxC56NKwXaDmJIMxYzY_2w?pwd=da3c">百度网盘Dify分享</a></li>
-</ul>
-<h2 id="支持我"><a href="#支持我" class="headerlink" title="支持我"></a>支持我</h2><p>如果我的内容对你有帮助，欢迎通过以下方式支持我：</p>
-<ul>
-<li>给我的文章点个赞或留言</li>
-<li>在 <a href="https://github.com/hfhfn">GitHub</a> 上为我点个 Star</li>
-<li>[关注我的抖音账号](<a href="https://v.douyin.com/i56Pn1TV/">https://v.douyin.com/i56Pn1TV/</a> <a href="mailto:&#x34;&#64;&#55;&#x2e;&#99;&#111;&#109;">4@7.com</a>)，并给我的抖音视频一键三连</li>
-</ul>
-<hr>
-<p>感谢你的访问！希望你能在这里有所收获，也期待与你一起探索 AI 的奇妙世界。</p>
+    <title>Hello World</title>
+    <url>/2025/03/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -106,25 +85,5 @@
         <tag>AI,</tag>
         <tag>RAG</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2025/03/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>

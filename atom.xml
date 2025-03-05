@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-05T06:25:31.410Z</updated>
+  <updated>2025-03-05T05:02:57.885Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,24 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>关于我</title>
-    <link href="http://example.com/2025/03/05/about/"/>
-    <id>http://example.com/2025/03/05/about/</id>
-    <published>2025-03-05T04:24:04.000Z</published>
-    <updated>2025-03-05T06:25:31.410Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;About&quot;&gt;&lt;a href=&quot;#About&quot; class=&quot;headerlink&quot; title=&quot;About&quot;&gt;&lt;/a&gt;About&lt;/h1&gt;&lt;p&gt;你好！欢迎来到我的个人博客，我是一名对人工智能（AI）充满热情的开发者与研究者。这里是我分享 AI、大模型、RAG、</summary>
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>rag-lesson-1</title>
