@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>打开AI世界的大门</title>
+  
+  <subtitle>奔赴山海，保持热爱</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2025-03-05T06:25:31.410Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>AI模型研究所</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于我</title>
+    <link href="http://example.com/2025/03/05/about/"/>
+    <id>http://example.com/2025/03/05/about/</id>
+    <published>2025-03-05T04:24:04.000Z</published>
+    <updated>2025-03-05T06:25:31.410Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;About&quot;&gt;&lt;a href=&quot;#About&quot; class=&quot;headerlink&quot; title=&quot;About&quot;&gt;&lt;/a&gt;About&lt;/h1&gt;&lt;p&gt;你好！欢迎来到我的个人博客，我是一名对人工智能（AI）充满热情的开发者与研究者。这里是我分享 AI、大模型、RAG、</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>rag-lesson-1</title>
+    <link href="http://example.com/2025/03/05/rag-lesson-1/"/>
+    <id>http://example.com/2025/03/05/rag-lesson-1/</id>
+    <published>2025-03-05T04:24:04.000Z</published>
+    <updated>2025-03-05T05:02:57.885Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;从-0-到-1-快速搭建-RAG-应用&quot;&gt;&lt;a href=&quot;#从-0-到-1-快速搭建-RAG-应用&quot; class=&quot;headerlink&quot; title=&quot;从 0 到 1 快速搭建 RAG 应用&quot;&gt;&lt;/a&gt;从 0 到 1 快速搭建 RAG 应用&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h2 id=&quot;技术框架与选型&quot;&gt;&lt;a href=&quot;#技术框架与选型&quot; class=&quot;headerlink&quot; title=&quot;技术框架与选型&quot;&gt;&lt;/a&gt;技术框架与选型&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&quot;RAG-技术框架：LangChain&quot;&gt;&lt;a href=&quot;#RAG-技术框架：LangChain&quot; class=&quot;headerlink&quot; title=&quot;RAG 技术框架：LangChain&quot;&gt;&lt;/a&gt;RAG 技术框架：&lt;strong&gt;LangChain&lt;/strong&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="从0到1学习RAG" scheme="http://example.com/categories/AI/%E4%BB%8E0%E5%88%B01%E5%AD%A6%E4%B9%A0RAG/"/>
+    
+    
+    <category term="AI," scheme="http://example.com/tags/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2025/03/05/hello-world/"/>
+    <id>http://example.com/2025/03/05/hello-world/</id>
+    <published>2025-03-05T01:58:15.184Z</published>
+    <updated>2025-03-05T04:39:34.570Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+</feed>

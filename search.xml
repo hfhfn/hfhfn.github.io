@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>关于我</title>
+    <url>/2025/03/05/about/</url>
+    <content><![CDATA[<h1 id="About"><a href="#About" class="headerlink" title="About"></a>About</h1><p>你好！欢迎来到我的个人博客，我是一名对人工智能（AI）充满热情的开发者与研究者。这里是我分享 AI、大模型、RAG、Agent、Dify 等技术知识的小天地。</p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我目前专注于 AI 领域的学习与实践，尤其对以下方向感兴趣：</p>
+<ul>
+<li><strong>大模型（LLM）</strong>：如 GPT、LLaMA 等模型的原理与应用</li>
+<li><strong>检索增强生成（RAG）</strong>：如何结合检索与生成技术提升 AI 系统的能力</li>
+<li><strong>智能体（Agent）</strong>：多智能体系统与自动化任务的设计与实现</li>
+<li><strong>Dify</strong>：低代码 AI 应用开发平台的使用与探索</li>
+</ul>
+<p>我热爱探索新技术，也喜欢将复杂的技术知识用简单易懂的方式分享出来。希望通过这个博客，能与更多对 AI 感兴趣的朋友交流与成长。</p>
+<h2 id="博客内容"><a href="#博客内容" class="headerlink" title="博客内容"></a>博客内容</h2><p>在这里，你可以找到以下内容：</p>
+<ul>
+<li><strong>AI 技术解析</strong>：大模型、RAG、Agent 等技术的原理与实践</li>
+<li><strong>工具与框架</strong>：PyTorch、TensorFlow、LangChain 等工具的使用教程</li>
+<li><strong>实战项目</strong>：从零开始的 AI 项目实践与代码分享</li>
+<li><strong>学习资源</strong>：优质的学习资料、数据集与模型推荐</li>
+</ul>
+<h2 id="为什么写博客？"><a href="#为什么写博客？" class="headerlink" title="为什么写博客？"></a>为什么写博客？</h2><ol>
+<li><strong>记录学习</strong>：通过写作梳理自己的知识体系，加深对技术的理解。</li>
+<li><strong>分享经验</strong>：将学习过程中踩过的坑和总结的经验分享出来，帮助更多人少走弯路。</li>
+<li><strong>交流成长</strong>：希望能与志同道合的朋友一起探讨 AI 技术，共同进步。</li>
+</ol>
+<h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>如果你有任何问题、建议，或者只是想聊聊天，欢迎通过以下方式找到我：</p>
+<ul>
+<li><strong>邮箱</strong>: <a href="mailto:&#x68;&#x66;&#104;&#x66;&#x6e;&#64;&#115;&#105;&#x6e;&#x61;&#x2e;&#x63;&#111;&#x6d;">hfhfn@sina.com</a></li>
+<li><strong>GitHub</strong>: <a href="https://github.com/hfhfn">My GitHub Profile</a></li>
+<li><strong>社交媒体</strong>: [我的抖音主页](<a href="https://v.douyin.com/i56Pn1TV/">https://v.douyin.com/i56Pn1TV/</a> <a href="mailto:&#52;&#64;&#x37;&#x2e;&#99;&#111;&#x6d;">4@7.com</a>) </li>
+<li><strong>分享链接</strong>: <a href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cgho">百度网盘技术分享</a> | <a href="https://pan.baidu.com/s/1XxC56NKwXaDmJIMxYzY_2w?pwd=da3c">百度网盘Dify分享</a></li>
+</ul>
+<h2 id="支持我"><a href="#支持我" class="headerlink" title="支持我"></a>支持我</h2><p>如果我的内容对你有帮助，欢迎通过以下方式支持我：</p>
+<ul>
+<li>给我的文章点个赞或留言</li>
+<li>在 <a href="https://github.com/hfhfn">GitHub</a> 上为我点个 Star</li>
+<li>[关注我的抖音账号](<a href="https://v.douyin.com/i56Pn1TV/">https://v.douyin.com/i56Pn1TV/</a> <a href="mailto:&#x34;&#x40;&#x37;&#46;&#x63;&#111;&#109;">4@7.com</a>)，并给我的抖音视频一键三连</li>
+</ul>
+<hr>
+<p>感谢你的访问！希望你能在这里有所收获，也期待与你一起探索 AI 的奇妙世界。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/03/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>rag-lesson-1</title>
+    <url>/2025/03/05/rag-lesson-1/</url>
+    <content><![CDATA[<h1 id="从-0-到-1-快速搭建-RAG-应用"><a href="#从-0-到-1-快速搭建-RAG-应用" class="headerlink" title="从 0 到 1 快速搭建 RAG 应用"></a>从 0 到 1 快速搭建 RAG 应用</h1><ul>
+<li><h2 id="技术框架与选型"><a href="#技术框架与选型" class="headerlink" title="技术框架与选型"></a>技术框架与选型</h2><ul>
+<li><h3 id="RAG-技术框架：LangChain"><a href="#RAG-技术框架：LangChain" class="headerlink" title="RAG 技术框架：LangChain"></a>RAG 技术框架：<strong>LangChain</strong></h3><ul>
+<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li><h3 id="索引流程-文档解析模块：pypdf"><a href="#索引流程-文档解析模块：pypdf" class="headerlink" title="索引流程 - 文档解析模块：pypdf"></a>索引流程 - 文档解析模块：pypdf</h3><ul>
+<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
+</ul>
+</li>
+<li><h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter"><a href="#索引流程-文档分块模块：RecursiveCharacterTextSplitter" class="headerlink" title="索引流程 - 文档分块模块：RecursiveCharacterTextSplitter"></a>索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3><ul>
+<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
+</ul>
+</li>
+<li><h3 id="索引-检索流程-向量化模型：BAAI-bge-m3"><a href="#索引-检索流程-向量化模型：BAAI-bge-m3" class="headerlink" title="索引 &#x2F; 检索流程 - 向量化模型：BAAI&#x2F;bge-m3"></a>索引 &#x2F; 检索流程 - 向量化模型：BAAI&#x2F;bge-m3</h3><ul>
+<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
+</ul>
+</li>
+<li><h3 id="索引-检索流程-向量库：Faiss"><a href="#索引-检索流程-向量库：Faiss" class="headerlink" title="索引 &#x2F; 检索流程 - 向量库：Faiss"></a>索引 &#x2F; 检索流程 - 向量库：Faiss</h3><ul>
+<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
+</ul>
+</li>
+<li><h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct"><a href="#生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct" class="headerlink" title="生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen&#x2F;Qwen2.5-7B-Instruct"></a>生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen&#x2F;Qwen2.5-7B-Instruct</h3><ul>
+<li>Qwen&#x2F;Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
+</ul>
+</li>
+<li><h3 id="上述选型在-RAG-流程图中的应用如下所示："><a href="#上述选型在-RAG-流程图中的应用如下所示：" class="headerlink" title="上述选型在 RAG 流程图中的应用如下所示："></a>上述选型在 RAG 流程图中的应用如下所示：</h3><p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
+<ul>
+<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
+<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
+<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
+<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h2 id="开发环境与技术库"><a href="#开发环境与技术库" class="headerlink" title="开发环境与技术库"></a>开发环境与技术库</h2><ul>
+<li><h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）"><a href="#准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）" class="headerlink" title="准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）"></a>准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3></li>
+<li><h3 id="创建并激活虚拟环境"><a href="#创建并激活虚拟环境" class="headerlink" title="创建并激活虚拟环境"></a>创建并激活虚拟环境</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="安装技术依赖库"><a href="#安装技术依赖库" class="headerlink" title="安装技术依赖库"></a>安装技术依赖库</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="课程中用到的代码和pdf文件分享在github上："><a href="#课程中用到的代码和pdf文件分享在github上：" class="headerlink" title="课程中用到的代码和pdf文件分享在github上："></a>课程中用到的代码和pdf文件分享在github上：</h3><ol>
+<li><input checked="" disabled="" type="checkbox"> <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>从0到1学习RAG</category>
+      </categories>
+      <tags>
+        <tag>AI,</tag>
+        <tag>RAG</tag>
+      </tags>
+  </entry>
+</search>
