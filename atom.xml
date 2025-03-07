@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-07T01:09:55.515Z</updated>
+  <updated>2025-03-07T05:49:10.021Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Manus 首款通用AI智能体</title>
+    <link href="http://example.com/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/"/>
+    <id>http://example.com/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</id>
+    <published>2025-03-07T03:33:00.000Z</published>
+    <updated>2025-03-07T05:49:10.021Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h1&gt;做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&quot;首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="Agent" scheme="http://example.com/categories/AI/Agent/"/>
+    
+    
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
+    
+    <category term="Agent" scheme="http://example.com/tags/Agent/"/>
+    
+    <category term="Manus" scheme="http://example.com/tags/Manus/"/>
+    
+    <category term="智能体" scheme="http://example.com/tags/%E6%99%BA%E8%83%BD%E4%BD%93/"/>
+    
+  </entry>
   
   <entry>
     <title>RAG索引（一）：文档解析技术</title>
@@ -99,11 +132,11 @@
     <category term="大模型" scheme="http://example.com/categories/AI/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
     
     
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
+    
     <category term="生成模型方法" scheme="http://example.com/tags/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95/"/>
     
     <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
     
   </entry>
   
@@ -186,9 +219,9 @@
     <category term="从0到1学习RAG" scheme="http://example.com/categories/AI/%E4%BB%8E0%E5%88%B01%E5%AD%A6%E4%B9%A0RAG/"/>
     
     
-    <category term="AI," scheme="http://example.com/tags/AI/"/>
-    
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="AI," scheme="http://example.com/tags/AI/"/>
     
   </entry>
   

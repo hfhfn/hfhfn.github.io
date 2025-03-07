@@ -22,27 +22,36 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":{"valine":{"Order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+    <meta name="description" content="做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。   首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。   说说我的想法   第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2025/03/05/hello-world/index.html">
+<meta property="og:title" content="Manus 首款通用AI智能体">
+<meta property="og:url" content="http://example.com/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/index.html">
 <meta property="og:site_name" content="打开AI世界的大门">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。   首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。   说说我的想法   第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-05T01:58:15.184Z">
-<meta property="article:modified_time" content="2025-03-05T04:39:34.570Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png">
+<meta property="article:published_time" content="2025-03-07T03:33:00.000Z">
+<meta property="article:modified_time" content="2025-03-07T05:49:10.021Z">
 <meta property="article:author" content="AI模型研究所">
-<meta property="article:tag" content="AI，大模型，RAG, Agent，python，dify">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Manus">
+<meta property="article:tag" content="智能体">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png">
 
 
-<link rel="canonical" href="http://example.com/2025/03/05/hello-world/">
+<link rel="canonical" href="http://example.com/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/05/hello-world/","path":"2025/03/05/hello-world/","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/","path":"2025/03/07/Manus-首款通用AI智能体/","title":"Manus 首款通用AI智能体"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World | 打开AI世界的大门</title>
+<title>Manus 首款通用AI智能体 | 打开AI世界的大门</title>
   
 
 
@@ -143,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E8%AF%B4%E6%B8%85%E6%A5%9A%EF%BC%8C%E6%88%91%E6%B2%A1%E6%8B%BF%E5%88%B0%E9%82%80%E8%AF%B7%E7%A0%81%EF%BC%8C%E7%94%B3%E8%AF%B7%E7%9A%84%E6%97%B6%E5%80%99%E7%BD%91%E7%AB%99%E8%BF%98%E5%B4%A9%E4%BA%86%EF%BC%8C%E6%89%80%E4%BB%A5%E6%88%91%E5%9C%A8%E5%AE%98%E7%BD%91%E7%9C%8B%E4%BA%86%E4%B8%8B%E6%95%88%E6%9E%9C%E5%B9%B6%E6%9F%A5%E7%9C%8B%E4%BA%86%E5%85%B6%E4%BB%96%E5%8D%9A%E4%B8%BB%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91%E3%80%82"><span class="nav-number">1.1.</span> <span class="nav-text">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B4%E8%AF%B4%E6%88%91%E7%9A%84%E6%83%B3%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">说说我的想法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%82%B9%EF%BC%8CManus%E5%A6%82%E6%9E%9C%E5%85%AC%E6%B5%8B%E6%88%96%E8%80%85%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83%EF%BC%8C%E6%95%88%E6%9E%9C%E4%B8%8D%E6%89%93%E6%8A%98%E6%89%A3%EF%BC%8C%E9%82%A3%E4%B9%88%E5%AE%83%E7%A1%AE%E5%AE%9E%E8%83%BD%E4%BB%8E%E6%9C%AC%E8%B4%A8%E4%B8%8A%E5%B8%AE%E5%8A%A9%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E5%87%A0%E4%B9%8E%E6%B2%A1%E6%9C%89%E9%97%A8%E6%A7%9B%E7%9A%84%E4%BD%BF%E7%94%A8AI%E6%8A%80%E6%9C%AF%E3%80%82%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%8F%AF%E8%83%BD%E6%98%AF%E5%BE%88%E5%A4%9A%E9%A2%86%E5%9F%9F%E5%B0%86%E5%AE%9E%E7%8E%B0%E6%8A%80%E6%9C%AF%E5%B9%B3%E6%9D%83%E3%80%82"><span class="nav-number">1.1.2.</span> <span class="nav-text">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%8D%E6%9D%A5%E8%AF%B4%E7%AC%AC%E4%BA%8C%E7%82%B9%EF%BC%8C%E5%BE%88%E5%BF%AB%E5%9B%BD%E5%86%85%E7%9A%84%E5%A4%A7%E5%8E%82%E5%BA%94%E8%AF%A5%E5%B0%B1%E4%BC%9A%E6%8E%A8%E5%87%BA%E5%90%8C%E7%B1%BB%E4%BA%A7%E5%93%81%EF%BC%8C%E5%B8%82%E5%9C%BA%E5%B0%86%E5%87%BA%E7%8E%B0Agent%E6%8A%80%E6%9C%AF%E7%9A%84%E4%B8%80%E6%AC%A1%E8%B7%83%E5%8D%87%E3%80%82"><span class="nav-number">1.1.3.</span> <span class="nav-text">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E8%AF%B4%E4%B8%8BManus%E7%9A%84%E6%95%88%E6%9E%9C%E5%92%8C%E5%90%AF%E5%8F%91%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">最后说下Manus的效果和启发：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Manus%E5%B0%B1%E5%83%8F%E4%B8%80%E4%B8%AA%E8%83%BD%E5%8A%9B%E8%B6%85%E7%BE%A4%E7%9A%84%E5%85%A8%E8%83%BD%E5%8A%A9%E6%89%8B%EF%BC%8C%E7%AE%80%E5%8D%95%E7%82%B9%E5%B0%B1%E6%98%AF%EF%BC%9A%E4%B8%80%E5%8F%A5%E8%AF%9D%E4%BB%96%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%8E%A5%E7%AE%A1%E4%BD%A0%E7%9A%84%E7%94%B5%E8%84%91%E4%B8%BA%E4%BD%A0%E5%81%9A%EF%BC%9A"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8F%911%EF%BC%9A%E6%88%91%E8%A7%82%E5%AF%9F%E5%88%B0Manus%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1%E6%97%B6%EF%BC%8C%E5%AE%83%E4%BC%9A%E5%9C%A8%E7%BD%91%E7%BB%9C%E4%B8%8A%E8%BF%9B%E8%A1%8C%E5%A4%A7%E8%A7%84%E6%A8%A1%E7%9A%84%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%EF%BC%8C%E4%BD%86%E5%AE%83%E8%83%BD%E5%8A%9B%E5%86%8D%E5%BC%BA%EF%BC%8C%E6%B5%B7%E9%87%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E9%80%A0%E6%88%90%E7%9A%84AI%E5%B9%BB%E8%A7%89%E5%92%8CAI%E5%81%8F%E8%A7%81%E4%BC%9A%E5%8F%98%E5%BE%97%E8%B6%8A%E6%9D%A5%E8%B6%8A%E9%9A%BE%E4%BB%A5%E9%81%BF%E5%85%8D%E3%80%82"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8F%912%EF%BC%9A-%E6%88%96%E8%AE%B8%E6%88%91%E4%BB%AC%E4%B8%8D%E4%B8%80%E5%AE%9A%E8%A6%81%E5%8E%BB%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%80%E4%B8%AA%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%8C%E8%80%8C%E6%98%AF%E7%A7%AF%E7%B4%AF%E6%88%91%E4%BB%AC%E7%9A%84%E5%A4%A7%E9%87%8F%E7%9F%A5%E8%AF%86%E5%BA%93%E5%86%85%E5%AE%B9%EF%BC%8C%E7%AD%89%E5%BE%85%E5%A4%A7%E5%8E%82%E7%9A%84%E9%80%9A%E7%94%A8Agent%E5%88%B0%E6%9D%A5%E6%97%B6%EF%BC%8C%E5%8F%8D%E8%80%8C%E7%9B%B4%E6%8E%A5%E4%BC%9A%E8%A2%AB%E8%B5%8B%E4%BA%88%E6%9B%B4%E5%A4%A7%E7%9A%84%E6%B4%BB%E5%8A%9B%EF%BC%8C%E7%9C%9F%E6%AD%A3%E5%AE%9E%E7%8E%B0%E6%9B%B4%E6%99%BA%E8%83%BD%E7%9A%84%E4%BA%A4%E4%BA%92%E5%92%8C%E5%BA%94%E7%94%A8%E3%80%82"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -225,7 +234,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/05/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.ico">
@@ -238,12 +247,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World | 打开AI世界的大门">
+      <meta itemprop="name" content="Manus 首款通用AI智能体 | 打开AI世界的大门">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          Manus 首款通用AI智能体
         </h1>
 
         <div class="post-meta-container">
@@ -255,7 +264,20 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-05 09:58:15 / 修改时间：12:39:34" itemprop="dateCreated datePublished" datetime="2025-03-05T09:58:15+08:00">2025-03-05</time>
+      <time title="创建时间：2025-03-07 11:33:00 / 修改时间：13:49:10" itemprop="dateCreated datePublished" datetime="2025-03-07T11:33:00+08:00">2025-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/Agent/" itemprop="url" rel="index"><span itemprop="name">Agent</span></a>
+        </span>
     </span>
 
   
@@ -272,7 +294,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>367</span>
+      <span>810</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -289,21 +311,94 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <div class="post-body" itemprop="articleBody"><h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
+<ul>
+<li>
+<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
+</li>
+<li>
+<h3 id="说说我的想法">说说我的想法</h3>
+<ul>
+<li>
+<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
+</li>
+<li>
+<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
+<ul>
+<li>从目前头部的几个集成平台说起：</li>
+<li><strong>字节的扣子</strong>
+<ul>
+<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
+</ul>
+</li>
+<li><strong>Dify</strong><br>
+一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
+<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
+<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
+<ul>
+<li>
+<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
+<ul>
+<li>商业研究</li>
+<li>生活帮手</li>
+<li>数据分析</li>
+<li>教育可视化</li>
+<li>以及各种提升生产率的工具</li>
+</ul>
+</li>
+<li>
+<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
+</ul>
+</li>
+<li>
+<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
+</ul>
+</li>
+<li>
+<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
+</ul>
+</li>
+<li>
+<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
+<ul>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
+</li>
+<li>
+<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
+</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -335,11 +430,11 @@
 <div class="post-copyright">
 <ul>
   <li class="post-copyright-author">
-      <strong>本文作者： </strong>AI模型研究所
+      <strong>原作者： </strong>AI模型研究所
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2025/03/05/hello-world/" title="Hello World">http://example.com/2025/03/05/hello-world/</a>
+      <a href="http://example.com/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/" title="Manus 首款通用AI智能体">http://example.com/2025/03/07/Manus-首款通用AI智能体/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -347,16 +442,22 @@
 </ul>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/Agent/" rel="tag"># Agent</a>
+              <a href="/tags/Manus/" rel="tag"># Manus</a>
+              <a href="/tags/%E6%99%BA%E8%83%BD%E4%BD%93/" rel="tag"># 智能体</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/" rel="prev" title="RAG索引（一）：文档解析技术">
+                  <i class="fa fa-angle-left"></i> RAG索引（一）：文档解析技术
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/03/05/rag-lesson-1/" rel="next" title="rag-lesson-1">
-                  rag-lesson-1 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
