@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-07T01:05:16.903Z</updated>
+  <updated>2025-03-07T01:09:55.515Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,16 +21,18 @@
     <link href="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/"/>
     <id>http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</id>
     <published>2025-03-06T23:41:00.000Z</published>
-    <updated>2025-03-07T01:05:16.903Z</updated>
+    <updated>2025-03-07T01:09:55.515Z</updated>
     
     
-      
-      
     <summary type="html">&lt;h1&gt;RAG索引流程中面临的文档解析任务&lt;/h1&gt;
 &lt;h2 id=&quot;1-文档解析现状&quot;&gt;1. 文档解析现状&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信</summary>
-      
+&lt;li&gt;文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。&lt;/li&gt;
+&lt;li&gt;高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。&lt;/li&gt;
+&lt;li&gt;RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。&lt;/li&gt;
+&lt;li&gt;PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。&lt;/li&gt;
+&lt;li&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png&quot; alt=&quot;image-20250307075848111&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
@@ -184,9 +186,9 @@
     <category term="从0到1学习RAG" scheme="http://example.com/categories/AI/%E4%BB%8E0%E5%88%B01%E5%AD%A6%E4%B9%A0RAG/"/>
     
     
-    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
-    
     <category term="AI," scheme="http://example.com/tags/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
   </entry>
   
