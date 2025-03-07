@@ -22,29 +22,37 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":{"valine":{"Order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-    <meta name="description" content="Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：">
+    <meta name="description" content="RAG索引流程中面临的文档解析任务 1. 文档解析现状  文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。 高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。 RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Exc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Text2SQL应用对比">
-<meta property="og:url" content="http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/index.html">
+<meta property="og:title" content="RAG索引（一）：文档解析技术">
+<meta property="og:url" content="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/index.html">
 <meta property="og:site_name" content="打开AI世界的大门">
-<meta property="og:description" content="Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：">
+<meta property="og:description" content="RAG索引流程中面临的文档解析任务 1. 文档解析现状  文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。 高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。 RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Exc">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-05T21:36:57.497Z">
-<meta property="article:modified_time" content="2025-03-05T22:30:46.134Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png">
+<meta property="article:published_time" content="2025-03-06T23:41:00.000Z">
+<meta property="article:modified_time" content="2025-03-07T01:05:16.903Z">
 <meta property="article:author" content="AI模型研究所">
-<meta property="article:tag" content="AI工具">
-<meta property="article:tag" content="Text2SQL">
-<meta property="article:tag" content="自然语言操作数据库">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="文档解析">
+<meta property="article:tag" content="langchain_community.document_loaders">
+<meta property="article:tag" content="pdfplumber">
+<meta property="article:tag" content="unstructured">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png">
 
 
-<link rel="canonical" href="http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/">
+<link rel="canonical" href="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/","path":"2025/03/06/Text2SQL应用对比/","title":"Text2SQL应用对比"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/","path":"2025/03/07/RAG索引（一）：文档解析技术/","title":"RAG索引（一）：文档解析技术"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Text2SQL应用对比 | 打开AI世界的大门</title>
+<title>RAG索引（一）：文档解析技术 | 打开AI世界的大门</title>
   
 
 
@@ -145,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Postgres-new"><span class="nav-number">1.</span> <span class="nav-text">1. Postgres.new</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Vanna"><span class="nav-number">2.</span> <span class="nav-text">2. Vanna</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">对比总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%BB%BA%E8%AE%AE"><span class="nav-number">4.</span> <span class="nav-text">选择建议</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">RAG索引流程中面临的文档解析任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E7%8E%B0%E7%8A%B6"><span class="nav-number">1.1.</span> <span class="nav-text">1. 文档解析现状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7%E9%80%89%E6%8B%A9%EF%BC%88%E8%BF%99%E9%87%8C%E4%B8%BB%E8%A6%81%E8%AE%A8%E8%AE%BA%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. 文档解析工具选择（这里主要讨论开源工具）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E6%8A%8A%E6%89%80%E6%9C%89%E5%B7%A5%E5%85%B7%E5%88%86%E4%B8%BA%E4%B8%A4%E5%A4%A7%E7%B1%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">我们可以把所有工具分为两大类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%99%E9%87%8C%E6%88%91%E4%BB%AC%E9%A6%96%E5%85%88%E4%BB%8B%E7%BB%8D%E5%9F%BA%E4%BA%8E%E8%A7%84%E5%88%99%E7%9A%84%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">这里我们首先介绍基于规则的解析工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%8D%E6%9D%A5%E7%9C%8B%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%BC%80%E6%BA%90%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">再来看基于深度学习的开源解析工具</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -227,7 +235,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.ico">
@@ -240,12 +248,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Text2SQL应用对比 | 打开AI世界的大门">
+      <meta itemprop="name" content="RAG索引（一）：文档解析技术 | 打开AI世界的大门">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Text2SQL应用对比
+          RAG索引（一）：文档解析技术
         </h1>
 
         <div class="post-meta-container">
@@ -257,7 +265,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-06 05:36:57 / 修改时间：06:30:46" itemprop="dateCreated datePublished" datetime="2025-03-06T05:36:57+08:00">2025-03-06</time>
+      <time title="创建时间：2025-03-07 07:41:00 / 修改时间：09:05:16" itemprop="dateCreated datePublished" datetime="2025-03-07T07:41:00+08:00">2025-03-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,7 +277,15 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AI/AI%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">AI工具</span></a>
+          <a href="/categories/AI/RAG/" itemprop="url" rel="index"><span itemprop="name">RAG</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/RAG/%E7%B4%A2%E5%BC%95/" itemprop="url" rel="index"><span itemprop="name">索引</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">文档解析</span></a>
         </span>
     </span>
 
@@ -287,14 +303,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>787</span>
+      <span>1.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -304,100 +320,51 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
-<hr>
-<span id="more"></span>
-<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
+    <div class="post-body" itemprop="articleBody"><h1>RAG索引流程中面临的文档解析任务</h1>
+<h2 id="1-文档解析现状">1. 文档解析现状</h2>
 <ul>
-<li><strong>类型</strong>：在线工具</li>
-<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
-<li><strong>特点</strong>：
+<li>文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。</li>
+<li>高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。</li>
+<li>RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。</li>
+<li>PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png" alt="image-20250307075848111"></li>
+</ul>
+<h2 id="2-文档解析工具选择（这里主要讨论开源工具）">2. 文档解析工具选择（这里主要讨论开源工具）</h2>
 <ul>
-<li>无需安装或配置，直接在浏览器中使用。</li>
-<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
-<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
-<li>支持标准的 PostgreSQL 功能。</li>
+<li>
+<h3 id="我们可以把所有工具分为两大类">我们可以把所有工具分为两大类</h3>
+<ul>
+<li>一个是<strong>基于规则</strong>的开源库</li>
+<li>一个是<strong>基于深度学习</strong>的开源库</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png" alt="image-20250307080819281"></li>
 </ul>
 </li>
-<li><strong>适用场景</strong>：
+<li>
+<h4 id="这里我们首先介绍基于规则的解析工具">这里我们首先介绍基于规则的解析工具</h4>
 <ul>
-<li>快速测试 SQL 查询。</li>
-<li>教学或演示 PostgreSQL 功能。</li>
-<li>临时需要数据库环境的场景。</li>
+<li>因为我们选择的框架langchain提供在实际应用场景中常见文档格式基于规则的解析方案，涵盖 PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML 和 HTML 格式。</li>
+<li>所以初步使用<strong>langchain</strong>框架LangChain Document Loaders 文档加载器进行操作，也就是<strong>langchain_community.document_loaders</strong>模块。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png" alt="image-20250307081912468"></li>
+<li>以下是langchain Document Loader 所需的文档解析依赖库</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png" alt="image-20250307082205941"></li>
+<li>例如，当我们项目中使用 from langchain_community.document_loaders import PDFPlumberLoader 时，需要先通过命令行 pip install pdfplumber 安装 pdfplumber 库。某些特殊情况下，还需要额外的依赖库，比如使用 UnstructuredMarkdownLoader 时，需要安装 unstructured 库来提供底层文档解析，还需要 markdown 库来支持 Markdown 文档格式更多能力。此外，对于像 .doc 这种早期的文档类型，还需要安装 libreoffice 软件库才能进行解析。</li>
+<li>针对PDF文档，目前主流是转为MarkDown文件格式。PDF 文件分为电子版和扫描版，**PDF 电子版可以通过规则解析，提取出文本、表格等文档元素。**目前，有许多开源库可以支持，例如 pyPDF2、PyMuPDF、pdfminer、pdfplumber 和 papermage 等。这些库在 langchain_community.document_loaders 中基本都有对应的加载器。</li>
+<li><strong>在基于规则的开源库中，pdfplumber 对中文支持较好，且在表格解析方面表现优秀，但对双栏文本的解析能力较差；pdfminer 和 PyMuPDF 对中文支持良好，但表格解析效果较弱；pyPDF2 对英文支持较好，但中文支持较差；papermage 集成了 pdfminer 和其他工具，特别适合处理论文场景。开发者可以根据实际业务场景的测试结果选择合适的工具，pdfplumber 或 pdfminer 都是当前不错的选择。</strong></li>
 </ul>
 </li>
-</ul>
-<hr>
-<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
+<li>
+<h4 id="再来看基于深度学习的开源解析工具">再来看基于深度学习的开源解析工具</h4>
 <ul>
-<li><strong>类型</strong>：AI 驱动的工具</li>
-<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
-<li><strong>特点</strong>：
-<ul>
-<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
-<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
-<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
-<li>提供 Python 库，方便集成到数据工作流中。</li>
+<li>基于深度学习的工具基本都是因PDF而生，无论扫描版还是电子版均需进行版面分析和阅读顺序的还原，将内容解析为一个包含所有文档元素并且具有正确阅读顺序的 MarkDown 文件。单纯依赖规则解析是无法实现这一目标的，目前支持这些功能的多为基于深度学习的开源库，如 Layout-parser、PP-StructureV2、PDF-Extract-Kit、pix2text、MinerU、marker 等。</li>
+<li>由于深度学习模型的部署复杂性以及对显卡配置的要求，langchain目前基本集成的都是基于规则的解析工具，基于深度学习的工具需要进行独立部署。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png" alt="image-20250307083713327"></li>
+<li>除了以上提到的还有比如：RapidLayout 专注于版面分析的，以及众多专注OCR（光学字符识别）识别的ZeroX，GOT-OCR2.0, OCRmyPDF，olmOCR等。</li>
 </ul>
 </li>
-<li><strong>适用场景</strong>：
-<ul>
-<li>非技术用户需要查询数据库。</li>
-<li>快速生成复杂 SQL 查询。</li>
-<li>数据分析师或开发人员希望提高工作效率。</li>
-</ul>
+<li>
+<p>目前除了这些工具，采用 <strong>端到端的多模态大模型直接解析</strong> 包括文字模态以及图片中非文字内容的解析，如常见的折线图、柱状图等，也许是文档解析的终极形式，但模型在效率和成本方面仍存在挑战，但其未来潜力巨大，值得期待。</p>
 </li>
 </ul>
-<hr>
-<h3 id="对比总结"><strong>对比总结</strong></h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Postgres.new</th>
-<th>Vanna</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>类型</strong></td>
-<td>在线临时数据库工具</td>
-<td>AI 驱动的 SQL 生成工具</td>
-</tr>
-<tr>
-<td><strong>主要用途</strong></td>
-<td>创建临时 PostgreSQL 实例</td>
-<td>通过自然语言生成 SQL 查询</td>
-</tr>
-<tr>
-<td><strong>用户群体</strong></td>
-<td>开发者、测试人员、学习者</td>
-<td>数据分析师、非技术用户、开发者</td>
-</tr>
-<tr>
-<td><strong>技术依赖</strong></td>
-<td>无需 AI，纯数据库工具</td>
-<td>依赖 AI 模型（如 GPT）</td>
-</tr>
-<tr>
-<td><strong>集成能力</strong></td>
-<td>无</td>
-<td>支持 Python 库，可集成到工作流</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>测试、演示、学习</td>
-<td>数据分析、快速生成 SQL、简化查询</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="选择建议"><strong>选择建议</strong></h3>
-<ul>
-<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
-<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
-</ul>
-<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
 
     </div>
 
@@ -433,7 +400,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/" title="Text2SQL应用对比">http://example.com/2025/03/06/Text2SQL应用对比/</a>
+      <a href="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/" title="RAG索引（一）：文档解析技术">http://example.com/2025/03/07/RAG索引（一）：文档解析技术/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -442,23 +409,22 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/AI%E5%B7%A5%E5%85%B7/" rel="tag"># AI工具</a>
-              <a href="/tags/Text2SQL/" rel="tag"># Text2SQL</a>
-              <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 自然语言操作数据库</a>
+              <a href="/tags/RAG/" rel="tag"># RAG</a>
+              <a href="/tags/%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90/" rel="tag"># 文档解析</a>
+              <a href="/tags/langchain-community-document-loaders/" rel="tag"># langchain_community.document_loaders</a>
+              <a href="/tags/pdfplumber/" rel="tag"># pdfplumber</a>
+              <a href="/tags/unstructured/" rel="tag"># unstructured</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/" rel="prev" title="翻墙机场推荐（魔法上网）">
-                  <i class="fa fa-angle-left"></i> 翻墙机场推荐（魔法上网）
+                <a href="/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/" rel="prev" title="Hexo踩坑">
+                  <i class="fa fa-angle-left"></i> Hexo踩坑
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/" rel="next" title="扩散模型和 自回归模型的对比">
-                  扩散模型和 自回归模型的对比 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

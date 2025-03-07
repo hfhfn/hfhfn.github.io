@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-05T23:48:32.927Z</updated>
+  <updated>2025-03-07T01:05:16.903Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,45 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RAG索引（一）：文档解析技术</title>
+    <link href="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/"/>
+    <id>http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</id>
+    <published>2025-03-06T23:41:00.000Z</published>
+    <updated>2025-03-07T01:05:16.903Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h1&gt;RAG索引流程中面临的文档解析任务&lt;/h1&gt;
+&lt;h2 id=&quot;1-文档解析现状&quot;&gt;1. 文档解析现状&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
+    
+    <category term="索引" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/"/>
+    
+    <category term="文档解析" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90/"/>
+    
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="文档解析" scheme="http://example.com/tags/%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90/"/>
+    
+    <category term="langchain_community.document_loaders" scheme="http://example.com/tags/langchain-community-document-loaders/"/>
+    
+    <category term="pdfplumber" scheme="http://example.com/tags/pdfplumber/"/>
+    
+    <category term="unstructured" scheme="http://example.com/tags/unstructured/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo踩坑</title>
@@ -145,9 +184,9 @@
     <category term="从0到1学习RAG" scheme="http://example.com/categories/AI/%E4%BB%8E0%E5%88%B01%E5%AD%A6%E4%B9%A0RAG/"/>
     
     
-    <category term="AI," scheme="http://example.com/tags/AI/"/>
-    
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="AI," scheme="http://example.com/tags/AI/"/>
     
   </entry>
   
