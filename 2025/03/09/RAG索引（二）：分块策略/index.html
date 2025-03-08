@@ -22,37 +22,36 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":{"valine":{"Order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-    <meta name="description" content="RAG索引流程中面临的文档解析任务 1. 文档解析现状  文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。 高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。 RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Exc">
+    <meta name="description" content="文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。 选择适合特定场景的分块策略是提升 RAG 系统召回率的关键。   为什么说分块很重要？   分块的目标在于确保每个片段在保留核心语义的同时，具备相对独立的语义完整性，从而使模型在处理时不必依赖广泛的上下文信息，增强检索召回的准确性。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RAG索引（一）：文档解析技术">
-<meta property="og:url" content="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:title" content="RAG索引（二）：分块策略">
+<meta property="og:url" content="http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/index.html">
 <meta property="og:site_name" content="打开AI世界的大门">
-<meta property="og:description" content="RAG索引流程中面临的文档解析任务 1. 文档解析现状  文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。 高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。 RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Exc">
+<meta property="og:description" content="文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。 选择适合特定场景的分块策略是提升 RAG 系统召回率的关键。   为什么说分块很重要？   分块的目标在于确保每个片段在保留核心语义的同时，具备相对独立的语义完整性，从而使模型在处理时不必依赖广泛的上下文信息，增强检索召回的准确性。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png">
-<meta property="article:published_time" content="2025-03-06T23:41:00.000Z">
-<meta property="article:modified_time" content="2025-03-07T01:09:55.515Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309012438108.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309013703174.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309021222817.png">
+<meta property="article:published_time" content="2025-03-08T17:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-08T18:32:04.982Z">
 <meta property="article:author" content="AI模型研究所">
+<meta property="article:tag" content="AI">
 <meta property="article:tag" content="RAG">
-<meta property="article:tag" content="文档解析">
-<meta property="article:tag" content="langchain_community.document_loaders">
-<meta property="article:tag" content="pdfplumber">
-<meta property="article:tag" content="unstructured">
+<meta property="article:tag" content="索引">
+<meta property="article:tag" content="分块策略">
+<meta property="article:tag" content="langchain">
+<meta property="article:tag" content="Chunk">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309012438108.png">
 
 
-<link rel="canonical" href="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/">
+<link rel="canonical" href="http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/","path":"2025/03/07/RAG索引（一）：文档解析技术/","title":"RAG索引（一）：文档解析技术"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/","path":"2025/03/09/RAG索引（二）：分块策略/","title":"RAG索引（二）：分块策略"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>RAG索引（一）：文档解析技术 | 打开AI世界的大门</title>
+<title>RAG索引（二）：分块策略 | 打开AI世界的大门</title>
   
 
 
@@ -153,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">RAG索引流程中面临的文档解析任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E7%8E%B0%E7%8A%B6"><span class="nav-number">1.1.</span> <span class="nav-text">1. 文档解析现状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7%E9%80%89%E6%8B%A9%EF%BC%88%E8%BF%99%E9%87%8C%E4%B8%BB%E8%A6%81%E8%AE%A8%E8%AE%BA%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. 文档解析工具选择（这里主要讨论开源工具）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E6%8A%8A%E6%89%80%E6%9C%89%E5%B7%A5%E5%85%B7%E5%88%86%E4%B8%BA%E4%B8%A4%E5%A4%A7%E7%B1%BB"><span class="nav-number">1.2.1.</span> <span class="nav-text">我们可以把所有工具分为两大类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%99%E9%87%8C%E6%88%91%E4%BB%AC%E9%A6%96%E5%85%88%E4%BB%8B%E7%BB%8D%E5%9F%BA%E4%BA%8E%E8%A7%84%E5%88%99%E7%9A%84%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">这里我们首先介绍基于规则的解析工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%8D%E6%9D%A5%E7%9C%8B%E5%9F%BA%E4%BA%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%BC%80%E6%BA%90%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">再来看基于深度学习的开源解析工具</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E6%95%B0%E6%8D%AE%EF%BC%88Documents%EF%BC%89%E7%BB%8F%E8%BF%87%E8%A7%A3%E6%9E%90%E5%90%8E%EF%BC%8C%E9%80%9A%E8%BF%87%E5%88%86%E5%9D%97%E6%8A%80%E6%9C%AF%E5%B0%86%E4%BF%A1%E6%81%AF%E5%86%85%E5%AE%B9%E5%88%92%E5%88%86%E4%B8%BA%E9%80%82%E5%BD%93%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%96%87%E6%A1%A3%E7%89%87%E6%AE%B5%EF%BC%88chunks%EF%BC%89%EF%BC%8C%E4%BB%8E%E8%80%8C%E4%BD%BF-RAG-%E7%B3%BB%E7%BB%9F%E8%83%BD%E5%A4%9F%E9%AB%98%E6%95%88%E5%A4%84%E7%90%86%E5%92%8C%E7%B2%BE%E5%87%86%E6%A3%80%E7%B4%A2%E8%BF%99%E4%BA%9B%E7%89%87%E6%AE%B5%E4%BF%A1%E6%81%AF%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%80%82%E5%90%88%E7%89%B9%E5%AE%9A%E5%9C%BA%E6%99%AF%E7%9A%84%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5%E6%98%AF%E6%8F%90%E5%8D%87-RAG-%E7%B3%BB%E7%BB%9F%E5%8F%AC%E5%9B%9E%E7%8E%87%E7%9A%84%E5%85%B3%E9%94%AE%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">选择适合特定场景的分块策略是提升 RAG 系统召回率的关键。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4%E5%88%86%E5%9D%97%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">为什么说分块很重要？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5%E6%9C%80%E5%A4%A7%E7%9A%84%E6%8C%91%E6%88%98%E5%9C%A8%E4%BA%8E%E7%A1%AE%E5%AE%9A%E5%88%86%E5%9D%97%E7%9A%84%E5%A4%A7%E5%B0%8F%E3%80%82"><span class="nav-number">2.2.</span> <span class="nav-text">分块策略最大的挑战在于确定分块的大小。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5"><span class="nav-number">2.3.</span> <span class="nav-text">分块策略</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -235,7 +234,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.ico">
@@ -248,12 +247,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="RAG索引（一）：文档解析技术 | 打开AI世界的大门">
+      <meta itemprop="name" content="RAG索引（二）：分块策略 | 打开AI世界的大门">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          RAG索引（一）：文档解析技术
+          RAG索引（二）：分块策略
         </h1>
 
         <div class="post-meta-container">
@@ -265,7 +264,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-07 07:41:00 / 修改时间：09:09:55" itemprop="dateCreated datePublished" datetime="2025-03-07T07:41:00+08:00">2025-03-07</time>
+      <time title="创建时间：2025-03-09 01:00:00 / 修改时间：02:32:04" itemprop="dateCreated datePublished" datetime="2025-03-09T01:00:00+08:00">2025-03-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -285,7 +284,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">文档解析</span></a>
+          <a href="/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/" itemprop="url" rel="index"><span itemprop="name">分块策略</span></a>
         </span>
     </span>
 
@@ -303,14 +302,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>2.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -320,50 +319,132 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1>RAG索引流程中面临的文档解析任务</h1>
-<h2 id="1-文档解析现状">1. 文档解析现状</h2>
+    <div class="post-body" itemprop="articleBody"><h3 id="文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使-RAG-系统能够高效处理和精准检索这些片段信息。">文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。</h3>
+<h3 id="选择适合特定场景的分块策略是提升-RAG-系统召回率的关键。">选择适合特定场景的分块策略是提升 RAG 系统召回率的关键。</h3>
 <ul>
-<li>文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。</li>
-<li>高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。</li>
-<li>RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。</li>
-<li>PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png" alt="image-20250307075848111"></li>
-</ul>
+<li>
+<h4 id="为什么说分块很重要？">为什么说分块很重要？</h4>
+<ul>
+<li>
+<p>分块的目标在于确保每个片段在<strong>保留核心语义</strong>的同时，具备<strong>相对独立的语义完整性</strong>，从而使模型在处理时不必依赖广泛的上下文信息，<strong>增强检索召回的准确性</strong>。</p>
+</li>
+<li>
+<p><strong>分块的重要性在于</strong>它直接影响 RAG 系统的生成质量。首先，合理的分块能够确保<strong>检索到的片段与用户查询信息高度匹配</strong>，避免信息冗余或丢失。</p>
+</li>
+<li>
+<p><strong>好的分块有助于提升生成内容的连贯性</strong>，精心设计的独立语义片段可以<strong>降低模型对上下文的依赖</strong>，从而增强生成的逻辑性与一致性。</p>
+</li>
+<li>
+<p>分块策略的选择还会<strong>影响系统的响应速度与效率</strong>，模型能够更快、更准确地处理和生成内容。</p>
+</li>
+<li>
+<h4 id="分块策略最大的挑战在于确定分块的大小。">分块策略最大的挑战在于确定分块的大小。</h4>
 <span id="more"></span>
-<h2 id="2-文档解析工具选择（这里主要讨论开源工具）">2. 文档解析工具选择（这里主要讨论开源工具）</h2>
 <ul>
-<li>
-<h3 id="我们可以把所有工具分为两大类">我们可以把所有工具分为两大类</h3>
-<ul>
-<li>一个是<strong>基于规则</strong>的开源库</li>
-<li>一个是<strong>基于深度学习</strong>的开源库</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png" alt="image-20250307080819281"></li>
+<li>如果<strong>片段过大</strong>，可能导致向量<strong>无法精确捕捉内容的特定细节</strong>并且计算成本增加；</li>
+<li>若<strong>片段过小</strong>，则可能丢失上下文信息，导致<strong>句子碎片化和语义不连贯</strong>。</li>
+<li>较小的块适用于需要细粒度分析的任务，例如<strong>情感分析</strong>，能够精确捕捉特定短语或句子的细节。</li>
+<li>更大的块则更为合适需要保留更广泛上下文的场景，例如<strong>文档摘要或主题检测</strong>。</li>
 </ul>
 </li>
 <li>
-<h4 id="这里我们首先介绍基于规则的解析工具">这里我们首先介绍基于规则的解析工具</h4>
-<ul>
-<li>因为我们选择的框架langchain提供在实际应用场景中常见文档格式基于规则的解析方案，涵盖 PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML 和 HTML 格式。</li>
-<li>所以初步使用<strong>langchain</strong>框架LangChain Document Loaders 文档加载器进行操作，也就是<strong>langchain_community.document_loaders</strong>模块。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png" alt="image-20250307081912468"></li>
-<li>以下是langchain Document Loader 所需的文档解析依赖库</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png" alt="image-20250307082205941"></li>
-<li>例如，当我们项目中使用 from langchain_community.document_loaders import PDFPlumberLoader 时，需要先通过命令行 pip install pdfplumber 安装 pdfplumber 库。某些特殊情况下，还需要额外的依赖库，比如使用 UnstructuredMarkdownLoader 时，需要安装 unstructured 库来提供底层文档解析，还需要 markdown 库来支持 Markdown 文档格式更多能力。此外，对于像 .doc 这种早期的文档类型，还需要安装 libreoffice 软件库才能进行解析。</li>
-<li>针对PDF文档，目前主流是转为MarkDown文件格式。PDF 文件分为电子版和扫描版，**PDF 电子版可以通过规则解析，提取出文本、表格等文档元素。**目前，有许多开源库可以支持，例如 pyPDF2、PyMuPDF、pdfminer、pdfplumber 和 papermage 等。这些库在 langchain_community.document_loaders 中基本都有对应的加载器。</li>
-<li><strong>在基于规则的开源库中，pdfplumber 对中文支持较好，且在表格解析方面表现优秀，但对双栏文本的解析能力较差；pdfminer 和 PyMuPDF 对中文支持良好，但表格解析效果较弱；pyPDF2 对英文支持较好，但中文支持较差；papermage 集成了 pdfminer 和其他工具，特别适合处理论文场景。开发者可以根据实际业务场景的测试结果选择合适的工具，pdfplumber 或 pdfminer 都是当前不错的选择。</strong></li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309012438108.png" alt="image-20250309012438108"></p>
+</li>
 </ul>
 </li>
 <li>
-<h4 id="再来看基于深度学习的开源解析工具">再来看基于深度学习的开源解析工具</h4>
+<h4 id="分块策略">分块策略</h4>
 <ul>
-<li>基于深度学习的工具基本都是因PDF而生，无论扫描版还是电子版均需进行版面分析和阅读顺序的还原，将内容解析为一个包含所有文档元素并且具有正确阅读顺序的 MarkDown 文件。单纯依赖规则解析是无法实现这一目标的，目前支持这些功能的多为基于深度学习的开源库，如 Layout-parser、PP-StructureV2、PDF-Extract-Kit、pix2text、MinerU、marker 等。</li>
-<li>由于深度学习模型的部署复杂性以及对显卡配置的要求，langchain目前基本集成的都是基于规则的解析工具，基于深度学习的工具需要进行独立部署。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png" alt="image-20250307083713327"></li>
-<li>除了以上提到的还有比如：RapidLayout 专注于版面分析的，以及众多专注OCR（光学字符识别）识别的ZeroX，GOT-OCR2.0, OCRmyPDF，olmOCR等。</li>
+<li>
+<p>多种分块策略从本质上来看，由以下三个关键组成部分构成：</p>
+<ul>
+<li><strong>大小</strong>：每个文档块所允许的最大字符数。</li>
+<li><strong>重叠</strong>：在相邻数据块之间，重叠字符的数量。</li>
+<li><strong>拆分</strong>：通过段落边界、分隔符、标记，或语义边界来确定块边界的位置。</li>
 </ul>
 </li>
 <li>
-<p>目前除了这些工具，采用 <strong>端到端的多模态大模型直接解析</strong> 包括文字模态以及图片中非文字内容的解析，如常见的折线图、柱状图等，也许是文档解析的终极形式，但模型在效率和成本方面仍存在挑战，但其未来潜力巨大，值得期待。</p>
+<p>上述三个组成部分共同决定了分块策略的特性及其适用场景。基于这些组成部分，常见的分块策略包括：</p>
+<ul>
+<li><strong>固定大小分块（Fixed Size Chunking）、重叠分块（Overlap Chunking）、递归分块（Recursive Chunking）、文档特定分块（Document Specific Chunking）、语义分块（Semantic Chunking）、混合分块（Mix Chunking）</strong>。下面我将对这些策略逐一进行介绍。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309013703174.png" alt="image-20250309013703174"></li>
+<li>我们可以通过<strong>分块可视化</strong>来看一下：（Chunk 切分可视化呈现链接: <a target="_blank" rel="noopener" href="https://chunkviz.up.railway.app/%EF%BC%89">https://chunkviz.up.railway.app/）</a></li>
+<li>固定大小分块（Fixed Size Chunking）
+<ul>
+<li>最基本的方法是将文档按固定大小进行分块，通常作为分块策略的基准线使用。</li>
+<li>适用场景：适用于格式和大小相似的同质数据集，如新闻文章或博客文章。</li>
+<li>问题：可能在句子或段落<strong>中断内容</strong>，导致无意义的文本块，缺乏灵活性，无法适应文本的自然结构。</li>
+</ul>
+</li>
+<li>重叠分块（Overlap Chunking）
+<ul>
+<li>通过滑动窗口技术切分文本块，使新文本块与前一个块的<strong>内容部分重叠</strong>，从而<strong>保留块边界处的重要上下文信息</strong>，增强系统的语义相关性。</li>
+<li>适用场景：需要深入理解语义并保持上下文完整性的文档，如法律文档、技术手册或科研论文。</li>
+<li>问题： 增加冗余信息的存储，处理效率降低。</li>
+</ul>
+</li>
+<li>递归分块（Recursive Chunking）
+<ul>
+<li>通过预定义的文本分隔符（如换行符\n\n、\n ，句号、逗号、感叹号、空格等）迭代地将文本分解为更小的块，以实现段大小的均匀性和语义完整性。此过程中，文本首先按较大的逻辑单元分割（如段落 \n\n），然后逐步递归到较小单元（如句子 \n 和单词），确保<strong>在分块大小限制内保留最强的语义片段</strong>。</li>
+<li>适用场景： 这种方法适用于需要<strong>逐层分析</strong>的文本文档或需要分解成长片段、长段落的长文档，如研究报告、法律文档等。</li>
+<li>问题： 不过仍有可能在块边界处模糊语义，容易将完整的语义单元切分开。</li>
+</ul>
+</li>
+<li>文档特定分块（Document Specific Chunking）
+<ul>
+<li>根据文档的格式（如 Markdown、Latex、或编程语言如 Python 等）进行<strong>定制化</strong>分割的技术。</li>
+<li>适用场景： 这种方法可以根据特定的文档结构，进行准确的语义内容切分，在编程语言、Markdown、Latex 等结构文档中表现出色。</li>
+<li>问题： 但文档特定分块的方式格式依赖性强，不同格式之间的分块策略不通用，并且无法处理格式不规范及混合多种格式的情况。</li>
+</ul>
+</li>
+<li>语义分块（Semantic Chunking）
+<ul>
+<li>基于文本的自然语言边界（如句子、段落或主题中断）进行分段的技术，需要使用 <strong>NLP 技术根据语义分词分句</strong>，旨在确保每个分块都包含语义连贯的信息单元。</li>
+<li>常用的分块策略有 spaCy 和 NLTK 的 NLP 库，spaCy 适用于需要<strong>高效、精准语义切分</strong>的大规模文本处理，NLTK 更<strong>适合教学、研究和需要灵活自定义</strong>的语义切分任务。</li>
+<li>适用场景：提高检索结果的相关性和准确性；复杂文档和上下文敏感的精细化分析。</li>
+<li>问题：需要额外的计算资源，处理效率较低。</li>
+</ul>
+</li>
+<li>混合分块（Mix Chunking）
+<ul>
+<li>综合利用不同分块技术的优势，提高分块的精准性和效率。</li>
+<li>根据实际业务场景，设计多种分块策略的混合，能够灵活适应各种需求，提供更强大的分块方案。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>上述分块策略在 langchain_text_splitters 库中对应的具体方法类如下：</p>
+<ul>
+<li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309021222817.png" alt="image-20250309021222817"></p>
+</li>
+<li>
+<p>SpacyTextSplitter 和 NLTKTextSplitter 需要额外安装 Python 依赖库，其中 SpacyTextSplitter 还需要按照文档的语言对应安装额外的语言模型。</p>
+</li>
+<li>
+<pre><code class="language-python">conda activate rag  # 激活虚拟环境
+pip install spacy nltk -i https://pypi.tuna.tsinghua.edu.cn/simple
+python -m spacy download zh_core_web_sm # 如果需要进行中文分块，安装spacy中文语言模型
+python -m spacy download en_core_web_sm # 如果需要进行英文分块，安装spacy英文语言模型
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 导入 langchain.text_splitter 中各种文档分块类代码：</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  from langchain.text_splitter import (</span><br><span class="line">      CharacterTextSplitter,</span><br><span class="line">      RecursiveCharacterTextSplitter,</span><br><span class="line">      MarkdownTextSplitter,</span><br><span class="line">      PythonCodeTextSplitter,</span><br><span class="line">      LatexTextSplitter,</span><br><span class="line">      SpacyTextSplitter,</span><br><span class="line">      NLTKTextSplitter</span><br><span class="line">  ) # 从 langchain.text_splitter 模块中导入各种文档分块类</span><br></pre></td></tr></table></figure>
+
+</code></pre>
+</li>
+<li>
+<p>CharacterTextSplitter、RecursiveCharacterTextSplitter、MarkdownTextSplitter、PythonCodeTextSplitter、LatexTextSplitter、NLTKTextSplitter 替换原有 text_splitter 参数的赋值类即可。</p>
+</li>
+<li>
+<p>需要额外处理的是 SpacyTextSplitter，需要参数 pipeline 指定具体的语言模型才可以运行。</p>
+</li>
+<li>
+<pre><code class="language-python"># 配置SpacyTextSplitter分割文本块库
+text_splitter = SpacyTextSplitter(chunk_size=512, chunk_overlap=128, pipeline=&quot;zh_core_web_sm&quot;)
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 
@@ -401,7 +482,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/" title="RAG索引（一）：文档解析技术">http://example.com/2025/03/07/RAG索引（一）：文档解析技术/</a>
+      <a href="http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/" title="RAG索引（二）：分块策略">http://example.com/2025/03/09/RAG索引（二）：分块策略/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -410,25 +491,23 @@
 </div>
 
           <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
               <a href="/tags/RAG/" rel="tag"># RAG</a>
-              <a href="/tags/%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90/" rel="tag"># 文档解析</a>
-              <a href="/tags/langchain-community-document-loaders/" rel="tag"># langchain_community.document_loaders</a>
-              <a href="/tags/pdfplumber/" rel="tag"># pdfplumber</a>
-              <a href="/tags/unstructured/" rel="tag"># unstructured</a>
+              <a href="/tags/%E7%B4%A2%E5%BC%95/" rel="tag"># 索引</a>
+              <a href="/tags/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/" rel="tag"># 分块策略</a>
+              <a href="/tags/langchain/" rel="tag"># langchain</a>
+              <a href="/tags/Chunk/" rel="tag"># Chunk</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/" rel="prev" title="Hexo踩坑">
-                  <i class="fa fa-angle-left"></i> Hexo踩坑
+                <a href="/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/" rel="prev" title="Manus 首款通用AI智能体">
+                  <i class="fa fa-angle-left"></i> Manus 首款通用AI智能体
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/" rel="next" title="Manus 首款通用AI智能体">
-                  Manus 首款通用AI智能体 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-07T05:52:07.849Z</updated>
+  <updated>2025-03-08T18:32:04.982Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RAG索引（二）：分块策略</title>
+    <link href="http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
+    <id>http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/</id>
+    <published>2025-03-08T17:00:00.000Z</published>
+    <updated>2025-03-08T18:32:04.982Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使-RAG-系统能够高效处理和精准检索这些片段信息。&quot;&gt;文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。&lt;/h3&gt;
+&lt;h3 id=&quot;选择适合特定场景的分块策略是提升-RAG-系统召回率的关键。&quot;&gt;选择适合特定场景的分块策略是提升 RAG 系统召回率的关键。&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h4 id=&quot;为什么说分块很重要？&quot;&gt;为什么说分块很重要？&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;分块的目标在于确保每个片段在&lt;strong&gt;保留核心语义&lt;/strong&gt;的同时，具备&lt;strong&gt;相对独立的语义完整性&lt;/strong&gt;，从而使模型在处理时不必依赖广泛的上下文信息，&lt;strong&gt;增强检索召回的准确性&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;分块的重要性在于&lt;/strong&gt;它直接影响 RAG 系统的生成质量。首先，合理的分块能够确保&lt;strong&gt;检索到的片段与用户查询信息高度匹配&lt;/strong&gt;，避免信息冗余或丢失。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;好的分块有助于提升生成内容的连贯性&lt;/strong&gt;，精心设计的独立语义片段可以&lt;strong&gt;降低模型对上下文的依赖&lt;/strong&gt;，从而增强生成的逻辑性与一致性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;分块策略的选择还会&lt;strong&gt;影响系统的响应速度与效率&lt;/strong&gt;，模型能够更快、更准确地处理和生成内容。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h4 id=&quot;分块策略最大的挑战在于确定分块的大小。&quot;&gt;分块策略最大的挑战在于确定分块的大小。&lt;/h4&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
+    
+    <category term="索引" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/"/>
+    
+    <category term="分块策略" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
+    
+    
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
+    
+    <category term="分块策略" scheme="http://example.com/tags/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
+    
+    <category term="langchain" scheme="http://example.com/tags/langchain/"/>
+    
+    <category term="Chunk" scheme="http://example.com/tags/Chunk/"/>
+    
+  </entry>
   
   <entry>
     <title>Manus 首款通用AI智能体</title>
