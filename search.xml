@@ -1,67 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>RAG索引（一）：文档解析技术</title>
-    <url>/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</url>
-    <content><![CDATA[<h1>RAG索引流程中面临的文档解析任务</h1>
-<h2 id="1-文档解析现状">1. 文档解析现状</h2>
-<ul>
-<li>文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。</li>
-<li>高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。</li>
-<li>RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。</li>
-<li>PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png" alt="image-20250307075848111"></li>
-</ul>
+    <title>Hexo踩坑</title>
+    <url>/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/</url>
+    <content><![CDATA[<hr>
+<h1>一. 在 <strong>Hexo</strong> 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</h1>
+<hr>
 <span id="more"></span>
-<h2 id="2-文档解析工具选择（这里主要讨论开源工具）">2. 文档解析工具选择（这里主要讨论开源工具）</h2>
-<ul>
+<h3 id="方法-1：使用-hexo-renderer-markdown-it-和-markdown-it-katex">方法 1：使用 <code>hexo-renderer-markdown-it</code> 和 <code>markdown-it-katex</code></h3>
+<ol>
 <li>
-<h3 id="我们可以把所有工具分为两大类">我们可以把所有工具分为两大类</h3>
+<p><strong>卸载默认的 Markdown 渲染器</strong><br>
+Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式。你需要先卸载它：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>安装 <code>hexo-renderer-markdown-it</code></strong><br>
+这是一个更强大的 Markdown 渲染器，支持插件扩展：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-markdown-it --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>安装 <code>markdown-it-katex</code> 插件</strong><br>
+这个插件用于支持 LaTeX 公式渲染：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install markdown-it-katex --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>配置 <code>_config.yml</code></strong><br>
+在 Hexo 的配置文件 <code>_config.yml</code> 中添加以下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-katex</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>引入 KaTeX 的 CSS</strong><br>
+在你的主题文件（例如 <code>themes/your-theme/layout/_partial/head.ejs</code>）中，添加以下代码以引入 KaTeX 的 CSS 文件：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>重启 Hexo 服务器</strong><br>
+重新启动 Hexo 服务器，查看公式是否正常渲染：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="方法-2：使用-hexo-renderer-pandoc（推荐）">方法 2：使用 <code>hexo-renderer-pandoc</code>（推荐）</h3>
+<p>如果你需要更强大的数学公式支持（如复杂的 LaTeX 公式），可以使用 <code>hexo-renderer-pandoc</code>。</p>
+<ol>
+<li>
+<p><strong>卸载默认的 Markdown 渲染器</strong><br>
+卸载 Hexo 默认的渲染器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>安装 <code>hexo-renderer-pandoc</code></strong><br>
+安装 Pandoc 渲染器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pandoc --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>安装 Pandoc</strong><br>
+你需要在本机安装 Pandoc。根据你的操作系统选择安装方式：</p>
 <ul>
-<li>一个是<strong>基于规则</strong>的开源库</li>
-<li>一个是<strong>基于深度学习</strong>的开源库</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png" alt="image-20250307080819281"></li>
+<li><strong>Windows</strong>: 下载并安装 <a href="https://pandoc.org/installing.html">Pandoc</a>。</li>
+<li><strong>macOS</strong>: 使用 Homebrew 安装：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install pandoc</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>Linux</strong>: 使用包管理器安装，例如：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install pandoc</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 <li>
-<h4 id="这里我们首先介绍基于规则的解析工具">这里我们首先介绍基于规则的解析工具</h4>
-<ul>
-<li>因为我们选择的框架langchain提供在实际应用场景中常见文档格式基于规则的解析方案，涵盖 PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML 和 HTML 格式。</li>
-<li>所以初步使用<strong>langchain</strong>框架LangChain Document Loaders 文档加载器进行操作，也就是<strong>langchain_community.document_loaders</strong>模块。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png" alt="image-20250307081912468"></li>
-<li>以下是langchain Document Loader 所需的文档解析依赖库</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png" alt="image-20250307082205941"></li>
-<li>例如，当我们项目中使用 from langchain_community.document_loaders import PDFPlumberLoader 时，需要先通过命令行 pip install pdfplumber 安装 pdfplumber 库。某些特殊情况下，还需要额外的依赖库，比如使用 UnstructuredMarkdownLoader 时，需要安装 unstructured 库来提供底层文档解析，还需要 markdown 库来支持 Markdown 文档格式更多能力。此外，对于像 .doc 这种早期的文档类型，还需要安装 libreoffice 软件库才能进行解析。</li>
-<li>针对PDF文档，目前主流是转为MarkDown文件格式。PDF 文件分为电子版和扫描版，**PDF 电子版可以通过规则解析，提取出文本、表格等文档元素。**目前，有许多开源库可以支持，例如 pyPDF2、PyMuPDF、pdfminer、pdfplumber 和 papermage 等。这些库在 langchain_community.document_loaders 中基本都有对应的加载器。</li>
-<li><strong>在基于规则的开源库中，pdfplumber 对中文支持较好，且在表格解析方面表现优秀，但对双栏文本的解析能力较差；pdfminer 和 PyMuPDF 对中文支持良好，但表格解析效果较弱；pyPDF2 对英文支持较好，但中文支持较差；papermage 集成了 pdfminer 和其他工具，特别适合处理论文场景。开发者可以根据实际业务场景的测试结果选择合适的工具，pdfplumber 或 pdfminer 都是当前不错的选择。</strong></li>
-</ul>
+<p><strong>配置 <code>_config.yml</code></strong><br>
+在 Hexo 的配置文件 <code>_config.yml</code> 中添加以下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<h4 id="再来看基于深度学习的开源解析工具">再来看基于深度学习的开源解析工具</h4>
-<ul>
-<li>基于深度学习的工具基本都是因PDF而生，无论扫描版还是电子版均需进行版面分析和阅读顺序的还原，将内容解析为一个包含所有文档元素并且具有正确阅读顺序的 MarkDown 文件。单纯依赖规则解析是无法实现这一目标的，目前支持这些功能的多为基于深度学习的开源库，如 Layout-parser、PP-StructureV2、PDF-Extract-Kit、pix2text、MinerU、marker 等。</li>
-<li>由于深度学习模型的部署复杂性以及对显卡配置的要求，langchain目前基本集成的都是基于规则的解析工具，基于深度学习的工具需要进行独立部署。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png" alt="image-20250307083713327"></li>
-<li>除了以上提到的还有比如：RapidLayout 专注于版面分析的，以及众多专注OCR（光学字符识别）识别的ZeroX，GOT-OCR2.0, OCRmyPDF，olmOCR等。</li>
-</ul>
+<p><strong>重启 Hexo 服务器</strong><br>
+重新启动 Hexo 服务器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="方法-3：使用-hexo-filter-mathjax（简单但性能较差）">方法 3：使用 <code>hexo-filter-mathjax</code>（简单但性能较差）</h3>
+<p>如果你不想折腾，可以使用 <code>hexo-filter-mathjax</code>，这是一个简单的插件，但性能较差。</p>
+<ol>
+<li>
+<p><strong>安装插件</strong><br>
+安装 <code>hexo-filter-mathjax</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-filter-mathjax --save</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>目前除了这些工具，采用 <strong>端到端的多模态大模型直接解析</strong> 包括文字模态以及图片中非文字内容的解析，如常见的折线图、柱状图等，也许是文档解析的终极形式，但模型在效率和成本方面仍存在挑战，但其未来潜力巨大，值得期待。</p>
+<p><strong>配置 <code>_config.yml</code></strong><br>
+在 Hexo 的配置文件 <code>_config.yml</code> 中添加以下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mathjax:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>重启 Hexo 服务器</strong><br>
+重新启动 Hexo 服务器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="测试公式">测试公式</h3>
+<p>在你的博客文章中，使用以下语法测试公式：</p>
+<ul>
+<li>
+<p>行内公式：<code>$E = mc^2$</code><br>
+效果：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = mc^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mrel">=</span><span class="mord mathit">m</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></p>
+</li>
+<li>
+<p>块级公式：<code>$$E = mc^2$$</code><br>
+效果：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = mc^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8641079999999999em;"></span><span class="strut bottom" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mrel">=</span><span class="mord mathit">m</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span></p>
 </li>
 </ul>
+<hr>
+<h3 id="总结">总结</h3>
+<ul>
+<li>如果你需要简单的公式支持，推荐使用 <strong>方法 1</strong>（<code>hexo-renderer-markdown-it</code> + <code>markdown-it-katex</code>）。</li>
+<li>如果你需要更强大的公式支持，推荐使用 <strong>方法 2</strong>（<code>hexo-renderer-pandoc</code>）。</li>
+<li>如果你不想折腾，可以使用 <strong>方法 3</strong>（<code>hexo-filter-mathjax</code>），但性能较差。</li>
+</ul>
+<h1>二. Hexo Admin后台新建posts，一直显示loading</h1>
+<p>从错误信息来看，问题是由于 <code>js-yaml</code> 库的版本升级导致的。在 <code>js-yaml</code> 4.0.0 及以上版本中，<code>yaml.safeLoad</code> 方法已被移除，建议使用 <code>yaml.load</code> 方法代替。Hexo Admin 插件可能还在使用旧的 <code>yaml.safeLoad</code> 方法，因此导致了错误。</p>
+<p>以下是解决该问题的步骤：</p>
+<hr>
+<h3 id="1-修改-Hexo-Admin-源码">1. <strong>修改 Hexo Admin 源码</strong></h3>
+<ul>
+<li>找到 Hexo Admin 插件中使用 <code>yaml.safeLoad</code> 的地方，将其替换为 <code>yaml.load</code>。</li>
+<li>根据错误日志，问题出现在 <code>D:\AIGC\my_blog\node_modules\.pnpm\hexo-admin@2.3.0\node_modules\hexo-admin\api.js</code> 文件的第 44 行。</li>
+<li>打开该文件，找到类似以下代码：<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> settings = yaml.<span class="title function_">safeLoad</span>(fs.<span class="title function_">readFileSync</span>(settingsPath, <span class="string">&#x27;utf8&#x27;</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li>将其修改为：<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> settings = yaml.<span class="title function_">load</span>(fs.<span class="title function_">readFileSync</span>(settingsPath, <span class="string">&#x27;utf8&#x27;</span>));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="2-降级-js-yaml-版本">2. <strong>降级 <code>js-yaml</code> 版本</strong></h3>
+<ul>
+<li>如果你不想修改源码，可以尝试将 <code>js-yaml</code> 降级到 3.x 版本，该版本仍然支持 <code>yaml.safeLoad</code>。</li>
+<li>运行以下命令：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install js-yaml@3.14.1 --save</span><br></pre></td></tr></table></figure>
+</li>
+<li>然后重新启动 Hexo 服务器。</li>
+</ul>
+<hr>
+<h3 id="3-更新-Hexo-Admin-插件">3. <strong>更新 Hexo Admin 插件</strong></h3>
+<ul>
+<li>检查是否有新版本的 Hexo Admin 插件，可能已经修复了该问题。</li>
+<li>运行以下命令更新插件：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-admin@latest --save</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="4-检查-Hexo-和插件兼容性">4. <strong>检查 Hexo 和插件兼容性</strong></h3>
+<ul>
+<li>确保 Hexo 和 Hexo Admin 插件的版本兼容。</li>
+<li>查看 Hexo Admin 的官方文档或 GitHub 仓库，确认支持的 Hexo 版本。</li>
+</ul>
+<hr>
+<h3 id="5-清理缓存并重启">5. <strong>清理缓存并重启</strong></h3>
+<ul>
+<li>清理 Hexo 缓存并重新生成静态文件：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+</li>
+<li>重新启动 Hexo 服务器：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h3 id="6-检查-YAML-文件格式">6. <strong>检查 YAML 文件格式</strong></h3>
+<ul>
+<li>确保 Hexo Admin 使用的 YAML 配置文件格式正确，没有语法错误。</li>
+<li>可以使用在线 YAML 校验工具（如 <a href="https://www.yamllint.com/">YAML Lint</a>）检查配置文件。</li>
+</ul>
+<hr>
+<h3 id="7-全局替换-yaml-safeLoad">7. <strong>全局替换 <code>yaml.safeLoad</code></strong></h3>
+<ul>
+<li>如果你的项目中还有其他地方使用了 <code>yaml.safeLoad</code>，可以全局替换为 <code>yaml.load</code>。</li>
+<li>使用代码编辑器的全局搜索功能，查找并替换所有 <code>yaml.safeLoad</code> 为 <code>yaml.load</code>。</li>
+</ul>
+<hr>
+<h3 id="8-提交-Issue-给-Hexo-Admin">8. <strong>提交 Issue 给 Hexo Admin</strong></h3>
+<ul>
+<li>如果以上方法无效，建议到 Hexo Admin 的 GitHub 仓库提交 Issue，说明你的问题和环境信息（如 Hexo 版本、Node.js 版本等）。</li>
+<li>Hexo Admin 仓库地址：<a href="https://github.com/hexojs/hexo-admin">https://github.com/hexojs/hexo-admin</a></li>
+</ul>
+<hr>
+<h3 id="9-临时解决方案">9. <strong>临时解决方案</strong></h3>
+<ul>
+<li>如果你急需解决问题，可以暂时锁定 <code>js-yaml</code> 的版本为 3.x，在 <code>package.json</code> 中添加以下内容：<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;resolutions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;js-yaml&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3.14.1&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>然后运行 <code>npm install</code> 重新安装依赖。</li>
+</ul>
+<hr>
+<p>通过以上方法，你应该能够解决 <code>yaml.safeLoad</code> 被移除的问题。如果问题仍然存在，请提供更多上下文信息，我会进一步协助你排查问题。</p>
+<h1>三.</h1>
 ]]></content>
       <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>索引</category>
-        <category>文档解析</category>
+        <category>自媒体</category>
+        <category>博客</category>
       </categories>
       <tags>
-        <tag>RAG</tag>
-        <tag>文档解析</tag>
-        <tag>langchain_community.document_loaders</tag>
-        <tag>pdfplumber</tag>
-        <tag>unstructured</tag>
+        <tag>博客</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -279,26 +413,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2025/03/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>rag-lesson-1</title>
     <url>/2025/03/05/rag-lesson-1/</url>
     <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
@@ -386,381 +500,8 @@
         <category>从0到1学习RAG</category>
       </categories>
       <tags>
-        <tag>RAG</tag>
         <tag>AI,</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo踩坑</title>
-    <url>/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/</url>
-    <content><![CDATA[<hr>
-<h1>一. 在 <strong>Hexo</strong> 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</h1>
-<hr>
-<span id="more"></span>
-<h3 id="方法-1：使用-hexo-renderer-markdown-it-和-markdown-it-katex">方法 1：使用 <code>hexo-renderer-markdown-it</code> 和 <code>markdown-it-katex</code></h3>
-<ol>
-<li>
-<p><strong>卸载默认的 Markdown 渲染器</strong><br>
-Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式。你需要先卸载它：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>安装 <code>hexo-renderer-markdown-it</code></strong><br>
-这是一个更强大的 Markdown 渲染器，支持插件扩展：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-markdown-it --save</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>安装 <code>markdown-it-katex</code> 插件</strong><br>
-这个插件用于支持 LaTeX 公式渲染：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install markdown-it-katex --save</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>配置 <code>_config.yml</code></strong><br>
-在 Hexo 的配置文件 <code>_config.yml</code> 中添加以下内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-katex</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>引入 KaTeX 的 CSS</strong><br>
-在你的主题文件（例如 <code>themes/your-theme/layout/_partial/head.ejs</code>）中，添加以下代码以引入 KaTeX 的 CSS 文件：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>重启 Hexo 服务器</strong><br>
-重新启动 Hexo 服务器，查看公式是否正常渲染：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="方法-2：使用-hexo-renderer-pandoc（推荐）">方法 2：使用 <code>hexo-renderer-pandoc</code>（推荐）</h3>
-<p>如果你需要更强大的数学公式支持（如复杂的 LaTeX 公式），可以使用 <code>hexo-renderer-pandoc</code>。</p>
-<ol>
-<li>
-<p><strong>卸载默认的 Markdown 渲染器</strong><br>
-卸载 Hexo 默认的渲染器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>安装 <code>hexo-renderer-pandoc</code></strong><br>
-安装 Pandoc 渲染器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pandoc --save</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>安装 Pandoc</strong><br>
-你需要在本机安装 Pandoc。根据你的操作系统选择安装方式：</p>
-<ul>
-<li><strong>Windows</strong>: 下载并安装 <a href="https://pandoc.org/installing.html">Pandoc</a>。</li>
-<li><strong>macOS</strong>: 使用 Homebrew 安装：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install pandoc</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>Linux</strong>: 使用包管理器安装，例如：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install pandoc</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>配置 <code>_config.yml</code></strong><br>
-在 Hexo 的配置文件 <code>_config.yml</code> 中添加以下内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>重启 Hexo 服务器</strong><br>
-重新启动 Hexo 服务器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="方法-3：使用-hexo-filter-mathjax（简单但性能较差）">方法 3：使用 <code>hexo-filter-mathjax</code>（简单但性能较差）</h3>
-<p>如果你不想折腾，可以使用 <code>hexo-filter-mathjax</code>，这是一个简单的插件，但性能较差。</p>
-<ol>
-<li>
-<p><strong>安装插件</strong><br>
-安装 <code>hexo-filter-mathjax</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-filter-mathjax --save</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>配置 <code>_config.yml</code></strong><br>
-在 Hexo 的配置文件 <code>_config.yml</code> 中添加以下内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mathjax:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>重启 Hexo 服务器</strong><br>
-重新启动 Hexo 服务器：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="测试公式">测试公式</h3>
-<p>在你的博客文章中，使用以下语法测试公式：</p>
-<ul>
-<li>
-<p>行内公式：<code>$E = mc^2$</code><br>
-效果：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = mc^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mrel">=</span><span class="mord mathit">m</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></p>
-</li>
-<li>
-<p>块级公式：<code>$$E = mc^2$$</code><br>
-效果：</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = mc^2
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8641079999999999em;"></span><span class="strut bottom" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mrel">=</span><span class="mord mathit">m</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span></p>
-</li>
-</ul>
-<hr>
-<h3 id="总结">总结</h3>
-<ul>
-<li>如果你需要简单的公式支持，推荐使用 <strong>方法 1</strong>（<code>hexo-renderer-markdown-it</code> + <code>markdown-it-katex</code>）。</li>
-<li>如果你需要更强大的公式支持，推荐使用 <strong>方法 2</strong>（<code>hexo-renderer-pandoc</code>）。</li>
-<li>如果你不想折腾，可以使用 <strong>方法 3</strong>（<code>hexo-filter-mathjax</code>），但性能较差。</li>
-</ul>
-<h1>二. Hexo Admin后台新建posts，一直显示loading</h1>
-<p>从错误信息来看，问题是由于 <code>js-yaml</code> 库的版本升级导致的。在 <code>js-yaml</code> 4.0.0 及以上版本中，<code>yaml.safeLoad</code> 方法已被移除，建议使用 <code>yaml.load</code> 方法代替。Hexo Admin 插件可能还在使用旧的 <code>yaml.safeLoad</code> 方法，因此导致了错误。</p>
-<p>以下是解决该问题的步骤：</p>
-<hr>
-<h3 id="1-修改-Hexo-Admin-源码">1. <strong>修改 Hexo Admin 源码</strong></h3>
-<ul>
-<li>找到 Hexo Admin 插件中使用 <code>yaml.safeLoad</code> 的地方，将其替换为 <code>yaml.load</code>。</li>
-<li>根据错误日志，问题出现在 <code>D:\AIGC\my_blog\node_modules\.pnpm\hexo-admin@2.3.0\node_modules\hexo-admin\api.js</code> 文件的第 44 行。</li>
-<li>打开该文件，找到类似以下代码：<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> settings = yaml.<span class="title function_">safeLoad</span>(fs.<span class="title function_">readFileSync</span>(settingsPath, <span class="string">&#x27;utf8&#x27;</span>));</span><br></pre></td></tr></table></figure>
-</li>
-<li>将其修改为：<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> settings = yaml.<span class="title function_">load</span>(fs.<span class="title function_">readFileSync</span>(settingsPath, <span class="string">&#x27;utf8&#x27;</span>));</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h3 id="2-降级-js-yaml-版本">2. <strong>降级 <code>js-yaml</code> 版本</strong></h3>
-<ul>
-<li>如果你不想修改源码，可以尝试将 <code>js-yaml</code> 降级到 3.x 版本，该版本仍然支持 <code>yaml.safeLoad</code>。</li>
-<li>运行以下命令：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install js-yaml@3.14.1 --save</span><br></pre></td></tr></table></figure>
-</li>
-<li>然后重新启动 Hexo 服务器。</li>
-</ul>
-<hr>
-<h3 id="3-更新-Hexo-Admin-插件">3. <strong>更新 Hexo Admin 插件</strong></h3>
-<ul>
-<li>检查是否有新版本的 Hexo Admin 插件，可能已经修复了该问题。</li>
-<li>运行以下命令更新插件：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-admin@latest --save</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h3 id="4-检查-Hexo-和插件兼容性">4. <strong>检查 Hexo 和插件兼容性</strong></h3>
-<ul>
-<li>确保 Hexo 和 Hexo Admin 插件的版本兼容。</li>
-<li>查看 Hexo Admin 的官方文档或 GitHub 仓库，确认支持的 Hexo 版本。</li>
-</ul>
-<hr>
-<h3 id="5-清理缓存并重启">5. <strong>清理缓存并重启</strong></h3>
-<ul>
-<li>清理 Hexo 缓存并重新生成静态文件：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-</li>
-<li>重新启动 Hexo 服务器：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h3 id="6-检查-YAML-文件格式">6. <strong>检查 YAML 文件格式</strong></h3>
-<ul>
-<li>确保 Hexo Admin 使用的 YAML 配置文件格式正确，没有语法错误。</li>
-<li>可以使用在线 YAML 校验工具（如 <a href="https://www.yamllint.com/">YAML Lint</a>）检查配置文件。</li>
-</ul>
-<hr>
-<h3 id="7-全局替换-yaml-safeLoad">7. <strong>全局替换 <code>yaml.safeLoad</code></strong></h3>
-<ul>
-<li>如果你的项目中还有其他地方使用了 <code>yaml.safeLoad</code>，可以全局替换为 <code>yaml.load</code>。</li>
-<li>使用代码编辑器的全局搜索功能，查找并替换所有 <code>yaml.safeLoad</code> 为 <code>yaml.load</code>。</li>
-</ul>
-<hr>
-<h3 id="8-提交-Issue-给-Hexo-Admin">8. <strong>提交 Issue 给 Hexo Admin</strong></h3>
-<ul>
-<li>如果以上方法无效，建议到 Hexo Admin 的 GitHub 仓库提交 Issue，说明你的问题和环境信息（如 Hexo 版本、Node.js 版本等）。</li>
-<li>Hexo Admin 仓库地址：<a href="https://github.com/hexojs/hexo-admin">https://github.com/hexojs/hexo-admin</a></li>
-</ul>
-<hr>
-<h3 id="9-临时解决方案">9. <strong>临时解决方案</strong></h3>
-<ul>
-<li>如果你急需解决问题，可以暂时锁定 <code>js-yaml</code> 的版本为 3.x，在 <code>package.json</code> 中添加以下内容：<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;resolutions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;js-yaml&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3.14.1&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>然后运行 <code>npm install</code> 重新安装依赖。</li>
-</ul>
-<hr>
-<p>通过以上方法，你应该能够解决 <code>yaml.safeLoad</code> 被移除的问题。如果问题仍然存在，请提供更多上下文信息，我会进一步协助你排查问题。</p>
-<h1>三.</h1>
-]]></content>
-      <categories>
-        <category>自媒体</category>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>扩散模型和 自回归模型的对比</title>
-    <url>/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/</url>
-    <content><![CDATA[<p>扩散模型（Diffusion Models）和自回归模型（Autoregressive Models）是生成模型中的两种重要方法，广泛应用于图像、文本和音频生成任务。它们各有特点，适用于不同的场景。</p>
-<hr>
-<span id="more"></span>
-<h3 id="1-扩散模型（Diffusion-Models）"><strong>1. 扩散模型（Diffusion Models）</strong></h3>
-<p>扩散模型是一种基于概率的生成模型，其核心思想是通过逐步添加噪声将数据分布转化为简单分布（如高斯分布），然后学习如何逆向去噪以生成新数据。</p>
-<h4 id="核心思想"><strong>核心思想</strong></h4>
-<ol>
-<li>
-<p><strong>前向过程（Forward Process）</strong>：</p>
-<ul>
-<li>
-<p>数据（如图像）通过逐步添加高斯噪声被破坏，最终变成一个纯噪声分布。</p>
-</li>
-<li>
-<p>这个过程是固定的，通常定义为马尔可夫链，每一步都添加少量噪声。</p>
-</li>
-<li>
-<p>数学上，前向过程可以表示为：</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi><mo>(</mo><msub><mi>x</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>)</mo><mo>=</mo><mrow><mi mathvariant="script">N</mi></mrow><mo>(</mo><msub><mi>x</mi><mi>t</mi></msub><mo separator="true">;</mo><msqrt><mrow><mn>1</mn><mo>−</mo><msub><mi>β</mi><mi>t</mi></msub></mrow></msqrt><msub><mi>x</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><msub><mi>β</mi><mi>t</mi></msub><mi>I</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t I)
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9838800000000001em;"></span><span class="strut bottom" style="height:1.24001em;vertical-align:-0.2561299999999999em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathrm">∣</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">t</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mrel">=</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathcal" style="margin-right:0.14736em;">N</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mpunct">;</span><span class="sqrt mord"><span class="sqrt-sign" style="top:-0.09388000000000007em;"><span class="style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing size1">√</span></span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">​</span></span><span class="mord displaystyle textstyle cramped"><span class="mord mathrm">1</span><span class="mbin">−</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span><span style="top:-0.90388em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">​</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">t</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mclose">)</span></span></span></span></span></p>
-<p>其中，(x_t) 是第 (t) 步的噪声数据，(\beta_t) 是噪声的方差。</p>
-<p>其中，(x_t) 是第 (t) 步的噪声数据，(\beta_t) 是噪声的方差。</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>逆向过程（Reverse Process）</strong>：</p>
-<ul>
-<li>模型学习如何从噪声数据逐步去噪，恢复出原始数据分布。</li>
-<li>逆向过程通常通过神经网络参数化，学习每一步的条件分布：<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>p</mi><mi>θ</mi></msub><mo>(</mo><msub><mi>x</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mi>t</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">p_\theta(x_{t-1} | x_t)
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">p</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">θ</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">t</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathrm">∣</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span></span></span></span></span></p>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li>目标是最大化数据似然，通常通过变分推断优化。</li>
-</ul>
-<ol start="3">
-<li><strong>训练目标</strong>：
-<ul>
-<li>扩散模型的训练目标是优化逆向过程的参数，使其能够准确地从噪声数据中恢复原始数据。</li>
-<li>常用的损失函数是基于均方误差（MSE）的去噪目标。</li>
-</ul>
-</li>
-</ol>
-<h4 id="优点"><strong>优点</strong></h4>
-<ul>
-<li>生成质量高：扩散模型在图像生成任务中表现出色，生成的图像细节丰富。</li>
-<li>训练稳定：相比于GANs，扩散模型的训练过程更加稳定。</li>
-<li>可解释性强：前向和逆向过程具有清晰的数学定义。</li>
-</ul>
-<h4 id="缺点"><strong>缺点</strong></h4>
-<ul>
-<li>生成速度慢：由于需要逐步去噪，生成过程通常较慢。</li>
-<li>计算成本高：训练和推理过程需要较多的计算资源。</li>
-</ul>
-<h4 id="应用"><strong>应用</strong></h4>
-<ul>
-<li>图像生成（如DALL·E 2、Stable Diffusion）</li>
-<li>音频生成</li>
-<li>数据去噪</li>
-</ul>
-<hr>
-<h3 id="2-自回归模型（Autoregressive-Models）"><strong>2. 自回归模型（Autoregressive Models）</strong></h3>
-<p>自回归模型是一种基于序列的生成模型，其核心思想是利用序列中前面的元素预测后面的元素。它假设当前数据点只依赖于之前的数据点。</p>
-<h4 id="核心思想-2"><strong>核心思想</strong></h4>
-<ol>
-<li>
-<p><strong>序列建模</strong>：</p>
-<ul>
-<li>数据被看作一个序列（如文本、音频或图像的像素序列）。</li>
-<li>模型通过条件概率分布逐步生成序列中的每个元素：<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><msubsup><mo>∏</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mi>T</mi></msubsup><mi>p</mi><mo>(</mo><msub><mi>x</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mrow><mo>&lt;</mo><mi>t</mi></mrow></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">p(x) = \prod_{t=1}^T p(x_t | x_{&lt;t})
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.8283360000000002em;"></span><span class="strut bottom" style="height:3.0954490000000003em;vertical-align:-1.267113em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mclose">)</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.1671129999999998em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">t</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.000005000000000143778em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∏</span></span></span><span style="top:-1.2500050000000003em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathrm">∣</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mrel">&lt;</span><span class="mord mathit">t</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span></span></span></span></span></p>
-其中，(x_t) 是序列中的第 (t) 个元素，(x_{&lt;t}) 是之前的所有元素。</li>
-</ul>
-</li>
-<li>
-<p><strong>条件概率建模</strong>：</p>
-<ul>
-<li>使用神经网络（如RNN、LSTM、Transformer）建模条件概率分布 (p(x_t | x_{&lt;t}))。</li>
-<li>例如，在文本生成中，模型根据前面的单词预测下一个单词。</li>
-</ul>
-</li>
-<li>
-<p><strong>训练目标</strong>：</p>
-<ul>
-<li>自回归模型的训练目标是最大化序列的似然函数，通常通过交叉熵损失优化。</li>
-</ul>
-</li>
-</ol>
-<h4 id="优点-2"><strong>优点</strong></h4>
-<ul>
-<li>灵活性高：可以建模任意长度的序列。</li>
-<li>生成质量好：在文本生成和语音合成等任务中表现优异。</li>
-<li>可扩展性强：结合Transformer等强大架构，能够处理长序列数据。</li>
-</ul>
-<h4 id="缺点-2"><strong>缺点</strong></h4>
-<ul>
-<li>生成速度慢：由于序列是逐步生成的，生成过程较慢。</li>
-<li>长程依赖问题：早期的自回归模型（如RNN）难以捕捉长程依赖，但Transformer部分解决了这一问题。</li>
-</ul>
-<h4 id="应用-2"><strong>应用</strong></h4>
-<ul>
-<li>文本生成（如GPT系列）</li>
-<li>语音合成（如WaveNet）</li>
-<li>图像生成（如PixelRNN、PixelCNN）</li>
-</ul>
-<hr>
-<h3 id="3-扩散模型-vs-自回归模型"><strong>3. 扩散模型 vs 自回归模型</strong></h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>扩散模型</th>
-<th>自回归模型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>生成方式</strong></td>
-<td>逐步去噪</td>
-<td>逐步预测序列</td>
-</tr>
-<tr>
-<td><strong>生成速度</strong></td>
-<td>较慢</td>
-<td>较慢</td>
-</tr>
-<tr>
-<td><strong>训练稳定性</strong></td>
-<td>高</td>
-<td>中等（取决于架构）</td>
-</tr>
-<tr>
-<td><strong>建模能力</strong></td>
-<td>适合连续数据（如图像）</td>
-<td>适合离散数据（如文本）</td>
-</tr>
-<tr>
-<td><strong>计算成本</strong></td>
-<td>高</td>
-<td>中等</td>
-</tr>
-<tr>
-<td><strong>应用领域</strong></td>
-<td>图像生成、去噪</td>
-<td>文本生成、语音合成</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="4-结合与改进"><strong>4. 结合与改进</strong></h3>
-<p>近年来，研究者尝试结合扩散模型和自回归模型的优点。例如：</p>
-<ul>
-<li>在图像生成中，使用自回归模型生成低分辨率图像，再用扩散模型细化细节。</li>
-<li>在文本生成中，使用扩散模型生成隐变量，再用自回归模型生成文本。</li>
-</ul>
-<p>这些方法旨在提高生成质量和效率，同时降低计算成本。</p>
-<hr>
-<p>总结来说，扩散模型和自回归模型各有优劣，适用于不同的任务。扩散模型在图像生成中表现突出，而自回归模型在文本生成中占据主导地位。随着研究的深入，两者的结合可能会推动生成模型的发展。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>大模型</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>生成模型方法</tag>
-        <tag>大模型</tag>
+        <tag>RAG</tag>
       </tags>
   </entry>
   <entry>
@@ -948,12 +689,271 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <category>分块策略</category>
       </categories>
       <tags>
-        <tag>RAG</tag>
         <tag>AI</tag>
+        <tag>RAG</tag>
         <tag>索引</tag>
         <tag>分块策略</tag>
         <tag>langchain</tag>
         <tag>Chunk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/03/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>RAG索引（一）：文档解析技术</title>
+    <url>/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h1>RAG索引流程中面临的文档解析任务</h1>
+<h2 id="1-文档解析现状">1. 文档解析现状</h2>
+<ul>
+<li>文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。</li>
+<li>高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。</li>
+<li>RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。</li>
+<li>PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png" alt="image-20250307075848111"></li>
+</ul>
+<span id="more"></span>
+<h2 id="2-文档解析工具选择（这里主要讨论开源工具）">2. 文档解析工具选择（这里主要讨论开源工具）</h2>
+<ul>
+<li>
+<h3 id="我们可以把所有工具分为两大类">我们可以把所有工具分为两大类</h3>
+<ul>
+<li>一个是<strong>基于规则</strong>的开源库</li>
+<li>一个是<strong>基于深度学习</strong>的开源库</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png" alt="image-20250307080819281"></li>
+</ul>
+</li>
+<li>
+<h4 id="这里我们首先介绍基于规则的解析工具">这里我们首先介绍基于规则的解析工具</h4>
+<ul>
+<li>因为我们选择的框架langchain提供在实际应用场景中常见文档格式基于规则的解析方案，涵盖 PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML 和 HTML 格式。</li>
+<li>所以初步使用<strong>langchain</strong>框架LangChain Document Loaders 文档加载器进行操作，也就是<strong>langchain_community.document_loaders</strong>模块。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png" alt="image-20250307081912468"></li>
+<li>以下是langchain Document Loader 所需的文档解析依赖库</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png" alt="image-20250307082205941"></li>
+<li>例如，当我们项目中使用 from langchain_community.document_loaders import PDFPlumberLoader 时，需要先通过命令行 pip install pdfplumber 安装 pdfplumber 库。某些特殊情况下，还需要额外的依赖库，比如使用 UnstructuredMarkdownLoader 时，需要安装 unstructured 库来提供底层文档解析，还需要 markdown 库来支持 Markdown 文档格式更多能力。此外，对于像 .doc 这种早期的文档类型，还需要安装 libreoffice 软件库才能进行解析。</li>
+<li>针对PDF文档，目前主流是转为MarkDown文件格式。PDF 文件分为电子版和扫描版，**PDF 电子版可以通过规则解析，提取出文本、表格等文档元素。**目前，有许多开源库可以支持，例如 pyPDF2、PyMuPDF、pdfminer、pdfplumber 和 papermage 等。这些库在 langchain_community.document_loaders 中基本都有对应的加载器。</li>
+<li><strong>在基于规则的开源库中，pdfplumber 对中文支持较好，且在表格解析方面表现优秀，但对双栏文本的解析能力较差；pdfminer 和 PyMuPDF 对中文支持良好，但表格解析效果较弱；pyPDF2 对英文支持较好，但中文支持较差；papermage 集成了 pdfminer 和其他工具，特别适合处理论文场景。开发者可以根据实际业务场景的测试结果选择合适的工具，pdfplumber 或 pdfminer 都是当前不错的选择。</strong></li>
+</ul>
+</li>
+<li>
+<h4 id="再来看基于深度学习的开源解析工具">再来看基于深度学习的开源解析工具</h4>
+<ul>
+<li>基于深度学习的工具基本都是因PDF而生，无论扫描版还是电子版均需进行版面分析和阅读顺序的还原，将内容解析为一个包含所有文档元素并且具有正确阅读顺序的 MarkDown 文件。单纯依赖规则解析是无法实现这一目标的，目前支持这些功能的多为基于深度学习的开源库，如 Layout-parser、PP-StructureV2、PDF-Extract-Kit、pix2text、MinerU、marker 等。</li>
+<li>由于深度学习模型的部署复杂性以及对显卡配置的要求，langchain目前基本集成的都是基于规则的解析工具，基于深度学习的工具需要进行独立部署。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png" alt="image-20250307083713327"></li>
+<li>除了以上提到的还有比如：RapidLayout 专注于版面分析的，以及众多专注OCR（光学字符识别）识别的ZeroX，GOT-OCR2.0, OCRmyPDF，olmOCR等。</li>
+</ul>
+</li>
+<li>
+<p>目前除了这些工具，采用 <strong>端到端的多模态大模型直接解析</strong> 包括文字模态以及图片中非文字内容的解析，如常见的折线图、柱状图等，也许是文档解析的终极形式，但模型在效率和成本方面仍存在挑战，但其未来潜力巨大，值得期待。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>索引</category>
+        <category>文档解析</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>文档解析</tag>
+        <tag>langchain_community.document_loaders</tag>
+        <tag>pdfplumber</tag>
+        <tag>unstructured</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>扩散模型和 自回归模型的对比</title>
+    <url>/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/</url>
+    <content><![CDATA[<p>扩散模型（Diffusion Models）和自回归模型（Autoregressive Models）是生成模型中的两种重要方法，广泛应用于图像、文本和音频生成任务。它们各有特点，适用于不同的场景。</p>
+<hr>
+<span id="more"></span>
+<h3 id="1-扩散模型（Diffusion-Models）"><strong>1. 扩散模型（Diffusion Models）</strong></h3>
+<p>扩散模型是一种基于概率的生成模型，其核心思想是通过逐步添加噪声将数据分布转化为简单分布（如高斯分布），然后学习如何逆向去噪以生成新数据。</p>
+<h4 id="核心思想"><strong>核心思想</strong></h4>
+<ol>
+<li>
+<p><strong>前向过程（Forward Process）</strong>：</p>
+<ul>
+<li>
+<p>数据（如图像）通过逐步添加高斯噪声被破坏，最终变成一个纯噪声分布。</p>
+</li>
+<li>
+<p>这个过程是固定的，通常定义为马尔可夫链，每一步都添加少量噪声。</p>
+</li>
+<li>
+<p>数学上，前向过程可以表示为：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi><mo>(</mo><msub><mi>x</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>)</mo><mo>=</mo><mrow><mi mathvariant="script">N</mi></mrow><mo>(</mo><msub><mi>x</mi><mi>t</mi></msub><mo separator="true">;</mo><msqrt><mrow><mn>1</mn><mo>−</mo><msub><mi>β</mi><mi>t</mi></msub></mrow></msqrt><msub><mi>x</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo separator="true">,</mo><msub><mi>β</mi><mi>t</mi></msub><mi>I</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t I)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.9838800000000001em;"></span><span class="strut bottom" style="height:1.24001em;vertical-align:-0.2561299999999999em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathrm">∣</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">t</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mrel">=</span><span class="mord displaystyle textstyle uncramped"><span class="mord mathcal" style="margin-right:0.14736em;">N</span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mpunct">;</span><span class="sqrt mord"><span class="sqrt-sign" style="top:-0.09388000000000007em;"><span class="style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing size1">√</span></span></span><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">​</span></span><span class="mord displaystyle textstyle cramped"><span class="mord mathrm">1</span><span class="mbin">−</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span><span style="top:-0.90388em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">​</span></span><span class="reset-textstyle textstyle uncramped sqrt-line"></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:1em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">t</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit" style="margin-right:0.05278em;">β</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.05278em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mclose">)</span></span></span></span></span></p>
+<p>其中，(x_t) 是第 (t) 步的噪声数据，(\beta_t) 是噪声的方差。</p>
+<p>其中，(x_t) 是第 (t) 步的噪声数据，(\beta_t) 是噪声的方差。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>逆向过程（Reverse Process）</strong>：</p>
+<ul>
+<li>模型学习如何从噪声数据逐步去噪，恢复出原始数据分布。</li>
+<li>逆向过程通常通过神经网络参数化，学习每一步的条件分布：<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>p</mi><mi>θ</mi></msub><mo>(</mo><msub><mi>x</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mi>t</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">p_\theta(x_{t-1} | x_t)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">p</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">θ</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">t</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathrm">∣</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>目标是最大化数据似然，通常通过变分推断优化。</li>
+</ul>
+<ol start="3">
+<li><strong>训练目标</strong>：
+<ul>
+<li>扩散模型的训练目标是优化逆向过程的参数，使其能够准确地从噪声数据中恢复原始数据。</li>
+<li>常用的损失函数是基于均方误差（MSE）的去噪目标。</li>
+</ul>
+</li>
+</ol>
+<h4 id="优点"><strong>优点</strong></h4>
+<ul>
+<li>生成质量高：扩散模型在图像生成任务中表现出色，生成的图像细节丰富。</li>
+<li>训练稳定：相比于GANs，扩散模型的训练过程更加稳定。</li>
+<li>可解释性强：前向和逆向过程具有清晰的数学定义。</li>
+</ul>
+<h4 id="缺点"><strong>缺点</strong></h4>
+<ul>
+<li>生成速度慢：由于需要逐步去噪，生成过程通常较慢。</li>
+<li>计算成本高：训练和推理过程需要较多的计算资源。</li>
+</ul>
+<h4 id="应用"><strong>应用</strong></h4>
+<ul>
+<li>图像生成（如DALL·E 2、Stable Diffusion）</li>
+<li>音频生成</li>
+<li>数据去噪</li>
+</ul>
+<hr>
+<h3 id="2-自回归模型（Autoregressive-Models）"><strong>2. 自回归模型（Autoregressive Models）</strong></h3>
+<p>自回归模型是一种基于序列的生成模型，其核心思想是利用序列中前面的元素预测后面的元素。它假设当前数据点只依赖于之前的数据点。</p>
+<h4 id="核心思想-2"><strong>核心思想</strong></h4>
+<ol>
+<li>
+<p><strong>序列建模</strong>：</p>
+<ul>
+<li>数据被看作一个序列（如文本、音频或图像的像素序列）。</li>
+<li>模型通过条件概率分布逐步生成序列中的每个元素：<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><msubsup><mo>∏</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mi>T</mi></msubsup><mi>p</mi><mo>(</mo><msub><mi>x</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><msub><mi>x</mi><mrow><mo>&lt;</mo><mi>t</mi></mrow></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">p(x) = \prod_{t=1}^T p(x_t | x_{&lt;t})
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.8283360000000002em;"></span><span class="strut bottom" style="height:3.0954490000000003em;vertical-align:-1.267113em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mclose">)</span><span class="mrel">=</span><span class="mop op-limits"><span class="vlist"><span style="top:1.1671129999999998em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">t</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.000005000000000143778em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∏</span></span></span><span style="top:-1.2500050000000003em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">t</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathrm">∣</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mrel">&lt;</span><span class="mord mathit">t</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span></span></span></span></span></p>
+其中，(x_t) 是序列中的第 (t) 个元素，(x_{&lt;t}) 是之前的所有元素。</li>
+</ul>
+</li>
+<li>
+<p><strong>条件概率建模</strong>：</p>
+<ul>
+<li>使用神经网络（如RNN、LSTM、Transformer）建模条件概率分布 (p(x_t | x_{&lt;t}))。</li>
+<li>例如，在文本生成中，模型根据前面的单词预测下一个单词。</li>
+</ul>
+</li>
+<li>
+<p><strong>训练目标</strong>：</p>
+<ul>
+<li>自回归模型的训练目标是最大化序列的似然函数，通常通过交叉熵损失优化。</li>
+</ul>
+</li>
+</ol>
+<h4 id="优点-2"><strong>优点</strong></h4>
+<ul>
+<li>灵活性高：可以建模任意长度的序列。</li>
+<li>生成质量好：在文本生成和语音合成等任务中表现优异。</li>
+<li>可扩展性强：结合Transformer等强大架构，能够处理长序列数据。</li>
+</ul>
+<h4 id="缺点-2"><strong>缺点</strong></h4>
+<ul>
+<li>生成速度慢：由于序列是逐步生成的，生成过程较慢。</li>
+<li>长程依赖问题：早期的自回归模型（如RNN）难以捕捉长程依赖，但Transformer部分解决了这一问题。</li>
+</ul>
+<h4 id="应用-2"><strong>应用</strong></h4>
+<ul>
+<li>文本生成（如GPT系列）</li>
+<li>语音合成（如WaveNet）</li>
+<li>图像生成（如PixelRNN、PixelCNN）</li>
+</ul>
+<hr>
+<h3 id="3-扩散模型-vs-自回归模型"><strong>3. 扩散模型 vs 自回归模型</strong></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>扩散模型</th>
+<th>自回归模型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>生成方式</strong></td>
+<td>逐步去噪</td>
+<td>逐步预测序列</td>
+</tr>
+<tr>
+<td><strong>生成速度</strong></td>
+<td>较慢</td>
+<td>较慢</td>
+</tr>
+<tr>
+<td><strong>训练稳定性</strong></td>
+<td>高</td>
+<td>中等（取决于架构）</td>
+</tr>
+<tr>
+<td><strong>建模能力</strong></td>
+<td>适合连续数据（如图像）</td>
+<td>适合离散数据（如文本）</td>
+</tr>
+<tr>
+<td><strong>计算成本</strong></td>
+<td>高</td>
+<td>中等</td>
+</tr>
+<tr>
+<td><strong>应用领域</strong></td>
+<td>图像生成、去噪</td>
+<td>文本生成、语音合成</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="4-结合与改进"><strong>4. 结合与改进</strong></h3>
+<p>近年来，研究者尝试结合扩散模型和自回归模型的优点。例如：</p>
+<ul>
+<li>在图像生成中，使用自回归模型生成低分辨率图像，再用扩散模型细化细节。</li>
+<li>在文本生成中，使用扩散模型生成隐变量，再用自回归模型生成文本。</li>
+</ul>
+<p>这些方法旨在提高生成质量和效率，同时降低计算成本。</p>
+<hr>
+<p>总结来说，扩散模型和自回归模型各有优劣，适用于不同的任务。扩散模型在图像生成中表现突出，而自回归模型在文本生成中占据主导地位。随着研究的深入，两者的结合可能会推动生成模型的发展。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>大模型</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>生成模型方法</tag>
+        <tag>大模型</tag>
       </tags>
   </entry>
 </search>

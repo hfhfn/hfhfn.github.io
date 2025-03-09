@@ -56,9 +56,9 @@
     <category term="分块策略" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
     
     
-    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
-    
     <category term="AI" scheme="http://example.com/tags/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
@@ -296,9 +296,9 @@
     <category term="从0到1学习RAG" scheme="http://example.com/categories/AI/%E4%BB%8E0%E5%88%B01%E5%AD%A6%E4%B9%A0RAG/"/>
     
     
-    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
-    
     <category term="AI," scheme="http://example.com/tags/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
   </entry>
   
