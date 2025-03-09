@@ -1,6 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Manus 首款通用AI智能体</title>
+    <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
+    <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
+<ul>
+<li>
+<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
+</li>
+<li>
+<h3 id="说说我的想法">说说我的想法</h3>
+<ul>
+<li>
+<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
+</li>
+<li>
+<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
+<ul>
+<li>从目前头部的几个集成平台说起：</li>
+<li><strong>字节的扣子</strong>
+<ul>
+<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
+</ul>
+</li>
+<li><strong>Dify</strong><br>
+一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
+<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
+<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
+<ul>
+<li>
+<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
+<ul>
+<li>商业研究</li>
+<li>生活帮手</li>
+<li>数据分析</li>
+<li>教育可视化</li>
+<li>以及各种提升生产率的工具</li>
+</ul>
+</li>
+<li>
+<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
+<ul>
+<li><a href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
+</ul>
+</li>
+<li>
+<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
+<ul>
+<li><a href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
+</ul>
+</li>
+<li>
+<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
+<ul>
+<li><a href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
+</ul>
+</li>
+<li>
+<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
+<ul>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
+</li>
+<li>
+<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>Agent</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Manus</tag>
+        <tag>智能体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RAG索引（一）：文档解析技术</title>
+    <url>/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer" />
+<h1>RAG索引流程中面临的文档解析任务</h1>
+<h2 id="1-文档解析现状">1. 文档解析现状</h2>
+<ul>
+<li>文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。</li>
+<li>高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。</li>
+<li>RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。</li>
+<li>PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png" alt="image-20250307075848111"></li>
+</ul>
+<span id="more"></span>
+<h2 id="2-文档解析工具选择（这里主要讨论开源工具）">2. 文档解析工具选择（这里主要讨论开源工具）</h2>
+<ul>
+<li>
+<h3 id="我们可以把所有工具分为两大类">我们可以把所有工具分为两大类</h3>
+<ul>
+<li>一个是<strong>基于规则</strong>的开源库</li>
+<li>一个是<strong>基于深度学习</strong>的开源库</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png" alt="image-20250307080819281"></li>
+</ul>
+</li>
+<li>
+<h4 id="这里我们首先介绍基于规则的解析工具">这里我们首先介绍基于规则的解析工具</h4>
+<ul>
+<li>因为我们选择的框架langchain提供在实际应用场景中常见文档格式基于规则的解析方案，涵盖 PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML 和 HTML 格式。</li>
+<li>所以初步使用<strong>langchain</strong>框架LangChain Document Loaders 文档加载器进行操作，也就是<strong>langchain_community.document_loaders</strong>模块。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png" alt="image-20250307081912468"></li>
+<li>以下是langchain Document Loader 所需的文档解析依赖库</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png" alt="image-20250307082205941"></li>
+<li>例如，当我们项目中使用 from langchain_community.document_loaders import PDFPlumberLoader 时，需要先通过命令行 pip install pdfplumber 安装 pdfplumber 库。某些特殊情况下，还需要额外的依赖库，比如使用 UnstructuredMarkdownLoader 时，需要安装 unstructured 库来提供底层文档解析，还需要 markdown 库来支持 Markdown 文档格式更多能力。此外，对于像 .doc 这种早期的文档类型，还需要安装 libreoffice 软件库才能进行解析。</li>
+<li>针对PDF文档，目前主流是转为MarkDown文件格式。PDF 文件分为电子版和扫描版，**PDF 电子版可以通过规则解析，提取出文本、表格等文档元素。**目前，有许多开源库可以支持，例如 pyPDF2、PyMuPDF、pdfminer、pdfplumber 和 papermage 等。这些库在 langchain_community.document_loaders 中基本都有对应的加载器。</li>
+<li><strong>在基于规则的开源库中，pdfplumber 对中文支持较好，且在表格解析方面表现优秀，但对双栏文本的解析能力较差；pdfminer 和 PyMuPDF 对中文支持良好，但表格解析效果较弱；pyPDF2 对英文支持较好，但中文支持较差；papermage 集成了 pdfminer 和其他工具，特别适合处理论文场景。开发者可以根据实际业务场景的测试结果选择合适的工具，pdfplumber 或 pdfminer 都是当前不错的选择。</strong></li>
+</ul>
+</li>
+<li>
+<h4 id="再来看基于深度学习的开源解析工具">再来看基于深度学习的开源解析工具</h4>
+<ul>
+<li>基于深度学习的工具基本都是因PDF而生，无论扫描版还是电子版均需进行版面分析和阅读顺序的还原，将内容解析为一个包含所有文档元素并且具有正确阅读顺序的 MarkDown 文件。单纯依赖规则解析是无法实现这一目标的，目前支持这些功能的多为基于深度学习的开源库，如 Layout-parser、PP-StructureV2、PDF-Extract-Kit、pix2text、MinerU、marker 等。</li>
+<li>由于深度学习模型的部署复杂性以及对显卡配置的要求，langchain目前基本集成的都是基于规则的解析工具，基于深度学习的工具需要进行独立部署。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png" alt="image-20250307083713327"></li>
+<li>除了以上提到的还有比如：RapidLayout 专注于版面分析的，以及众多专注OCR（光学字符识别）识别的ZeroX，GOT-OCR2.0, OCRmyPDF，olmOCR等。</li>
+</ul>
+</li>
+<li>
+<p>目前除了这些工具，采用 <strong>端到端的多模态大模型直接解析</strong> 包括文字模态以及图片中非文字内容的解析，如常见的折线图、柱状图等，也许是文档解析的终极形式，但模型在效率和成本方面仍存在挑战，但其未来潜力巨大，值得期待。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>索引</category>
+        <category>文档解析</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>文档解析</tag>
+        <tag>langchain_community.document_loaders</tag>
+        <tag>pdfplumber</tag>
+        <tag>unstructured</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo踩坑</title>
     <url>/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/</url>
     <content><![CDATA[<hr>
@@ -199,177 +370,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>Manus 首款通用AI智能体</title>
-    <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
-    <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
-<ul>
-<li>
-<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
-</li>
-<li>
-<h3 id="说说我的想法">说说我的想法</h3>
-<ul>
-<li>
-<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
-</li>
-<li>
-<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
-<ul>
-<li>从目前头部的几个集成平台说起：</li>
-<li><strong>字节的扣子</strong>
-<ul>
-<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
-</ul>
-</li>
-<li><strong>Dify</strong><br>
-一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
-<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
-<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>
-<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
-<ul>
-<li>
-<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
-<ul>
-<li>商业研究</li>
-<li>生活帮手</li>
-<li>数据分析</li>
-<li>教育可视化</li>
-<li>以及各种提升生产率的工具</li>
-</ul>
-</li>
-<li>
-<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
-<ul>
-<li><a href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
-</ul>
-</li>
-<li>
-<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
-<ul>
-<li><a href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
-</ul>
-</li>
-<li>
-<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
-<ul>
-<li><a href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
-</ul>
-</li>
-<li>
-<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
-<ul>
-<li>
-<div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
-</div>
-</li>
-<li>
-<div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
-</div>
-</li>
-<li>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
-</li>
-</ul>
-</li>
-<li>
-<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
-</li>
-<li>
-<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>Agent</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>Agent</tag>
-        <tag>Manus</tag>
-        <tag>智能体</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG索引（一）：文档解析技术</title>
-    <url>/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer" />
-<h1>RAG索引流程中面临的文档解析任务</h1>
-<h2 id="1-文档解析现状">1. 文档解析现状</h2>
-<ul>
-<li>文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。</li>
-<li>高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。</li>
-<li>RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。</li>
-<li>PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png" alt="image-20250307075848111"></li>
-</ul>
-<span id="more"></span>
-<h2 id="2-文档解析工具选择（这里主要讨论开源工具）">2. 文档解析工具选择（这里主要讨论开源工具）</h2>
-<ul>
-<li>
-<h3 id="我们可以把所有工具分为两大类">我们可以把所有工具分为两大类</h3>
-<ul>
-<li>一个是<strong>基于规则</strong>的开源库</li>
-<li>一个是<strong>基于深度学习</strong>的开源库</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png" alt="image-20250307080819281"></li>
-</ul>
-</li>
-<li>
-<h4 id="这里我们首先介绍基于规则的解析工具">这里我们首先介绍基于规则的解析工具</h4>
-<ul>
-<li>因为我们选择的框架langchain提供在实际应用场景中常见文档格式基于规则的解析方案，涵盖 PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML 和 HTML 格式。</li>
-<li>所以初步使用<strong>langchain</strong>框架LangChain Document Loaders 文档加载器进行操作，也就是<strong>langchain_community.document_loaders</strong>模块。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png" alt="image-20250307081912468"></li>
-<li>以下是langchain Document Loader 所需的文档解析依赖库</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png" alt="image-20250307082205941"></li>
-<li>例如，当我们项目中使用 from langchain_community.document_loaders import PDFPlumberLoader 时，需要先通过命令行 pip install pdfplumber 安装 pdfplumber 库。某些特殊情况下，还需要额外的依赖库，比如使用 UnstructuredMarkdownLoader 时，需要安装 unstructured 库来提供底层文档解析，还需要 markdown 库来支持 Markdown 文档格式更多能力。此外，对于像 .doc 这种早期的文档类型，还需要安装 libreoffice 软件库才能进行解析。</li>
-<li>针对PDF文档，目前主流是转为MarkDown文件格式。PDF 文件分为电子版和扫描版，**PDF 电子版可以通过规则解析，提取出文本、表格等文档元素。**目前，有许多开源库可以支持，例如 pyPDF2、PyMuPDF、pdfminer、pdfplumber 和 papermage 等。这些库在 langchain_community.document_loaders 中基本都有对应的加载器。</li>
-<li><strong>在基于规则的开源库中，pdfplumber 对中文支持较好，且在表格解析方面表现优秀，但对双栏文本的解析能力较差；pdfminer 和 PyMuPDF 对中文支持良好，但表格解析效果较弱；pyPDF2 对英文支持较好，但中文支持较差；papermage 集成了 pdfminer 和其他工具，特别适合处理论文场景。开发者可以根据实际业务场景的测试结果选择合适的工具，pdfplumber 或 pdfminer 都是当前不错的选择。</strong></li>
-</ul>
-</li>
-<li>
-<h4 id="再来看基于深度学习的开源解析工具">再来看基于深度学习的开源解析工具</h4>
-<ul>
-<li>基于深度学习的工具基本都是因PDF而生，无论扫描版还是电子版均需进行版面分析和阅读顺序的还原，将内容解析为一个包含所有文档元素并且具有正确阅读顺序的 MarkDown 文件。单纯依赖规则解析是无法实现这一目标的，目前支持这些功能的多为基于深度学习的开源库，如 Layout-parser、PP-StructureV2、PDF-Extract-Kit、pix2text、MinerU、marker 等。</li>
-<li>由于深度学习模型的部署复杂性以及对显卡配置的要求，langchain目前基本集成的都是基于规则的解析工具，基于深度学习的工具需要进行独立部署。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png" alt="image-20250307083713327"></li>
-<li>除了以上提到的还有比如：RapidLayout 专注于版面分析的，以及众多专注OCR（光学字符识别）识别的ZeroX，GOT-OCR2.0, OCRmyPDF，olmOCR等。</li>
-</ul>
-</li>
-<li>
-<p>目前除了这些工具，采用 <strong>端到端的多模态大模型直接解析</strong> 包括文字模态以及图片中非文字内容的解析，如常见的折线图、柱状图等，也许是文档解析的终极形式，但模型在效率和成本方面仍存在挑战，但其未来潜力巨大，值得期待。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>索引</category>
-        <category>文档解析</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>文档解析</tag>
-        <tag>langchain_community.document_loaders</tag>
-        <tag>pdfplumber</tag>
-        <tag>unstructured</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RAG索引（二）：分块策略</title>
     <url>/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/</url>
     <content><![CDATA[<h3 id="文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使-RAG-系统能够高效处理和精准检索这些片段信息。">文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。</h3>
@@ -510,6 +510,26 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2025/03/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Text2SQL应用对比</title>
     <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
@@ -616,26 +636,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>Text2SQL</tag>
         <tag>自然语言操作数据库</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2025/03/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>markdown-it 的扩展插件</title>
@@ -788,98 +788,6 @@ H<sub>2</sub>O</li>
         <tag>Hexo</tag>
         <tag>Markdown插件</tag>
         <tag>自媒体</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rag-lesson-1</title>
-    <url>/2025/03/05/rag-lesson-1/</url>
-    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
-<ul>
-<li>
-<h2 id="技术框架与选型">技术框架与选型</h2>
-<ul>
-<li>
-<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
-<ul>
-<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>
-<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
-<ul>
-<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
-<ul>
-<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
-<ul>
-<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
-<ul>
-<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
-</ul>
-</li>
-<li>
-<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
-<ul>
-<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
-</ul>
-</li>
-<li>
-<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
-<ul>
-<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
-<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
-<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
-<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h2 id="开发环境与技术库">开发环境与技术库</h2>
-<ul>
-<li>
-<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
-</li>
-<li>
-<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="安装技术依赖库">安装技术依赖库</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
-<ol>
-<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>从0到1学习RAG</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>AI,</tag>
       </tags>
   </entry>
   <entry>
@@ -1108,6 +1016,98 @@ H<sub>2</sub>O</li>
       <tags>
         <tag>翻墙机场,</tag>
         <tag>魔法上网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rag-lesson-1</title>
+    <url>/2025/03/05/rag-lesson-1/</url>
+    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
+<ul>
+<li>
+<h2 id="技术框架与选型">技术框架与选型</h2>
+<ul>
+<li>
+<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
+<ul>
+<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
+<ul>
+<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
+<ul>
+<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
+<ul>
+<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
+<ul>
+<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
+</ul>
+</li>
+<li>
+<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
+<ul>
+<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
+</ul>
+</li>
+<li>
+<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
+<ul>
+<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
+<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
+<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
+<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h2 id="开发环境与技术库">开发环境与技术库</h2>
+<ul>
+<li>
+<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
+</li>
+<li>
+<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="安装技术依赖库">安装技术依赖库</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
+<ol>
+<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>从0到1学习RAG</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>AI,</tag>
       </tags>
   </entry>
 </search>
