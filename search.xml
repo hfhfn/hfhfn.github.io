@@ -790,6 +790,151 @@ H<sub>2</sub>O</li>
       </tags>
   </entry>
   <entry>
+    <title>rag-lesson-1</title>
+    <url>/2025/03/05/rag-lesson-1/</url>
+    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
+<ul>
+<li>
+<h2 id="技术框架与选型">技术框架与选型</h2>
+<ul>
+<li>
+<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
+<ul>
+<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
+<ul>
+<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
+<ul>
+<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
+<ul>
+<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
+<ul>
+<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
+</ul>
+</li>
+<li>
+<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
+<ul>
+<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
+</ul>
+</li>
+<li>
+<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
+<ul>
+<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
+<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
+<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
+<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h2 id="开发环境与技术库">开发环境与技术库</h2>
+<ul>
+<li>
+<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
+</li>
+<li>
+<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="安装技术依赖库">安装技术依赖库</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
+<ol>
+<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>从0到1学习RAG</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>AI,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>翻墙机场推荐（魔法上网）</title>
+    <url>/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
+<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
+<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
+<span id="more"></span>
+<ul>
+<li>
+<p>第一个 牡牛网：<a href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
+<ul>
+<li>
+<p>邀请码：mdSU</p>
+</li>
+<li>
+<p>推荐安装网页底部的Clash软件</p>
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
+</ul>
+</li>
+<li>
+<p>进入页面有详细安装教程，按照步骤操作就行</p>
+</li>
+<li>
+<p>资费：</p>
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>第二个 Radial VPN: <a href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
+<ul>
+<li>下载官网软件按着操作就行</li>
+<li>资费：
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>翻墙机场,</tag>
+        <tag>魔法上网</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>扩散模型和 自回归模型的对比</title>
     <url>/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<p>扩散模型（Diffusion Models）和自回归模型（Autoregressive Models）是生成模型中的两种重要方法，广泛应用于图像、文本和音频生成任务。它们各有特点，适用于不同的场景。</p>
@@ -962,151 +1107,6 @@ H<sub>2</sub>O</li>
         <tag>AI</tag>
         <tag>生成模型方法</tag>
         <tag>大模型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rag-lesson-1</title>
-    <url>/2025/03/05/rag-lesson-1/</url>
-    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
-<ul>
-<li>
-<h2 id="技术框架与选型">技术框架与选型</h2>
-<ul>
-<li>
-<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
-<ul>
-<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>
-<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
-<ul>
-<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
-<ul>
-<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
-<ul>
-<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
-<ul>
-<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
-</ul>
-</li>
-<li>
-<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
-<ul>
-<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
-</ul>
-</li>
-<li>
-<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
-<ul>
-<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
-<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
-<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
-<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h2 id="开发环境与技术库">开发环境与技术库</h2>
-<ul>
-<li>
-<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
-</li>
-<li>
-<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="安装技术依赖库">安装技术依赖库</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
-<ol>
-<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>从0到1学习RAG</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>AI,</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>翻墙机场推荐（魔法上网）</title>
-    <url>/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
-<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
-<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
-<span id="more"></span>
-<ul>
-<li>
-<p>第一个 牡牛网：<a href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
-<ul>
-<li>
-<p>邀请码：mdSU</p>
-</li>
-<li>
-<p>推荐安装网页底部的Clash软件</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
-</ul>
-</li>
-<li>
-<p>进入页面有详细安装教程，按照步骤操作就行</p>
-</li>
-<li>
-<p>资费：</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>第二个 Radial VPN: <a href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
-<ul>
-<li>下载官网软件按着操作就行</li>
-<li>资费：
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具</category>
-        <category>网络</category>
-      </categories>
-      <tags>
-        <tag>翻墙机场,</tag>
-        <tag>魔法上网</tag>
       </tags>
   </entry>
 </search>
