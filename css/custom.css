@@ -1,0 +1,17 @@
+/* 修复行内公式对齐问题 */
+.math.inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* 修复块公式对齐问题 */
+.math.block {
+    display: block;
+    text-align: center;
+    overflow-x: auto;
+}
+
+/* 修复 KaTeX 公式样式 */
+.katex {
+    font-size: 1.1em; /* 调整公式字体大小 */
+}

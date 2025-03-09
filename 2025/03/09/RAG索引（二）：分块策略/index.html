@@ -33,10 +33,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309013703174.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309021222817.png">
 <meta property="article:published_time" content="2025-03-08T17:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-08T18:32:04.982Z">
+<meta property="article:modified_time" content="2025-03-09T00:05:56.762Z">
 <meta property="article:author" content="AI模型研究所">
-<meta property="article:tag" content="AI">
 <meta property="article:tag" content="RAG">
+<meta property="article:tag" content="AI">
 <meta property="article:tag" content="索引">
 <meta property="article:tag" content="分块策略">
 <meta property="article:tag" content="langchain">
@@ -60,7 +60,20 @@
 
 
 
-
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
+#needsharebutton-postbottom {
+  cursor: pointer;
+  height: 26px;
+  margin-top: 10px;
+  position: relative;
+}
+#needsharebutton-postbottom .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 3px;
+  display: initial;
+  padding: 1px 4px;
+}
+</style>
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -264,7 +277,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-09 01:00:00 / 修改时间：02:32:04" itemprop="dateCreated datePublished" datetime="2025-03-09T01:00:00+08:00">2025-03-09</time>
+      <time title="创建时间：2025-03-09 01:00:00 / 修改时间：08:05:56" itemprop="dateCreated datePublished" datetime="2025-03-09T01:00:00+08:00">2025-03-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -422,28 +435,21 @@
 <li>
 <p>SpacyTextSplitter 和 NLTKTextSplitter 需要额外安装 Python 依赖库，其中 SpacyTextSplitter 还需要按照文档的语言对应安装额外的语言模型。</p>
 </li>
-<li>
-<pre><code class="language-python">conda activate rag  # 激活虚拟环境
-pip install spacy nltk -i https://pypi.tuna.tsinghua.edu.cn/simple
-python -m spacy download zh_core_web_sm # 如果需要进行中文分块，安装spacy中文语言模型
-python -m spacy download en_core_web_sm # 如果需要进行英文分块，安装spacy英文语言模型
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 导入 langchain.text_splitter 中各种文档分块类代码：</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  from langchain.text_splitter import (</span><br><span class="line">      CharacterTextSplitter,</span><br><span class="line">      RecursiveCharacterTextSplitter,</span><br><span class="line">      MarkdownTextSplitter,</span><br><span class="line">      PythonCodeTextSplitter,</span><br><span class="line">      LatexTextSplitter,</span><br><span class="line">      SpacyTextSplitter,</span><br><span class="line">      NLTKTextSplitter</span><br><span class="line">  ) # 从 langchain.text_splitter 模块中导入各种文档分块类</span><br></pre></td></tr></table></figure>
-
-</code></pre>
-</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br><span class="line">pip install spacy nltk -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">python -m spacy download zh_core_web_sm <span class="comment"># 如果需要进行中文分块，安装spacy中文语言模型</span></span><br><span class="line">python -m spacy download en_core_web_sm <span class="comment"># 如果需要进行英文分块，安装spacy英文语言模型</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>导入 langchain.text_splitter 中各种文档分块类代码：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.text_splitter <span class="keyword">import</span> (</span><br><span class="line">        CharacterTextSplitter,</span><br><span class="line">        RecursiveCharacterTextSplitter,</span><br><span class="line">        MarkdownTextSplitter,</span><br><span class="line">        PythonCodeTextSplitter,</span><br><span class="line">        LatexTextSplitter,</span><br><span class="line">        SpacyTextSplitter,</span><br><span class="line">        NLTKTextSplitter</span><br><span class="line">	) <span class="comment"># 从 langchain.text_splitter 模块中导入各种文档分块类</span></span><br></pre></td></tr></table></figure>
+<ul>
 <li>
 <p>CharacterTextSplitter、RecursiveCharacterTextSplitter、MarkdownTextSplitter、PythonCodeTextSplitter、LatexTextSplitter、NLTKTextSplitter 替换原有 text_splitter 参数的赋值类即可。</p>
 </li>
 <li>
 <p>需要额外处理的是 SpacyTextSplitter，需要参数 pipeline 指定具体的语言模型才可以运行。</p>
 </li>
-<li>
-<pre><code class="language-python"># 配置SpacyTextSplitter分割文本块库
-text_splitter = SpacyTextSplitter(chunk_size=512, chunk_overlap=128, pipeline=&quot;zh_core_web_sm&quot;)
-</code></pre>
-</li>
 </ul>
-</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置SpacyTextSplitter分割文本块库</span></span><br><span class="line">text_splitter = SpacyTextSplitter(chunk_size=<span class="number">512</span>, chunk_overlap=<span class="number">128</span>, pipeline=<span class="string">&quot;zh_core_web_sm&quot;</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -454,7 +460,13 @@ text_splitter = SpacyTextSplitter(chunk_size=512, chunk_overlap=128, pipeline=&q
     
     
 
-    <footer class="post-footer">
+    <footer class="post-footer"><div class="post-widgets">
+      <div id="needsharebutton-postbottom">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
           <div class="reward-container">
   <div>请我一杯咖啡吧！</div>
   <button>
@@ -491,8 +503,8 @@ text_splitter = SpacyTextSplitter(chunk_size=512, chunk_overlap=128, pipeline=&q
 </div>
 
           <div class="post-tags">
-              <a href="/tags/AI/" rel="tag"># AI</a>
               <a href="/tags/RAG/" rel="tag"># RAG</a>
+              <a href="/tags/AI/" rel="tag"># AI</a>
               <a href="/tags/%E7%B4%A2%E5%BC%95/" rel="tag"># 索引</a>
               <a href="/tags/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/" rel="tag"># 分块策略</a>
               <a href="/tags/langchain/" rel="tag"># langchain</a>
@@ -546,7 +558,7 @@ text_splitter = SpacyTextSplitter(chunk_size=512, chunk_overlap=128, pipeline=&q
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25 分钟</span>
+    <span title="站点阅读时长">24 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -634,7 +646,23 @@ setInterval("createtime()",250);
 
 
 
+  
 
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+
+
+
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
+  <script>
+      pbOptions = {};
+        pbOptions.iconStyle = "box";
+        pbOptions.boxForm = "horizontal";
+        pbOptions.position = "bottomCenter";
+        pbOptions.networks = "Wechat,QQZone,Weibo,Douban,Twitter,Facebook";
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+  </script>
   
   
   <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>

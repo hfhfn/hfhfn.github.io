@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-08T18:32:04.982Z</updated>
+  <updated>2025-03-09T00:05:56.762Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
     <id>http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/</id>
     <published>2025-03-08T17:00:00.000Z</published>
-    <updated>2025-03-08T18:32:04.982Z</updated>
+    <updated>2025-03-09T00:05:56.762Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使-RAG-系统能够高效处理和精准检索这些片段信息。&quot;&gt;文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。&lt;/h3&gt;
@@ -56,9 +56,9 @@
     <category term="分块策略" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
     
     
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
-    
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
@@ -171,10 +171,11 @@
     <link href="http://example.com/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/"/>
     <id>http://example.com/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/</id>
     <published>2025-03-05T23:19:00.000Z</published>
-    <updated>2025-03-05T23:48:32.927Z</updated>
+    <updated>2025-03-09T00:56:18.436Z</updated>
     
     
-    <summary type="html">&lt;h1&gt;一. 在 &lt;strong&gt;Hexo&lt;/strong&gt; 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：&lt;/h1&gt;
+    <summary type="html">&lt;hr&gt;
+&lt;h1&gt;一. 在 &lt;strong&gt;Hexo&lt;/strong&gt; 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：&lt;/h1&gt;
 &lt;hr&gt;</summary>
     
     
@@ -195,7 +196,7 @@
     <link href="http://example.com/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/"/>
     <id>http://example.com/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/</id>
     <published>2025-03-05T22:36:00.000Z</published>
-    <updated>2025-03-05T23:10:25.309Z</updated>
+    <updated>2025-03-09T01:20:02.095Z</updated>
     
     
     <summary type="html">&lt;p&gt;扩散模型（Diffusion Models）和自回归模型（Autoregressive Models）是生成模型中的两种重要方法，广泛应用于图像、文本和音频生成任务。它们各有特点，适用于不同的场景。&lt;/p&gt;
