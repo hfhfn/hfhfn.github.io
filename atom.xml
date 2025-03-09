@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-09T00:05:56.762Z</updated>
+  <updated>2025-03-09T02:57:26.481Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,49 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>markdown-it 的扩展插件</title>
+    <link href="http://example.com/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/"/>
+    <id>http://example.com/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/</id>
+    <published>2025-03-09T02:52:00.000Z</published>
+    <updated>2025-03-09T02:57:26.481Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;这些插件是 &lt;code&gt;markdown-it&lt;/code&gt; 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;1-markdown-it-footnote&quot;&gt;1. &lt;strong&gt;markdown-it-footnote&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;功能&lt;/strong&gt;：支持脚注功能。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;用法&lt;/strong&gt;：&lt;/p&gt;
+&lt;figure class=&quot;highlight markdown&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;这是一个带有脚注的文本[^footnote]。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[&lt;span class=&quot;symbol&quot;&gt;^footnote&lt;/span&gt;]: &lt;span class=&quot;link&quot;&gt;这是脚注内容。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;效果&lt;/strong&gt;：&lt;br&gt;
+这是一个带有脚注的文本&lt;sup class=&quot;footnote-ref&quot;&gt;&lt;a href=&quot;#fn1&quot; id=&quot;fnref1&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;</summary>
+    
+    
+    
+    <category term="自媒体" scheme="http://example.com/categories/%E8%87%AA%E5%AA%92%E4%BD%93/"/>
+    
+    <category term="博客" scheme="http://example.com/categories/%E8%87%AA%E5%AA%92%E4%BD%93/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="博客" scheme="http://example.com/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+    <category term="Hexo" scheme="http://example.com/tags/Hexo/"/>
+    
+    <category term="Markdown插件" scheme="http://example.com/tags/Markdown%E6%8F%92%E4%BB%B6/"/>
+    
+    <category term="自媒体" scheme="http://example.com/tags/%E8%87%AA%E5%AA%92%E4%BD%93/"/>
+    
+  </entry>
   
   <entry>
     <title>RAG索引（二）：分块策略</title>
@@ -56,9 +99,9 @@
     <category term="分块策略" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
     
     
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
-    
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
@@ -296,9 +339,9 @@
     <category term="从0到1学习RAG" scheme="http://example.com/categories/AI/%E4%BB%8E0%E5%88%B01%E5%AD%A6%E4%B9%A0RAG/"/>
     
     
-    <category term="AI," scheme="http://example.com/tags/AI/"/>
-    
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="AI," scheme="http://example.com/tags/AI/"/>
     
   </entry>
   
