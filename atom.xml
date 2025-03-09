@@ -173,11 +173,10 @@
     <link href="http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/"/>
     <id>http://example.com/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</id>
     <published>2025-03-06T23:41:00.000Z</published>
-    <updated>2025-03-09T03:44:45.079Z</updated>
+    <updated>2025-03-09T03:57:32.796Z</updated>
     
     
-    <summary type="html">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;
-&lt;h1&gt;RAG索引流程中面临的文档解析任务&lt;/h1&gt;
+    <summary type="html">&lt;h1&gt;RAG索引流程中面临的文档解析任务&lt;/h1&gt;
 &lt;h2 id=&quot;1-文档解析现状&quot;&gt;1. 文档解析现状&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。&lt;/li&gt;
