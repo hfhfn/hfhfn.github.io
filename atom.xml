@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-10T06:13:42.989Z</updated>
+  <updated>2025-03-09T02:57:26.481Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,35 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>RAG索引（三）：嵌入（Embedding）技术</title>
-    <link href="http://example.com/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/"/>
-    <id>http://example.com/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/</id>
-    <published>2025-03-10T03:01:00.000Z</published>
-    <updated>2025-03-10T06:13:42.989Z</updated>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;嵌入模型（Embedding-Model）负责将文本数据映射到高维向量空间中，将输入的文档片段转换为对应的嵌入向量（embedding-vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量，这些向量用于在向量数据库中通过向量检索（Vector-Retrieval）匹配最相似的文档片段。根据不同的场景需求，评估并选择最优的嵌入模型，以确保-RAG-的检索性能符合要求。&quot;&gt;&lt;mark&gt;嵌入模型（Embedding Model）负责将文本数据映射到高维向量空间中&lt;/mark&gt;，将输入的文档片段转换为对应的嵌入向量（embedding vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。&lt;mark&gt;用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量&lt;/mark&gt;，这些向量用于在向量数据库中通过向量检索（Vector Retrieval）匹配最相似的文档片段。根据不同的场景需求，&lt;mark&gt;评估并选择最优的嵌入模型&lt;/mark&gt;，以确保 RAG 的检索性能符合要求。&lt;/h3&gt;</summary>
-    
-    
-    
-    <category term="AI" scheme="http://example.com/categories/AI/"/>
-    
-    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
-    
-    <category term="索引" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/"/>
-    
-    
-    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
-    
-    <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
-    
-    <category term="嵌入" scheme="http://example.com/tags/%E5%B5%8C%E5%85%A5/"/>
-    
-    <category term="embedding" scheme="http://example.com/tags/embedding/"/>
-    
-  </entry>
   
   <entry>
     <title>markdown-it 的扩展插件</title>
