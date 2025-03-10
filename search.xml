@@ -1,6 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Manus 首款通用AI智能体</title>
+    <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
+    <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
+<ul>
+<li>
+<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
+</li>
+<li>
+<h3 id="说说我的想法">说说我的想法</h3>
+<ul>
+<li>
+<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
+</li>
+<li>
+<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
+<ul>
+<li>从目前头部的几个集成平台说起：</li>
+<li><strong>字节的扣子</strong>
+<ul>
+<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
+</ul>
+</li>
+<li><strong>Dify</strong><br>
+一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
+<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
+<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
+<ul>
+<li>
+<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
+<ul>
+<li>商业研究</li>
+<li>生活帮手</li>
+<li>数据分析</li>
+<li>教育可视化</li>
+<li>以及各种提升生产率的工具</li>
+</ul>
+</li>
+<li>
+<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
+<ul>
+<li><a href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
+</ul>
+</li>
+<li>
+<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
+<ul>
+<li><a href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
+</ul>
+</li>
+<li>
+<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
+<ul>
+<li><a href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
+</ul>
+</li>
+<li>
+<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
+<ul>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
+</li>
+<li>
+<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>Agent</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Manus</tag>
+        <tag>智能体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RAG索引（一）：文档解析技术</title>
+    <url>/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h1>RAG索引流程中面临的文档解析任务</h1>
+<h2 id="1-文档解析现状">1. 文档解析现状</h2>
+<ul>
+<li>文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。</li>
+<li>高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。</li>
+<li>RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。</li>
+<li>PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png" alt="image-20250307075848111"></li>
+</ul>
+<span id="more"></span>
+<h2 id="2-文档解析工具选择（这里主要讨论开源工具）">2. 文档解析工具选择（这里主要讨论开源工具）</h2>
+<ul>
+<li>
+<h3 id="我们可以把所有工具分为两大类">我们可以把所有工具分为两大类</h3>
+<ul>
+<li>一个是<strong>基于规则</strong>的开源库</li>
+<li>一个是<strong>基于深度学习</strong>的开源库</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png" alt="image-20250307080819281"></li>
+</ul>
+</li>
+<li>
+<h4 id="这里我们首先介绍基于规则的解析工具">这里我们首先介绍基于规则的解析工具</h4>
+<ul>
+<li>因为我们选择的框架langchain提供在实际应用场景中常见文档格式基于规则的解析方案，涵盖 PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML 和 HTML 格式。</li>
+<li>所以初步使用<strong>langchain</strong>框架LangChain Document Loaders 文档加载器进行操作，也就是<strong>langchain_community.document_loaders</strong>模块。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png" alt="image-20250307081912468"></li>
+<li>以下是langchain Document Loader 所需的文档解析依赖库</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png" alt="image-20250307082205941"></li>
+<li>例如，当我们项目中使用 from langchain_community.document_loaders import PDFPlumberLoader 时，需要先通过命令行 pip install pdfplumber 安装 pdfplumber 库。某些特殊情况下，还需要额外的依赖库，比如使用 UnstructuredMarkdownLoader 时，需要安装 unstructured 库来提供底层文档解析，还需要 markdown 库来支持 Markdown 文档格式更多能力。此外，对于像 .doc 这种早期的文档类型，还需要安装 libreoffice 软件库才能进行解析。</li>
+<li>针对PDF文档，目前主流是转为MarkDown文件格式。PDF 文件分为电子版和扫描版，**PDF 电子版可以通过规则解析，提取出文本、表格等文档元素。**目前，有许多开源库可以支持，例如 pyPDF2、PyMuPDF、pdfminer、pdfplumber 和 papermage 等。这些库在 langchain_community.document_loaders 中基本都有对应的加载器。</li>
+<li><strong>在基于规则的开源库中，pdfplumber 对中文支持较好，且在表格解析方面表现优秀，但对双栏文本的解析能力较差；pdfminer 和 PyMuPDF 对中文支持良好，但表格解析效果较弱；pyPDF2 对英文支持较好，但中文支持较差；papermage 集成了 pdfminer 和其他工具，特别适合处理论文场景。开发者可以根据实际业务场景的测试结果选择合适的工具，pdfplumber 或 pdfminer 都是当前不错的选择。</strong></li>
+</ul>
+</li>
+<li>
+<h4 id="再来看基于深度学习的开源解析工具">再来看基于深度学习的开源解析工具</h4>
+<ul>
+<li>基于深度学习的工具基本都是因PDF而生，无论扫描版还是电子版均需进行版面分析和阅读顺序的还原，将内容解析为一个包含所有文档元素并且具有正确阅读顺序的 MarkDown 文件。单纯依赖规则解析是无法实现这一目标的，目前支持这些功能的多为基于深度学习的开源库，如 Layout-parser、PP-StructureV2、PDF-Extract-Kit、pix2text、MinerU、marker 等。</li>
+<li>由于深度学习模型的部署复杂性以及对显卡配置的要求，langchain目前基本集成的都是基于规则的解析工具，基于深度学习的工具需要进行独立部署。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png" alt="image-20250307083713327"></li>
+<li>除了以上提到的还有比如：RapidLayout 专注于版面分析的，以及众多专注OCR（光学字符识别）识别的ZeroX，GOT-OCR2.0, OCRmyPDF，olmOCR等。</li>
+</ul>
+</li>
+<li>
+<p>目前除了这些工具，采用 <strong>端到端的多模态大模型直接解析</strong> 包括文字模态以及图片中非文字内容的解析，如常见的折线图、柱状图等，也许是文档解析的终极形式，但模型在效率和成本方面仍存在挑战，但其未来潜力巨大，值得期待。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>索引</category>
+        <category>文档解析</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>文档解析</tag>
+        <tag>langchain_community.document_loaders</tag>
+        <tag>pdfplumber</tag>
+        <tag>unstructured</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo踩坑</title>
     <url>/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/</url>
     <content><![CDATA[<hr>
@@ -196,112 +366,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       <tags>
         <tag>博客</tag>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Manus 首款通用AI智能体</title>
-    <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
-    <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
-<ul>
-<li>
-<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
-</li>
-<li>
-<h3 id="说说我的想法">说说我的想法</h3>
-<ul>
-<li>
-<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
-</li>
-<li>
-<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
-<ul>
-<li>从目前头部的几个集成平台说起：</li>
-<li><strong>字节的扣子</strong>
-<ul>
-<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
-</ul>
-</li>
-<li><strong>Dify</strong><br>
-一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
-<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
-<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>
-<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
-<ul>
-<li>
-<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
-<ul>
-<li>商业研究</li>
-<li>生活帮手</li>
-<li>数据分析</li>
-<li>教育可视化</li>
-<li>以及各种提升生产率的工具</li>
-</ul>
-</li>
-<li>
-<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
-<ul>
-<li><a href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
-</ul>
-</li>
-<li>
-<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
-<ul>
-<li><a href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
-</ul>
-</li>
-<li>
-<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
-<ul>
-<li><a href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
-</ul>
-</li>
-<li>
-<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
-<ul>
-<li>
-<div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
-</div>
-</li>
-<li>
-<div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
-</div>
-</li>
-<li>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
-</li>
-</ul>
-</li>
-<li>
-<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
-</li>
-<li>
-<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>Agent</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>Agent</tag>
-        <tag>Manus</tag>
-        <tag>智能体</tag>
       </tags>
   </entry>
   <entry>
@@ -553,6 +617,26 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2025/03/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>rag-lesson-1</title>
     <url>/2025/03/05/rag-lesson-1/</url>
     <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
@@ -645,87 +729,156 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2025/03/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+    <title>markdown-it 的扩展插件</title>
+    <url>/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<p>这些插件是 <code>markdown-it</code> 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：</p>
+<hr>
+<h3 id="1-markdown-it-footnote">1. <strong>markdown-it-footnote</strong></h3>
+<ul>
+<li>
+<p><strong>功能</strong>：支持脚注功能。</p>
+</li>
+<li>
+<p><strong>用法</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">这是一个带有脚注的文本[^footnote]。</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^footnote</span>]: <span class="link">这是脚注内容。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>效果</strong>：<br>
+这是一个带有脚注的文本<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+</li>
+</ul>
+<hr>
 <span id="more"></span>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>RAG索引（一）：文档解析技术</title>
-    <url>/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</url>
-    <content><![CDATA[<h1>RAG索引流程中面临的文档解析任务</h1>
-<h2 id="1-文档解析现状">1. 文档解析现状</h2>
+<h3 id="2-markdown-it-sub">2. <strong>markdown-it-sub</strong></h3>
 <ul>
-<li>文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。</li>
-<li>高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。</li>
-<li>RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。</li>
-<li>PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png" alt="image-20250307075848111"></li>
+<li><strong>功能</strong>：支持下标文本。</li>
+<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">H~2~O</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>效果</strong>：<br>
+H<sub>2</sub>O</li>
 </ul>
-<span id="more"></span>
-<h2 id="2-文档解析工具选择（这里主要讨论开源工具）">2. 文档解析工具选择（这里主要讨论开源工具）</h2>
+<hr>
+<h3 id="3-markdown-it-sup">3. <strong>markdown-it-sup</strong></h3>
+<ul>
+<li><strong>功能</strong>：支持上标文本。</li>
+<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">2^10^ = 1024</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>效果</strong>：<br>
+2<sup>10</sup> = 1024</li>
+</ul>
+<hr>
+<h3 id="4-markdown-it-deflist">4. <strong>markdown-it-deflist</strong></h3>
 <ul>
 <li>
-<h3 id="我们可以把所有工具分为两大类">我们可以把所有工具分为两大类</h3>
-<ul>
-<li>一个是<strong>基于规则</strong>的开源库</li>
-<li>一个是<strong>基于深度学习</strong>的开源库</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png" alt="image-20250307080819281"></li>
-</ul>
+<p><strong>功能</strong>：支持定义列表。</p>
 </li>
 <li>
-<h4 id="这里我们首先介绍基于规则的解析工具">这里我们首先介绍基于规则的解析工具</h4>
-<ul>
-<li>因为我们选择的框架langchain提供在实际应用场景中常见文档格式基于规则的解析方案，涵盖 PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML 和 HTML 格式。</li>
-<li>所以初步使用<strong>langchain</strong>框架LangChain Document Loaders 文档加载器进行操作，也就是<strong>langchain_community.document_loaders</strong>模块。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png" alt="image-20250307081912468"></li>
-<li>以下是langchain Document Loader 所需的文档解析依赖库</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png" alt="image-20250307082205941"></li>
-<li>例如，当我们项目中使用 from langchain_community.document_loaders import PDFPlumberLoader 时，需要先通过命令行 pip install pdfplumber 安装 pdfplumber 库。某些特殊情况下，还需要额外的依赖库，比如使用 UnstructuredMarkdownLoader 时，需要安装 unstructured 库来提供底层文档解析，还需要 markdown 库来支持 Markdown 文档格式更多能力。此外，对于像 .doc 这种早期的文档类型，还需要安装 libreoffice 软件库才能进行解析。</li>
-<li>针对PDF文档，目前主流是转为MarkDown文件格式。PDF 文件分为电子版和扫描版，**PDF 电子版可以通过规则解析，提取出文本、表格等文档元素。**目前，有许多开源库可以支持，例如 pyPDF2、PyMuPDF、pdfminer、pdfplumber 和 papermage 等。这些库在 langchain_community.document_loaders 中基本都有对应的加载器。</li>
-<li><strong>在基于规则的开源库中，pdfplumber 对中文支持较好，且在表格解析方面表现优秀，但对双栏文本的解析能力较差；pdfminer 和 PyMuPDF 对中文支持良好，但表格解析效果较弱；pyPDF2 对英文支持较好，但中文支持较差；papermage 集成了 pdfminer 和其他工具，特别适合处理论文场景。开发者可以根据实际业务场景的测试结果选择合适的工具，pdfplumber 或 pdfminer 都是当前不错的选择。</strong></li>
-</ul>
+<p><strong>用法</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">术语 1</span><br><span class="line">: 定义 1</span><br><span class="line"></span><br><span class="line">术语 2</span><br><span class="line">: 定义 2</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<h4 id="再来看基于深度学习的开源解析工具">再来看基于深度学习的开源解析工具</h4>
-<ul>
-<li>基于深度学习的工具基本都是因PDF而生，无论扫描版还是电子版均需进行版面分析和阅读顺序的还原，将内容解析为一个包含所有文档元素并且具有正确阅读顺序的 MarkDown 文件。单纯依赖规则解析是无法实现这一目标的，目前支持这些功能的多为基于深度学习的开源库，如 Layout-parser、PP-StructureV2、PDF-Extract-Kit、pix2text、MinerU、marker 等。</li>
-<li>由于深度学习模型的部署复杂性以及对显卡配置的要求，langchain目前基本集成的都是基于规则的解析工具，基于深度学习的工具需要进行独立部署。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png" alt="image-20250307083713327"></li>
-<li>除了以上提到的还有比如：RapidLayout 专注于版面分析的，以及众多专注OCR（光学字符识别）识别的ZeroX，GOT-OCR2.0, OCRmyPDF，olmOCR等。</li>
+<p><strong>效果</strong>：<br>
+术语 1<br>
+: 定义 1</p>
+<dl>
+<dt>术语 2</dt>
+<dd>定义 2</dd>
+</dl>
+</li>
 </ul>
+<hr>
+<h3 id="5-markdown-it-abbr">5. <strong>markdown-it-abbr</strong></h3>
+<ul>
+<li>
+<p><strong>功能</strong>：支持缩写词。</p>
 </li>
 <li>
-<p>目前除了这些工具，采用 <strong>端到端的多模态大模型直接解析</strong> 包括文字模态以及图片中非文字内容的解析，如常见的折线图、柱状图等，也许是文档解析的终极形式，但模型在效率和成本方面仍存在挑战，但其未来潜力巨大，值得期待。</p>
+<p><strong>用法</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*[HTML]: HyperText Markup Language</span></span><br><span class="line"><span class="emphasis">*</span>[W3C]: World Wide Web Consortium</span><br><span class="line"></span><br><span class="line">HTML 是 W3C 的标准。</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>效果</strong>：</p>
+<p><abbr title="HyperText Markup Language">HTML</abbr> 是 <abbr title="World Wide Web Consortium">W3C</abbr> 的标准。</p>
 </li>
 </ul>
+<hr>
+<h3 id="6-markdown-it-emoji">6. <strong>markdown-it-emoji</strong></h3>
+<ul>
+<li><strong>功能</strong>：支持 Emoji 表情。</li>
+<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">:smile: :heart: :rocket:</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>效果</strong>：<br>
+😄 ❤️ 🚀</li>
+</ul>
+<hr>
+<h3 id="7-markdown-it-container">7. <strong>markdown-it-container</strong></h3>
+<ul>
+<li>
+<p><strong>功能</strong>：支持自定义容器块。</p>
+</li>
+<li>
+<p><strong>用法</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">::: warning</span><br><span class="line">这是一个警告框。</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: tip</span><br><span class="line">这是一个提示框。</span><br><span class="line">:::</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>效果</strong>：<br>
+::: warning<br>
+这是一个警告框。<br>
+:::</p>
+<p>::: tip<br>
+这是一个提示框。<br>
+:::</p>
+</li>
+</ul>
+<hr>
+<h3 id="8-markdown-it-ins">8. <strong>markdown-it-ins</strong></h3>
+<ul>
+<li><strong>功能</strong>：支持插入文本（下划线）。</li>
+<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">++插入的文本++</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>效果</strong>：<br>
+<ins>插入的文本</ins></li>
+</ul>
+<hr>
+<h3 id="9-markdown-it-mark">9. <strong>markdown-it-mark</strong></h3>
+<ul>
+<li><strong>功能</strong>：支持高亮文本。</li>
+<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">==高亮的文本==</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>效果</strong>：<br>
+<mark>高亮的文本</mark></li>
+</ul>
+<hr>
+<h3 id="10-配置方法">10. <strong>配置方法</strong></h3>
+<p>在 <code>_config.yml</code> 中配置 <code>hexo-renderer-markdown-it</code> 插件时，可以启用这些插件。例如：</p>
+   <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-footnote</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sub</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sup</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-deflist</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-abbr</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-emoji</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-container</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-ins</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-mark</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="11-安装插件">11. <strong>安装插件</strong></h3>
+<p>运行以下命令安装这些插件：</p>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pnpm install markdown-it-footnote markdown-it-sub markdown-it-sup markdown-it-deflist markdown-it-abbr markdown-it-emoji markdown-it-container markdown-it-ins markdown-it-mark --save</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="12-总结">12. <strong>总结</strong></h3>
+<ul>
+<li>这些插件可以增强 Markdown 的功能，例如支持脚注、上下标、定义列表、Emoji 表情等。</li>
+<li>在 <code>_config.yml</code> 中配置 <code>hexo-renderer-markdown-it</code> 插件时，启用这些插件即可使用。</li>
+</ul>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>这是脚注内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 ]]></content>
       <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>索引</category>
-        <category>文档解析</category>
+        <category>自媒体</category>
+        <category>博客</category>
       </categories>
       <tags>
-        <tag>RAG</tag>
-        <tag>文档解析</tag>
-        <tag>langchain_community.document_loaders</tag>
-        <tag>pdfplumber</tag>
-        <tag>unstructured</tag>
+        <tag>博客</tag>
+        <tag>Hexo</tag>
+        <tag>Markdown插件</tag>
+        <tag>自媒体</tag>
       </tags>
   </entry>
   <entry>
@@ -901,159 +1054,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>AI</tag>
         <tag>生成模型方法</tag>
         <tag>大模型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>markdown-it 的扩展插件</title>
-    <url>/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/</url>
-    <content><![CDATA[<p>这些插件是 <code>markdown-it</code> 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：</p>
-<hr>
-<h3 id="1-markdown-it-footnote">1. <strong>markdown-it-footnote</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持脚注功能。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">这是一个带有脚注的文本[^footnote]。</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^footnote</span>]: <span class="link">这是脚注内容。</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：<br>
-这是一个带有脚注的文本<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
-</li>
-</ul>
-<hr>
-<span id="more"></span>
-<h3 id="2-markdown-it-sub">2. <strong>markdown-it-sub</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持下标文本。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">H~2~O</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-H<sub>2</sub>O</li>
-</ul>
-<hr>
-<h3 id="3-markdown-it-sup">3. <strong>markdown-it-sup</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持上标文本。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">2^10^ = 1024</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-2<sup>10</sup> = 1024</li>
-</ul>
-<hr>
-<h3 id="4-markdown-it-deflist">4. <strong>markdown-it-deflist</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持定义列表。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">术语 1</span><br><span class="line">: 定义 1</span><br><span class="line"></span><br><span class="line">术语 2</span><br><span class="line">: 定义 2</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：<br>
-术语 1<br>
-: 定义 1</p>
-<dl>
-<dt>术语 2</dt>
-<dd>定义 2</dd>
-</dl>
-</li>
-</ul>
-<hr>
-<h3 id="5-markdown-it-abbr">5. <strong>markdown-it-abbr</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持缩写词。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*[HTML]: HyperText Markup Language</span></span><br><span class="line"><span class="emphasis">*</span>[W3C]: World Wide Web Consortium</span><br><span class="line"></span><br><span class="line">HTML 是 W3C 的标准。</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：</p>
-<p><abbr title="HyperText Markup Language">HTML</abbr> 是 <abbr title="World Wide Web Consortium">W3C</abbr> 的标准。</p>
-</li>
-</ul>
-<hr>
-<h3 id="6-markdown-it-emoji">6. <strong>markdown-it-emoji</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持 Emoji 表情。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">:smile: :heart: :rocket:</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-😄 ❤️ 🚀</li>
-</ul>
-<hr>
-<h3 id="7-markdown-it-container">7. <strong>markdown-it-container</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持自定义容器块。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">::: warning</span><br><span class="line">这是一个警告框。</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: tip</span><br><span class="line">这是一个提示框。</span><br><span class="line">:::</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：<br>
-::: warning<br>
-这是一个警告框。<br>
-:::</p>
-<p>::: tip<br>
-这是一个提示框。<br>
-:::</p>
-</li>
-</ul>
-<hr>
-<h3 id="8-markdown-it-ins">8. <strong>markdown-it-ins</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持插入文本（下划线）。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">++插入的文本++</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-<ins>插入的文本</ins></li>
-</ul>
-<hr>
-<h3 id="9-markdown-it-mark">9. <strong>markdown-it-mark</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持高亮文本。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">==高亮的文本==</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-<mark>高亮的文本</mark></li>
-</ul>
-<hr>
-<h3 id="10-配置方法">10. <strong>配置方法</strong></h3>
-<p>在 <code>_config.yml</code> 中配置 <code>hexo-renderer-markdown-it</code> 插件时，可以启用这些插件。例如：</p>
-   <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-footnote</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sub</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sup</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-deflist</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-abbr</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-emoji</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-container</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-ins</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-mark</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="11-安装插件">11. <strong>安装插件</strong></h3>
-<p>运行以下命令安装这些插件：</p>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pnpm install markdown-it-footnote markdown-it-sub markdown-it-sup markdown-it-deflist markdown-it-abbr markdown-it-emoji markdown-it-container markdown-it-ins markdown-it-mark --save</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="12-总结">12. <strong>总结</strong></h3>
-<ul>
-<li>这些插件可以增强 Markdown 的功能，例如支持脚注、上下标、定义列表、Emoji 表情等。</li>
-<li>在 <code>_config.yml</code> 中配置 <code>hexo-renderer-markdown-it</code> 插件时，启用这些插件即可使用。</li>
-</ul>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>这是脚注内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
-]]></content>
-      <categories>
-        <category>自媒体</category>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-        <tag>Hexo</tag>
-        <tag>Markdown插件</tag>
-        <tag>自媒体</tag>
       </tags>
   </entry>
   <entry>
