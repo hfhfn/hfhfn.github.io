@@ -199,70 +199,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>RAG索引（一）：文档解析技术</title>
-    <url>/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</url>
-    <content><![CDATA[<h1>RAG索引流程中面临的文档解析任务</h1>
-<h2 id="1-文档解析现状">1. 文档解析现状</h2>
-<ul>
-<li>文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。</li>
-<li>高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。</li>
-<li>RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。</li>
-<li>PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png" alt="image-20250307075848111"></li>
-</ul>
-<span id="more"></span>
-<h2 id="2-文档解析工具选择（这里主要讨论开源工具）">2. 文档解析工具选择（这里主要讨论开源工具）</h2>
-<ul>
-<li>
-<h3 id="我们可以把所有工具分为两大类">我们可以把所有工具分为两大类</h3>
-<ul>
-<li>一个是<strong>基于规则</strong>的开源库</li>
-<li>一个是<strong>基于深度学习</strong>的开源库</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png" alt="image-20250307080819281"></li>
-</ul>
-</li>
-<li>
-<h4 id="这里我们首先介绍基于规则的解析工具">这里我们首先介绍基于规则的解析工具</h4>
-<ul>
-<li>因为我们选择的框架langchain提供在实际应用场景中常见文档格式基于规则的解析方案，涵盖 PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML 和 HTML 格式。</li>
-<li>所以初步使用<strong>langchain</strong>框架LangChain Document Loaders 文档加载器进行操作，也就是<strong>langchain_community.document_loaders</strong>模块。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png" alt="image-20250307081912468"></li>
-<li>以下是langchain Document Loader 所需的文档解析依赖库</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png" alt="image-20250307082205941"></li>
-<li>例如，当我们项目中使用 from langchain_community.document_loaders import PDFPlumberLoader 时，需要先通过命令行 pip install pdfplumber 安装 pdfplumber 库。某些特殊情况下，还需要额外的依赖库，比如使用 UnstructuredMarkdownLoader 时，需要安装 unstructured 库来提供底层文档解析，还需要 markdown 库来支持 Markdown 文档格式更多能力。此外，对于像 .doc 这种早期的文档类型，还需要安装 libreoffice 软件库才能进行解析。</li>
-<li>针对PDF文档，目前主流是转为MarkDown文件格式。PDF 文件分为电子版和扫描版，**PDF 电子版可以通过规则解析，提取出文本、表格等文档元素。**目前，有许多开源库可以支持，例如 pyPDF2、PyMuPDF、pdfminer、pdfplumber 和 papermage 等。这些库在 langchain_community.document_loaders 中基本都有对应的加载器。</li>
-<li><strong>在基于规则的开源库中，pdfplumber 对中文支持较好，且在表格解析方面表现优秀，但对双栏文本的解析能力较差；pdfminer 和 PyMuPDF 对中文支持良好，但表格解析效果较弱；pyPDF2 对英文支持较好，但中文支持较差；papermage 集成了 pdfminer 和其他工具，特别适合处理论文场景。开发者可以根据实际业务场景的测试结果选择合适的工具，pdfplumber 或 pdfminer 都是当前不错的选择。</strong></li>
-</ul>
-</li>
-<li>
-<h4 id="再来看基于深度学习的开源解析工具">再来看基于深度学习的开源解析工具</h4>
-<ul>
-<li>基于深度学习的工具基本都是因PDF而生，无论扫描版还是电子版均需进行版面分析和阅读顺序的还原，将内容解析为一个包含所有文档元素并且具有正确阅读顺序的 MarkDown 文件。单纯依赖规则解析是无法实现这一目标的，目前支持这些功能的多为基于深度学习的开源库，如 Layout-parser、PP-StructureV2、PDF-Extract-Kit、pix2text、MinerU、marker 等。</li>
-<li>由于深度学习模型的部署复杂性以及对显卡配置的要求，langchain目前基本集成的都是基于规则的解析工具，基于深度学习的工具需要进行独立部署。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png" alt="image-20250307083713327"></li>
-<li>除了以上提到的还有比如：RapidLayout 专注于版面分析的，以及众多专注OCR（光学字符识别）识别的ZeroX，GOT-OCR2.0, OCRmyPDF，olmOCR等。</li>
-</ul>
-</li>
-<li>
-<p>目前除了这些工具，采用 <strong>端到端的多模态大模型直接解析</strong> 包括文字模态以及图片中非文字内容的解析，如常见的折线图、柱状图等，也许是文档解析的终极形式，但模型在效率和成本方面仍存在挑战，但其未来潜力巨大，值得期待。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>索引</category>
-        <category>文档解析</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>文档解析</tag>
-        <tag>langchain_community.document_loaders</tag>
-        <tag>pdfplumber</tag>
-        <tag>unstructured</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Manus 首款通用AI智能体</title>
     <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
     <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
@@ -366,6 +302,163 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>Agent</tag>
         <tag>Manus</tag>
         <tag>智能体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RAG索引（一）：文档解析技术</title>
+    <url>/2025/03/07/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h1>RAG索引流程中面临的文档解析任务</h1>
+<h2 id="1-文档解析现状">1. 文档解析现状</h2>
+<ul>
+<li>文档解析技术的本质在于将格式各异、版式多样、元素多种的文档数据，包括段落、表格、标题、公式、多列、图片等文档区块，转化为阅读顺序正确的字符串信息。</li>
+<li>高质量的文档解析能够从各种复杂格式的非结构化数据中提取出高精准度的信息，对 RAG 系统最终的效果起决定性的作用。</li>
+<li>RAG应用场景中涉及的数据类型通常有：PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML、HTML以及关系型和非关系型数据库等，这里面最常见也是最难的就是PDF的解析。</li>
+<li>PDF 文档往往篇幅巨大、页数众多，且企业及专业领域 PDF 文件数据量庞大，因此文档解析技术还需具备极高的处理性能，以确保知识库的高效构建和实时更新。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307075848111.png" alt="image-20250307075848111"></li>
+</ul>
+<span id="more"></span>
+<h2 id="2-文档解析工具选择（这里主要讨论开源工具）">2. 文档解析工具选择（这里主要讨论开源工具）</h2>
+<ul>
+<li>
+<h3 id="我们可以把所有工具分为两大类">我们可以把所有工具分为两大类</h3>
+<ul>
+<li>一个是<strong>基于规则</strong>的开源库</li>
+<li>一个是<strong>基于深度学习</strong>的开源库</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307080819281.png" alt="image-20250307080819281"></li>
+</ul>
+</li>
+<li>
+<h4 id="这里我们首先介绍基于规则的解析工具">这里我们首先介绍基于规则的解析工具</h4>
+<ul>
+<li>因为我们选择的框架langchain提供在实际应用场景中常见文档格式基于规则的解析方案，涵盖 PDF、TXT、Word、PPT、Excel、CSV、Markdown、XML 和 HTML 格式。</li>
+<li>所以初步使用<strong>langchain</strong>框架LangChain Document Loaders 文档加载器进行操作，也就是<strong>langchain_community.document_loaders</strong>模块。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307081912468.png" alt="image-20250307081912468"></li>
+<li>以下是langchain Document Loader 所需的文档解析依赖库</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307082205941.png" alt="image-20250307082205941"></li>
+<li>例如，当我们项目中使用 from langchain_community.document_loaders import PDFPlumberLoader 时，需要先通过命令行 pip install pdfplumber 安装 pdfplumber 库。某些特殊情况下，还需要额外的依赖库，比如使用 UnstructuredMarkdownLoader 时，需要安装 unstructured 库来提供底层文档解析，还需要 markdown 库来支持 Markdown 文档格式更多能力。此外，对于像 .doc 这种早期的文档类型，还需要安装 libreoffice 软件库才能进行解析。</li>
+<li>针对PDF文档，目前主流是转为MarkDown文件格式。PDF 文件分为电子版和扫描版，**PDF 电子版可以通过规则解析，提取出文本、表格等文档元素。**目前，有许多开源库可以支持，例如 pyPDF2、PyMuPDF、pdfminer、pdfplumber 和 papermage 等。这些库在 langchain_community.document_loaders 中基本都有对应的加载器。</li>
+<li><strong>在基于规则的开源库中，pdfplumber 对中文支持较好，且在表格解析方面表现优秀，但对双栏文本的解析能力较差；pdfminer 和 PyMuPDF 对中文支持良好，但表格解析效果较弱；pyPDF2 对英文支持较好，但中文支持较差；papermage 集成了 pdfminer 和其他工具，特别适合处理论文场景。开发者可以根据实际业务场景的测试结果选择合适的工具，pdfplumber 或 pdfminer 都是当前不错的选择。</strong></li>
+</ul>
+</li>
+<li>
+<h4 id="再来看基于深度学习的开源解析工具">再来看基于深度学习的开源解析工具</h4>
+<ul>
+<li>基于深度学习的工具基本都是因PDF而生，无论扫描版还是电子版均需进行版面分析和阅读顺序的还原，将内容解析为一个包含所有文档元素并且具有正确阅读顺序的 MarkDown 文件。单纯依赖规则解析是无法实现这一目标的，目前支持这些功能的多为基于深度学习的开源库，如 Layout-parser、PP-StructureV2、PDF-Extract-Kit、pix2text、MinerU、marker 等。</li>
+<li>由于深度学习模型的部署复杂性以及对显卡配置的要求，langchain目前基本集成的都是基于规则的解析工具，基于深度学习的工具需要进行独立部署。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250307083713327.png" alt="image-20250307083713327"></li>
+<li>除了以上提到的还有比如：RapidLayout 专注于版面分析的，以及众多专注OCR（光学字符识别）识别的ZeroX，GOT-OCR2.0, OCRmyPDF，olmOCR等。</li>
+</ul>
+</li>
+<li>
+<p>目前除了这些工具，采用 <strong>端到端的多模态大模型直接解析</strong> 包括文字模态以及图片中非文字内容的解析，如常见的折线图、柱状图等，也许是文档解析的终极形式，但模型在效率和成本方面仍存在挑战，但其未来潜力巨大，值得期待。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>索引</category>
+        <category>文档解析</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>文档解析</tag>
+        <tag>langchain_community.document_loaders</tag>
+        <tag>pdfplumber</tag>
+        <tag>unstructured</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RAG索引（三）：嵌入（Embedding）技术</title>
+    <url>/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h3 id="嵌入模型（Embedding-Model）负责将文本数据映射到高维向量空间中，将输入的文档片段转换为对应的嵌入向量（embedding-vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量，这些向量用于在向量数据库中通过向量检索（Vector-Retrieval）匹配最相似的文档片段。根据不同的场景需求，评估并选择最优的嵌入模型，以确保-RAG-的检索性能符合要求。"><mark>嵌入模型（Embedding Model）负责将文本数据映射到高维向量空间中</mark>，将输入的文档片段转换为对应的嵌入向量（embedding vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。<mark>用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量</mark>，这些向量用于在向量数据库中通过向量检索（Vector Retrieval）匹配最相似的文档片段。根据不同的场景需求，<mark>评估并选择最优的嵌入模型</mark>，以确保 RAG 的检索性能符合要求。</h3>
+<span id="more"></span>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9E%8B%E4%BD%9C%E7%94%A8.png" alt="嵌入模型作用" style="zoom: 67%;" />
+<ul>
+<li>
+<h4 id="什么是Embedding嵌入？">什么是Embedding嵌入？</h4>
+<ul>
+<li>Embedding 嵌入是指将文本、图像、音频、视频等形式的信息映射为高维空间中的密集向量表示。这些向量在语义空间中起到坐标的作用，捕捉对象之间的语义关系和隐含的意义。通过在向量空间中进行计算（例如余弦相似度），可以量化和衡量这些对象之间的<strong>语义相似性</strong>。</li>
+<li>在具体实现中，嵌入的每个维度通常对应文本的某种特征，例如性别、类别、数量等。通过多维度的数值表示，计算机能够理解并解析文本的复杂语义结构。例如，“man”和“woman”在描述性别维度上具有相似性，而“king”和“queen”则在性别和王室身份等维度上表现出相似的语义特征。</li>
+<li>向量是一组在高维空间中定义点的数值数组，而<strong>嵌入则是将信息（如文本）转化为这种向量表示的过程</strong>。这些向量能够捕捉数据的语义及其他重要特征，使得语义相近的对象在向量空间中彼此邻近，而语义相异的对象则相距较远。<strong>向量检索（Vector Retrieval）是一种基于向量表示的搜索技术</strong>，通过计算查询向量与已知文本向量的相似度来识别最相关的文本数据。向量检索的高效性在于，它能在大规模数据集中快速、准确地找到与查询最相关的内容，这得益于向量表示中蕴含的丰富语义信息。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112108258.png" alt="image-20250310112108258" style="zoom: 80%;" />
+</li>
+</ul>
+</li>
+<li>
+<h4 id="Embedding-Model-嵌入模型">Embedding Model 嵌入模型</h4>
+<ul>
+<li>自 2013 年以来，word2vec、GloVe、fastText 等嵌入模型通过分析大量文本数据，学习得出单词的嵌入向量。近年来，随着 transformer 模型的突破，嵌入技术以惊人的速度发展。BERT、RoBERTa、ELECTRA 等模型将词嵌入推进到上下文敏感的阶段。这些模型在为文本中的每个单词生成嵌入时，会充分考虑其上下文环境，因此同一个单词在不同语境下的嵌入向量可以有所不同，从而大大提升了模型理解复杂语言结构的能力。</li>
+<li>在 RAG 系统中，Embedding Model 嵌入模型扮演着关键角色，负责将文本数据映射到高维向量空间，以便高效检索和处理。具体而言，<strong>Embedding Model 将输入的文档片段（Chunks）和查询文本（Query）转换为嵌入向量（Vectors）</strong>，这些向量捕捉了文本的语义信息，并可在向量空间中与其他嵌入向量进行比较。</li>
+<li>在 RAG 流程中，文档首先被分割成多个片段，每个片段随后通过 Embedding Model 进行嵌入处理。生成的文档嵌入向量被存储在 VectorStore 中，供后续检索使用。用户查询会通过 Embedding Model 转换为查询嵌入向量，这些向量用于在向量数据库中匹配最相似的文档片段，最终组合生成指令（Prompt），大模型生成回答。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112648314.png" alt="image-20250310112648314" style="zoom:80%;" />
+</li>
+<li>正如图中所示，嵌入模型是 RAG 流程的核心。既然如此重要，市面上有非常多的嵌入模型，我们该如何为我们的业务场景选择最合适的嵌入模型呢？</li>
+</ul>
+</li>
+<li>
+<h4 id="Embedding-Model-嵌入模型评估与选择">Embedding Model 嵌入模型评估与选择</h4>
+<ul>
+<li>在选择适合的嵌入模型时，需要综合考虑多个因素，包括<strong>特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率</strong>等因素。同时以广泛受到认可的 **MTEB（Massive Text Embedding Benchmark）和 C-MTEB（Chinese Massive Text Embedding Benchmark）**榜单作为参考，通过涵盖分类、聚类、语义文本相似性、重排序和检索等多个数据集的评测，开发者可以根据不同任务的需求，评估并选择最优的向量模型，以确保在特定应用场景中的最佳性能。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310113405164.png" alt="image-20250310113405164" style="zoom:80%;" />
+</li>
+<li><a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB &amp; C-MTEB 榜单</a></li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310122014515.png" alt="image-20250310122014515" style="zoom:80%;" />
+</li>
+<li>榜单每日更新，可以切换语言为 中文，可以看到中文嵌入模型的排名。由于 RAG 是一项检索任务，我们需要按“Retrieval Average”（检索平均值）列对排行榜进行排序，图中显示的就是检索任务效果排序后的结果。在检索任务中，我们需要在榜单顶部看到最佳的检索模型，并且专注于以下几个关键列：</li>
+<li><strong>Retrieval Average 检索平均值</strong>：较高的检索平均值表示模型更擅长在检索结果列表中将相关项目排在较高的位置，检索效果更好。</li>
+<li><strong>Model Size 模型大小</strong>：模型的大小（以 GB 为单位）。虽然检索性能随模型大小而变化，但要注意，模型大小也会对延迟产生直接影响。因此，在选择模型时，建议筛选掉那些在硬件资源有限的情况下不可行的过大模型。在生产环境中，性能与效率之间的权衡尤为重要。</li>
+<li><strong>Max Tokens 最大 Token 数</strong>：可压缩到单个文本块中的最大 Token 数。因为文档块我们希望不要过大而降低目标信息块的精准度，因此，即使最大 tokens 数为 512 的模型在大部分场景下也足够使用。</li>
+<li><strong>Embedding Dimensions：嵌入向量的维度</strong>。越少的嵌入维度提供更快的推理速度，存储效率更高，而更多的维度可以捕获数据中的细微特征。我们需要在模型的性能和效率之间取得良好的权衡。</li>
+<li><strong>实验至关重要</strong>，在排行榜上表现良好的模型不一定在你的任务上表现良好，试验各种高得分的模型至关重要。我们参考 MTEB 排行榜，选择多个适合我们场景的嵌入模型作为备选，并在我们的业务场景数据集上进行评估测试，以选出最适合我们 RAG 系统的嵌入模型。</li>
+</ul>
+</li>
+<li>
+<h4 id="Embedding-Model-技术实战">Embedding Model 技术实战</h4>
+<ul>
+<li>
+<p>我们可以使用 SentenceTransformers 作为加载嵌入模型的 Python 模块。</p>
+</li>
+<li>
+<p>SentenceTransformers（又名 SBERT）是一个用于训练和推理文本嵌入模型的 Python 模块，可以在 RAG 系统中计算嵌入向量。使用 SentenceTransformers 进行文本嵌入转换非常简单：只需导入模块库、加载模型，并调用 encode 方法即可。执行时，SentenceTransformers 会自动下载相应的模型库，当然也可以手动下载并指定模型库的路径。所有可用的模型都可以在 <a href="https://www.sbert.net/docs/sentence_transformer/pretrained_models.html">SentenceTransformers 模型库</a> 查看，超过 8000 个发布在 Hugging Face 上的嵌入模型库可以被使用。</p>
+</li>
+<li>
+<p>在中文领域，智源研究院的 <a href="https://huggingface.co/collections/BAAI/bge-66797a74476eb1f085c7446d">BGE 系列模型</a> 是较为知名的开源嵌入模型，在 C-MTEB 上表现出色。BGE 系列目前包含 23 个嵌入模型，涵盖多种维度、多种最大 Token 数和模型大小，用户可以根据需求进行测试和使用。</p>
+</li>
+<li>
+<p><strong>load_embedding_model 方法中使用 SentenceTransformer 加载嵌入模型代码</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 绝对路径：SentenceTransformer读取绝对路径下的bge-large-zh-v1.5模型，如需使用其他模型，下载其他模型，并且更换绝对路径即可</span></span><br><span class="line">embedding_model = SentenceTransformer(os.path.abspath(<span class="string">&#x27;data/bge-large-zh-v1.5&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动下载：SentenceTransformer库自动下载BAAI/bge-large-zh-v1.5模型，如需下载其他模型，输入其他模型名称即可</span></span><br><span class="line"><span class="comment"># embedding_model = SentenceTransformer(&#x27;BAAI/bge-large-zh-v1.5&#x27;)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>indexing_process 方法中将文本转化为嵌入向量代码</strong>：</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文本块转化为嵌入向量列表，normalize_embeddings表示对嵌入向量进行归一化，用于后续流程准确计算向量相似度</span></span><br><span class="line">embeddings = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> all_chunks:</span><br><span class="line">      embedding = embedding_model.encode(chunk, normalize_embeddings=<span class="literal">True</span>)</span><br><span class="line">      embeddings.append(embedding)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="总结">总结</h4>
+<ul>
+<li>嵌入技术将文本数据映射到高维向量空间中，捕捉其语义信息，支持向量检索，从而在大规模数据中快速识别与查询最相关的文档片段。在选择嵌入模型时，需要综合考虑特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率等因素。</li>
+<li>通过参考 MTEB 和 C-MTEB 的评测榜单，可以评估多个高得分的模型，并在具体的业务场景中进行测试，最终选择最适合该场景的嵌入模型。同时，使用 SentenceTransformers Python 模块可以简化嵌入模型的加载和嵌入计算，进而高效率集成测试。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>索引</category>
+        <category>嵌入（Embedding）技术</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>索引</tag>
+        <tag>嵌入</tag>
+        <tag>embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -608,105 +701,12 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <category>分块策略</category>
       </categories>
       <tags>
-        <tag>RAG</tag>
         <tag>AI</tag>
+        <tag>RAG</tag>
         <tag>索引</tag>
         <tag>分块策略</tag>
         <tag>langchain</tag>
         <tag>Chunk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG索引（三）：嵌入（Embedding）技术</title>
-    <url>/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/</url>
-    <content><![CDATA[<h3 id="嵌入模型（Embedding-Model）负责将文本数据映射到高维向量空间中，将输入的文档片段转换为对应的嵌入向量（embedding-vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量，这些向量用于在向量数据库中通过向量检索（Vector-Retrieval）匹配最相似的文档片段。根据不同的场景需求，评估并选择最优的嵌入模型，以确保-RAG-的检索性能符合要求。"><mark>嵌入模型（Embedding Model）负责将文本数据映射到高维向量空间中</mark>，将输入的文档片段转换为对应的嵌入向量（embedding vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。<mark>用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量</mark>，这些向量用于在向量数据库中通过向量检索（Vector Retrieval）匹配最相似的文档片段。根据不同的场景需求，<mark>评估并选择最优的嵌入模型</mark>，以确保 RAG 的检索性能符合要求。</h3>
-<span id="more"></span>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9E%8B%E4%BD%9C%E7%94%A8.png" alt="嵌入模型作用" style="zoom: 67%;" />
-<ul>
-<li>
-<h4 id="什么是Embedding嵌入？">什么是Embedding嵌入？</h4>
-<ul>
-<li>Embedding 嵌入是指将文本、图像、音频、视频等形式的信息映射为高维空间中的密集向量表示。这些向量在语义空间中起到坐标的作用，捕捉对象之间的语义关系和隐含的意义。通过在向量空间中进行计算（例如余弦相似度），可以量化和衡量这些对象之间的<strong>语义相似性</strong>。</li>
-<li>在具体实现中，嵌入的每个维度通常对应文本的某种特征，例如性别、类别、数量等。通过多维度的数值表示，计算机能够理解并解析文本的复杂语义结构。例如，“man”和“woman”在描述性别维度上具有相似性，而“king”和“queen”则在性别和王室身份等维度上表现出相似的语义特征。</li>
-<li>向量是一组在高维空间中定义点的数值数组，而<strong>嵌入则是将信息（如文本）转化为这种向量表示的过程</strong>。这些向量能够捕捉数据的语义及其他重要特征，使得语义相近的对象在向量空间中彼此邻近，而语义相异的对象则相距较远。<strong>向量检索（Vector Retrieval）是一种基于向量表示的搜索技术</strong>，通过计算查询向量与已知文本向量的相似度来识别最相关的文本数据。向量检索的高效性在于，它能在大规模数据集中快速、准确地找到与查询最相关的内容，这得益于向量表示中蕴含的丰富语义信息。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112108258.png" alt="image-20250310112108258" style="zoom: 80%;" />
-</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-嵌入模型">Embedding Model 嵌入模型</h4>
-<ul>
-<li>自 2013 年以来，word2vec、GloVe、fastText 等嵌入模型通过分析大量文本数据，学习得出单词的嵌入向量。近年来，随着 transformer 模型的突破，嵌入技术以惊人的速度发展。BERT、RoBERTa、ELECTRA 等模型将词嵌入推进到上下文敏感的阶段。这些模型在为文本中的每个单词生成嵌入时，会充分考虑其上下文环境，因此同一个单词在不同语境下的嵌入向量可以有所不同，从而大大提升了模型理解复杂语言结构的能力。</li>
-<li>在 RAG 系统中，Embedding Model 嵌入模型扮演着关键角色，负责将文本数据映射到高维向量空间，以便高效检索和处理。具体而言，<strong>Embedding Model 将输入的文档片段（Chunks）和查询文本（Query）转换为嵌入向量（Vectors）</strong>，这些向量捕捉了文本的语义信息，并可在向量空间中与其他嵌入向量进行比较。</li>
-<li>在 RAG 流程中，文档首先被分割成多个片段，每个片段随后通过 Embedding Model 进行嵌入处理。生成的文档嵌入向量被存储在 VectorStore 中，供后续检索使用。用户查询会通过 Embedding Model 转换为查询嵌入向量，这些向量用于在向量数据库中匹配最相似的文档片段，最终组合生成指令（Prompt），大模型生成回答。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112648314.png" alt="image-20250310112648314" style="zoom:80%;" />
-</li>
-<li>正如图中所示，嵌入模型是 RAG 流程的核心。既然如此重要，市面上有非常多的嵌入模型，我们该如何为我们的业务场景选择最合适的嵌入模型呢？</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-嵌入模型评估与选择">Embedding Model 嵌入模型评估与选择</h4>
-<ul>
-<li>在选择适合的嵌入模型时，需要综合考虑多个因素，包括<strong>特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率</strong>等因素。同时以广泛受到认可的 **MTEB（Massive Text Embedding Benchmark）和 C-MTEB（Chinese Massive Text Embedding Benchmark）**榜单作为参考，通过涵盖分类、聚类、语义文本相似性、重排序和检索等多个数据集的评测，开发者可以根据不同任务的需求，评估并选择最优的向量模型，以确保在特定应用场景中的最佳性能。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310113405164.png" alt="image-20250310113405164" style="zoom:80%;" />
-</li>
-<li><a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB &amp; C-MTEB 榜单</a></li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310122014515.png" alt="image-20250310122014515" style="zoom:80%;" />
-</li>
-<li>榜单每日更新，可以切换语言为 中文，可以看到中文嵌入模型的排名。由于 RAG 是一项检索任务，我们需要按“Retrieval Average”（检索平均值）列对排行榜进行排序，图中显示的就是检索任务效果排序后的结果。在检索任务中，我们需要在榜单顶部看到最佳的检索模型，并且专注于以下几个关键列：</li>
-<li><strong>Retrieval Average 检索平均值</strong>：较高的检索平均值表示模型更擅长在检索结果列表中将相关项目排在较高的位置，检索效果更好。</li>
-<li><strong>Model Size 模型大小</strong>：模型的大小（以 GB 为单位）。虽然检索性能随模型大小而变化，但要注意，模型大小也会对延迟产生直接影响。因此，在选择模型时，建议筛选掉那些在硬件资源有限的情况下不可行的过大模型。在生产环境中，性能与效率之间的权衡尤为重要。</li>
-<li><strong>Max Tokens 最大 Token 数</strong>：可压缩到单个文本块中的最大 Token 数。因为文档块我们希望不要过大而降低目标信息块的精准度，因此，即使最大 tokens 数为 512 的模型在大部分场景下也足够使用。</li>
-<li><strong>Embedding Dimensions：嵌入向量的维度</strong>。越少的嵌入维度提供更快的推理速度，存储效率更高，而更多的维度可以捕获数据中的细微特征。我们需要在模型的性能和效率之间取得良好的权衡。</li>
-<li><strong>实验至关重要</strong>，在排行榜上表现良好的模型不一定在你的任务上表现良好，试验各种高得分的模型至关重要。我们参考 MTEB 排行榜，选择多个适合我们场景的嵌入模型作为备选，并在我们的业务场景数据集上进行评估测试，以选出最适合我们 RAG 系统的嵌入模型。</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-技术实战">Embedding Model 技术实战</h4>
-<ul>
-<li>
-<p>我们可以使用 SentenceTransformers 作为加载嵌入模型的 Python 模块。</p>
-</li>
-<li>
-<p>SentenceTransformers（又名 SBERT）是一个用于训练和推理文本嵌入模型的 Python 模块，可以在 RAG 系统中计算嵌入向量。使用 SentenceTransformers 进行文本嵌入转换非常简单：只需导入模块库、加载模型，并调用 encode 方法即可。执行时，SentenceTransformers 会自动下载相应的模型库，当然也可以手动下载并指定模型库的路径。所有可用的模型都可以在 <a href="https://www.sbert.net/docs/sentence_transformer/pretrained_models.html">SentenceTransformers 模型库</a> 查看，超过 8000 个发布在 Hugging Face 上的嵌入模型库可以被使用。</p>
-</li>
-<li>
-<p>在中文领域，智源研究院的 <a href="https://huggingface.co/collections/BAAI/bge-66797a74476eb1f085c7446d">BGE 系列模型</a> 是较为知名的开源嵌入模型，在 C-MTEB 上表现出色。BGE 系列目前包含 23 个嵌入模型，涵盖多种维度、多种最大 Token 数和模型大小，用户可以根据需求进行测试和使用。</p>
-</li>
-<li>
-<p><strong>load_embedding_model 方法中使用 SentenceTransformer 加载嵌入模型代码</strong>：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 绝对路径：SentenceTransformer读取绝对路径下的bge-large-zh-v1.5模型，如需使用其他模型，下载其他模型，并且更换绝对路径即可</span></span><br><span class="line">embedding_model = SentenceTransformer(os.path.abspath(<span class="string">&#x27;data/bge-large-zh-v1.5&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动下载：SentenceTransformer库自动下载BAAI/bge-large-zh-v1.5模型，如需下载其他模型，输入其他模型名称即可</span></span><br><span class="line"><span class="comment"># embedding_model = SentenceTransformer(&#x27;BAAI/bge-large-zh-v1.5&#x27;)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>indexing_process 方法中将文本转化为嵌入向量代码</strong>：</p>
- <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文本块转化为嵌入向量列表，normalize_embeddings表示对嵌入向量进行归一化，用于后续流程准确计算向量相似度</span></span><br><span class="line">embeddings = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> all_chunks:</span><br><span class="line">      embedding = embedding_model.encode(chunk, normalize_embeddings=<span class="literal">True</span>)</span><br><span class="line">      embeddings.append(embedding)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li>
-<h4 id="总结">总结</h4>
-<ul>
-<li>嵌入技术将文本数据映射到高维向量空间中，捕捉其语义信息，支持向量检索，从而在大规模数据中快速识别与查询最相关的文档片段。在选择嵌入模型时，需要综合考虑特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率等因素。</li>
-<li>通过参考 MTEB 和 C-MTEB 的评测榜单，可以评估多个高得分的模型，并在具体的业务场景中进行测试，最终选择最适合该场景的嵌入模型。同时，使用 SentenceTransformers Python 模块可以简化嵌入模型的加载和嵌入计算，进而高效率集成测试。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>索引</category>
-        <category>嵌入（Embedding）技术</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>索引</tag>
-        <tag>嵌入</tag>
-        <tag>embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -728,98 +728,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>rag-lesson-1</title>
-    <url>/2025/03/05/rag-lesson-1/</url>
-    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
-<ul>
-<li>
-<h2 id="技术框架与选型">技术框架与选型</h2>
-<ul>
-<li>
-<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
-<ul>
-<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>
-<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
-<ul>
-<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
-<ul>
-<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
-<ul>
-<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
-<ul>
-<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
-</ul>
-</li>
-<li>
-<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
-<ul>
-<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
-</ul>
-</li>
-<li>
-<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
-<ul>
-<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
-<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
-<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
-<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h2 id="开发环境与技术库">开发环境与技术库</h2>
-<ul>
-<li>
-<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
-</li>
-<li>
-<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="安装技术依赖库">安装技术依赖库</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
-<ol>
-<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>从0到1学习RAG</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>AI,</tag>
-      </tags>
   </entry>
   <entry>
     <title>markdown-it 的扩展插件</title>
@@ -972,6 +880,98 @@ H<sub>2</sub>O</li>
         <tag>Hexo</tag>
         <tag>Markdown插件</tag>
         <tag>自媒体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rag-lesson-1</title>
+    <url>/2025/03/05/rag-lesson-1/</url>
+    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
+<ul>
+<li>
+<h2 id="技术框架与选型">技术框架与选型</h2>
+<ul>
+<li>
+<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
+<ul>
+<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
+<ul>
+<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
+<ul>
+<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
+<ul>
+<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
+<ul>
+<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
+</ul>
+</li>
+<li>
+<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
+<ul>
+<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
+</ul>
+</li>
+<li>
+<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
+<ul>
+<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
+<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
+<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
+<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h2 id="开发环境与技术库">开发环境与技术库</h2>
+<ul>
+<li>
+<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
+</li>
+<li>
+<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="安装技术依赖库">安装技术依赖库</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
+<ol>
+<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>AI,</tag>
       </tags>
   </entry>
   <entry>
