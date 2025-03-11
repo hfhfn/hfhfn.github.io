@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-10T07:07:49.869Z</updated>
+  <updated>2025-03-11T04:00:36.163Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RAG向量数据库原理与常用向量库</title>
+    <link href="http://example.com/2025/03/11/RAG%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%90%91%E9%87%8F%E5%BA%93/"/>
+    <id>http://example.com/2025/03/11/RAG%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%90%91%E9%87%8F%E5%BA%93/</id>
+    <published>2025-03-11T03:00:00.000Z</published>
+    <updated>2025-03-11T04:00:36.163Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;在前面的课程中，我们已经学习了-RAG-检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。&quot;&gt;在前面的课程中，我们已经学习了 RAG 检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。&lt;/h3&gt;
+&lt;h3 id=&quot;在人工智能（AI）主导的时代，文字、图像、语音、视频等多模态数据的复杂性显著增加。由于这些数据具有非结构化和多维特征，向量表示能够有效表示语义和捕捉其潜在的语义关系，促使向量数据库成为存储、检索和分析高维数据向量的关键工具。&quot;&gt;在人工智能（AI）主导的时代，文字、图像、语音、视频等多模态数据的复杂性显著增加。由于这些数据具有非结构化和多维特征，向量表示能够有效表示语义和捕捉其潜在的语义关系，促使向量数据库成为存储、检索和分析高维数据向量的关键工具。&lt;/h3&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
+    
+    <category term="索引/检索" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95-%E6%A3%80%E7%B4%A2/"/>
+    
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
+    
+    <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
+    
+  </entry>
   
   <entry>
     <title>RAG索引（三）：嵌入（Embedding）技术</title>
