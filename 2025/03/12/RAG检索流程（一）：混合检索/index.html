@@ -24,35 +24,36 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
 <meta name="referrer" content="no-referrer" />
-    <meta name="description" content="暂时推荐这两个机场（在没有魔法的情况下网站可以登录） 1. 费用自己看着选，贵的速率和稳定性都好一些 2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">
+    <meta name="description" content="为什么需要混合检索？ 我们本节课正式开始讲解 RAG 检索流程。当前主流的 RAG 检索方式主要采用向量检索（Vector Search），通过语义相似度来匹配文本切块。这种方法在我们之前的课程中已经深入探讨过了。然而，向量检索并非万能，它在某些场景下无法替代传统关键词检索的优势。 例如，当你需要精准搜索某个订单 ID、品牌名称或地址，或者搜索特定人物或物品的名字（如伊隆·马斯克、iPhone 1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="翻墙机场推荐（魔法上网）">
-<meta property="og:url" content="http://example.com/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/index.html">
+<meta property="og:title" content="RAG检索流程（一）：混合检索">
+<meta property="og:url" content="http://example.com/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/index.html">
 <meta property="og:site_name" content="打开AI世界的大门">
-<meta property="og:description" content="暂时推荐这两个机场（在没有魔法的情况下网站可以登录） 1. 费用自己看着选，贵的速率和稳定性都好一些 2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">
+<meta property="og:description" content="为什么需要混合检索？ 我们本节课正式开始讲解 RAG 检索流程。当前主流的 RAG 检索方式主要采用向量检索（Vector Search），通过语义相似度来匹配文本切块。这种方法在我们之前的课程中已经深入探讨过了。然而，向量检索并非万能，它在某些场景下无法替代传统关键词检索的优势。 例如，当你需要精准搜索某个订单 ID、品牌名称或地址，或者搜索特定人物或物品的名字（如伊隆·马斯克、iPhone 1">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png">
-<meta property="article:published_time" content="2025-03-05T08:43:18.000Z">
-<meta property="article:modified_time" content="2025-03-05T09:15:23.445Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312122858648.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312133821822.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312134208626.png">
+<meta property="article:published_time" content="2025-03-12T02:04:00.000Z">
+<meta property="article:modified_time" content="2025-03-12T06:31:56.299Z">
 <meta property="article:author" content="AI模型研究所">
-<meta property="article:tag" content="翻墙机场,">
-<meta property="article:tag" content="魔法上网">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="检索">
+<meta property="article:tag" content="混合检索">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312122858648.png">
 
 
-<link rel="canonical" href="http://example.com/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/">
+<link rel="canonical" href="http://example.com/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/","path":"2025/03/05/翻墙机场推荐（魔法上网）/","title":"翻墙机场推荐（魔法上网）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/","path":"2025/03/12/RAG检索流程（一）：混合检索/","title":"RAG检索流程（一）：混合检索"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
-<meta name="referrer" content="no-referrer" /><title>翻墙机场推荐（魔法上网） | 打开AI世界的大门</title>
+<meta name="referrer" content="no-referrer" /><title>RAG检索流程（一）：混合检索 | 打开AI世界的大门</title>
   
 
 
@@ -166,7 +167,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9A%82%E6%97%B6%E6%8E%A8%E8%8D%90%E8%BF%99%E4%B8%A4%E4%B8%AA%E6%9C%BA%E5%9C%BA%EF%BC%88%E5%9C%A8%E6%B2%A1%E6%9C%89%E9%AD%94%E6%B3%95%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E7%BD%91%E7%AB%99%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%B4%B9%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9C%8B%E7%9D%80%E9%80%89%EF%BC%8C%E8%B4%B5%E7%9A%84%E9%80%9F%E7%8E%87%E5%92%8C%E7%A8%B3%E5%AE%9A%E6%80%A7%E9%83%BD%E5%A5%BD%E4%B8%80%E4%BA%9B"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 费用自己看着选，贵的速率和稳定性都好一些</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%A6%82%E6%9E%9C%E5%A4%A7%E5%AE%B6%E6%9C%89%E5%A5%BD%E7%9A%84%E6%9C%BA%E5%9C%BA%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%BB%99%E6%88%91%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%8B%EF%BC%88%E6%9C%80%E5%A5%BD%E5%9C%A8%E6%B2%A1%E6%9C%89%E9%AD%94%E6%B3%95%E6%97%B6%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%EF%BC%89"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">为什么需要混合检索？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2%EF%BC%88%E5%A4%9A%E8%B7%AF%E5%8F%AC%E5%9B%9E%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">混合检索（多路召回）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2%E6%8A%80%E6%9C%AF%E5%AE%9E%E6%88%98"><span class="nav-number">3.</span> <span class="nav-text">混合检索技术实战</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -248,7 +249,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.ico">
@@ -261,12 +262,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="翻墙机场推荐（魔法上网） | 打开AI世界的大门">
+      <meta itemprop="name" content="RAG检索流程（一）：混合检索 | 打开AI世界的大门">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          翻墙机场推荐（魔法上网）
+          RAG检索流程（一）：混合检索
         </h1>
 
         <div class="post-meta-container">
@@ -278,7 +279,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-05 16:43:18 / 修改时间：17:15:23" itemprop="dateCreated datePublished" datetime="2025-03-05T16:43:18+08:00">2025-03-05</time>
+      <time title="创建时间：2025-03-12 10:04:00 / 修改时间：14:31:56" itemprop="dateCreated datePublished" datetime="2025-03-12T10:04:00+08:00">2025-03-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -286,11 +287,19 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E5%85%B7/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+          <a href="/categories/AI/RAG/" itemprop="url" rel="index"><span itemprop="name">RAG</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/RAG/%E6%A3%80%E7%B4%A2/" itemprop="url" rel="index"><span itemprop="name">检索</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/RAG/%E6%A3%80%E7%B4%A2/%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/" itemprop="url" rel="index"><span itemprop="name">混合检索</span></a>
         </span>
     </span>
 
@@ -308,14 +317,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>237</span>
+      <span>2.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -325,46 +334,39 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
-<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
-<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
+    <div class="post-body" itemprop="articleBody"><h3 id="为什么需要混合检索？">为什么需要混合检索？</h3>
+<p>我们本节课正式开始讲解 <strong>RAG 检索流程</strong>。当前主流的 RAG 检索方式主要采用<strong>向量检索（Vector Search）</strong>，通过语义相似度来匹配文本切块。这种方法在我们之前的课程中已经深入探讨过了。然而，向量检索并非万能，它在某些场景下无法替代<strong>传统关键词检索</strong>的优势。</p>
+<p>例如，当你需要精准搜索某个订单 ID、品牌名称或地址，或者搜索特定人物或物品的名字（如伊隆·马斯克、iPhone 15）时，<strong>向量检索的<mark>准确性</mark>往往不如关键词检索</strong>。此外，当用户输入的<strong>问题非常简短</strong>，仅包含几个单词时，比如搜索缩写词或短语（如 RAG、LLM），<strong>语义匹配的效果也可能不尽理想</strong>。</p>
+<p>这些正是传统关键词检索的优势所在。关键词检索（Keyword Search）在几个场景中表现尤为出色：<strong>精确匹配</strong>，如产品名称、姓名、产品编号；少量字符的匹配，用户习惯于输入几个关键词，而少量字符进行向量检索时效果可能较差；以及<strong>低频词汇的匹配</strong>，低频词汇往往承载了关键意义，如在“你想跟我去喝咖啡吗？”这句话中，“喝”“咖啡”比“你”“吗”更具重要性。</p>
 <span id="more"></span>
-<ul>
-<li>
-<p>第一个 牡牛网：<a target="_blank" rel="noopener" href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
-<ul>
-<li>
-<p>邀请码：mdSU</p>
-</li>
-<li>
-<p>推荐安装网页底部的Clash软件</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
-</ul>
-</li>
-<li>
-<p>进入页面有详细安装教程，按照步骤操作就行</p>
-</li>
-<li>
-<p>资费：</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>第二个 Radial VPN: <a target="_blank" rel="noopener" href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
-<ul>
-<li>下载官网软件按着操作就行</li>
-<li>资费：
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312122858648.png" alt="image-20250312122858648"></p>
+<p>在上述案例中，虽然依靠<strong>关键词检索可以精确找到与“订单 12345”匹配的特定信息</strong>，<strong>但它无法提供与订单相关的更广泛上下文</strong>。另一方面，<strong>语义匹配</strong>虽然能够识别“订单”和“配送”等相关概念，但在处理具体的订单 ID 时，往往容易出错。</p>
+<p><strong><mark>混合检索（Hybrid Search）通过结合关键词检索和语义匹配的优势</mark></strong>，可以首先利用关键词检索精确定位到“订单 12345”的信息，然后通过语义匹配扩展与该订单相关的其他上下文或客户操作的信息，例如“12 开头的订单、包装破损严重”等。这样不仅能够获取精确的订单详情，还能获得与之相关的额外有用信息。</p>
+<p>在 RAG 检索场景中，<strong>首要目标是确保最相关的结果能够出现在候选列表中</strong>。向量检索和关键词检索各有其独特优势，混合检索通过结合这多种检索技术，弥补了各自的不足，提供了一种更加全面的搜索方案。</p>
+<h3 id="混合检索（多路召回）">混合检索（多路召回）</h3>
+<p>混合检索是指在检索过程中同时采用多种检索方式，并将各类检索结果进行融合，从而得到最终的检索结果。<strong>混合检索的优势在于能够充分利用不同检索方式的优点，弥补各自的不足，从而提升检索的准确性和效率</strong>。下图展示了混合检索的流程：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312133821822.png" alt="image-20250312133821822"></p>
+<p>混合检索实际上并没有严格限定必须包含哪几种检索方式。这里我们以<strong>向量检索</strong>和<strong>关键词检索</strong>的组合为例，但实际上可以包含多种检索方式的组合。如果我们将其他搜索算法结合在一起，也同样可以称为“混合检索”。例如，可以将**知识图谱（graphRAG）**技术用于检索实体关系，并与向量检索技术相结合。</p>
+<p>更多的 RAG 检索方式还包括多重提问检索、上下文压缩检索、集成检索、多向量检索、自查询检索等，每种检索方式说明如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312134208626.png" alt="image-20250312134208626"></p>
+<p>上述方法均包含在 LangChain 的检索器模块 <strong>langchain.retrievers</strong> 中，具体详情可以查看 <a target="_blank" rel="noopener" href="https://python.langchain.com/api_reference/langchain/retrievers.html">LangChain 检索器站点</a>。</p>
+<p>混合检索后，我们需要对多个检索方式的检索结果进行综合排名。下节课会详细讲解重排序技术，这里我们简单了解一种更简单的方法来排序，称为<strong>递归折减融合（Reciprocal Rank Fusion, RRF）排序</strong>。RRF 是一种把来自不同检索方法的排名结果结合起来的技巧。它的基本思想是，如果一个文档在不同的检索结果中都排得比较靠前，那么它在综合排名中就应该得到更高的位置。</p>
+<p>相比于复杂的重排序技术，RRF 的操作更加简单，不需要对每种检索结果进行复杂的调整或计算。它通过直接考虑文档在不同方法中的排名，快速生成一个合理的综合排名。这种方法非常适合那些需要快速融合多个检索结果的场景，短时间内得到一个有参考价值的排序。</p>
+<p>选择何种检索技术，取决于开发者需要解决什么样的问题，系统的性能要求、数据的复杂性以及用户的搜索习惯等。针对具体需求选择合适的检索技术，能够最大化地提升 RAG 系统的效率和准确性。</p>
+<h3 id="混合检索技术实战">混合检索技术实战</h3>
+<p>在实战中，我们使用 <strong>rank_bm25</strong> 作为 RAG 项目的关键词搜索技术。BM25 是一种强大的关键词搜索算法，通过分析词频（TF）和逆向文档频率（IDF）来评估文档与查询的相关性。具体来说，BM25 检查查询词在文档中的出现频率，以及该词在所有文档中出现的稀有程度。<strong>如果一个词在特定文档中频繁出现，但在其他文档中较少见，那么 BM25 会将该文档评为高度相关。</strong></p>
+<p>此外，BM25 还通过调整文档长度的影响，防止因文档长度不同而导致的词频偏差。正是这种结合了词频和文档长度平衡的机制，使得 BM25 在关键词搜索中能够提供精准的检索结果，在 RAG 项目中尤为有效。</p>
+<p>需要安装的依赖库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -U pip jieba rank_bm25 chromadb langchain langchain_community sentence-transformers unstructured pdfplumber python-docx python-pptx markdown openpyxl pandas -i https://pypi.tuna.tsinghua.edu.cn/simple </span><br></pre></td></tr></table></figure>
+<p>代码内容：</p>
+<ol>
+<li>引入了 rank_bm25 库中的 <strong>BM25Okapi</strong> 类，用于实现 BM25 算法的检索功能。</li>
+<li>引入了 <strong>jieba</strong> 库，用于对中文文本进行分词处理，这对于 BM25 算法处理中文文本起关键作用。</li>
+<li>在 <strong>retrieval_process</strong> 方法中，从 Chroma 的 collection 中提取所有存储的文档内容，并使用 jieba 对这些文档进行中文分词，将分词结果存储为 <strong>tokenized_corpus</strong>，为后续的 BM25 检索做准备。</li>
+<li>利用分词后的文档集合实例化 BM25Okapi 对象，并对查询语句进行分词处理。</li>
+<li>计算查询语句与每个文档之间的 BM25 相关性得分 (bm25_scores)，然后选择得分最高的前 top_k 个文档，并提取这些文档的内容。</li>
+<li>返回合并后的全部检索结果，包含向量检索和 BM25 检索的结果。（下节内容会引入重排序，这里只做简单顺序合并）</li>
+</ol>
 
     </div>
 
@@ -402,11 +404,11 @@
 <div class="post-copyright">
 <ul>
   <li class="post-copyright-author">
-      <strong>本文作者： </strong>AI模型研究所
+      <strong>原作者： </strong>AI模型研究所
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/" title="翻墙机场推荐（魔法上网）">http://example.com/2025/03/05/翻墙机场推荐（魔法上网）/</a>
+      <a href="http://example.com/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/" title="RAG检索流程（一）：混合检索">http://example.com/2025/03/12/RAG检索流程（一）：混合检索/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -415,22 +417,20 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA/" rel="tag"># 翻墙机场,</a>
-              <a href="/tags/%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91/" rel="tag"># 魔法上网</a>
+              <a href="/tags/RAG/" rel="tag"># RAG</a>
+              <a href="/tags/%E6%A3%80%E7%B4%A2/" rel="tag"># 检索</a>
+              <a href="/tags/%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/" rel="tag"># 混合检索</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/03/05/rag-lesson-1/" rel="prev" title="rag-lesson-1">
-                  <i class="fa fa-angle-left"></i> rag-lesson-1
+                <a href="/2025/03/11/RAG%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%90%91%E9%87%8F%E5%BA%93/" rel="prev" title="RAG向量数据库原理与常用向量库">
+                  <i class="fa fa-angle-left"></i> RAG向量数据库原理与常用向量库
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/" rel="next" title="Text2SQL应用对比">
-                  Text2SQL应用对比 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

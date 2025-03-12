@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-11T04:00:36.163Z</updated>
+  <updated>2025-03-12T06:31:56.299Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RAG检索流程（一）：混合检索</title>
+    <link href="http://example.com/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/"/>
+    <id>http://example.com/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/</id>
+    <published>2025-03-12T02:04:00.000Z</published>
+    <updated>2025-03-12T06:31:56.299Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;为什么需要混合检索？&quot;&gt;为什么需要混合检索？&lt;/h3&gt;
+&lt;p&gt;我们本节课正式开始讲解 &lt;strong&gt;RAG 检索流程&lt;/strong&gt;。当前主流的 RAG 检索方式主要采用&lt;strong&gt;向量检索（Vector Search）&lt;/strong&gt;，通过语义相似度来匹配文本切块。这种方法在我们之前的课程中已经深入探讨过了。然而，向量检索并非万能，它在某些场景下无法替代&lt;strong&gt;传统关键词检索&lt;/strong&gt;的优势。&lt;/p&gt;
+&lt;p&gt;例如，当你需要精准搜索某个订单 ID、品牌名称或地址，或者搜索特定人物或物品的名字（如伊隆·马斯克、iPhone 15）时，&lt;strong&gt;向量检索的&lt;mark&gt;准确性&lt;/mark&gt;往往不如关键词检索&lt;/strong&gt;。此外，当用户输入的&lt;strong&gt;问题非常简短&lt;/strong&gt;，仅包含几个单词时，比如搜索缩写词或短语（如 RAG、LLM），&lt;strong&gt;语义匹配的效果也可能不尽理想&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;这些正是传统关键词检索的优势所在。关键词检索（Keyword Search）在几个场景中表现尤为出色：&lt;strong&gt;精确匹配&lt;/strong&gt;，如产品名称、姓名、产品编号；少量字符的匹配，用户习惯于输入几个关键词，而少量字符进行向量检索时效果可能较差；以及&lt;strong&gt;低频词汇的匹配&lt;/strong&gt;，低频词汇往往承载了关键意义，如在“你想跟我去喝咖啡吗？”这句话中，“喝”“咖啡”比“你”“吗”更具重要性。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
+    
+    <category term="检索" scheme="http://example.com/categories/AI/RAG/%E6%A3%80%E7%B4%A2/"/>
+    
+    <category term="混合检索" scheme="http://example.com/categories/AI/RAG/%E6%A3%80%E7%B4%A2/%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/"/>
+    
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
+    
+    <category term="混合检索" scheme="http://example.com/tags/%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>RAG向量数据库原理与常用向量库</title>
