@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-12T06:31:56.299Z</updated>
+  <updated>2025-03-19T02:22:42.773Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,65 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>升级 Dify</title>
+    <link href="http://example.com/2025/03/19/%E5%8D%87%E7%BA%A7dify/"/>
+    <id>http://example.com/2025/03/19/%E5%8D%87%E7%BA%A7dify/</id>
+    <published>2025-03-19T02:09:00.000Z</published>
+    <updated>2025-03-19T02:22:42.773Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;进入dify源码的docker目录，执行以下命令：&quot;&gt;进入dify源码的docker目录，执行以下命令：&lt;/h4&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span c</summary>
+      
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="AI工具" scheme="http://example.com/categories/AI/AI%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="dify" scheme="http://example.com/tags/dify/"/>
+    
+    <category term="rag" scheme="http://example.com/tags/rag/"/>
+    
+    <category term="agent" scheme="http://example.com/tags/agent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RAG检索流程（二）：重排序</title>
+    <link href="http://example.com/2025/03/19/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E9%87%8D%E6%8E%92%E5%BA%8F/"/>
+    <id>http://example.com/2025/03/19/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E9%87%8D%E6%8E%92%E5%BA%8F/</id>
+    <published>2025-03-19T01:20:00.000Z</published>
+    <updated>2025-03-21T07:12:16.809Z</updated>
+    
+    
+    <summary type="html">&lt;h4 id=&quot;重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。&quot;&gt;重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。&lt;/h4&gt;
+&lt;p&gt;下图中仅仅混合检索，由于缺乏有效的排序，我们期望的结果位于第一和第四位，尽管依然可以被检索到，但理想情况下，如果检索方式更为精确，该结果应该被优先排序在前两位。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
+    
+    <category term="检索" scheme="http://example.com/categories/AI/RAG/%E6%A3%80%E7%B4%A2/"/>
+    
+    <category term="重排序" scheme="http://example.com/categories/AI/RAG/%E6%A3%80%E7%B4%A2/%E9%87%8D%E6%8E%92%E5%BA%8F/"/>
+    
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
+    
+    <category term="重排序" scheme="http://example.com/tags/%E9%87%8D%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>RAG检索流程（一）：混合检索</title>
@@ -70,11 +129,11 @@
     
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
-    <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
+    <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
     
     <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-    <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
+    <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
   </entry>
   
