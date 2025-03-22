@@ -1,112 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Manus 首款通用AI智能体</title>
-    <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
-    <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
-<ul>
-<li>
-<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
-</li>
-<li>
-<h3 id="说说我的想法">说说我的想法</h3>
-<ul>
-<li>
-<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
-</li>
-<li>
-<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
-<ul>
-<li>从目前头部的几个集成平台说起：</li>
-<li><strong>字节的扣子</strong>
-<ul>
-<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
-</ul>
-</li>
-<li><strong>Dify</strong><br>
-一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
-<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
-<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>
-<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
-<ul>
-<li>
-<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
-<ul>
-<li>商业研究</li>
-<li>生活帮手</li>
-<li>数据分析</li>
-<li>教育可视化</li>
-<li>以及各种提升生产率的工具</li>
-</ul>
-</li>
-<li>
-<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
-<ul>
-<li><a href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
-</ul>
-</li>
-<li>
-<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
-<ul>
-<li><a href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
-</ul>
-</li>
-<li>
-<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
-<ul>
-<li><a href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
-</ul>
-</li>
-<li>
-<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
-<ul>
-<li>
-<div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
-</div>
-</li>
-<li>
-<div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
-</div>
-</li>
-<li>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
-</li>
-</ul>
-</li>
-<li>
-<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
-</li>
-<li>
-<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>Agent</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>Agent</tag>
-        <tag>Manus</tag>
-        <tag>智能体</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo踩坑</title>
     <url>/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/</url>
     <content><![CDATA[<hr>
@@ -305,6 +199,112 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
+    <title>Manus 首款通用AI智能体</title>
+    <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
+    <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
+<ul>
+<li>
+<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
+</li>
+<li>
+<h3 id="说说我的想法">说说我的想法</h3>
+<ul>
+<li>
+<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
+</li>
+<li>
+<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
+<ul>
+<li>从目前头部的几个集成平台说起：</li>
+<li><strong>字节的扣子</strong>
+<ul>
+<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
+</ul>
+</li>
+<li><strong>Dify</strong><br>
+一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
+<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
+<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
+<ul>
+<li>
+<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
+<ul>
+<li>商业研究</li>
+<li>生活帮手</li>
+<li>数据分析</li>
+<li>教育可视化</li>
+<li>以及各种提升生产率的工具</li>
+</ul>
+</li>
+<li>
+<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
+<ul>
+<li><a href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
+</ul>
+</li>
+<li>
+<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
+<ul>
+<li><a href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
+</ul>
+</li>
+<li>
+<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
+<ul>
+<li><a href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
+</ul>
+</li>
+<li>
+<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
+<ul>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
+</li>
+<li>
+<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>Agent</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Manus</tag>
+        <tag>智能体</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RAG向量数据库原理与常用向量库</title>
     <url>/2025/03/11/RAG%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%90%91%E9%87%8F%E5%BA%93/</url>
     <content><![CDATA[<h3 id="在前面的课程中，我们已经学习了-RAG-检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。">在前面的课程中，我们已经学习了 RAG 检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。</h3>
@@ -422,6 +422,62 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
+    <title>RAG检索流程（二）：重排序</title>
+    <url>/2025/03/19/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E9%87%8D%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h4 id="重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。">重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。</h4>
+<p>下图中仅仅混合检索，由于缺乏有效的排序，我们期望的结果位于第一和第四位，尽管依然可以被检索到，但理想情况下，如果检索方式更为精确，该结果应该被优先排序在前两位。</p>
+<span id="more"></span>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250319155715601.png" alt="image-20250319155715601"></p>
+<p>在这个案例中，我们通过重排序技术成功找到了与问题语义最契合的结果。系统评分显示，“订单 12345 于 2023 年 8 月 15 日在上海，客户不满意。”与“该 12 开头的订单客户不满意的地方在于包装破损严重。”这两个文档块的相关性分别为 0.9 和 0.8，排序为第一和第二位。</p>
+<p>重排序技术在检索系统中扮演着至关重要的角色。即使检索算法已经能够捕捉到所有相关的结果，重排序过程依然不可或缺。它确保最符合用户意图和查询语义的结果优先展示，从而提升用户的搜索体验和结果的准确性。通过重排序，检索系统不仅能找到相关信息，还能智能地将最重要的信息呈现在用户面前。</p>
+<h4 id="为什么要使用重排序技术？">为什么要使用重排序技术？</h4>
+<p>在 RAG 检索流程中，重排序技术（Reranking）通过对初始检索结果进行重新排序，改善检索结果的相关性，为生成模型提供更优质的上下文，从而提升整体 RAG 系统的效果。</p>
+<p>尽管向量检索技术能够为每个文档块生成初步的相关性分数，但引入重排序模型仍然至关重要。<strong>向量检索</strong>主要依赖于<strong>全局语义相似性</strong>，通过将查询和文档映射到高维语义空间中进行匹配。然而，这种方法往往忽略了查询与文档具体内容之间的细粒度交互。</p>
+<p><strong>重排序模型大多是基于双塔或交叉编码架构的模型</strong>，在此基础上进一步计算更精确的相关性分数，能够<strong>捕捉查询词与文档块之间更细致的相关性</strong>，从而在细节层面上提高检索精度。因此，尽管向量检索提供了有效的初步筛选，重排序模型则通过更深入的分析和排序，确保最终结果在语义和内容层面上更紧密地契合查询意图，实现了检索质量的提升。</p>
+<p>2023 年，Microsoft Azure AI 发布了《Azure 认知搜索：通过混合检索和排序能力超越向量搜索》一文。这篇文章对在 LLM RAG 应用中引入混合检索和重排序技术进行了全面的实验数据评估，并量化了这些技术组合在提升文档召回率和准确性方面的显著效果。实验结果表明，在多个数据集和多种检索任务中，混合检索与重排序的组合均取得了最佳表现。</p>
+<div style="display: flex;">
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321150711668.png" alt="Image 1" style="width: 50%;">
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321150950573.png" alt="Image 2" style="width: 50%;">
+</div>
+<p>以下是使用重排序技术的几个优势：</p>
+<ol>
+<li>
+<p>优化检索结果</p>
+<p>在 RAG 系统中，初始的检索结果通常来自于向量搜索或基于关键词的检索方法。然而，这些初始检索结果可能包含大量的冗余信息或与查询不完全相关的文档。通过重排序技术，我们可以对这些初步检索到的文档进行进一步的筛选和排序，将最相关、最重要的文档置于前列。</p>
+</li>
+<li>
+<p>增强上下文相关性</p>
+<p>RAG 系统依赖于检索到的文档作为生成模型的上下文。因此，上下文的质量直接影响生成的结果。重排序技术通过重新评估文档与查询的相关性，确保生成模型优先使用那些与查询最相关的文档，从而提高了生成内容的准确性和连贯性。</p>
+</li>
+<li>
+<p>应对复杂查询</p>
+<p>对于复杂的查询，初始检索可能会返回一些表面上相关但实际上不太匹配的文档。重排序技术可以根据查询的复杂性和具体需求，对这些结果进行更细致的分析和排序，优先展示那些能够提供深入见解或关键信息的文档。</p>
+</li>
+</ol>
+<h4 id="重排序模型-Reranking-Model">重排序模型 Reranking Model</h4>
+<p>RAG 流程有两个概念，粗排和精排。粗排检索效率较快，但是召回的内容并不一定强相关。而精排效率较低，因此适合在粗排的基础上进行进一步优化。精排的代表就是重排序（Reranking）。</p>
+<p>**重排序模型（Reranking Model）**查询与每个文档块计算对应的相关性分数，并根据这些分数对文档进行重新排序，确保文档按照从最相关到最不相关的顺序排列，并返回前 top-k 个结果。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321143305625.png" alt="image-20250321143305625"></p>
+<p><strong>与嵌入模型不同，重排序模型将用户的查询（Query）和文档块作为输入，直接输出相似度评分</strong>，而非生成嵌入向量。目前，市面上可用的重排序模型并不多，商用的有 Cohere，<strong>开源的有 BGE</strong>、Sentence、Mixedbread、T5-Reranker 等，<strong>甚至可以使用指令</strong>（Prompt）让大模型（GPT、Claude、通义千问、文心一言等）进行重排，大模型指令参考如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是与查询 &#123;问题&#125; 相关的文档块：</span><br><span class="line">[1] &#123;文档块1&#125;</span><br><span class="line">[2] &#123;文档块2&#125;</span><br><span class="line">（更多文档块）</span><br><span class="line">请根据这些文档块与查询的相关性进行排序，以 “1,2,3,4”（文档块数字及逗号隔开的形式），输出排序结果。</span><br></pre></td></tr></table></figure>
+<p>在生产环境中使用重排序模型会面临资源和效率问题，包括计算资源消耗高、推理速度慢以及模型参数量大等问题。这些问题主要源于重排序模型在对候选项进行精细排序时，因其较大参数量而导致的高计算需求和复杂耗时的推理过程，从而对 RAG 系统的响应时间和整体效率产生负面影响。因此，在实际应用中，需要根据实际资源情况，在精度与效率之间进行平衡。</p>
+<h4 id="重排序技术实战">重排序技术实战</h4>
+<p>在实战中，我们使用来自北京人工智能研究院 BGE 的 <strong>bge-reranker-v2-m3</strong> 作为 RAG 项目的重排序模型，这是一种轻量级的开源和多语言的重排序模型。更多模型相关信息参考，可访问<a href="https://huggingface.co/BAAI/bge-reranker-v2-m3">https://huggingface.co/BAAI/bge-reranker-v2-m3</a></p>
+<p>这部分的代码文件为 rag_lesson_6。可到我的 Github 托管项目(<a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a>)下载，或使用 <code>git clone https://github.com/hfhfn/rag_learning.git</code> ，拉取最新代码.</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>检索</category>
+        <category>重排序</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>检索</tag>
+        <tag>重排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RAG检索流程（一）：混合检索</title>
     <url>/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/</url>
     <content><![CDATA[<h3 id="为什么需要混合检索？">为什么需要混合检索？</h3>
@@ -468,6 +524,66 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>RAG</tag>
         <tag>检索</tag>
         <tag>混合检索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RAG生成（一）：大模型的选择</title>
+    <url>/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B%EF%BC%88prompt%EF%BC%89/</url>
+    <content><![CDATA[<h4 id="RAG的生成流程">RAG的生成流程</h4>
+<p>生成流程中，首先需要<strong>组合指令</strong>，指令将<strong>携带查询问题及检索到的相关信息</strong>输入到大模型中，由<strong>大模型理解并生成最终的回复</strong>，从而完成整个应用过程。</p>
+<p>在这个过程中，有两个环节直接影响RAG系统的生成效果：</p>
+<ol>
+<li><strong>大模型的选择</strong>：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。</li>
+<li><strong>提示词工程</strong>：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。</li>
+</ol>
+<span id="more"></span>
+<h4 id="大模型的发展">大模型的发展</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322185744991.png" alt="image-20250322185744991"></p>
+<p><strong>SuperCLUE</strong> 组织发布的<strong>中文大模型全景图</strong>，展示了 2025 年值得关注的中文大模型，从<strong>文本、多模态、行业</strong>三个层面进行了详细分类，各领域的大模型应用层出不穷。<strong>RAG 中目前更关注通用大模型</strong>，比如<strong>闭源的文心一言、通义千问、腾讯混元、字节豆包</strong>、Kimi Chat 等都是可选择的大模型组件，如果需要<strong>私有化部署，Deepseek、Qwen 系列、GLM 系列</strong>、Baichuan 系列都在可考虑范围。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322190256861.png" alt="image-20250322190256861"></p>
+<p>更多包含机构和学术背景且具有明确来源的大模型信息，可以访问实时更新的 <a href="https://github.com/wgwang/awesome-LLMs-In-China"><strong>中国大模型列表</strong></a> 全面记录中国大模型的发展动态。</p>
+<h4 id="大模型原理">大模型原理</h4>
+<p>一切始于 Google 在 2017 年发表的论文 <strong>《Attention Is All You Need》</strong>，引入了 <strong>Transformer</strong> 模型，它是深度学习领域的一个突破性架构，大型语言模型的成功得益于对 Transformer 模型的应用。</p>
+<p>与传统的循环神经网络（RNN）相比，Transformer 模型<strong>不依赖于序列顺序</strong>，而是通过自注意力（Self-Attention）机制来捕捉序列中各元素之间的关系。Transformer 由多个堆叠的编码层（Encoder）和解码层（Decoder）组成，每一层包括自注意力层、前馈层和归一化层。这些层协同工作，逐步捕捉输入数据信息特征，从而<strong>预测输出</strong>，实现强大的语言理解和生成能力。</p>
+<p>Transformer 模型的<strong>核心创新在于位置编码和自注意力机制</strong>。位置编码帮助模型理解输入数据的顺序信息，而自注意力机制则允许模型根据输入的全局上下文，为每个词元分配不同的注意力权重，从而更准确地理解词与词之间的关联性。这种机制使得 Transformer 特别适用于语言模型，因为语言模型需要精确捕捉上下文中的细微差别，生成符合语义逻辑的文本。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322175522327.png" alt="image-20250322175522327"></p>
+<p>上图展示了 Transformer 模型的架构及其核心机制的可视化示例。左图中，Transformer 模型由编码器和解码器两部分组成。编码器负责理解输入信息的顺序和语义，解码器则输出概率最高的词元。</p>
+<p>右上图中的示例显示了输入句子中的填空任务，解码器依据输入句子的特征和已生成的部分句子，生成了“She”作为模型的预测结果。生成“She”的核心原因在于右下图所示的注意力机制，其中需要填空的部分对输入句子中的词元“The Doctor”和“Nurse”分配了较高的注意力权重，从而提高了“She”作为输出词元的生成概率。</p>
+<p><strong>大语言模型的突破</strong>始于 2022 年年底 OpenAI 发布的 <strong>ChatGPT。其核心优势体现在庞大的参数规模（数百亿甚至数千亿）、基于 PB 级别数据的训练所带来的卓越语言理解与生成能力，以及其显著的涌现能力。</strong>  大语言模型不仅在传统的自然语言处理任务中展现了卓越表现，还具备了解决复杂问题和进行逻辑推理等高级认知能力。</p>
+<h4 id="RAG中大模型的选择">RAG中大模型的选择</h4>
+<p>在如今大模型层出不穷的情况下，如何在 RAG 应用场景中选择合适的模型呢？我们面对的是<strong>开源与闭源</strong>的选择、<strong>大参数与小参数</strong>的对比，成本的考虑以及<strong>云端与私有化部署</strong>的抉择。针对这些问题，我们需要结合测评和具体的应用场景进行综合考量。</p>
+<p>从测评角度来看，前面已经介绍了<a href="https://www.cluebenchmarks.com/static/superclue.html"><strong>中文通用大模型的综合性测评基准 SuperCLUE</strong></a>，它对中文场景中的多个任务分支进行测试，涵盖基础能力、专业能力以及中文特性多个方面。每个任务分支又包含多个维度，例如语义理解、生成与创作、代数、生物、成语、诗词等。下图展示了这些维度的具体内容，SuperCLUE 每月都会更新测评结果，确保其反映大模型的最新表现。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322180251002.png" alt="image-20250322180251002"></p>
+<p>尤其需要关注的是 <a href="https://www.superclueai.com/"><strong>SuperCLUE-RAG 检索增强生成测评</strong></a>，在 RAG 场景中，大模型的检索能力表现是核心。SuperCLUE 针对 RAG 应用场景进行了独立测试，具体评估了大模型在检索和生成过程中的表现，测试数据如下图所示（最新为2024 年 11月数据）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322181526225.png" alt="image-20250322181526225"></p>
+<p>在 SuperCLUE 官网的 SuperCLUE-RAG 检索增强生成分支页面上，可以查看其总榜及四大基础任务的测评结果。选择模型时可以根据总分，以及模型在<strong>答案及时性、信息整合能力、拒答能力、检错和纠错能力</strong>等方面的表现，进行综合评估，作为场景选型参考。</p>
+<p>其次，也是最重要的，我们需要根据<strong>实际应用场景</strong>来考量并选择适合的大模型，以下几个维度是关键：</p>
+<ol>
+<li><strong>开源与闭源</strong>：开源模型适用于<strong>数据敏感性</strong>高或有严格合规要求的场景，通过自托管实现对数据的完全掌控，确保<strong>隐私与安全</strong>。而闭源模型则适合数据敏感度较低的应用场景，其维护与服务相对完善，能够降低运维复杂度。</li>
+<li><strong>模型参数规模</strong>：大参数模型在复杂任务中的<strong>推理与生成能力</strong>较强，但并非所有应用场景都需要高精度模型。小参数模型（如 7B）在满足简单逻辑任务时，具备更优的<strong>响应速度、成本控制和资源利用</strong>效率。因此，模型规模应依据应用复杂性及算力预算进行合理匹配。</li>
+<li><strong>国内与国外部署</strong>：模型选择还需考虑部署环境。如果应用主要在国内进行，虽然调用国外大模型的接口是可行的，但可能会遇到<strong>稳定性、网络延迟</strong>、注册认证、充值付费等方面的实际问题。此外，数据合规性是重要考量，尤其对于需要遵循国内<strong>隐私和数据安全</strong>法规的场景，选择国内大模型或本地化部署更为合适。综上所述，模型的选择应结合 RAG 应用场景的需求和限制，更好地选择合适的大模型以最大化其效果。</li>
+</ol>
+<p>选择建议：</p>
+<ol>
+<li>
+<p>闭源模型: 通义千问、文心一言、混元大模型、豆包大模型和 Kimi Chat 等旗舰模型实际差异不大，<strong>取决于成本</strong>。</p>
+</li>
+<li>
+<p>开源模型: 根据需求可以在<strong>千问系列，deepseek系列，百川系列，GLM系列</strong>这几个中选择。</p>
+</li>
+</ol>
+<p><strong>参考</strong>：<a href="https://www.cluebenchmarks.com/superclue_2503"><strong>中文大模型基准评测2025年3月报告</strong></a></p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>生成</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>生成</tag>
+        <tag>大模型</tag>
+        <tag>提示词</tag>
       </tags>
   </entry>
   <entry>
@@ -532,62 +648,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>langchain_community.document_loaders</tag>
         <tag>pdfplumber</tag>
         <tag>unstructured</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG检索流程（二）：重排序</title>
-    <url>/2025/03/19/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E9%87%8D%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h4 id="重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。">重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。</h4>
-<p>下图中仅仅混合检索，由于缺乏有效的排序，我们期望的结果位于第一和第四位，尽管依然可以被检索到，但理想情况下，如果检索方式更为精确，该结果应该被优先排序在前两位。</p>
-<span id="more"></span>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250319155715601.png" alt="image-20250319155715601"></p>
-<p>在这个案例中，我们通过重排序技术成功找到了与问题语义最契合的结果。系统评分显示，“订单 12345 于 2023 年 8 月 15 日在上海，客户不满意。”与“该 12 开头的订单客户不满意的地方在于包装破损严重。”这两个文档块的相关性分别为 0.9 和 0.8，排序为第一和第二位。</p>
-<p>重排序技术在检索系统中扮演着至关重要的角色。即使检索算法已经能够捕捉到所有相关的结果，重排序过程依然不可或缺。它确保最符合用户意图和查询语义的结果优先展示，从而提升用户的搜索体验和结果的准确性。通过重排序，检索系统不仅能找到相关信息，还能智能地将最重要的信息呈现在用户面前。</p>
-<h4 id="为什么要使用重排序技术？">为什么要使用重排序技术？</h4>
-<p>在 RAG 检索流程中，重排序技术（Reranking）通过对初始检索结果进行重新排序，改善检索结果的相关性，为生成模型提供更优质的上下文，从而提升整体 RAG 系统的效果。</p>
-<p>尽管向量检索技术能够为每个文档块生成初步的相关性分数，但引入重排序模型仍然至关重要。<strong>向量检索</strong>主要依赖于<strong>全局语义相似性</strong>，通过将查询和文档映射到高维语义空间中进行匹配。然而，这种方法往往忽略了查询与文档具体内容之间的细粒度交互。</p>
-<p><strong>重排序模型大多是基于双塔或交叉编码架构的模型</strong>，在此基础上进一步计算更精确的相关性分数，能够<strong>捕捉查询词与文档块之间更细致的相关性</strong>，从而在细节层面上提高检索精度。因此，尽管向量检索提供了有效的初步筛选，重排序模型则通过更深入的分析和排序，确保最终结果在语义和内容层面上更紧密地契合查询意图，实现了检索质量的提升。</p>
-<p>2023 年，Microsoft Azure AI 发布了《Azure 认知搜索：通过混合检索和排序能力超越向量搜索》一文。这篇文章对在 LLM RAG 应用中引入混合检索和重排序技术进行了全面的实验数据评估，并量化了这些技术组合在提升文档召回率和准确性方面的显著效果。实验结果表明，在多个数据集和多种检索任务中，混合检索与重排序的组合均取得了最佳表现。</p>
-<div style="display: flex;">
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321150711668.png" alt="Image 1" style="width: 50%;">
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321150950573.png" alt="Image 2" style="width: 50%;">
-</div>
-<p>以下是使用重排序技术的几个优势：</p>
-<ol>
-<li>
-<p>优化检索结果</p>
-<p>在 RAG 系统中，初始的检索结果通常来自于向量搜索或基于关键词的检索方法。然而，这些初始检索结果可能包含大量的冗余信息或与查询不完全相关的文档。通过重排序技术，我们可以对这些初步检索到的文档进行进一步的筛选和排序，将最相关、最重要的文档置于前列。</p>
-</li>
-<li>
-<p>增强上下文相关性</p>
-<p>RAG 系统依赖于检索到的文档作为生成模型的上下文。因此，上下文的质量直接影响生成的结果。重排序技术通过重新评估文档与查询的相关性，确保生成模型优先使用那些与查询最相关的文档，从而提高了生成内容的准确性和连贯性。</p>
-</li>
-<li>
-<p>应对复杂查询</p>
-<p>对于复杂的查询，初始检索可能会返回一些表面上相关但实际上不太匹配的文档。重排序技术可以根据查询的复杂性和具体需求，对这些结果进行更细致的分析和排序，优先展示那些能够提供深入见解或关键信息的文档。</p>
-</li>
-</ol>
-<h4 id="重排序模型-Reranking-Model">重排序模型 Reranking Model</h4>
-<p>RAG 流程有两个概念，粗排和精排。粗排检索效率较快，但是召回的内容并不一定强相关。而精排效率较低，因此适合在粗排的基础上进行进一步优化。精排的代表就是重排序（Reranking）。</p>
-<p>**重排序模型（Reranking Model）**查询与每个文档块计算对应的相关性分数，并根据这些分数对文档进行重新排序，确保文档按照从最相关到最不相关的顺序排列，并返回前 top-k 个结果。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321143305625.png" alt="image-20250321143305625"></p>
-<p><strong>与嵌入模型不同，重排序模型将用户的查询（Query）和文档块作为输入，直接输出相似度评分</strong>，而非生成嵌入向量。目前，市面上可用的重排序模型并不多，商用的有 Cohere，<strong>开源的有 BGE</strong>、Sentence、Mixedbread、T5-Reranker 等，<strong>甚至可以使用指令</strong>（Prompt）让大模型（GPT、Claude、通义千问、文心一言等）进行重排，大模型指令参考如下：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是与查询 &#123;问题&#125; 相关的文档块：</span><br><span class="line">[1] &#123;文档块1&#125;</span><br><span class="line">[2] &#123;文档块2&#125;</span><br><span class="line">（更多文档块）</span><br><span class="line">请根据这些文档块与查询的相关性进行排序，以 “1,2,3,4”（文档块数字及逗号隔开的形式），输出排序结果。</span><br></pre></td></tr></table></figure>
-<p>在生产环境中使用重排序模型会面临资源和效率问题，包括计算资源消耗高、推理速度慢以及模型参数量大等问题。这些问题主要源于重排序模型在对候选项进行精细排序时，因其较大参数量而导致的高计算需求和复杂耗时的推理过程，从而对 RAG 系统的响应时间和整体效率产生负面影响。因此，在实际应用中，需要根据实际资源情况，在精度与效率之间进行平衡。</p>
-<h4 id="重排序技术实战">重排序技术实战</h4>
-<p>在实战中，我们使用来自北京人工智能研究院 BGE 的 <strong>bge-reranker-v2-m3</strong> 作为 RAG 项目的重排序模型，这是一种轻量级的开源和多语言的重排序模型。更多模型相关信息参考，可访问<a href="https://huggingface.co/BAAI/bge-reranker-v2-m3">https://huggingface.co/BAAI/bge-reranker-v2-m3</a></p>
-<p>这部分的代码文件为 rag_lesson_6。可到我的 Github 托管项目(<a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a>)下载，或使用 <code>git clone https://github.com/hfhfn/rag_learning.git</code> ，拉取最新代码.</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>检索</category>
-        <category>重排序</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>检索</tag>
-        <tag>重排序</tag>
       </tags>
   </entry>
   <entry>
@@ -681,146 +741,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>索引</tag>
         <tag>嵌入</tag>
         <tag>embedding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG索引（二）：分块策略</title>
-    <url>/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/</url>
-    <content><![CDATA[<h3 id="文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使-RAG-系统能够高效处理和精准检索这些片段信息。">文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。</h3>
-<h3 id="选择适合特定场景的分块策略是提升-RAG-系统召回率的关键。">选择适合特定场景的分块策略是提升 RAG 系统召回率的关键。</h3>
-<ul>
-<li>
-<h4 id="为什么说分块很重要？">为什么说分块很重要？</h4>
-<ul>
-<li>
-<p>分块的目标在于确保每个片段在<strong>保留核心语义</strong>的同时，具备<strong>相对独立的语义完整性</strong>，从而使模型在处理时不必依赖广泛的上下文信息，<strong>增强检索召回的准确性</strong>。</p>
-</li>
-<li>
-<p><strong>分块的重要性在于</strong>它直接影响 RAG 系统的生成质量。首先，合理的分块能够确保<strong>检索到的片段与用户查询信息高度匹配</strong>，避免信息冗余或丢失。</p>
-</li>
-<li>
-<p><strong>好的分块有助于提升生成内容的连贯性</strong>，精心设计的独立语义片段可以<strong>降低模型对上下文的依赖</strong>，从而增强生成的逻辑性与一致性。</p>
-</li>
-<li>
-<p>分块策略的选择还会<strong>影响系统的响应速度与效率</strong>，模型能够更快、更准确地处理和生成内容。</p>
-</li>
-<li>
-<h4 id="分块策略最大的挑战在于确定分块的大小。">分块策略最大的挑战在于确定分块的大小。</h4>
-<span id="more"></span>
-<ul>
-<li>如果<strong>片段过大</strong>，可能导致向量<strong>无法精确捕捉内容的特定细节</strong>并且计算成本增加；</li>
-<li>若<strong>片段过小</strong>，则可能丢失上下文信息，导致<strong>句子碎片化和语义不连贯</strong>。</li>
-<li>较小的块适用于需要细粒度分析的任务，例如<strong>情感分析</strong>，能够精确捕捉特定短语或句子的细节。</li>
-<li>更大的块则更为合适需要保留更广泛上下文的场景，例如<strong>文档摘要或主题检测</strong>。</li>
-</ul>
-</li>
-<li>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309012438108.png" alt="image-20250309012438108"></p>
-</li>
-</ul>
-</li>
-<li>
-<h4 id="分块策略">分块策略</h4>
-<ul>
-<li>
-<p>多种分块策略从本质上来看，由以下三个关键组成部分构成：</p>
-<ul>
-<li><strong>大小</strong>：每个文档块所允许的最大字符数。</li>
-<li><strong>重叠</strong>：在相邻数据块之间，重叠字符的数量。</li>
-<li><strong>拆分</strong>：通过段落边界、分隔符、标记，或语义边界来确定块边界的位置。</li>
-</ul>
-</li>
-<li>
-<p>上述三个组成部分共同决定了分块策略的特性及其适用场景。基于这些组成部分，常见的分块策略包括：</p>
-<ul>
-<li><strong>固定大小分块（Fixed Size Chunking）、重叠分块（Overlap Chunking）、递归分块（Recursive Chunking）、文档特定分块（Document Specific Chunking）、语义分块（Semantic Chunking）、混合分块（Mix Chunking）</strong>。下面我将对这些策略逐一进行介绍。</li>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309013703174.png" alt="image-20250309013703174"></li>
-<li>我们可以通过<strong>分块可视化</strong>来看一下：（Chunk 切分可视化呈现链接: <a href="https://chunkviz.up.railway.app/%EF%BC%89">https://chunkviz.up.railway.app/）</a></li>
-<li>固定大小分块（Fixed Size Chunking）
-<ul>
-<li>最基本的方法是将文档按固定大小进行分块，通常作为分块策略的基准线使用。</li>
-<li>适用场景：适用于格式和大小相似的同质数据集，如新闻文章或博客文章。</li>
-<li>问题：可能在句子或段落<strong>中断内容</strong>，导致无意义的文本块，缺乏灵活性，无法适应文本的自然结构。</li>
-</ul>
-</li>
-<li>重叠分块（Overlap Chunking）
-<ul>
-<li>通过滑动窗口技术切分文本块，使新文本块与前一个块的<strong>内容部分重叠</strong>，从而<strong>保留块边界处的重要上下文信息</strong>，增强系统的语义相关性。</li>
-<li>适用场景：需要深入理解语义并保持上下文完整性的文档，如法律文档、技术手册或科研论文。</li>
-<li>问题： 增加冗余信息的存储，处理效率降低。</li>
-</ul>
-</li>
-<li>递归分块（Recursive Chunking）
-<ul>
-<li>通过预定义的文本分隔符（如换行符\n\n、\n ，句号、逗号、感叹号、空格等）迭代地将文本分解为更小的块，以实现段大小的均匀性和语义完整性。此过程中，文本首先按较大的逻辑单元分割（如段落 \n\n），然后逐步递归到较小单元（如句子 \n 和单词），确保<strong>在分块大小限制内保留最强的语义片段</strong>。</li>
-<li>适用场景： 这种方法适用于需要<strong>逐层分析</strong>的文本文档或需要分解成长片段、长段落的长文档，如研究报告、法律文档等。</li>
-<li>问题： 不过仍有可能在块边界处模糊语义，容易将完整的语义单元切分开。</li>
-</ul>
-</li>
-<li>文档特定分块（Document Specific Chunking）
-<ul>
-<li>根据文档的格式（如 Markdown、Latex、或编程语言如 Python 等）进行<strong>定制化</strong>分割的技术。</li>
-<li>适用场景： 这种方法可以根据特定的文档结构，进行准确的语义内容切分，在编程语言、Markdown、Latex 等结构文档中表现出色。</li>
-<li>问题： 但文档特定分块的方式格式依赖性强，不同格式之间的分块策略不通用，并且无法处理格式不规范及混合多种格式的情况。</li>
-</ul>
-</li>
-<li>语义分块（Semantic Chunking）
-<ul>
-<li>基于文本的自然语言边界（如句子、段落或主题中断）进行分段的技术，需要使用 <strong>NLP 技术根据语义分词分句</strong>，旨在确保每个分块都包含语义连贯的信息单元。</li>
-<li>常用的分块策略有 spaCy 和 NLTK 的 NLP 库，spaCy 适用于需要<strong>高效、精准语义切分</strong>的大规模文本处理，NLTK 更<strong>适合教学、研究和需要灵活自定义</strong>的语义切分任务。</li>
-<li>适用场景：提高检索结果的相关性和准确性；复杂文档和上下文敏感的精细化分析。</li>
-<li>问题：需要额外的计算资源，处理效率较低。</li>
-</ul>
-</li>
-<li>混合分块（Mix Chunking）
-<ul>
-<li>综合利用不同分块技术的优势，提高分块的精准性和效率。</li>
-<li>根据实际业务场景，设计多种分块策略的混合，能够灵活适应各种需求，提供更强大的分块方案。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>上述分块策略在 langchain_text_splitters 库中对应的具体方法类如下：</p>
-<ul>
-<li>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309021222817.png" alt="image-20250309021222817"></p>
-</li>
-<li>
-<p>SpacyTextSplitter 和 NLTKTextSplitter 需要额外安装 Python 依赖库，其中 SpacyTextSplitter 还需要按照文档的语言对应安装额外的语言模型。</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br><span class="line">pip install spacy nltk -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">python -m spacy download zh_core_web_sm <span class="comment"># 如果需要进行中文分块，安装spacy中文语言模型</span></span><br><span class="line">python -m spacy download en_core_web_sm <span class="comment"># 如果需要进行英文分块，安装spacy英文语言模型</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>导入 langchain.text_splitter 中各种文档分块类代码：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.text_splitter <span class="keyword">import</span> (</span><br><span class="line">        CharacterTextSplitter,</span><br><span class="line">        RecursiveCharacterTextSplitter,</span><br><span class="line">        MarkdownTextSplitter,</span><br><span class="line">        PythonCodeTextSplitter,</span><br><span class="line">        LatexTextSplitter,</span><br><span class="line">        SpacyTextSplitter,</span><br><span class="line">        NLTKTextSplitter</span><br><span class="line">	) <span class="comment"># 从 langchain.text_splitter 模块中导入各种文档分块类</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>
-<p>CharacterTextSplitter、RecursiveCharacterTextSplitter、MarkdownTextSplitter、PythonCodeTextSplitter、LatexTextSplitter、NLTKTextSplitter 替换原有 text_splitter 参数的赋值类即可。</p>
-</li>
-<li>
-<p>需要额外处理的是 SpacyTextSplitter，需要参数 pipeline 指定具体的语言模型才可以运行。</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置SpacyTextSplitter分割文本块库</span></span><br><span class="line">text_splitter = SpacyTextSplitter(chunk_size=<span class="number">512</span>, chunk_overlap=<span class="number">128</span>, pipeline=<span class="string">&quot;zh_core_web_sm&quot;</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>索引</category>
-        <category>分块策略</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>RAG</tag>
-        <tag>索引</tag>
-        <tag>分块策略</tag>
-        <tag>langchain</tag>
-        <tag>Chunk</tag>
       </tags>
   </entry>
   <entry>
@@ -929,118 +849,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>AI工具</tag>
         <tag>Text2SQL</tag>
         <tag>自然语言操作数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2025/03/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>rag-lesson-1</title>
-    <url>/2025/03/05/rag-lesson-1/</url>
-    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
-<ul>
-<li>
-<h2 id="技术框架与选型">技术框架与选型</h2>
-<ul>
-<li>
-<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
-<ul>
-<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>
-<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
-<ul>
-<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
-<ul>
-<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
-<ul>
-<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
-<ul>
-<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
-</ul>
-</li>
-<li>
-<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
-<ul>
-<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
-</ul>
-</li>
-<li>
-<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
-<ul>
-<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
-<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
-<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
-<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h2 id="开发环境与技术库">开发环境与技术库</h2>
-<ul>
-<li>
-<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
-</li>
-<li>
-<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="安装技术依赖库">安装技术依赖库</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
-<ol>
-<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>AI,</tag>
       </tags>
   </entry>
   <entry>
@@ -1197,6 +1005,278 @@ H<sub>2</sub>O</li>
       </tags>
   </entry>
   <entry>
+    <title>RAG索引（二）：分块策略</title>
+    <url>/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/</url>
+    <content><![CDATA[<h3 id="文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使-RAG-系统能够高效处理和精准检索这些片段信息。">文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。</h3>
+<h3 id="选择适合特定场景的分块策略是提升-RAG-系统召回率的关键。">选择适合特定场景的分块策略是提升 RAG 系统召回率的关键。</h3>
+<ul>
+<li>
+<h4 id="为什么说分块很重要？">为什么说分块很重要？</h4>
+<ul>
+<li>
+<p>分块的目标在于确保每个片段在<strong>保留核心语义</strong>的同时，具备<strong>相对独立的语义完整性</strong>，从而使模型在处理时不必依赖广泛的上下文信息，<strong>增强检索召回的准确性</strong>。</p>
+</li>
+<li>
+<p><strong>分块的重要性在于</strong>它直接影响 RAG 系统的生成质量。首先，合理的分块能够确保<strong>检索到的片段与用户查询信息高度匹配</strong>，避免信息冗余或丢失。</p>
+</li>
+<li>
+<p><strong>好的分块有助于提升生成内容的连贯性</strong>，精心设计的独立语义片段可以<strong>降低模型对上下文的依赖</strong>，从而增强生成的逻辑性与一致性。</p>
+</li>
+<li>
+<p>分块策略的选择还会<strong>影响系统的响应速度与效率</strong>，模型能够更快、更准确地处理和生成内容。</p>
+</li>
+<li>
+<h4 id="分块策略最大的挑战在于确定分块的大小。">分块策略最大的挑战在于确定分块的大小。</h4>
+<span id="more"></span>
+<ul>
+<li>如果<strong>片段过大</strong>，可能导致向量<strong>无法精确捕捉内容的特定细节</strong>并且计算成本增加；</li>
+<li>若<strong>片段过小</strong>，则可能丢失上下文信息，导致<strong>句子碎片化和语义不连贯</strong>。</li>
+<li>较小的块适用于需要细粒度分析的任务，例如<strong>情感分析</strong>，能够精确捕捉特定短语或句子的细节。</li>
+<li>更大的块则更为合适需要保留更广泛上下文的场景，例如<strong>文档摘要或主题检测</strong>。</li>
+</ul>
+</li>
+<li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309012438108.png" alt="image-20250309012438108"></p>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="分块策略">分块策略</h4>
+<ul>
+<li>
+<p>多种分块策略从本质上来看，由以下三个关键组成部分构成：</p>
+<ul>
+<li><strong>大小</strong>：每个文档块所允许的最大字符数。</li>
+<li><strong>重叠</strong>：在相邻数据块之间，重叠字符的数量。</li>
+<li><strong>拆分</strong>：通过段落边界、分隔符、标记，或语义边界来确定块边界的位置。</li>
+</ul>
+</li>
+<li>
+<p>上述三个组成部分共同决定了分块策略的特性及其适用场景。基于这些组成部分，常见的分块策略包括：</p>
+<ul>
+<li><strong>固定大小分块（Fixed Size Chunking）、重叠分块（Overlap Chunking）、递归分块（Recursive Chunking）、文档特定分块（Document Specific Chunking）、语义分块（Semantic Chunking）、混合分块（Mix Chunking）</strong>。下面我将对这些策略逐一进行介绍。</li>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309013703174.png" alt="image-20250309013703174"></li>
+<li>我们可以通过<strong>分块可视化</strong>来看一下：（Chunk 切分可视化呈现链接: <a href="https://chunkviz.up.railway.app/%EF%BC%89">https://chunkviz.up.railway.app/）</a></li>
+<li>固定大小分块（Fixed Size Chunking）
+<ul>
+<li>最基本的方法是将文档按固定大小进行分块，通常作为分块策略的基准线使用。</li>
+<li>适用场景：适用于格式和大小相似的同质数据集，如新闻文章或博客文章。</li>
+<li>问题：可能在句子或段落<strong>中断内容</strong>，导致无意义的文本块，缺乏灵活性，无法适应文本的自然结构。</li>
+</ul>
+</li>
+<li>重叠分块（Overlap Chunking）
+<ul>
+<li>通过滑动窗口技术切分文本块，使新文本块与前一个块的<strong>内容部分重叠</strong>，从而<strong>保留块边界处的重要上下文信息</strong>，增强系统的语义相关性。</li>
+<li>适用场景：需要深入理解语义并保持上下文完整性的文档，如法律文档、技术手册或科研论文。</li>
+<li>问题： 增加冗余信息的存储，处理效率降低。</li>
+</ul>
+</li>
+<li>递归分块（Recursive Chunking）
+<ul>
+<li>通过预定义的文本分隔符（如换行符\n\n、\n ，句号、逗号、感叹号、空格等）迭代地将文本分解为更小的块，以实现段大小的均匀性和语义完整性。此过程中，文本首先按较大的逻辑单元分割（如段落 \n\n），然后逐步递归到较小单元（如句子 \n 和单词），确保<strong>在分块大小限制内保留最强的语义片段</strong>。</li>
+<li>适用场景： 这种方法适用于需要<strong>逐层分析</strong>的文本文档或需要分解成长片段、长段落的长文档，如研究报告、法律文档等。</li>
+<li>问题： 不过仍有可能在块边界处模糊语义，容易将完整的语义单元切分开。</li>
+</ul>
+</li>
+<li>文档特定分块（Document Specific Chunking）
+<ul>
+<li>根据文档的格式（如 Markdown、Latex、或编程语言如 Python 等）进行<strong>定制化</strong>分割的技术。</li>
+<li>适用场景： 这种方法可以根据特定的文档结构，进行准确的语义内容切分，在编程语言、Markdown、Latex 等结构文档中表现出色。</li>
+<li>问题： 但文档特定分块的方式格式依赖性强，不同格式之间的分块策略不通用，并且无法处理格式不规范及混合多种格式的情况。</li>
+</ul>
+</li>
+<li>语义分块（Semantic Chunking）
+<ul>
+<li>基于文本的自然语言边界（如句子、段落或主题中断）进行分段的技术，需要使用 <strong>NLP 技术根据语义分词分句</strong>，旨在确保每个分块都包含语义连贯的信息单元。</li>
+<li>常用的分块策略有 spaCy 和 NLTK 的 NLP 库，spaCy 适用于需要<strong>高效、精准语义切分</strong>的大规模文本处理，NLTK 更<strong>适合教学、研究和需要灵活自定义</strong>的语义切分任务。</li>
+<li>适用场景：提高检索结果的相关性和准确性；复杂文档和上下文敏感的精细化分析。</li>
+<li>问题：需要额外的计算资源，处理效率较低。</li>
+</ul>
+</li>
+<li>混合分块（Mix Chunking）
+<ul>
+<li>综合利用不同分块技术的优势，提高分块的精准性和效率。</li>
+<li>根据实际业务场景，设计多种分块策略的混合，能够灵活适应各种需求，提供更强大的分块方案。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>上述分块策略在 langchain_text_splitters 库中对应的具体方法类如下：</p>
+<ul>
+<li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250309021222817.png" alt="image-20250309021222817"></p>
+</li>
+<li>
+<p>SpacyTextSplitter 和 NLTKTextSplitter 需要额外安装 Python 依赖库，其中 SpacyTextSplitter 还需要按照文档的语言对应安装额外的语言模型。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br><span class="line">pip install spacy nltk -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">python -m spacy download zh_core_web_sm <span class="comment"># 如果需要进行中文分块，安装spacy中文语言模型</span></span><br><span class="line">python -m spacy download en_core_web_sm <span class="comment"># 如果需要进行英文分块，安装spacy英文语言模型</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>导入 langchain.text_splitter 中各种文档分块类代码：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.text_splitter <span class="keyword">import</span> (</span><br><span class="line">        CharacterTextSplitter,</span><br><span class="line">        RecursiveCharacterTextSplitter,</span><br><span class="line">        MarkdownTextSplitter,</span><br><span class="line">        PythonCodeTextSplitter,</span><br><span class="line">        LatexTextSplitter,</span><br><span class="line">        SpacyTextSplitter,</span><br><span class="line">        NLTKTextSplitter</span><br><span class="line">	) <span class="comment"># 从 langchain.text_splitter 模块中导入各种文档分块类</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>CharacterTextSplitter、RecursiveCharacterTextSplitter、MarkdownTextSplitter、PythonCodeTextSplitter、LatexTextSplitter、NLTKTextSplitter 替换原有 text_splitter 参数的赋值类即可。</p>
+</li>
+<li>
+<p>需要额外处理的是 SpacyTextSplitter，需要参数 pipeline 指定具体的语言模型才可以运行。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置SpacyTextSplitter分割文本块库</span></span><br><span class="line">text_splitter = SpacyTextSplitter(chunk_size=<span class="number">512</span>, chunk_overlap=<span class="number">128</span>, pipeline=<span class="string">&quot;zh_core_web_sm&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>索引</category>
+        <category>分块策略</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>RAG</tag>
+        <tag>索引</tag>
+        <tag>分块策略</tag>
+        <tag>langchain</tag>
+        <tag>Chunk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rag-lesson-1</title>
+    <url>/2025/03/05/rag-lesson-1/</url>
+    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
+<ul>
+<li>
+<h2 id="技术框架与选型">技术框架与选型</h2>
+<ul>
+<li>
+<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
+<ul>
+<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
+<ul>
+<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
+<ul>
+<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
+<ul>
+<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
+<ul>
+<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
+</ul>
+</li>
+<li>
+<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
+<ul>
+<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
+</ul>
+</li>
+<li>
+<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
+<ul>
+<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
+<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
+<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
+<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h2 id="开发环境与技术库">开发环境与技术库</h2>
+<ul>
+<li>
+<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
+</li>
+<li>
+<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="安装技术依赖库">安装技术依赖库</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
+<ol>
+<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>AI,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/03/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>升级 Dify</title>
+    <url>/2025/03/19/%E5%8D%87%E7%BA%A7dify/</url>
+    <content><![CDATA[<h4 id="进入dify源码的docker目录，执行以下命令：">进入dify源码的docker目录，执行以下命令：</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd dify/docker</span><br><span class="line">docker compose down</span><br><span class="line">git pull origin main</span><br><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+<h4 id="同步环境变量配置（重要）">同步环境变量配置（重要）</h4>
+<p>去到dify/docker目录下，查看.env.example文件的更新日期判断是否已更新</p>
+<p>如果.env.example文件已更新，请确保相应地修改本地的.env文件。</p>
+<p>根据需要检查并修改.env文件中的配置项，以确保它们与您的实际环境相匹配。您可能需要添加任何新变量从.env.example到.env文件中，并更新任何已更改的值。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>AI工具</category>
+      </categories>
+      <tags>
+        <tag>dify</tag>
+        <tag>rag</tag>
+        <tag>agent</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多智能体框架ChatDev与MetaGPT介绍</title>
     <url>/2025/03/21/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<p>ChatDev、MetaGPT 等多智能体框架是近年来在人工智能领域，特别是多智能体系统（Multi-Agent Systems, MAS）和生成式 AI 领域的重要进展。这些框架旨在通过多个智能体（Agents）的协作，完成复杂的任务或生成高质量的内容。以下是对这些框架的简要介绍和对比：</p>
@@ -1299,79 +1379,6 @@ H<sub>2</sub>O</li>
         <tag>多智能体</tag>
         <tag>ChatDev</tag>
         <tag>MetaGPT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>升级 Dify</title>
-    <url>/2025/03/19/%E5%8D%87%E7%BA%A7dify/</url>
-    <content><![CDATA[<h4 id="进入dify源码的docker目录，执行以下命令：">进入dify源码的docker目录，执行以下命令：</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd dify/docker</span><br><span class="line">docker compose down</span><br><span class="line">git pull origin main</span><br><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
-<h4 id="同步环境变量配置（重要）">同步环境变量配置（重要）</h4>
-<p>去到dify/docker目录下，查看.env.example文件的更新日期判断是否已更新</p>
-<p>如果.env.example文件已更新，请确保相应地修改本地的.env文件。</p>
-<p>根据需要检查并修改.env文件中的配置项，以确保它们与您的实际环境相匹配。您可能需要添加任何新变量从.env.example到.env文件中，并更新任何已更改的值。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>AI工具</category>
-      </categories>
-      <tags>
-        <tag>dify</tag>
-        <tag>rag</tag>
-        <tag>agent</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>翻墙机场推荐（魔法上网）</title>
-    <url>/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
-<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
-<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
-<span id="more"></span>
-<ul>
-<li>
-<p>第一个 牡牛网：<a href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
-<ul>
-<li>
-<p>邀请码：mdSU</p>
-</li>
-<li>
-<p>推荐安装网页底部的Clash软件</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
-</ul>
-</li>
-<li>
-<p>进入页面有详细安装教程，按照步骤操作就行</p>
-</li>
-<li>
-<p>资费：</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>第二个 Radial VPN: <a href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
-<ul>
-<li>下载官网软件按着操作就行</li>
-<li>资费：
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具</category>
-        <category>网络</category>
-      </categories>
-      <tags>
-        <tag>翻墙机场,</tag>
-        <tag>魔法上网</tag>
       </tags>
   </entry>
   <entry>
@@ -1545,8 +1552,61 @@ H<sub>2</sub>O</li>
       </categories>
       <tags>
         <tag>AI</tag>
-        <tag>生成模型方法</tag>
         <tag>大模型</tag>
+        <tag>生成模型方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>翻墙机场推荐（魔法上网）</title>
+    <url>/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
+<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
+<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
+<span id="more"></span>
+<ul>
+<li>
+<p>第一个 牡牛网：<a href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
+<ul>
+<li>
+<p>邀请码：mdSU</p>
+</li>
+<li>
+<p>推荐安装网页底部的Clash软件</p>
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
+</ul>
+</li>
+<li>
+<p>进入页面有详细安装教程，按照步骤操作就行</p>
+</li>
+<li>
+<p>资费：</p>
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>第二个 Radial VPN: <a href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
+<ul>
+<li>下载官网软件按着操作就行</li>
+<li>资费：
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>翻墙机场,</tag>
+        <tag>魔法上网</tag>
       </tags>
   </entry>
 </search>

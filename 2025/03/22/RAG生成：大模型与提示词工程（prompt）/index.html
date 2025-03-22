@@ -24,33 +24,39 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
 <meta name="referrer" content="no-referrer" />
-    <meta name="description" content="这些插件是 markdown-it 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：  1. markdown-it-footnote   功能：支持脚注功能。   用法： 123这是一个带有脚注的文本[^footnote]。[^footnote]: 这是脚注内容。   效果： 这是一个带有脚注的文本[1].">
+    <meta name="description" content="RAG的生成流程 生成流程中，首先需要组合指令，指令将携带查询问题及检索到的相关信息输入到大模型中，由大模型理解并生成最终的回复，从而完成整个应用过程。 在这个过程中，有两个环节直接影响RAG系统的生成效果：  大模型的选择：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。 提示词工程：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="markdown-it 的扩展插件">
-<meta property="og:url" content="http://example.com/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/index.html">
+<meta property="og:title" content="RAG生成（一）：大模型的选择">
+<meta property="og:url" content="http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B%EF%BC%88prompt%EF%BC%89/index.html">
 <meta property="og:site_name" content="打开AI世界的大门">
-<meta property="og:description" content="这些插件是 markdown-it 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：  1. markdown-it-footnote   功能：支持脚注功能。   用法： 123这是一个带有脚注的文本[^footnote]。[^footnote]: 这是脚注内容。   效果： 这是一个带有脚注的文本[1].">
+<meta property="og:description" content="RAG的生成流程 生成流程中，首先需要组合指令，指令将携带查询问题及检索到的相关信息输入到大模型中，由大模型理解并生成最终的回复，从而完成整个应用过程。 在这个过程中，有两个环节直接影响RAG系统的生成效果：  大模型的选择：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。 提示词工程：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-09T02:52:00.000Z">
-<meta property="article:modified_time" content="2025-03-09T02:57:26.481Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322185744991.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322190256861.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322175522327.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322180251002.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322181526225.png">
+<meta property="article:published_time" content="2025-03-22T09:31:00.000Z">
+<meta property="article:modified_time" content="2025-03-22T12:31:01.550Z">
 <meta property="article:author" content="AI模型研究所">
-<meta property="article:tag" content="博客">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="Markdown插件">
-<meta property="article:tag" content="自媒体">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="生成">
+<meta property="article:tag" content="大模型">
+<meta property="article:tag" content="提示词">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322185744991.png">
 
 
-<link rel="canonical" href="http://example.com/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/">
+<link rel="canonical" href="http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B%EF%BC%88prompt%EF%BC%89/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/","path":"2025/03/09/markdown-it-的扩展插件/","title":"markdown-it 的扩展插件"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B%EF%BC%88prompt%EF%BC%89/","path":"2025/03/22/RAG生成：大模型与提示词工程（prompt）/","title":"RAG生成（一）：大模型的选择"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
-<meta name="referrer" content="no-referrer" /><title>markdown-it 的扩展插件 | 打开AI世界的大门</title>
+<meta name="referrer" content="no-referrer" /><title>RAG生成（一）：大模型的选择 | 打开AI世界的大门</title>
   
 
 
@@ -164,7 +170,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-markdown-it-footnote"><span class="nav-number">1.</span> <span class="nav-text">1. markdown-it-footnote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-markdown-it-sub"><span class="nav-number">2.</span> <span class="nav-text">2. markdown-it-sub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-markdown-it-sup"><span class="nav-number">3.</span> <span class="nav-text">3. markdown-it-sup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-markdown-it-deflist"><span class="nav-number">4.</span> <span class="nav-text">4. markdown-it-deflist</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-markdown-it-abbr"><span class="nav-number">5.</span> <span class="nav-text">5. markdown-it-abbr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-markdown-it-emoji"><span class="nav-number">6.</span> <span class="nav-text">6. markdown-it-emoji</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-markdown-it-container"><span class="nav-number">7.</span> <span class="nav-text">7. markdown-it-container</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-markdown-it-ins"><span class="nav-number">8.</span> <span class="nav-text">8. markdown-it-ins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-markdown-it-mark"><span class="nav-number">9.</span> <span class="nav-text">9. markdown-it-mark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-number">10.</span> <span class="nav-text">10. 配置方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-number">11.</span> <span class="nav-text">11. 安装插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E6%80%BB%E7%BB%93"><span class="nav-number">12.</span> <span class="nav-text">12. 总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#RAG%E7%9A%84%E7%94%9F%E6%88%90%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">RAG的生成流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">大模型的发展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">大模型原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RAG%E4%B8%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">4.</span> <span class="nav-text">RAG中大模型的选择</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -256,7 +262,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B%EF%BC%88prompt%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.ico">
@@ -269,12 +275,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="markdown-it 的扩展插件 | 打开AI世界的大门">
+      <meta itemprop="name" content="RAG生成（一）：大模型的选择 | 打开AI世界的大门">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          markdown-it 的扩展插件
+          RAG生成（一）：大模型的选择
         </h1>
 
         <div class="post-meta-container">
@@ -286,7 +292,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-09 10:52:00 / 修改时间：10:57:26" itemprop="dateCreated datePublished" datetime="2025-03-09T10:52:00+08:00">2025-03-09</time>
+      <time title="创建时间：2025-03-22 17:31:00 / 修改时间：20:31:01" itemprop="dateCreated datePublished" datetime="2025-03-22T17:31:00+08:00">2025-03-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -294,11 +300,15 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%87%AA%E5%AA%92%E4%BD%93/" itemprop="url" rel="index"><span itemprop="name">自媒体</span></a>
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%87%AA%E5%AA%92%E4%BD%93/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
+          <a href="/categories/AI/RAG/" itemprop="url" rel="index"><span itemprop="name">RAG</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/RAG/%E7%94%9F%E6%88%90/" itemprop="url" rel="index"><span itemprop="name">生成</span></a>
         </span>
     </span>
 
@@ -316,14 +326,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>2.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -333,144 +343,50 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>这些插件是 <code>markdown-it</code> 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：</p>
-<hr>
-<h3 id="1-markdown-it-footnote">1. <strong>markdown-it-footnote</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持脚注功能。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这是一个带有脚注的文本[^footnote]。</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^footnote</span>]: <span class="link">这是脚注内容。</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：<br>
-这是一个带有脚注的文本<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
-</li>
-</ul>
-<hr>
+    <div class="post-body" itemprop="articleBody"><h4 id="RAG的生成流程">RAG的生成流程</h4>
+<p>生成流程中，首先需要<strong>组合指令</strong>，指令将<strong>携带查询问题及检索到的相关信息</strong>输入到大模型中，由<strong>大模型理解并生成最终的回复</strong>，从而完成整个应用过程。</p>
+<p>在这个过程中，有两个环节直接影响RAG系统的生成效果：</p>
+<ol>
+<li><strong>大模型的选择</strong>：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。</li>
+<li><strong>提示词工程</strong>：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。</li>
+</ol>
 <span id="more"></span>
-<h3 id="2-markdown-it-sub">2. <strong>markdown-it-sub</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持下标文本。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H~2~O</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-H<sub>2</sub>O</li>
-</ul>
-<hr>
-<h3 id="3-markdown-it-sup">3. <strong>markdown-it-sup</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持上标文本。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2^10^ = 1024</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-2<sup>10</sup> = 1024</li>
-</ul>
-<hr>
-<h3 id="4-markdown-it-deflist">4. <strong>markdown-it-deflist</strong></h3>
-<ul>
+<h4 id="大模型的发展">大模型的发展</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322185744991.png" alt="image-20250322185744991"></p>
+<p><strong>SuperCLUE</strong> 组织发布的<strong>中文大模型全景图</strong>，展示了 2025 年值得关注的中文大模型，从<strong>文本、多模态、行业</strong>三个层面进行了详细分类，各领域的大模型应用层出不穷。<strong>RAG 中目前更关注通用大模型</strong>，比如<strong>闭源的文心一言、通义千问、腾讯混元、字节豆包</strong>、Kimi Chat 等都是可选择的大模型组件，如果需要<strong>私有化部署，Deepseek、Qwen 系列、GLM 系列</strong>、Baichuan 系列都在可考虑范围。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322190256861.png" alt="image-20250322190256861"></p>
+<p>更多包含机构和学术背景且具有明确来源的大模型信息，可以访问实时更新的 <a target="_blank" rel="noopener" href="https://github.com/wgwang/awesome-LLMs-In-China"><strong>中国大模型列表</strong></a> 全面记录中国大模型的发展动态。</p>
+<h4 id="大模型原理">大模型原理</h4>
+<p>一切始于 Google 在 2017 年发表的论文 <strong>《Attention Is All You Need》</strong>，引入了 <strong>Transformer</strong> 模型，它是深度学习领域的一个突破性架构，大型语言模型的成功得益于对 Transformer 模型的应用。</p>
+<p>与传统的循环神经网络（RNN）相比，Transformer 模型<strong>不依赖于序列顺序</strong>，而是通过自注意力（Self-Attention）机制来捕捉序列中各元素之间的关系。Transformer 由多个堆叠的编码层（Encoder）和解码层（Decoder）组成，每一层包括自注意力层、前馈层和归一化层。这些层协同工作，逐步捕捉输入数据信息特征，从而<strong>预测输出</strong>，实现强大的语言理解和生成能力。</p>
+<p>Transformer 模型的<strong>核心创新在于位置编码和自注意力机制</strong>。位置编码帮助模型理解输入数据的顺序信息，而自注意力机制则允许模型根据输入的全局上下文，为每个词元分配不同的注意力权重，从而更准确地理解词与词之间的关联性。这种机制使得 Transformer 特别适用于语言模型，因为语言模型需要精确捕捉上下文中的细微差别，生成符合语义逻辑的文本。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322175522327.png" alt="image-20250322175522327"></p>
+<p>上图展示了 Transformer 模型的架构及其核心机制的可视化示例。左图中，Transformer 模型由编码器和解码器两部分组成。编码器负责理解输入信息的顺序和语义，解码器则输出概率最高的词元。</p>
+<p>右上图中的示例显示了输入句子中的填空任务，解码器依据输入句子的特征和已生成的部分句子，生成了“She”作为模型的预测结果。生成“She”的核心原因在于右下图所示的注意力机制，其中需要填空的部分对输入句子中的词元“The Doctor”和“Nurse”分配了较高的注意力权重，从而提高了“She”作为输出词元的生成概率。</p>
+<p><strong>大语言模型的突破</strong>始于 2022 年年底 OpenAI 发布的 <strong>ChatGPT。其核心优势体现在庞大的参数规模（数百亿甚至数千亿）、基于 PB 级别数据的训练所带来的卓越语言理解与生成能力，以及其显著的涌现能力。</strong>  大语言模型不仅在传统的自然语言处理任务中展现了卓越表现，还具备了解决复杂问题和进行逻辑推理等高级认知能力。</p>
+<h4 id="RAG中大模型的选择">RAG中大模型的选择</h4>
+<p>在如今大模型层出不穷的情况下，如何在 RAG 应用场景中选择合适的模型呢？我们面对的是<strong>开源与闭源</strong>的选择、<strong>大参数与小参数</strong>的对比，成本的考虑以及<strong>云端与私有化部署</strong>的抉择。针对这些问题，我们需要结合测评和具体的应用场景进行综合考量。</p>
+<p>从测评角度来看，前面已经介绍了<a target="_blank" rel="noopener" href="https://www.cluebenchmarks.com/static/superclue.html"><strong>中文通用大模型的综合性测评基准 SuperCLUE</strong></a>，它对中文场景中的多个任务分支进行测试，涵盖基础能力、专业能力以及中文特性多个方面。每个任务分支又包含多个维度，例如语义理解、生成与创作、代数、生物、成语、诗词等。下图展示了这些维度的具体内容，SuperCLUE 每月都会更新测评结果，确保其反映大模型的最新表现。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322180251002.png" alt="image-20250322180251002"></p>
+<p>尤其需要关注的是 <a target="_blank" rel="noopener" href="https://www.superclueai.com/"><strong>SuperCLUE-RAG 检索增强生成测评</strong></a>，在 RAG 场景中，大模型的检索能力表现是核心。SuperCLUE 针对 RAG 应用场景进行了独立测试，具体评估了大模型在检索和生成过程中的表现，测试数据如下图所示（最新为2024 年 11月数据）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322181526225.png" alt="image-20250322181526225"></p>
+<p>在 SuperCLUE 官网的 SuperCLUE-RAG 检索增强生成分支页面上，可以查看其总榜及四大基础任务的测评结果。选择模型时可以根据总分，以及模型在<strong>答案及时性、信息整合能力、拒答能力、检错和纠错能力</strong>等方面的表现，进行综合评估，作为场景选型参考。</p>
+<p>其次，也是最重要的，我们需要根据<strong>实际应用场景</strong>来考量并选择适合的大模型，以下几个维度是关键：</p>
+<ol>
+<li><strong>开源与闭源</strong>：开源模型适用于<strong>数据敏感性</strong>高或有严格合规要求的场景，通过自托管实现对数据的完全掌控，确保<strong>隐私与安全</strong>。而闭源模型则适合数据敏感度较低的应用场景，其维护与服务相对完善，能够降低运维复杂度。</li>
+<li><strong>模型参数规模</strong>：大参数模型在复杂任务中的<strong>推理与生成能力</strong>较强，但并非所有应用场景都需要高精度模型。小参数模型（如 7B）在满足简单逻辑任务时，具备更优的<strong>响应速度、成本控制和资源利用</strong>效率。因此，模型规模应依据应用复杂性及算力预算进行合理匹配。</li>
+<li><strong>国内与国外部署</strong>：模型选择还需考虑部署环境。如果应用主要在国内进行，虽然调用国外大模型的接口是可行的，但可能会遇到<strong>稳定性、网络延迟</strong>、注册认证、充值付费等方面的实际问题。此外，数据合规性是重要考量，尤其对于需要遵循国内<strong>隐私和数据安全</strong>法规的场景，选择国内大模型或本地化部署更为合适。综上所述，模型的选择应结合 RAG 应用场景的需求和限制，更好地选择合适的大模型以最大化其效果。</li>
+</ol>
+<p>选择建议：</p>
+<ol>
 <li>
-<p><strong>功能</strong>：支持定义列表。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">术语 1</span><br><span class="line">: 定义 1</span><br><span class="line"></span><br><span class="line">术语 2</span><br><span class="line">: 定义 2</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：<br>
-术语 1<br>
-: 定义 1</p>
-<dl>
-<dt>术语 2</dt>
-<dd>定义 2</dd>
-</dl>
-</li>
-</ul>
-<hr>
-<h3 id="5-markdown-it-abbr">5. <strong>markdown-it-abbr</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持缩写词。</p>
+<p>闭源模型: 通义千问、文心一言、混元大模型、豆包大模型和 Kimi Chat 等旗舰模型实际差异不大，<strong>取决于成本</strong>。</p>
 </li>
 <li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*[HTML]: HyperText Markup Language</span></span><br><span class="line"><span class="emphasis">*</span>[W3C]: World Wide Web Consortium</span><br><span class="line"></span><br><span class="line">HTML 是 W3C 的标准。</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：</p>
-<p><abbr title="HyperText Markup Language">HTML</abbr> 是 <abbr title="World Wide Web Consortium">W3C</abbr> 的标准。</p>
-</li>
-</ul>
-<hr>
-<h3 id="6-markdown-it-emoji">6. <strong>markdown-it-emoji</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持 Emoji 表情。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:smile: :heart: :rocket:</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-😄 ❤️ 🚀</li>
-</ul>
-<hr>
-<h3 id="7-markdown-it-container">7. <strong>markdown-it-container</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持自定义容器块。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">::: warning</span><br><span class="line">这是一个警告框。</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: tip</span><br><span class="line">这是一个提示框。</span><br><span class="line">:::</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：<br>
-::: warning<br>
-这是一个警告框。<br>
-:::</p>
-<p>::: tip<br>
-这是一个提示框。<br>
-:::</p>
-</li>
-</ul>
-<hr>
-<h3 id="8-markdown-it-ins">8. <strong>markdown-it-ins</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持插入文本（下划线）。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">++插入的文本++</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-<ins>插入的文本</ins></li>
-</ul>
-<hr>
-<h3 id="9-markdown-it-mark">9. <strong>markdown-it-mark</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持高亮文本。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">==高亮的文本==</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-<mark>高亮的文本</mark></li>
-</ul>
-<hr>
-<h3 id="10-配置方法">10. <strong>配置方法</strong></h3>
-<p>在 <code>_config.yml</code> 中配置 <code>hexo-renderer-markdown-it</code> 插件时，可以启用这些插件。例如：</p>
-   <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-footnote</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sub</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sup</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-deflist</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-abbr</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-emoji</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-container</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-ins</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-mark</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="11-安装插件">11. <strong>安装插件</strong></h3>
-<p>运行以下命令安装这些插件：</p>
-   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm install markdown-it-footnote markdown-it-sub markdown-it-sup markdown-it-deflist markdown-it-abbr markdown-it-emoji markdown-it-container markdown-it-ins markdown-it-mark --save</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="12-总结">12. <strong>总结</strong></h3>
-<ul>
-<li>这些插件可以增强 Markdown 的功能，例如支持脚注、上下标、定义列表、Emoji 表情等。</li>
-<li>在 <code>_config.yml</code> 中配置 <code>hexo-renderer-markdown-it</code> 插件时，启用这些插件即可使用。</li>
-</ul>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>这是脚注内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+<p>开源模型: 根据需求可以在<strong>千问系列，deepseek系列，百川系列，GLM系列</strong>这几个中选择。</p>
 </li>
 </ol>
-</section>
+<p><strong>参考</strong>：<a target="_blank" rel="noopener" href="https://www.cluebenchmarks.com/superclue_2503"><strong>中文大模型基准评测2025年3月报告</strong></a></p>
 
     </div>
 
@@ -519,7 +435,7 @@ H<sub>2</sub>O</li>
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/" title="markdown-it 的扩展插件">http://example.com/2025/03/09/markdown-it-的扩展插件/</a>
+      <a href="http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B%EF%BC%88prompt%EF%BC%89/" title="RAG生成（一）：大模型的选择">http://example.com/2025/03/22/RAG生成：大模型与提示词工程（prompt）/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -528,24 +444,21 @@ H<sub>2</sub>O</li>
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
-              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-              <a href="/tags/Markdown%E6%8F%92%E4%BB%B6/" rel="tag"># Markdown插件</a>
-              <a href="/tags/%E8%87%AA%E5%AA%92%E4%BD%93/" rel="tag"># 自媒体</a>
+              <a href="/tags/RAG/" rel="tag"># RAG</a>
+              <a href="/tags/%E7%94%9F%E6%88%90/" rel="tag"># 生成</a>
+              <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" rel="tag"># 大模型</a>
+              <a href="/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/" rel="tag"># 提示词</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/" rel="prev" title="RAG索引（二）：分块策略">
-                  <i class="fa fa-angle-left"></i> RAG索引（二）：分块策略
+                <a href="/2025/03/21/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E4%BB%8B%E7%BB%8D/" rel="prev" title="多智能体框架ChatDev与MetaGPT介绍">
+                  <i class="fa fa-angle-left"></i> 多智能体框架ChatDev与MetaGPT介绍
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/" rel="next" title="RAG索引（三）：嵌入（Embedding）技术">
-                  RAG索引（三）：嵌入（Embedding）技术 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

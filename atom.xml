@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-21T09:19:29.401Z</updated>
+  <updated>2025-03-22T12:31:01.550Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RAG生成（一）：大模型的选择</title>
+    <link href="http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B%EF%BC%88prompt%EF%BC%89/"/>
+    <id>http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B%EF%BC%88prompt%EF%BC%89/</id>
+    <published>2025-03-22T09:31:00.000Z</published>
+    <updated>2025-03-22T12:31:01.550Z</updated>
+    
+    
+    <summary type="html">&lt;h4 id=&quot;RAG的生成流程&quot;&gt;RAG的生成流程&lt;/h4&gt;
+&lt;p&gt;生成流程中，首先需要&lt;strong&gt;组合指令&lt;/strong&gt;，指令将&lt;strong&gt;携带查询问题及检索到的相关信息&lt;/strong&gt;输入到大模型中，由&lt;strong&gt;大模型理解并生成最终的回复&lt;/strong&gt;，从而完成整个应用过程。&lt;/p&gt;
+&lt;p&gt;在这个过程中，有两个环节直接影响RAG系统的生成效果：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;大模型的选择&lt;/strong&gt;：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提示词工程&lt;/strong&gt;：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。&lt;/li&gt;
+&lt;/ol&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
+    
+    <category term="生成" scheme="http://example.com/categories/AI/RAG/%E7%94%9F%E6%88%90/"/>
+    
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="生成" scheme="http://example.com/tags/%E7%94%9F%E6%88%90/"/>
+    
+    <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>多智能体框架ChatDev与MetaGPT介绍</title>
@@ -436,9 +471,9 @@
     
     <category term="AI" scheme="http://example.com/tags/AI/"/>
     
-    <category term="生成模型方法" scheme="http://example.com/tags/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95/"/>
-    
     <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="生成模型方法" scheme="http://example.com/tags/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
