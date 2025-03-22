@@ -24,12 +24,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
 <meta name="referrer" content="no-referrer" />
-    <meta name="description" content="RAG的生成流程 生成流程中，首先需要组合指令，指令将携带查询问题及检索到的相关信息输入到大模型中，由大模型理解并生成最终的回复，从而完成整个应用过程。 在这个过程中，有两个环节直接影响RAG系统的生成效果：  大模型的选择：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。 提示词工程：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。">
+    <meta name="description" content="RAG的生成流程 生成流程中，首先需要组合指令，指令将携带查询问题及检索到的相关信息输入到大模型中，由大模型理解并生成最终的回复，从而完成整个应用过程。 在这个过程中，有两个环节直接影响RAG系统的生成效果： 1. 大模型的选择：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。 2. 提示词工程：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RAG生成（一）：大模型的选择">
 <meta property="og:url" content="http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9/index.html">
 <meta property="og:site_name" content="打开AI世界的大门">
-<meta property="og:description" content="RAG的生成流程 生成流程中，首先需要组合指令，指令将携带查询问题及检索到的相关信息输入到大模型中，由大模型理解并生成最终的回复，从而完成整个应用过程。 在这个过程中，有两个环节直接影响RAG系统的生成效果：  大模型的选择：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。 提示词工程：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。">
+<meta property="og:description" content="RAG的生成流程 生成流程中，首先需要组合指令，指令将携带查询问题及检索到的相关信息输入到大模型中，由大模型理解并生成最终的回复，从而完成整个应用过程。 在这个过程中，有两个环节直接影响RAG系统的生成效果： 1. 大模型的选择：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。 2. 提示词工程：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322185744991.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322190256861.png">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322180251002.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322181526225.png">
 <meta property="article:published_time" content="2025-03-22T09:31:00.000Z">
-<meta property="article:modified_time" content="2025-03-22T12:39:24.482Z">
+<meta property="article:modified_time" content="2025-03-22T12:46:10.395Z">
 <meta property="article:author" content="AI模型研究所">
 <meta property="article:tag" content="RAG">
 <meta property="article:tag" content="生成">
@@ -292,7 +292,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-22 17:31:00 / 修改时间：20:39:24" itemprop="dateCreated datePublished" datetime="2025-03-22T17:31:00+08:00">2025-03-22</time>
+      <time title="创建时间：2025-03-22 17:31:00 / 修改时间：20:46:10" itemprop="dateCreated datePublished" datetime="2025-03-22T17:31:00+08:00">2025-03-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -346,10 +346,8 @@
     <div class="post-body" itemprop="articleBody"><h4 id="RAG的生成流程">RAG的生成流程</h4>
 <p>生成流程中，首先需要<strong>组合指令</strong>，指令将<strong>携带查询问题及检索到的相关信息</strong>输入到大模型中，由<strong>大模型理解并生成最终的回复</strong>，从而完成整个应用过程。</p>
 <p>在这个过程中，有两个环节直接影响RAG系统的生成效果：</p>
-<ol>
-<li><strong>大模型的选择</strong>：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。</li>
-<li><strong>提示词工程</strong>：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。</li>
-</ol>
+<p><strong>1. 大模型的选择</strong>：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。</p>
+<p><strong>2. 提示词工程</strong>：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。</p>
 <span id="more"></span>
 <h4 id="大模型的发展">大模型的发展</h4>
 <p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322185744991.png" alt="image-20250322185744991"></p>
@@ -372,16 +370,12 @@
 <p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322181526225.png" alt="image-20250322181526225"></p>
 <p>在 SuperCLUE 官网的 SuperCLUE-RAG 检索增强生成分支页面上，可以查看其总榜及四大基础任务的测评结果。选择模型时可以根据总分，以及模型在<strong>答案及时性、信息整合能力、拒答能力、检错和纠错能力</strong>等方面的表现，进行综合评估，作为场景选型参考。</p>
 <p>其次，也是最重要的，我们需要根据<strong>实际应用场景</strong>来考量并选择适合的大模型，以下几个维度是关键：</p>
-<ol>
-<li><strong>开源与闭源</strong>：开源模型适用于<strong>数据敏感性</strong>高或有严格合规要求的场景，通过自托管实现对数据的完全掌控，确保<strong>隐私与安全</strong>。而闭源模型则适合数据敏感度较低的应用场景，其维护与服务相对完善，能够降低运维复杂度。</li>
-<li><strong>模型参数规模</strong>：大参数模型在复杂任务中的<strong>推理与生成能力</strong>较强，但并非所有应用场景都需要高精度模型。小参数模型（如 7B）在满足简单逻辑任务时，具备更优的<strong>响应速度、成本控制和资源利用</strong>效率。因此，模型规模应依据应用复杂性及算力预算进行合理匹配。</li>
-<li><strong>国内与国外部署</strong>：模型选择还需考虑部署环境。如果应用主要在国内进行，虽然调用国外大模型的接口是可行的，但可能会遇到<strong>稳定性、网络延迟</strong>、注册认证、充值付费等方面的实际问题。此外，数据合规性是重要考量，尤其对于需要遵循国内<strong>隐私和数据安全</strong>法规的场景，选择国内大模型或本地化部署更为合适。综上所述，模型的选择应结合 RAG 应用场景的需求和限制，更好地选择合适的大模型以最大化其效果。</li>
-</ol>
+<p><strong>1. 开源与闭源</strong>：开源模型适用于<strong>数据敏感性</strong>高或有严格合规要求的场景，通过自托管实现对数据的完全掌控，确保<strong>隐私与安全</strong>。而闭源模型则适合数据敏感度较低的应用场景，其维护与服务相对完善，能够降低运维复杂度。</p>
+<p><strong>2. 模型参数规模</strong>：大参数模型在复杂任务中的<strong>推理与生成能力</strong>较强，但并非所有应用场景都需要高精度模型。小参数模型（如 7B）在满足简单逻辑任务时，具备更优的<strong>响应速度、成本控制和资源利用</strong>效率。因此，模型规模应依据应用复杂性及算力预算进行合理匹配。</p>
+<p><strong>3. 国内与国外部署</strong>：模型选择还需考虑部署环境。如果应用主要在国内进行，虽然调用国外大模型的接口是可行的，但可能会遇到<strong>稳定性、网络延迟</strong>、注册认证、充值付费等方面的实际问题。此外，数据合规性是重要考量，尤其对于需要遵循国内<strong>隐私和数据安全</strong>法规的场景，选择国内大模型或本地化部署更为合适。综上所述，模型的选择应结合 RAG 应用场景的需求和限制，更好地选择合适的大模型以最大化其效果。</p>
 <p>选择建议：</p>
-<ol>
-<li><strong>闭源模型</strong>: 通义千问、文心一言、混元大模型、豆包大模型和 Kimi Chat 等旗舰模型实际差异不大，<strong>取决于成本</strong>。</li>
-<li><strong>开源模型</strong>: 根据需求可以在<strong>千问系列，deepseek系列，百川系列，GLM系列</strong>这几个中选择。</li>
-</ol>
+<p><strong>1. 闭源模型</strong>: 通义千问、文心一言、混元大模型、豆包大模型和 Kimi Chat 等旗舰模型实际差异不大，<strong>取决于成本</strong>。</p>
+<p><strong>2. 开源模型</strong>: 根据需求可以在<strong>千问系列，deepseek系列，百川系列，GLM系列</strong>这几个中选择。</p>
 <p><strong>参考</strong>：<a target="_blank" rel="noopener" href="https://www.cluebenchmarks.com/superclue_2503"><strong>中文大模型基准评测2025年3月报告</strong></a></p>
 
     </div>
@@ -493,7 +487,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">56 分钟</span>
+    <span title="站点阅读时长">57 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

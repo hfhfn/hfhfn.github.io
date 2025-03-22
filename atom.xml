@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-22T12:39:24.482Z</updated>
+  <updated>2025-03-22T12:46:10.395Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,16 +21,14 @@
     <link href="http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9/"/>
     <id>http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9/</id>
     <published>2025-03-22T09:31:00.000Z</published>
-    <updated>2025-03-22T12:39:24.482Z</updated>
+    <updated>2025-03-22T12:46:10.395Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;RAG的生成流程&quot;&gt;RAG的生成流程&lt;/h4&gt;
 &lt;p&gt;生成流程中，首先需要&lt;strong&gt;组合指令&lt;/strong&gt;，指令将&lt;strong&gt;携带查询问题及检索到的相关信息&lt;/strong&gt;输入到大模型中，由&lt;strong&gt;大模型理解并生成最终的回复&lt;/strong&gt;，从而完成整个应用过程。&lt;/p&gt;
 &lt;p&gt;在这个过程中，有两个环节直接影响RAG系统的生成效果：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;大模型的选择&lt;/strong&gt;：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;提示词工程&lt;/strong&gt;：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。&lt;/li&gt;
-&lt;/ol&gt;</summary>
+&lt;p&gt;&lt;strong&gt;1. 大模型的选择&lt;/strong&gt;：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 提示词工程&lt;/strong&gt;：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。&lt;/p&gt;</summary>
     
     
     
@@ -194,11 +192,11 @@
     
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
+    <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
     <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
-    
-    <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
