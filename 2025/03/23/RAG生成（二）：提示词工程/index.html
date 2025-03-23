@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104447095.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104703182.png">
 <meta property="article:published_time" content="2025-03-22T23:34:00.000Z">
-<meta property="article:modified_time" content="2025-03-23T02:54:21.312Z">
+<meta property="article:modified_time" content="2025-03-23T03:05:08.080Z">
 <meta property="article:author" content="AI模型研究所">
 <meta property="article:tag" content="RAG">
 <meta property="article:tag" content="生成">
@@ -290,7 +290,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-23 07:34:00 / 修改时间：10:54:21" itemprop="dateCreated datePublished" datetime="2025-03-23T07:34:00+08:00">2025-03-23</time>
+      <time title="创建时间：2025-03-23 07:34:00 / 修改时间：11:05:08" itemprop="dateCreated datePublished" datetime="2025-03-23T07:34:00+08:00">2025-03-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -347,54 +347,38 @@
 <p>提示词工程<strong>核心理念</strong>是，通过提供更优质的输入，可以让生成式 AI 模型（如大型语言模型）生成更符合需求的结果，也就是<strong>让模型能够更好地执行各种任务</strong> ，包括生成创作，生成代码，聊天互动等。</p>
 <span id="more"></span>
 <h4 id="一个通用的提示词通常包含以下几个元素：">一个通用的提示词通常包含以下几个元素：</h4>
-<ol>
-<li><strong>指令（Instruction）：<strong>指明模型要</strong>执行的特定任务或操作</strong>。</li>
-<li><strong>上下文（Context）：<strong>为模型提供</strong>额外信息或背景</strong>，可以帮助引导模型生成更准确的响应。</li>
-<li>**输入数据（Input Data）：**我们希望模型回答的问题或感兴趣的输入内容。</li>
-<li><strong>输出指示符（Output Indicator）：<strong>指定模型的</strong>输出类型或格式</strong>，例如格式、是否要求生成代码、总结文本或回答具体问题。</li>
-</ol>
+<p><strong>1. 指令（Instruction）：<strong>指明模型要</strong>执行的特定任务或操作</strong>。</p>
+<p><strong>2. 上下文（Context）：<strong>为模型提供</strong>额外信息或背景</strong>，可以帮助引导模型生成更准确的响应。</p>
+<p><strong>3. 输入数据（Input Data）：</strong> 我们希望模型回答的问题或感兴趣的输入内容。</p>
+<p><strong>4. 输出指示符（Output Indicator）：<strong>指定模型的</strong>输出类型或格式</strong>，例如格式、是否要求生成代码、总结文本或回答具体问题。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323075425612.png" alt="image-20250323075425612"></p>
 <p>提示词工程不仅仅是设计提示，而是<strong>通过深刻理解模型的功能和局限性</strong>，创造能够与模型输入产生最佳互动的提示，这其中包含了一系列的技巧。</p>
 <h4 id="RAG中提示词工程的技巧">RAG中提示词工程的技巧</h4>
 <p>这些技巧就是解决RAG中的问题，如缺失内容，格式错误，缺乏细节，回答不全面等采取的具体措施, 也是对评测指标答案及时性、信息整合能力、拒答能力、检错和纠错能力所做的针对设计。</p>
-<ol>
-<li>
-<p><strong>具体指令法</strong> （优化指令）</p>
+<p><strong>1. 具体指令法</strong> （优化指令）</p>
 <p>指定回答预期，防止内容缺失，回答不全面：</p>
 <p>清晰的指令可以让模型输出：更<strong>明确的任务目标和更符合预期</strong>的内容。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">请根据上传的银行业报告，简洁总结当前的市场趋势，重点分析政策变化对行业的影响，输出为以下Markdown格式：</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**市场趋势**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**政策影响**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**竞争风险**</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>解释理由法</strong> （优化指令, 强调指令的原因）</p>
+<p><strong>2 . 解释理由法</strong> （优化指令, 强调指令的原因）</p>
 <p>提升模型对任务特定规则或背景的理解能力：</p>
 <p>在编写提示时，向模型解释为什么某些任务需要特定的处理方式。这样可以帮助模型更好地理解任务背景，从而提高输出的质量和相关性。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请生成一份简明扼要的银行业报告摘要，不要逐字重复段落内容。原因：读者可以访问完整文档，如果需要可以详细阅读全文。</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>任务角色设定</strong> (优化上下文，指定模型身份、立场和责任)</p>
+<p><strong>3. 任务角色设定</strong> (优化上下文，指定模型身份、立场和责任)</p>
 <p>提升模型专业领域回答能力：</p>
 <p>通过为模型设定特定的角色身份，可以帮助模型更好地理解任务要求和角色责任，从而输出更加一致、专业的内容。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">你的角色: 知识库专家</span><br><span class="line"><span class="bullet">-</span> 背景：分析银行业市场数据</span><br><span class="line"><span class="bullet">-</span> 目标：生成一份详细的行业趋势分析</span><br><span class="line"><span class="bullet">-</span> 限制：仅根据报告中的数据生成分析</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>文档基础说明</strong> （优化上下文，对输入数据提供背景和来源信息）</p>
+<p><strong>4. 文档基础说明</strong> （优化上下文，对输入数据提供背景和来源信息）</p>
 <p>奠定模型任务推理的基调：</p>
 <p>为模型提供文档的背景信息和文本来源可以帮助奠定任务基础，让模型更好地进行任务推理和回答。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以下是关于银行业政策变化的相关规则，它们将用于回答有关政策对银行业影响的问题。</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>示例学习</strong> （优化输出指示符）</p>
+<p><strong>5. 示例学习</strong> （优化输出指示符）</p>
 <p>优化回答细节以及格式：</p>
 <p>通过给模型提供多个<strong>参考示例</strong>，模型可以基于这些示例进行模式识别，进而<strong>模仿、思考并生成类似的答案</strong>。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">以下是两个关于银行业的分析示例，请按照这种格式对新的报告进行分析：</span><br><span class="line"><span class="bullet">-</span> 示例 1：<span class="strong">**市场趋势**</span>：由于政策放宽，银行贷款增长迅速。</span><br><span class="line"><span class="bullet">-</span> 示例 2：<span class="strong">**政策影响**</span>：新的利率政策可能会对中小企业贷款产生负面影响。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">请对下面报告进行同样的分析。</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>默认回复策略</strong> （放在指令，上下文或者输出指示符部分都可以，旨在强调基于文档回答）</p>
+<p><strong>6. 默认回复策略</strong> （放在指令，上下文或者输出指示符部分都可以，旨在强调基于文档回答）</p>
 <p>提升模型的拒答能力：</p>
 <p>当模型无法从文档中获取足够信息时，通过设定默认回复策略，避免模型产生“幻觉”，即生成虚假的答案。这可以确保模型仅基于文档中的事实进行回答。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果文档中没有足够的事实回答问题，请返回&#123;无法从文档中获得相关内容&#125;，而不是进行推测。</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
 <p>通过以上提示工程技巧，RAG 任务的输出质量可以高效、低成本地提升，解决常见生成问题。</p>
 <h4 id="写在最后：">写在最后：</h4>
 <p>在提示工程中，过于具体的指令可能会限制模型的创造性，过于宽泛的提示则可能导致生成偏差。</p>
@@ -404,7 +388,7 @@
 <p><strong>突破路径：</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104703182.png" alt="image-20250323104703182"></p>
 <p>提示词参考阅读：</p>
-<p>[DeepSeek：从入门到精通（点开是百度网盘链接，放在书籍&amp;手册目录下）](链接:<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq">https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq</a> 提取码:cghq 复制这段内容后打开百度网盘手机App，操作更方便哦)</p>
+<p>[DeepSeek：从入门到精通（点开是百度网盘链接，放在书籍&amp;手册目录下）](<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq">https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq</a> 提取码:cghq)</p>
 
     </div>
 
