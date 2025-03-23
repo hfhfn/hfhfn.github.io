@@ -305,6 +305,105 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
+    <title>RAG检索流程（一）：混合检索</title>
+    <url>/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/</url>
+    <content><![CDATA[<h3 id="为什么需要混合检索？">为什么需要混合检索？</h3>
+<p>我们本节课正式开始讲解 <strong>RAG 检索流程</strong>。当前主流的 RAG 检索方式主要采用<strong>向量检索（Vector Search）</strong>，通过语义相似度来匹配文本切块。这种方法在我们之前的课程中已经深入探讨过了。然而，向量检索并非万能，它在某些场景下无法替代<strong>传统关键词检索</strong>的优势。</p>
+<p>例如，当你需要精准搜索某个订单 ID、品牌名称或地址，或者搜索特定人物或物品的名字（如伊隆·马斯克、iPhone 15）时，<strong>向量检索的<mark>准确性</mark>往往不如关键词检索</strong>。此外，当用户输入的<strong>问题非常简短</strong>，仅包含几个单词时，比如搜索缩写词或短语（如 RAG、LLM），<strong>语义匹配的效果也可能不尽理想</strong>。</p>
+<p>这些正是传统关键词检索的优势所在。关键词检索（Keyword Search）在几个场景中表现尤为出色：<strong>精确匹配</strong>，如产品名称、姓名、产品编号；少量字符的匹配，用户习惯于输入几个关键词，而少量字符进行向量检索时效果可能较差；以及<strong>低频词汇的匹配</strong>，低频词汇往往承载了关键意义，如在“你想跟我去喝咖啡吗？”这句话中，“喝”“咖啡”比“你”“吗”更具重要性。</p>
+<span id="more"></span>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312122858648.png" alt="image-20250312122858648"></p>
+<p>在上述案例中，虽然依靠<strong>关键词检索可以精确找到与“订单 12345”匹配的特定信息</strong>，<strong>但它无法提供与订单相关的更广泛上下文</strong>。另一方面，<strong>语义匹配</strong>虽然能够识别“订单”和“配送”等相关概念，但在处理具体的订单 ID 时，往往容易出错。</p>
+<p><strong><mark>混合检索（Hybrid Search）通过结合关键词检索和语义匹配的优势</mark></strong>，可以首先利用关键词检索精确定位到“订单 12345”的信息，然后通过语义匹配扩展与该订单相关的其他上下文或客户操作的信息，例如“12 开头的订单、包装破损严重”等。这样不仅能够获取精确的订单详情，还能获得与之相关的额外有用信息。</p>
+<p>在 RAG 检索场景中，<strong>首要目标是确保最相关的结果能够出现在候选列表中</strong>。向量检索和关键词检索各有其独特优势，混合检索通过结合这多种检索技术，弥补了各自的不足，提供了一种更加全面的搜索方案。</p>
+<h3 id="混合检索（多路召回）">混合检索（多路召回）</h3>
+<p>混合检索是指在检索过程中同时采用多种检索方式，并将各类检索结果进行融合，从而得到最终的检索结果。<strong>混合检索的优势在于能够充分利用不同检索方式的优点，弥补各自的不足，从而提升检索的准确性和效率</strong>。下图展示了混合检索的流程：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312133821822.png" alt="image-20250312133821822"></p>
+<p>混合检索实际上并没有严格限定必须包含哪几种检索方式。这里我们以<strong>向量检索</strong>和<strong>关键词检索</strong>的组合为例，但实际上可以包含多种检索方式的组合。如果我们将其他搜索算法结合在一起，也同样可以称为“混合检索”。例如，可以将**知识图谱（graphRAG）**技术用于检索实体关系，并与向量检索技术相结合。</p>
+<p>更多的 RAG 检索方式还包括多重提问检索、上下文压缩检索、集成检索、多向量检索、自查询检索等，每种检索方式说明如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312134208626.png" alt="image-20250312134208626"></p>
+<p>上述方法均包含在 LangChain 的检索器模块 <strong>langchain.retrievers</strong> 中，具体详情可以查看 <a href="https://python.langchain.com/api_reference/langchain/retrievers.html">LangChain 检索器站点</a>。</p>
+<p>混合检索后，我们需要对多个检索方式的检索结果进行综合排名。下节课会详细讲解重排序技术，这里我们简单了解一种更简单的方法来排序，称为<strong>递归折减融合（Reciprocal Rank Fusion, RRF）排序</strong>。RRF 是一种把来自不同检索方法的排名结果结合起来的技巧。它的基本思想是，如果一个文档在不同的检索结果中都排得比较靠前，那么它在综合排名中就应该得到更高的位置。</p>
+<p>相比于复杂的重排序技术，RRF 的操作更加简单，不需要对每种检索结果进行复杂的调整或计算。它通过直接考虑文档在不同方法中的排名，快速生成一个合理的综合排名。这种方法非常适合那些需要快速融合多个检索结果的场景，短时间内得到一个有参考价值的排序。</p>
+<p>选择何种检索技术，取决于开发者需要解决什么样的问题，系统的性能要求、数据的复杂性以及用户的搜索习惯等。针对具体需求选择合适的检索技术，能够最大化地提升 RAG 系统的效率和准确性。</p>
+<h3 id="混合检索技术实战">混合检索技术实战</h3>
+<p>在实战中，我们使用 <strong>rank_bm25</strong> 作为 RAG 项目的关键词搜索技术。BM25 是一种强大的关键词搜索算法，通过分析词频（TF）和逆向文档频率（IDF）来评估文档与查询的相关性。具体来说，BM25 检查查询词在文档中的出现频率，以及该词在所有文档中出现的稀有程度。<strong>如果一个词在特定文档中频繁出现，但在其他文档中较少见，那么 BM25 会将该文档评为高度相关。</strong></p>
+<p>此外，BM25 还通过调整文档长度的影响，防止因文档长度不同而导致的词频偏差。正是这种结合了词频和文档长度平衡的机制，使得 BM25 在关键词搜索中能够提供精准的检索结果，在 RAG 项目中尤为有效。</p>
+<p>需要安装的依赖库：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install -U pip jieba rank_bm25 chromadb langchain langchain_community sentence-transformers unstructured pdfplumber python-docx python-pptx markdown openpyxl pandas -i https://pypi.tuna.tsinghua.edu.cn/simple </span><br></pre></td></tr></table></figure>
+<p>代码内容：</p>
+<ol>
+<li>引入了 rank_bm25 库中的 <strong>BM25Okapi</strong> 类，用于实现 BM25 算法的检索功能。</li>
+<li>引入了 <strong>jieba</strong> 库，用于对中文文本进行分词处理，这对于 BM25 算法处理中文文本起关键作用。</li>
+<li>在 <strong>retrieval_process</strong> 方法中，从 Chroma 的 collection 中提取所有存储的文档内容，并使用 jieba 对这些文档进行中文分词，将分词结果存储为 <strong>tokenized_corpus</strong>，为后续的 BM25 检索做准备。</li>
+<li>利用分词后的文档集合实例化 BM25Okapi 对象，并对查询语句进行分词处理。</li>
+<li>计算查询语句与每个文档之间的 BM25 相关性得分 (bm25_scores)，然后选择得分最高的前 top_k 个文档，并提取这些文档的内容。</li>
+<li>返回合并后的全部检索结果，包含向量检索和 BM25 检索的结果。（下节内容会引入重排序，这里只做简单顺序合并）</li>
+</ol>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>检索</category>
+        <category>混合检索</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>检索</tag>
+        <tag>混合检索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RAG生成（一）：大模型的选择</title>
+    <url>/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9/</url>
+    <content><![CDATA[<h4 id="RAG的生成流程">RAG的生成流程</h4>
+<p>生成流程中，首先需要<strong>组合指令</strong>，指令将<strong>携带查询问题及检索到的相关信息</strong>输入到大模型中，由<strong>大模型理解并生成最终的回复</strong>，从而完成整个应用过程。</p>
+<p>在这个过程中，有两个环节直接影响RAG系统的生成效果：</p>
+<p><strong>1. 大模型的选择</strong>：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。</p>
+<p><strong>2. 提示词工程</strong>：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。</p>
+<span id="more"></span>
+<h4 id="大模型的发展">大模型的发展</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322185744991.png" alt="image-20250322185744991"></p>
+<p><strong>SuperCLUE</strong> 组织发布的<strong>中文大模型全景图</strong>，展示了 2025 年值得关注的中文大模型，从<strong>文本、多模态、行业</strong>三个层面进行了详细分类，各领域的大模型应用层出不穷。<strong>RAG 中目前更关注通用大模型</strong>，比如<strong>闭源的文心一言、通义千问、腾讯混元、字节豆包</strong>、Kimi Chat 等都是可选择的大模型组件，如果需要<strong>私有化部署，Deepseek、Qwen 系列、GLM 系列</strong>、Baichuan 系列都在可考虑范围。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322190256861.png" alt="image-20250322190256861"></p>
+<p>更多包含机构和学术背景且具有明确来源的大模型信息，可以访问实时更新的 <a href="https://github.com/wgwang/awesome-LLMs-In-China"><strong>中国大模型列表</strong></a> 全面记录中国大模型的发展动态。</p>
+<h4 id="大模型原理">大模型原理</h4>
+<p>一切始于 Google 在 2017 年发表的论文 <strong>《Attention Is All You Need》</strong>，引入了 <strong>Transformer</strong> 模型，它是深度学习领域的一个突破性架构，大型语言模型的成功得益于对 Transformer 模型的应用。</p>
+<p>与传统的循环神经网络（RNN）相比，Transformer 模型<strong>不依赖于序列顺序</strong>，而是通过自注意力（Self-Attention）机制来捕捉序列中各元素之间的关系。Transformer 由多个堆叠的编码层（Encoder）和解码层（Decoder）组成，每一层包括自注意力层、前馈层和归一化层。这些层协同工作，逐步捕捉输入数据信息特征，从而<strong>预测输出</strong>，实现强大的语言理解和生成能力。</p>
+<p>Transformer 模型的<strong>核心创新在于位置编码和自注意力机制</strong>。位置编码帮助模型理解输入数据的顺序信息，而自注意力机制则允许模型根据输入的全局上下文，为每个词元分配不同的注意力权重，从而更准确地理解词与词之间的关联性。这种机制使得 Transformer 特别适用于语言模型，因为语言模型需要精确捕捉上下文中的细微差别，生成符合语义逻辑的文本。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322175522327.png" alt="image-20250322175522327"></p>
+<p>上图展示了 Transformer 模型的架构及其核心机制的可视化示例。左图中，Transformer 模型由编码器和解码器两部分组成。编码器负责理解输入信息的顺序和语义，解码器则输出概率最高的词元。</p>
+<p>右上图中的示例显示了输入句子中的填空任务，解码器依据输入句子的特征和已生成的部分句子，生成了“She”作为模型的预测结果。生成“She”的核心原因在于右下图所示的注意力机制，其中需要填空的部分对输入句子中的词元“The Doctor”和“Nurse”分配了较高的注意力权重，从而提高了“She”作为输出词元的生成概率。</p>
+<p><strong>大语言模型的突破</strong>始于 2022 年年底 OpenAI 发布的 <strong>ChatGPT。其核心优势体现在庞大的参数规模（数百亿甚至数千亿）、基于 PB 级别数据的训练所带来的卓越语言理解与生成能力，以及其显著的涌现能力。</strong>  大语言模型不仅在传统的自然语言处理任务中展现了卓越表现，还具备了解决复杂问题和进行逻辑推理等高级认知能力。</p>
+<h4 id="RAG中大模型的选择">RAG中大模型的选择</h4>
+<p>在如今大模型层出不穷的情况下，如何在 RAG 应用场景中选择合适的模型呢？我们面对的是<strong>开源与闭源</strong>的选择、<strong>大参数与小参数</strong>的对比，成本的考虑以及<strong>云端与私有化部署</strong>的抉择。针对这些问题，我们需要结合测评和具体的应用场景进行综合考量。</p>
+<p>从测评角度来看，前面已经介绍了<a href="https://www.cluebenchmarks.com/static/superclue.html"><strong>中文通用大模型的综合性测评基准 SuperCLUE</strong></a>，它对中文场景中的多个任务分支进行测试，涵盖基础能力、专业能力以及中文特性多个方面。每个任务分支又包含多个维度，例如语义理解、生成与创作、代数、生物、成语、诗词等。下图展示了这些维度的具体内容，SuperCLUE 每月都会更新测评结果，确保其反映大模型的最新表现。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322180251002.png" alt="image-20250322180251002"></p>
+<p>尤其需要关注的是 <a href="https://www.superclueai.com/"><strong>SuperCLUE-RAG 检索增强生成测评</strong></a>，在 RAG 场景中，大模型的检索能力表现是核心。SuperCLUE 针对 RAG 应用场景进行了独立测试，具体评估了大模型在检索和生成过程中的表现，测试数据如下图所示（最新为2024 年 11月数据）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322181526225.png" alt="image-20250322181526225"></p>
+<p>在 SuperCLUE 官网的 SuperCLUE-RAG 检索增强生成分支页面上，可以查看其总榜及四大基础任务的测评结果。选择模型时可以根据总分，以及模型在<strong>答案及时性、信息整合能力、拒答能力、检错和纠错能力</strong>等方面的表现，进行综合评估，作为场景选型参考。</p>
+<p>其次，也是最重要的，我们需要根据<strong>实际应用场景</strong>来考量并选择适合的大模型，以下几个维度是关键：</p>
+<p><strong>1. 开源与闭源</strong>：开源模型适用于<strong>数据敏感性</strong>高或有严格合规要求的场景，通过自托管实现对数据的完全掌控，确保<strong>隐私与安全</strong>。而闭源模型则适合数据敏感度较低的应用场景，其维护与服务相对完善，能够降低运维复杂度。</p>
+<p><strong>2. 模型参数规模</strong>：大参数模型在复杂任务中的<strong>推理与生成能力</strong>较强，但并非所有应用场景都需要高精度模型。小参数模型（如 7B）在满足简单逻辑任务时，具备更优的<strong>响应速度、成本控制和资源利用</strong>效率。因此，模型规模应依据应用复杂性及算力预算进行合理匹配。</p>
+<p><strong>3. 国内与国外部署</strong>：模型选择还需考虑部署环境。如果应用主要在国内进行，虽然调用国外大模型的接口是可行的，但可能会遇到<strong>稳定性、网络延迟</strong>、注册认证、充值付费等方面的实际问题。此外，数据合规性是重要考量，尤其对于需要遵循国内<strong>隐私和数据安全</strong>法规的场景，选择国内大模型或本地化部署更为合适。综上所述，模型的选择应结合 RAG 应用场景的需求和限制，更好地选择合适的大模型以最大化其效果。</p>
+<p>选择建议：</p>
+<p><strong>1. 闭源模型</strong>: 通义千问、文心一言、混元大模型、豆包大模型和 Kimi Chat 等旗舰模型实际差异不大，<strong>取决于成本</strong>。</p>
+<p><strong>2. 开源模型</strong>: 根据需求可以在<strong>千问系列，deepseek系列，百川系列，GLM系列</strong>这几个中选择。</p>
+<p><strong>参考</strong>：<a href="https://www.cluebenchmarks.com/superclue_2503"><strong>中文大模型基准评测2025年3月报告</strong></a></p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>生成</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>生成</tag>
+        <tag>大模型</tag>
+        <tag>提示词</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RAG向量数据库原理与常用向量库</title>
     <url>/2025/03/11/RAG%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%90%91%E9%87%8F%E5%BA%93/</url>
     <content><![CDATA[<h3 id="在前面的课程中，我们已经学习了-RAG-检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。">在前面的课程中，我们已经学习了 RAG 检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。</h3>
@@ -416,58 +515,9 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </categories>
       <tags>
         <tag>RAG</tag>
+        <tag>检索</tag>
         <tag>向量数据库</tag>
-        <tag>检索</tag>
         <tag>索引</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG检索流程（一）：混合检索</title>
-    <url>/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/</url>
-    <content><![CDATA[<h3 id="为什么需要混合检索？">为什么需要混合检索？</h3>
-<p>我们本节课正式开始讲解 <strong>RAG 检索流程</strong>。当前主流的 RAG 检索方式主要采用<strong>向量检索（Vector Search）</strong>，通过语义相似度来匹配文本切块。这种方法在我们之前的课程中已经深入探讨过了。然而，向量检索并非万能，它在某些场景下无法替代<strong>传统关键词检索</strong>的优势。</p>
-<p>例如，当你需要精准搜索某个订单 ID、品牌名称或地址，或者搜索特定人物或物品的名字（如伊隆·马斯克、iPhone 15）时，<strong>向量检索的<mark>准确性</mark>往往不如关键词检索</strong>。此外，当用户输入的<strong>问题非常简短</strong>，仅包含几个单词时，比如搜索缩写词或短语（如 RAG、LLM），<strong>语义匹配的效果也可能不尽理想</strong>。</p>
-<p>这些正是传统关键词检索的优势所在。关键词检索（Keyword Search）在几个场景中表现尤为出色：<strong>精确匹配</strong>，如产品名称、姓名、产品编号；少量字符的匹配，用户习惯于输入几个关键词，而少量字符进行向量检索时效果可能较差；以及<strong>低频词汇的匹配</strong>，低频词汇往往承载了关键意义，如在“你想跟我去喝咖啡吗？”这句话中，“喝”“咖啡”比“你”“吗”更具重要性。</p>
-<span id="more"></span>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312122858648.png" alt="image-20250312122858648"></p>
-<p>在上述案例中，虽然依靠<strong>关键词检索可以精确找到与“订单 12345”匹配的特定信息</strong>，<strong>但它无法提供与订单相关的更广泛上下文</strong>。另一方面，<strong>语义匹配</strong>虽然能够识别“订单”和“配送”等相关概念，但在处理具体的订单 ID 时，往往容易出错。</p>
-<p><strong><mark>混合检索（Hybrid Search）通过结合关键词检索和语义匹配的优势</mark></strong>，可以首先利用关键词检索精确定位到“订单 12345”的信息，然后通过语义匹配扩展与该订单相关的其他上下文或客户操作的信息，例如“12 开头的订单、包装破损严重”等。这样不仅能够获取精确的订单详情，还能获得与之相关的额外有用信息。</p>
-<p>在 RAG 检索场景中，<strong>首要目标是确保最相关的结果能够出现在候选列表中</strong>。向量检索和关键词检索各有其独特优势，混合检索通过结合这多种检索技术，弥补了各自的不足，提供了一种更加全面的搜索方案。</p>
-<h3 id="混合检索（多路召回）">混合检索（多路召回）</h3>
-<p>混合检索是指在检索过程中同时采用多种检索方式，并将各类检索结果进行融合，从而得到最终的检索结果。<strong>混合检索的优势在于能够充分利用不同检索方式的优点，弥补各自的不足，从而提升检索的准确性和效率</strong>。下图展示了混合检索的流程：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312133821822.png" alt="image-20250312133821822"></p>
-<p>混合检索实际上并没有严格限定必须包含哪几种检索方式。这里我们以<strong>向量检索</strong>和<strong>关键词检索</strong>的组合为例，但实际上可以包含多种检索方式的组合。如果我们将其他搜索算法结合在一起，也同样可以称为“混合检索”。例如，可以将**知识图谱（graphRAG）**技术用于检索实体关系，并与向量检索技术相结合。</p>
-<p>更多的 RAG 检索方式还包括多重提问检索、上下文压缩检索、集成检索、多向量检索、自查询检索等，每种检索方式说明如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312134208626.png" alt="image-20250312134208626"></p>
-<p>上述方法均包含在 LangChain 的检索器模块 <strong>langchain.retrievers</strong> 中，具体详情可以查看 <a href="https://python.langchain.com/api_reference/langchain/retrievers.html">LangChain 检索器站点</a>。</p>
-<p>混合检索后，我们需要对多个检索方式的检索结果进行综合排名。下节课会详细讲解重排序技术，这里我们简单了解一种更简单的方法来排序，称为<strong>递归折减融合（Reciprocal Rank Fusion, RRF）排序</strong>。RRF 是一种把来自不同检索方法的排名结果结合起来的技巧。它的基本思想是，如果一个文档在不同的检索结果中都排得比较靠前，那么它在综合排名中就应该得到更高的位置。</p>
-<p>相比于复杂的重排序技术，RRF 的操作更加简单，不需要对每种检索结果进行复杂的调整或计算。它通过直接考虑文档在不同方法中的排名，快速生成一个合理的综合排名。这种方法非常适合那些需要快速融合多个检索结果的场景，短时间内得到一个有参考价值的排序。</p>
-<p>选择何种检索技术，取决于开发者需要解决什么样的问题，系统的性能要求、数据的复杂性以及用户的搜索习惯等。针对具体需求选择合适的检索技术，能够最大化地提升 RAG 系统的效率和准确性。</p>
-<h3 id="混合检索技术实战">混合检索技术实战</h3>
-<p>在实战中，我们使用 <strong>rank_bm25</strong> 作为 RAG 项目的关键词搜索技术。BM25 是一种强大的关键词搜索算法，通过分析词频（TF）和逆向文档频率（IDF）来评估文档与查询的相关性。具体来说，BM25 检查查询词在文档中的出现频率，以及该词在所有文档中出现的稀有程度。<strong>如果一个词在特定文档中频繁出现，但在其他文档中较少见，那么 BM25 会将该文档评为高度相关。</strong></p>
-<p>此外，BM25 还通过调整文档长度的影响，防止因文档长度不同而导致的词频偏差。正是这种结合了词频和文档长度平衡的机制，使得 BM25 在关键词搜索中能够提供精准的检索结果，在 RAG 项目中尤为有效。</p>
-<p>需要安装的依赖库：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install -U pip jieba rank_bm25 chromadb langchain langchain_community sentence-transformers unstructured pdfplumber python-docx python-pptx markdown openpyxl pandas -i https://pypi.tuna.tsinghua.edu.cn/simple </span><br></pre></td></tr></table></figure>
-<p>代码内容：</p>
-<ol>
-<li>引入了 rank_bm25 库中的 <strong>BM25Okapi</strong> 类，用于实现 BM25 算法的检索功能。</li>
-<li>引入了 <strong>jieba</strong> 库，用于对中文文本进行分词处理，这对于 BM25 算法处理中文文本起关键作用。</li>
-<li>在 <strong>retrieval_process</strong> 方法中，从 Chroma 的 collection 中提取所有存储的文档内容，并使用 jieba 对这些文档进行中文分词，将分词结果存储为 <strong>tokenized_corpus</strong>，为后续的 BM25 检索做准备。</li>
-<li>利用分词后的文档集合实例化 BM25Okapi 对象，并对查询语句进行分词处理。</li>
-<li>计算查询语句与每个文档之间的 BM25 相关性得分 (bm25_scores)，然后选择得分最高的前 top_k 个文档，并提取这些文档的内容。</li>
-<li>返回合并后的全部检索结果，包含向量检索和 BM25 检索的结果。（下节内容会引入重排序，这里只做简单顺序合并）</li>
-</ol>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>检索</category>
-        <category>混合检索</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>检索</tag>
-        <tag>混合检索</tag>
       </tags>
   </entry>
   <entry>
@@ -527,42 +577,72 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>RAG生成（一）：大模型的选择</title>
-    <url>/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9/</url>
-    <content><![CDATA[<h4 id="RAG的生成流程">RAG的生成流程</h4>
-<p>生成流程中，首先需要<strong>组合指令</strong>，指令将<strong>携带查询问题及检索到的相关信息</strong>输入到大模型中，由<strong>大模型理解并生成最终的回复</strong>，从而完成整个应用过程。</p>
-<p>在这个过程中，有两个环节直接影响RAG系统的生成效果：</p>
-<p><strong>1. 大模型的选择</strong>：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。</p>
-<p><strong>2. 提示词工程</strong>：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。</p>
+    <title>RAG生成（二）：提示词工程</title>
+    <url>/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<h4 id="提示词概述">提示词概述</h4>
+<p><strong>提示词工程（Prompt Engineering）</strong>，旨在通过开发和优化提示来有效利用语言模型的潜力。</p>
+<p>提示词工程是为生成式 AI 模型<strong>设计输入</strong>以获取最佳输出的实践。 <strong>这些输入被称为提示词（Prompt）</strong> 。</p>
+<p>提示词工程<strong>核心理念</strong>是，通过提供更优质的输入，可以让生成式 AI 模型（如大型语言模型）生成更符合需求的结果，也就是<strong>让模型能够更好地执行各种任务</strong> ，包括生成创作，生成代码，聊天互动等。</p>
 <span id="more"></span>
-<h4 id="大模型的发展">大模型的发展</h4>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322185744991.png" alt="image-20250322185744991"></p>
-<p><strong>SuperCLUE</strong> 组织发布的<strong>中文大模型全景图</strong>，展示了 2025 年值得关注的中文大模型，从<strong>文本、多模态、行业</strong>三个层面进行了详细分类，各领域的大模型应用层出不穷。<strong>RAG 中目前更关注通用大模型</strong>，比如<strong>闭源的文心一言、通义千问、腾讯混元、字节豆包</strong>、Kimi Chat 等都是可选择的大模型组件，如果需要<strong>私有化部署，Deepseek、Qwen 系列、GLM 系列</strong>、Baichuan 系列都在可考虑范围。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322190256861.png" alt="image-20250322190256861"></p>
-<p>更多包含机构和学术背景且具有明确来源的大模型信息，可以访问实时更新的 <a href="https://github.com/wgwang/awesome-LLMs-In-China"><strong>中国大模型列表</strong></a> 全面记录中国大模型的发展动态。</p>
-<h4 id="大模型原理">大模型原理</h4>
-<p>一切始于 Google 在 2017 年发表的论文 <strong>《Attention Is All You Need》</strong>，引入了 <strong>Transformer</strong> 模型，它是深度学习领域的一个突破性架构，大型语言模型的成功得益于对 Transformer 模型的应用。</p>
-<p>与传统的循环神经网络（RNN）相比，Transformer 模型<strong>不依赖于序列顺序</strong>，而是通过自注意力（Self-Attention）机制来捕捉序列中各元素之间的关系。Transformer 由多个堆叠的编码层（Encoder）和解码层（Decoder）组成，每一层包括自注意力层、前馈层和归一化层。这些层协同工作，逐步捕捉输入数据信息特征，从而<strong>预测输出</strong>，实现强大的语言理解和生成能力。</p>
-<p>Transformer 模型的<strong>核心创新在于位置编码和自注意力机制</strong>。位置编码帮助模型理解输入数据的顺序信息，而自注意力机制则允许模型根据输入的全局上下文，为每个词元分配不同的注意力权重，从而更准确地理解词与词之间的关联性。这种机制使得 Transformer 特别适用于语言模型，因为语言模型需要精确捕捉上下文中的细微差别，生成符合语义逻辑的文本。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322175522327.png" alt="image-20250322175522327"></p>
-<p>上图展示了 Transformer 模型的架构及其核心机制的可视化示例。左图中，Transformer 模型由编码器和解码器两部分组成。编码器负责理解输入信息的顺序和语义，解码器则输出概率最高的词元。</p>
-<p>右上图中的示例显示了输入句子中的填空任务，解码器依据输入句子的特征和已生成的部分句子，生成了“She”作为模型的预测结果。生成“She”的核心原因在于右下图所示的注意力机制，其中需要填空的部分对输入句子中的词元“The Doctor”和“Nurse”分配了较高的注意力权重，从而提高了“She”作为输出词元的生成概率。</p>
-<p><strong>大语言模型的突破</strong>始于 2022 年年底 OpenAI 发布的 <strong>ChatGPT。其核心优势体现在庞大的参数规模（数百亿甚至数千亿）、基于 PB 级别数据的训练所带来的卓越语言理解与生成能力，以及其显著的涌现能力。</strong>  大语言模型不仅在传统的自然语言处理任务中展现了卓越表现，还具备了解决复杂问题和进行逻辑推理等高级认知能力。</p>
-<h4 id="RAG中大模型的选择">RAG中大模型的选择</h4>
-<p>在如今大模型层出不穷的情况下，如何在 RAG 应用场景中选择合适的模型呢？我们面对的是<strong>开源与闭源</strong>的选择、<strong>大参数与小参数</strong>的对比，成本的考虑以及<strong>云端与私有化部署</strong>的抉择。针对这些问题，我们需要结合测评和具体的应用场景进行综合考量。</p>
-<p>从测评角度来看，前面已经介绍了<a href="https://www.cluebenchmarks.com/static/superclue.html"><strong>中文通用大模型的综合性测评基准 SuperCLUE</strong></a>，它对中文场景中的多个任务分支进行测试，涵盖基础能力、专业能力以及中文特性多个方面。每个任务分支又包含多个维度，例如语义理解、生成与创作、代数、生物、成语、诗词等。下图展示了这些维度的具体内容，SuperCLUE 每月都会更新测评结果，确保其反映大模型的最新表现。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322180251002.png" alt="image-20250322180251002"></p>
-<p>尤其需要关注的是 <a href="https://www.superclueai.com/"><strong>SuperCLUE-RAG 检索增强生成测评</strong></a>，在 RAG 场景中，大模型的检索能力表现是核心。SuperCLUE 针对 RAG 应用场景进行了独立测试，具体评估了大模型在检索和生成过程中的表现，测试数据如下图所示（最新为2024 年 11月数据）。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322181526225.png" alt="image-20250322181526225"></p>
-<p>在 SuperCLUE 官网的 SuperCLUE-RAG 检索增强生成分支页面上，可以查看其总榜及四大基础任务的测评结果。选择模型时可以根据总分，以及模型在<strong>答案及时性、信息整合能力、拒答能力、检错和纠错能力</strong>等方面的表现，进行综合评估，作为场景选型参考。</p>
-<p>其次，也是最重要的，我们需要根据<strong>实际应用场景</strong>来考量并选择适合的大模型，以下几个维度是关键：</p>
-<p><strong>1. 开源与闭源</strong>：开源模型适用于<strong>数据敏感性</strong>高或有严格合规要求的场景，通过自托管实现对数据的完全掌控，确保<strong>隐私与安全</strong>。而闭源模型则适合数据敏感度较低的应用场景，其维护与服务相对完善，能够降低运维复杂度。</p>
-<p><strong>2. 模型参数规模</strong>：大参数模型在复杂任务中的<strong>推理与生成能力</strong>较强，但并非所有应用场景都需要高精度模型。小参数模型（如 7B）在满足简单逻辑任务时，具备更优的<strong>响应速度、成本控制和资源利用</strong>效率。因此，模型规模应依据应用复杂性及算力预算进行合理匹配。</p>
-<p><strong>3. 国内与国外部署</strong>：模型选择还需考虑部署环境。如果应用主要在国内进行，虽然调用国外大模型的接口是可行的，但可能会遇到<strong>稳定性、网络延迟</strong>、注册认证、充值付费等方面的实际问题。此外，数据合规性是重要考量，尤其对于需要遵循国内<strong>隐私和数据安全</strong>法规的场景，选择国内大模型或本地化部署更为合适。综上所述，模型的选择应结合 RAG 应用场景的需求和限制，更好地选择合适的大模型以最大化其效果。</p>
-<p>选择建议：</p>
-<p><strong>1. 闭源模型</strong>: 通义千问、文心一言、混元大模型、豆包大模型和 Kimi Chat 等旗舰模型实际差异不大，<strong>取决于成本</strong>。</p>
-<p><strong>2. 开源模型</strong>: 根据需求可以在<strong>千问系列，deepseek系列，百川系列，GLM系列</strong>这几个中选择。</p>
-<p><strong>参考</strong>：<a href="https://www.cluebenchmarks.com/superclue_2503"><strong>中文大模型基准评测2025年3月报告</strong></a></p>
+<h4 id="一个通用的提示词通常包含以下几个元素：">一个通用的提示词通常包含以下几个元素：</h4>
+<ol>
+<li><strong>指令（Instruction）：<strong>指明模型要</strong>执行的特定任务或操作</strong>。</li>
+<li><strong>上下文（Context）：<strong>为模型提供</strong>额外信息或背景</strong>，可以帮助引导模型生成更准确的响应。</li>
+<li>**输入数据（Input Data）：**我们希望模型回答的问题或感兴趣的输入内容。</li>
+<li><strong>输出指示符（Output Indicator）：<strong>指定模型的</strong>输出类型或格式</strong>，例如格式、是否要求生成代码、总结文本或回答具体问题。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323075425612.png" alt="image-20250323075425612"></p>
+<p>提示词工程不仅仅是设计提示，而是<strong>通过深刻理解模型的功能和局限性</strong>，创造能够与模型输入产生最佳互动的提示，这其中包含了一系列的技巧。</p>
+<h4 id="RAG中提示词工程的技巧">RAG中提示词工程的技巧</h4>
+<p>这些技巧就是解决RAG中的问题，如缺失内容，格式错误，缺乏细节，回答不全面等采取的具体措施, 也是对评测指标答案及时性、信息整合能力、拒答能力、检错和纠错能力所做的针对设计。</p>
+<ol>
+<li>
+<p><strong>具体指令法</strong> （优化指令）</p>
+<p>指定回答预期，防止内容缺失，回答不全面：</p>
+<p>清晰的指令可以让模型输出：更<strong>明确的任务目标和更符合预期</strong>的内容。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">请根据上传的银行业报告，简洁总结当前的市场趋势，重点分析政策变化对行业的影响，输出为以下Markdown格式：</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**市场趋势**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**政策影响**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**竞争风险**</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>解释理由法</strong> （优化指令, 强调指令的原因）</p>
+<p>提升模型对任务特定规则或背景的理解能力：</p>
+<p>在编写提示时，向模型解释为什么某些任务需要特定的处理方式。这样可以帮助模型更好地理解任务背景，从而提高输出的质量和相关性。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">请生成一份简明扼要的银行业报告摘要，不要逐字重复段落内容。原因：读者可以访问完整文档，如果需要可以详细阅读全文。</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>任务角色设定</strong> (优化上下文，指定模型身份、立场和责任)</p>
+<p>提升模型专业领域回答能力：</p>
+<p>通过为模型设定特定的角色身份，可以帮助模型更好地理解任务要求和角色责任，从而输出更加一致、专业的内容。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">你的角色: 知识库专家</span><br><span class="line"><span class="bullet">-</span> 背景：分析银行业市场数据</span><br><span class="line"><span class="bullet">-</span> 目标：生成一份详细的行业趋势分析</span><br><span class="line"><span class="bullet">-</span> 限制：仅根据报告中的数据生成分析</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>文档基础说明</strong> （优化上下文，对输入数据提供背景和来源信息）</p>
+<p>奠定模型任务推理的基调：</p>
+<p>为模型提供文档的背景信息和文本来源可以帮助奠定任务基础，让模型更好地进行任务推理和回答。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是关于银行业政策变化的相关规则，它们将用于回答有关政策对银行业影响的问题。</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>示例学习</strong> （优化输出指示符）</p>
+<p>优化回答细节以及格式：</p>
+<p>通过给模型提供多个<strong>参考示例</strong>，模型可以基于这些示例进行模式识别，进而<strong>模仿、思考并生成类似的答案</strong>。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是两个关于银行业的分析示例，请按照这种格式对新的报告进行分析：</span><br><span class="line"><span class="bullet">-</span> 示例 1：<span class="strong">**市场趋势**</span>：由于政策放宽，银行贷款增长迅速。</span><br><span class="line"><span class="bullet">-</span> 示例 2：<span class="strong">**政策影响**</span>：新的利率政策可能会对中小企业贷款产生负面影响。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">请对下面报告进行同样的分析。</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>默认回复策略</strong> （放在指令，上下文或者输出指示符部分都可以，旨在强调基于文档回答）</p>
+<p>提升模型的拒答能力：</p>
+<p>当模型无法从文档中获取足够信息时，通过设定默认回复策略，避免模型产生“幻觉”，即生成虚假的答案。这可以确保模型仅基于文档中的事实进行回答。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">如果文档中没有足够的事实回答问题，请返回&#123;无法从文档中获得相关内容&#125;，而不是进行推测。</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>通过以上提示工程技巧，RAG 任务的输出质量可以高效、低成本地提升，解决常见生成问题。</p>
+<h4 id="写在最后：">写在最后：</h4>
+<p>在提示工程中，过于具体的指令可能会限制模型的创造性，过于宽泛的提示则可能导致生成偏差。</p>
+<p>如何在提示设计中找到合适的权衡点，既能够引导模型生成高质量结果，又不过度限制模型的灵活性，需要大家在实际场景中探索。</p>
+<p><strong>进阶：</strong> 深入理解模型提示词的原理</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104447095.png" alt="image-20250323104447095"></p>
+<p><strong>突破路径：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104703182.png" alt="image-20250323104703182"></p>
+<p>提示词参考阅读：</p>
+<p>[DeepSeek：从入门到精通（点开是百度网盘链接，放在书籍&amp;手册目录下）](链接:<a href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq">https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq</a> 提取码:cghq 复制这段内容后打开百度网盘手机App，操作更方便哦)</p>
 ]]></content>
       <categories>
         <category>AI</category>
@@ -572,8 +652,8 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       <tags>
         <tag>RAG</tag>
         <tag>生成</tag>
-        <tag>大模型</tag>
         <tag>提示词</tag>
+        <tag>generate</tag>
       </tags>
   </entry>
   <entry>
@@ -641,96 +721,111 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>RAG索引（三）：嵌入（Embedding）技术</title>
-    <url>/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/</url>
-    <content><![CDATA[<h3 id="嵌入模型（Embedding-Model）负责将文本数据映射到高维向量空间中，将输入的文档片段转换为对应的嵌入向量（embedding-vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量，这些向量用于在向量数据库中通过向量检索（Vector-Retrieval）匹配最相似的文档片段。根据不同的场景需求，评估并选择最优的嵌入模型，以确保-RAG-的检索性能符合要求。"><mark>嵌入模型（Embedding Model）负责将文本数据映射到高维向量空间中</mark>，将输入的文档片段转换为对应的嵌入向量（embedding vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。<mark>用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量</mark>，这些向量用于在向量数据库中通过向量检索（Vector Retrieval）匹配最相似的文档片段。根据不同的场景需求，<mark>评估并选择最优的嵌入模型</mark>，以确保 RAG 的检索性能符合要求。</h3>
+    <title>Text2SQL应用对比</title>
+    <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
+    <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
+<hr>
 <span id="more"></span>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9E%8B%E4%BD%9C%E7%94%A8.png" alt="嵌入模型作用" style="zoom: 67%;" />
+<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
 <ul>
-<li>
-<h4 id="什么是Embedding嵌入？">什么是Embedding嵌入？</h4>
+<li><strong>类型</strong>：在线工具</li>
+<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
+<li><strong>特点</strong>：
 <ul>
-<li>Embedding 嵌入是指将文本、图像、音频、视频等形式的信息映射为高维空间中的密集向量表示。这些向量在语义空间中起到坐标的作用，捕捉对象之间的语义关系和隐含的意义。通过在向量空间中进行计算（例如余弦相似度），可以量化和衡量这些对象之间的<strong>语义相似性</strong>。</li>
-<li>在具体实现中，嵌入的每个维度通常对应文本的某种特征，例如性别、类别、数量等。通过多维度的数值表示，计算机能够理解并解析文本的复杂语义结构。例如，“man”和“woman”在描述性别维度上具有相似性，而“king”和“queen”则在性别和王室身份等维度上表现出相似的语义特征。</li>
-<li>向量是一组在高维空间中定义点的数值数组，而<strong>嵌入则是将信息（如文本）转化为这种向量表示的过程</strong>。这些向量能够捕捉数据的语义及其他重要特征，使得语义相近的对象在向量空间中彼此邻近，而语义相异的对象则相距较远。<strong>向量检索（Vector Retrieval）是一种基于向量表示的搜索技术</strong>，通过计算查询向量与已知文本向量的相似度来识别最相关的文本数据。向量检索的高效性在于，它能在大规模数据集中快速、准确地找到与查询最相关的内容，这得益于向量表示中蕴含的丰富语义信息。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112108258.png" alt="image-20250310112108258" style="zoom: 80%;" />
-</li>
+<li>无需安装或配置，直接在浏览器中使用。</li>
+<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
+<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
+<li>支持标准的 PostgreSQL 功能。</li>
 </ul>
 </li>
-<li>
-<h4 id="Embedding-Model-嵌入模型">Embedding Model 嵌入模型</h4>
+<li><strong>适用场景</strong>：
 <ul>
-<li>自 2013 年以来，word2vec、GloVe、fastText 等嵌入模型通过分析大量文本数据，学习得出单词的嵌入向量。近年来，随着 transformer 模型的突破，嵌入技术以惊人的速度发展。BERT、RoBERTa、ELECTRA 等模型将词嵌入推进到上下文敏感的阶段。这些模型在为文本中的每个单词生成嵌入时，会充分考虑其上下文环境，因此同一个单词在不同语境下的嵌入向量可以有所不同，从而大大提升了模型理解复杂语言结构的能力。</li>
-<li>在 RAG 系统中，Embedding Model 嵌入模型扮演着关键角色，负责将文本数据映射到高维向量空间，以便高效检索和处理。具体而言，<strong>Embedding Model 将输入的文档片段（Chunks）和查询文本（Query）转换为嵌入向量（Vectors）</strong>，这些向量捕捉了文本的语义信息，并可在向量空间中与其他嵌入向量进行比较。</li>
-<li>在 RAG 流程中，文档首先被分割成多个片段，每个片段随后通过 Embedding Model 进行嵌入处理。生成的文档嵌入向量被存储在 VectorStore 中，供后续检索使用。用户查询会通过 Embedding Model 转换为查询嵌入向量，这些向量用于在向量数据库中匹配最相似的文档片段，最终组合生成指令（Prompt），大模型生成回答。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112648314.png" alt="image-20250310112648314" style="zoom:80%;" />
-</li>
-<li>正如图中所示，嵌入模型是 RAG 流程的核心。既然如此重要，市面上有非常多的嵌入模型，我们该如何为我们的业务场景选择最合适的嵌入模型呢？</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-嵌入模型评估与选择">Embedding Model 嵌入模型评估与选择</h4>
-<ul>
-<li>在选择适合的嵌入模型时，需要综合考虑多个因素，包括<strong>特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率</strong>等因素。同时以广泛受到认可的 **MTEB（Massive Text Embedding Benchmark）和 C-MTEB（Chinese Massive Text Embedding Benchmark）**榜单作为参考，通过涵盖分类、聚类、语义文本相似性、重排序和检索等多个数据集的评测，开发者可以根据不同任务的需求，评估并选择最优的向量模型，以确保在特定应用场景中的最佳性能。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310113405164.png" alt="image-20250310113405164" style="zoom:80%;" />
-</li>
-<li><a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB &amp; C-MTEB 榜单</a></li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310122014515.png" alt="image-20250310122014515" style="zoom:80%;" />
-</li>
-<li>榜单每日更新，可以切换语言为 中文，可以看到中文嵌入模型的排名。由于 RAG 是一项检索任务，我们需要按“Retrieval Average”（检索平均值）列对排行榜进行排序，图中显示的就是检索任务效果排序后的结果。在检索任务中，我们需要在榜单顶部看到最佳的检索模型，并且专注于以下几个关键列：</li>
-<li><strong>Retrieval Average 检索平均值</strong>：较高的检索平均值表示模型更擅长在检索结果列表中将相关项目排在较高的位置，检索效果更好。</li>
-<li><strong>Model Size 模型大小</strong>：模型的大小（以 GB 为单位）。虽然检索性能随模型大小而变化，但要注意，模型大小也会对延迟产生直接影响。因此，在选择模型时，建议筛选掉那些在硬件资源有限的情况下不可行的过大模型。在生产环境中，性能与效率之间的权衡尤为重要。</li>
-<li><strong>Max Tokens 最大 Token 数</strong>：可压缩到单个文本块中的最大 Token 数。因为文档块我们希望不要过大而降低目标信息块的精准度，因此，即使最大 tokens 数为 512 的模型在大部分场景下也足够使用。</li>
-<li><strong>Embedding Dimensions：嵌入向量的维度</strong>。越少的嵌入维度提供更快的推理速度，存储效率更高，而更多的维度可以捕获数据中的细微特征。我们需要在模型的性能和效率之间取得良好的权衡。</li>
-<li><strong>实验至关重要</strong>，在排行榜上表现良好的模型不一定在你的任务上表现良好，试验各种高得分的模型至关重要。我们参考 MTEB 排行榜，选择多个适合我们场景的嵌入模型作为备选，并在我们的业务场景数据集上进行评估测试，以选出最适合我们 RAG 系统的嵌入模型。</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-技术实战">Embedding Model 技术实战</h4>
-<ul>
-<li>
-<p>我们可以使用 SentenceTransformers 作为加载嵌入模型的 Python 模块。</p>
-</li>
-<li>
-<p>SentenceTransformers（又名 SBERT）是一个用于训练和推理文本嵌入模型的 Python 模块，可以在 RAG 系统中计算嵌入向量。使用 SentenceTransformers 进行文本嵌入转换非常简单：只需导入模块库、加载模型，并调用 encode 方法即可。执行时，SentenceTransformers 会自动下载相应的模型库，当然也可以手动下载并指定模型库的路径。所有可用的模型都可以在 <a href="https://www.sbert.net/docs/sentence_transformer/pretrained_models.html">SentenceTransformers 模型库</a> 查看，超过 8000 个发布在 Hugging Face 上的嵌入模型库可以被使用。</p>
-</li>
-<li>
-<p>在中文领域，智源研究院的 <a href="https://huggingface.co/collections/BAAI/bge-66797a74476eb1f085c7446d">BGE 系列模型</a> 是较为知名的开源嵌入模型，在 C-MTEB 上表现出色。BGE 系列目前包含 23 个嵌入模型，涵盖多种维度、多种最大 Token 数和模型大小，用户可以根据需求进行测试和使用。</p>
-</li>
-<li>
-<p><strong>load_embedding_model 方法中使用 SentenceTransformer 加载嵌入模型代码</strong>：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 绝对路径：SentenceTransformer读取绝对路径下的bge-large-zh-v1.5模型，如需使用其他模型，下载其他模型，并且更换绝对路径即可</span></span><br><span class="line">embedding_model = SentenceTransformer(os.path.abspath(<span class="string">&#x27;data/bge-large-zh-v1.5&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动下载：SentenceTransformer库自动下载BAAI/bge-large-zh-v1.5模型，如需下载其他模型，输入其他模型名称即可</span></span><br><span class="line"><span class="comment"># embedding_model = SentenceTransformer(&#x27;BAAI/bge-large-zh-v1.5&#x27;)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>indexing_process 方法中将文本转化为嵌入向量代码</strong>：</p>
- <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文本块转化为嵌入向量列表，normalize_embeddings表示对嵌入向量进行归一化，用于后续流程准确计算向量相似度</span></span><br><span class="line">embeddings = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> all_chunks:</span><br><span class="line">      embedding = embedding_model.encode(chunk, normalize_embeddings=<span class="literal">True</span>)</span><br><span class="line">      embeddings.append(embedding)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li>
-<h4 id="总结">总结</h4>
-<ul>
-<li>嵌入技术将文本数据映射到高维向量空间中，捕捉其语义信息，支持向量检索，从而在大规模数据中快速识别与查询最相关的文档片段。在选择嵌入模型时，需要综合考虑特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率等因素。</li>
-<li>通过参考 MTEB 和 C-MTEB 的评测榜单，可以评估多个高得分的模型，并在具体的业务场景中进行测试，最终选择最适合该场景的嵌入模型。同时，使用 SentenceTransformers Python 模块可以简化嵌入模型的加载和嵌入计算，进而高效率集成测试。</li>
+<li>快速测试 SQL 查询。</li>
+<li>教学或演示 PostgreSQL 功能。</li>
+<li>临时需要数据库环境的场景。</li>
 </ul>
 </li>
 </ul>
+<hr>
+<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
+<ul>
+<li><strong>类型</strong>：AI 驱动的工具</li>
+<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
+<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
+<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
+<li>提供 Python 库，方便集成到数据工作流中。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>非技术用户需要查询数据库。</li>
+<li>快速生成复杂 SQL 查询。</li>
+<li>数据分析师或开发人员希望提高工作效率。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="对比总结"><strong>对比总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Postgres.new</th>
+<th>Vanna</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>类型</strong></td>
+<td>在线临时数据库工具</td>
+<td>AI 驱动的 SQL 生成工具</td>
+</tr>
+<tr>
+<td><strong>主要用途</strong></td>
+<td>创建临时 PostgreSQL 实例</td>
+<td>通过自然语言生成 SQL 查询</td>
+</tr>
+<tr>
+<td><strong>用户群体</strong></td>
+<td>开发者、测试人员、学习者</td>
+<td>数据分析师、非技术用户、开发者</td>
+</tr>
+<tr>
+<td><strong>技术依赖</strong></td>
+<td>无需 AI，纯数据库工具</td>
+<td>依赖 AI 模型（如 GPT）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>无</td>
+<td>支持 Python 库，可集成到工作流</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>测试、演示、学习</td>
+<td>数据分析、快速生成 SQL、简化查询</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="选择建议"><strong>选择建议</strong></h3>
+<ul>
+<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
+<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
+</ul>
+<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
 ]]></content>
       <categories>
         <category>AI</category>
-        <category>RAG</category>
-        <category>索引</category>
-        <category>嵌入（Embedding）技术</category>
+        <category>AI工具</category>
       </categories>
       <tags>
-        <tag>RAG</tag>
-        <tag>索引</tag>
-        <tag>嵌入</tag>
-        <tag>embedding</tag>
+        <tag>AI工具</tag>
+        <tag>Text2SQL</tag>
+        <tag>自然语言操作数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -874,111 +969,96 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>Text2SQL应用对比</title>
-    <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
-    <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
-<hr>
+    <title>RAG索引（三）：嵌入（Embedding）技术</title>
+    <url>/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h3 id="嵌入模型（Embedding-Model）负责将文本数据映射到高维向量空间中，将输入的文档片段转换为对应的嵌入向量（embedding-vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量，这些向量用于在向量数据库中通过向量检索（Vector-Retrieval）匹配最相似的文档片段。根据不同的场景需求，评估并选择最优的嵌入模型，以确保-RAG-的检索性能符合要求。"><mark>嵌入模型（Embedding Model）负责将文本数据映射到高维向量空间中</mark>，将输入的文档片段转换为对应的嵌入向量（embedding vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。<mark>用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量</mark>，这些向量用于在向量数据库中通过向量检索（Vector Retrieval）匹配最相似的文档片段。根据不同的场景需求，<mark>评估并选择最优的嵌入模型</mark>，以确保 RAG 的检索性能符合要求。</h3>
 <span id="more"></span>
-<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9E%8B%E4%BD%9C%E7%94%A8.png" alt="嵌入模型作用" style="zoom: 67%;" />
 <ul>
-<li><strong>类型</strong>：在线工具</li>
-<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
-<li><strong>特点</strong>：
+<li>
+<h4 id="什么是Embedding嵌入？">什么是Embedding嵌入？</h4>
 <ul>
-<li>无需安装或配置，直接在浏览器中使用。</li>
-<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
-<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
-<li>支持标准的 PostgreSQL 功能。</li>
-</ul>
-</li>
-<li><strong>适用场景</strong>：
-<ul>
-<li>快速测试 SQL 查询。</li>
-<li>教学或演示 PostgreSQL 功能。</li>
-<li>临时需要数据库环境的场景。</li>
-</ul>
+<li>Embedding 嵌入是指将文本、图像、音频、视频等形式的信息映射为高维空间中的密集向量表示。这些向量在语义空间中起到坐标的作用，捕捉对象之间的语义关系和隐含的意义。通过在向量空间中进行计算（例如余弦相似度），可以量化和衡量这些对象之间的<strong>语义相似性</strong>。</li>
+<li>在具体实现中，嵌入的每个维度通常对应文本的某种特征，例如性别、类别、数量等。通过多维度的数值表示，计算机能够理解并解析文本的复杂语义结构。例如，“man”和“woman”在描述性别维度上具有相似性，而“king”和“queen”则在性别和王室身份等维度上表现出相似的语义特征。</li>
+<li>向量是一组在高维空间中定义点的数值数组，而<strong>嵌入则是将信息（如文本）转化为这种向量表示的过程</strong>。这些向量能够捕捉数据的语义及其他重要特征，使得语义相近的对象在向量空间中彼此邻近，而语义相异的对象则相距较远。<strong>向量检索（Vector Retrieval）是一种基于向量表示的搜索技术</strong>，通过计算查询向量与已知文本向量的相似度来识别最相关的文本数据。向量检索的高效性在于，它能在大规模数据集中快速、准确地找到与查询最相关的内容，这得益于向量表示中蕴含的丰富语义信息。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112108258.png" alt="image-20250310112108258" style="zoom: 80%;" />
 </li>
 </ul>
-<hr>
-<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
+</li>
+<li>
+<h4 id="Embedding-Model-嵌入模型">Embedding Model 嵌入模型</h4>
 <ul>
-<li><strong>类型</strong>：AI 驱动的工具</li>
-<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
-<li><strong>特点</strong>：
-<ul>
-<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
-<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
-<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
-<li>提供 Python 库，方便集成到数据工作流中。</li>
+<li>自 2013 年以来，word2vec、GloVe、fastText 等嵌入模型通过分析大量文本数据，学习得出单词的嵌入向量。近年来，随着 transformer 模型的突破，嵌入技术以惊人的速度发展。BERT、RoBERTa、ELECTRA 等模型将词嵌入推进到上下文敏感的阶段。这些模型在为文本中的每个单词生成嵌入时，会充分考虑其上下文环境，因此同一个单词在不同语境下的嵌入向量可以有所不同，从而大大提升了模型理解复杂语言结构的能力。</li>
+<li>在 RAG 系统中，Embedding Model 嵌入模型扮演着关键角色，负责将文本数据映射到高维向量空间，以便高效检索和处理。具体而言，<strong>Embedding Model 将输入的文档片段（Chunks）和查询文本（Query）转换为嵌入向量（Vectors）</strong>，这些向量捕捉了文本的语义信息，并可在向量空间中与其他嵌入向量进行比较。</li>
+<li>在 RAG 流程中，文档首先被分割成多个片段，每个片段随后通过 Embedding Model 进行嵌入处理。生成的文档嵌入向量被存储在 VectorStore 中，供后续检索使用。用户查询会通过 Embedding Model 转换为查询嵌入向量，这些向量用于在向量数据库中匹配最相似的文档片段，最终组合生成指令（Prompt），大模型生成回答。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112648314.png" alt="image-20250310112648314" style="zoom:80%;" />
+</li>
+<li>正如图中所示，嵌入模型是 RAG 流程的核心。既然如此重要，市面上有非常多的嵌入模型，我们该如何为我们的业务场景选择最合适的嵌入模型呢？</li>
 </ul>
 </li>
-<li><strong>适用场景</strong>：
+<li>
+<h4 id="Embedding-Model-嵌入模型评估与选择">Embedding Model 嵌入模型评估与选择</h4>
 <ul>
-<li>非技术用户需要查询数据库。</li>
-<li>快速生成复杂 SQL 查询。</li>
-<li>数据分析师或开发人员希望提高工作效率。</li>
+<li>在选择适合的嵌入模型时，需要综合考虑多个因素，包括<strong>特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率</strong>等因素。同时以广泛受到认可的 **MTEB（Massive Text Embedding Benchmark）和 C-MTEB（Chinese Massive Text Embedding Benchmark）**榜单作为参考，通过涵盖分类、聚类、语义文本相似性、重排序和检索等多个数据集的评测，开发者可以根据不同任务的需求，评估并选择最优的向量模型，以确保在特定应用场景中的最佳性能。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310113405164.png" alt="image-20250310113405164" style="zoom:80%;" />
+</li>
+<li><a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB &amp; C-MTEB 榜单</a></li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310122014515.png" alt="image-20250310122014515" style="zoom:80%;" />
+</li>
+<li>榜单每日更新，可以切换语言为 中文，可以看到中文嵌入模型的排名。由于 RAG 是一项检索任务，我们需要按“Retrieval Average”（检索平均值）列对排行榜进行排序，图中显示的就是检索任务效果排序后的结果。在检索任务中，我们需要在榜单顶部看到最佳的检索模型，并且专注于以下几个关键列：</li>
+<li><strong>Retrieval Average 检索平均值</strong>：较高的检索平均值表示模型更擅长在检索结果列表中将相关项目排在较高的位置，检索效果更好。</li>
+<li><strong>Model Size 模型大小</strong>：模型的大小（以 GB 为单位）。虽然检索性能随模型大小而变化，但要注意，模型大小也会对延迟产生直接影响。因此，在选择模型时，建议筛选掉那些在硬件资源有限的情况下不可行的过大模型。在生产环境中，性能与效率之间的权衡尤为重要。</li>
+<li><strong>Max Tokens 最大 Token 数</strong>：可压缩到单个文本块中的最大 Token 数。因为文档块我们希望不要过大而降低目标信息块的精准度，因此，即使最大 tokens 数为 512 的模型在大部分场景下也足够使用。</li>
+<li><strong>Embedding Dimensions：嵌入向量的维度</strong>。越少的嵌入维度提供更快的推理速度，存储效率更高，而更多的维度可以捕获数据中的细微特征。我们需要在模型的性能和效率之间取得良好的权衡。</li>
+<li><strong>实验至关重要</strong>，在排行榜上表现良好的模型不一定在你的任务上表现良好，试验各种高得分的模型至关重要。我们参考 MTEB 排行榜，选择多个适合我们场景的嵌入模型作为备选，并在我们的业务场景数据集上进行评估测试，以选出最适合我们 RAG 系统的嵌入模型。</li>
+</ul>
+</li>
+<li>
+<h4 id="Embedding-Model-技术实战">Embedding Model 技术实战</h4>
+<ul>
+<li>
+<p>我们可以使用 SentenceTransformers 作为加载嵌入模型的 Python 模块。</p>
+</li>
+<li>
+<p>SentenceTransformers（又名 SBERT）是一个用于训练和推理文本嵌入模型的 Python 模块，可以在 RAG 系统中计算嵌入向量。使用 SentenceTransformers 进行文本嵌入转换非常简单：只需导入模块库、加载模型，并调用 encode 方法即可。执行时，SentenceTransformers 会自动下载相应的模型库，当然也可以手动下载并指定模型库的路径。所有可用的模型都可以在 <a href="https://www.sbert.net/docs/sentence_transformer/pretrained_models.html">SentenceTransformers 模型库</a> 查看，超过 8000 个发布在 Hugging Face 上的嵌入模型库可以被使用。</p>
+</li>
+<li>
+<p>在中文领域，智源研究院的 <a href="https://huggingface.co/collections/BAAI/bge-66797a74476eb1f085c7446d">BGE 系列模型</a> 是较为知名的开源嵌入模型，在 C-MTEB 上表现出色。BGE 系列目前包含 23 个嵌入模型，涵盖多种维度、多种最大 Token 数和模型大小，用户可以根据需求进行测试和使用。</p>
+</li>
+<li>
+<p><strong>load_embedding_model 方法中使用 SentenceTransformer 加载嵌入模型代码</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 绝对路径：SentenceTransformer读取绝对路径下的bge-large-zh-v1.5模型，如需使用其他模型，下载其他模型，并且更换绝对路径即可</span></span><br><span class="line">embedding_model = SentenceTransformer(os.path.abspath(<span class="string">&#x27;data/bge-large-zh-v1.5&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动下载：SentenceTransformer库自动下载BAAI/bge-large-zh-v1.5模型，如需下载其他模型，输入其他模型名称即可</span></span><br><span class="line"><span class="comment"># embedding_model = SentenceTransformer(&#x27;BAAI/bge-large-zh-v1.5&#x27;)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>indexing_process 方法中将文本转化为嵌入向量代码</strong>：</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文本块转化为嵌入向量列表，normalize_embeddings表示对嵌入向量进行归一化，用于后续流程准确计算向量相似度</span></span><br><span class="line">embeddings = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> all_chunks:</span><br><span class="line">      embedding = embedding_model.encode(chunk, normalize_embeddings=<span class="literal">True</span>)</span><br><span class="line">      embeddings.append(embedding)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="总结">总结</h4>
+<ul>
+<li>嵌入技术将文本数据映射到高维向量空间中，捕捉其语义信息，支持向量检索，从而在大规模数据中快速识别与查询最相关的文档片段。在选择嵌入模型时，需要综合考虑特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率等因素。</li>
+<li>通过参考 MTEB 和 C-MTEB 的评测榜单，可以评估多个高得分的模型，并在具体的业务场景中进行测试，最终选择最适合该场景的嵌入模型。同时，使用 SentenceTransformers Python 模块可以简化嵌入模型的加载和嵌入计算，进而高效率集成测试。</li>
 </ul>
 </li>
 </ul>
-<hr>
-<h3 id="对比总结"><strong>对比总结</strong></h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Postgres.new</th>
-<th>Vanna</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>类型</strong></td>
-<td>在线临时数据库工具</td>
-<td>AI 驱动的 SQL 生成工具</td>
-</tr>
-<tr>
-<td><strong>主要用途</strong></td>
-<td>创建临时 PostgreSQL 实例</td>
-<td>通过自然语言生成 SQL 查询</td>
-</tr>
-<tr>
-<td><strong>用户群体</strong></td>
-<td>开发者、测试人员、学习者</td>
-<td>数据分析师、非技术用户、开发者</td>
-</tr>
-<tr>
-<td><strong>技术依赖</strong></td>
-<td>无需 AI，纯数据库工具</td>
-<td>依赖 AI 模型（如 GPT）</td>
-</tr>
-<tr>
-<td><strong>集成能力</strong></td>
-<td>无</td>
-<td>支持 Python 库，可集成到工作流</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>测试、演示、学习</td>
-<td>数据分析、快速生成 SQL、简化查询</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="选择建议"><strong>选择建议</strong></h3>
-<ul>
-<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
-<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
-</ul>
-<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
 ]]></content>
       <categories>
         <category>AI</category>
-        <category>AI工具</category>
+        <category>RAG</category>
+        <category>索引</category>
+        <category>嵌入（Embedding）技术</category>
       </categories>
       <tags>
-        <tag>AI工具</tag>
-        <tag>Text2SQL</tag>
-        <tag>自然语言操作数据库</tag>
+        <tag>RAG</tag>
+        <tag>索引</tag>
+        <tag>嵌入</tag>
+        <tag>embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -1152,6 +1232,26 @@ H<sub>2</sub>O</li>
         <tag>Hexo</tag>
         <tag>Markdown插件</tag>
         <tag>自媒体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>升级 Dify</title>
+    <url>/2025/03/19/%E5%8D%87%E7%BA%A7dify/</url>
+    <content><![CDATA[<h4 id="进入dify源码的docker目录，执行以下命令：">进入dify源码的docker目录，执行以下命令：</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd dify/docker</span><br><span class="line">docker compose down</span><br><span class="line">git pull origin main</span><br><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+<h4 id="同步环境变量配置（重要）">同步环境变量配置（重要）</h4>
+<p>去到dify/docker目录下，查看.env.example文件的更新日期判断是否已更新</p>
+<p>如果.env.example文件已更新，请确保相应地修改本地的.env文件。</p>
+<p>根据需要检查并修改.env文件中的配置项，以确保它们与您的实际环境相匹配。您可能需要添加任何新变量从.env.example到.env文件中，并更新任何已更改的值。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>AI工具</category>
+      </categories>
+      <tags>
+        <tag>dify</tag>
+        <tag>rag</tag>
+        <tag>agent</tag>
       </tags>
   </entry>
   <entry>
@@ -1352,23 +1452,56 @@ H<sub>2</sub>O</li>
       </tags>
   </entry>
   <entry>
-    <title>升级 Dify</title>
-    <url>/2025/03/19/%E5%8D%87%E7%BA%A7dify/</url>
-    <content><![CDATA[<h4 id="进入dify源码的docker目录，执行以下命令：">进入dify源码的docker目录，执行以下命令：</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd dify/docker</span><br><span class="line">docker compose down</span><br><span class="line">git pull origin main</span><br><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
-<h4 id="同步环境变量配置（重要）">同步环境变量配置（重要）</h4>
-<p>去到dify/docker目录下，查看.env.example文件的更新日期判断是否已更新</p>
-<p>如果.env.example文件已更新，请确保相应地修改本地的.env文件。</p>
-<p>根据需要检查并修改.env文件中的配置项，以确保它们与您的实际环境相匹配。您可能需要添加任何新变量从.env.example到.env文件中，并更新任何已更改的值。</p>
+    <title>翻墙机场推荐（魔法上网）</title>
+    <url>/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
+<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
+<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
+<span id="more"></span>
+<ul>
+<li>
+<p>第一个 牡牛网：<a href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
+<ul>
+<li>
+<p>邀请码：mdSU</p>
+</li>
+<li>
+<p>推荐安装网页底部的Clash软件</p>
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
+</ul>
+</li>
+<li>
+<p>进入页面有详细安装教程，按照步骤操作就行</p>
+</li>
+<li>
+<p>资费：</p>
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>第二个 Radial VPN: <a href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
+<ul>
+<li>下载官网软件按着操作就行</li>
+<li>资费：
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>AI</category>
-        <category>AI工具</category>
+        <category>工具</category>
+        <category>网络</category>
       </categories>
       <tags>
-        <tag>dify</tag>
-        <tag>rag</tag>
-        <tag>agent</tag>
+        <tag>翻墙机场,</tag>
+        <tag>魔法上网</tag>
       </tags>
   </entry>
   <entry>
@@ -1544,59 +1677,6 @@ H<sub>2</sub>O</li>
         <tag>AI</tag>
         <tag>大模型</tag>
         <tag>生成模型方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>翻墙机场推荐（魔法上网）</title>
-    <url>/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
-<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
-<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
-<span id="more"></span>
-<ul>
-<li>
-<p>第一个 牡牛网：<a href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
-<ul>
-<li>
-<p>邀请码：mdSU</p>
-</li>
-<li>
-<p>推荐安装网页底部的Clash软件</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
-</ul>
-</li>
-<li>
-<p>进入页面有详细安装教程，按照步骤操作就行</p>
-</li>
-<li>
-<p>资费：</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>第二个 Radial VPN: <a href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
-<ul>
-<li>下载官网软件按着操作就行</li>
-<li>资费：
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具</category>
-        <category>网络</category>
-      </categories>
-      <tags>
-        <tag>翻墙机场,</tag>
-        <tag>魔法上网</tag>
       </tags>
   </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-22T12:46:10.395Z</updated>
+  <updated>2025-03-23T02:54:21.312Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RAG生成（二）：提示词工程</title>
+    <link href="http://example.com/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/"/>
+    <id>http://example.com/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</id>
+    <published>2025-03-22T23:34:00.000Z</published>
+    <updated>2025-03-23T02:54:21.312Z</updated>
+    
+    
+    <summary type="html">&lt;h4 id=&quot;提示词概述&quot;&gt;提示词概述&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;提示词工程（Prompt Engineering）&lt;/strong&gt;，旨在通过开发和优化提示来有效利用语言模型的潜力。&lt;/p&gt;
+&lt;p&gt;提示词工程是为生成式 AI 模型&lt;strong&gt;设计输入&lt;/strong&gt;以获取最佳输出的实践。 &lt;strong&gt;这些输入被称为提示词（Prompt）&lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt;提示词工程&lt;strong&gt;核心理念&lt;/strong&gt;是，通过提供更优质的输入，可以让生成式 AI 模型（如大型语言模型）生成更符合需求的结果，也就是&lt;strong&gt;让模型能够更好地执行各种任务&lt;/strong&gt; ，包括生成创作，生成代码，聊天互动等。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
+    
+    <category term="生成" scheme="http://example.com/categories/AI/RAG/%E7%94%9F%E6%88%90/"/>
+    
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="生成" scheme="http://example.com/tags/%E7%94%9F%E6%88%90/"/>
+    
+    <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
+    
+    <category term="generate" scheme="http://example.com/tags/generate/"/>
+    
+  </entry>
   
   <entry>
     <title>RAG生成（一）：大模型的选择</title>
@@ -192,9 +224,9 @@
     
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
-    <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
     <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
+    
+    <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
