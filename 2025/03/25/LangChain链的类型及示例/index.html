@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":{"valine":{"Order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+
+<meta name="referrer" content="no-referrer" />
+    <meta name="description" content="LangChain 中的链（Chains）类型及示例 LangChain 提供了多种类型的链（Chains），用于将多个组件组合起来完成复杂任务。以下是主要的链类型及示例： 1. LLMChain（基础链） 最基本的链类型，将提示模板、LLM和输出解析器组合在一起。 123456789101112from langchain.chains import LLMChainfrom langchain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LangChain链的类型及示例">
+<meta property="og:url" content="http://example.com/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/index.html">
+<meta property="og:site_name" content="打开AI世界的大门">
+<meta property="og:description" content="LangChain 中的链（Chains）类型及示例 LangChain 提供了多种类型的链（Chains），用于将多个组件组合起来完成复杂任务。以下是主要的链类型及示例： 1. LLMChain（基础链） 最基本的链类型，将提示模板、LLM和输出解析器组合在一起。 123456789101112from langchain.chains import LLMChainfrom langchain">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-25T08:19:00.000Z">
+<meta property="article:modified_time" content="2025-03-25T08:21:16.766Z">
+<meta property="article:author" content="AI模型研究所">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="langchain">
+<meta property="article:tag" content="chains">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/","path":"2025/03/25/LangChain链的类型及示例/","title":"LangChain链的类型及示例"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+
+<meta name="referrer" content="no-referrer" /><title>LangChain链的类型及示例 | 打开AI世界的大门</title>
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
+#needsharebutton-postbottom {
+  cursor: pointer;
+  height: 26px;
+  margin-top: 10px;
+  position: relative;
+}
+#needsharebutton-postbottom .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 3px;
+  display: initial;
+  padding: 1px 4px;
+}
+</style>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="打开AI世界的大门" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">打开AI世界的大门</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">奔赴山海，保持热爱</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">LangChain 中的链（Chains）类型及示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-LLMChain%EF%BC%88%E5%9F%BA%E7%A1%80%E9%93%BE%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1. LLMChain（基础链）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SequentialChain%EF%BC%88%E9%A1%BA%E5%BA%8F%E9%93%BE%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. SequentialChain（顺序链）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-TransformChain%EF%BC%88%E8%BD%AC%E6%8D%A2%E9%93%BE%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3. TransformChain（转换链）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-RouterChain%EF%BC%88%E8%B7%AF%E7%94%B1%E9%93%BE%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4. RouterChain（路由链）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-APIChain%EF%BC%88API%E9%93%BE%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">5. APIChain（API链）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-SQLDatabaseChain%EF%BC%88%E6%95%B0%E6%8D%AE%E5%BA%93%E9%93%BE%EF%BC%89"><span class="nav-number">1.6.</span> <span class="nav-text">6. SQLDatabaseChain（数据库链）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-RetrievalQAChain%EF%BC%88%E6%A3%80%E7%B4%A2%E9%97%AE%E7%AD%94%E9%93%BE%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">7. RetrievalQAChain（检索问答链）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-ConversationChain%EF%BC%88%E5%AF%B9%E8%AF%9D%E9%93%BE%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">8. ConversationChain（对话链）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-MapReduceChain%EF%BC%88%E6%98%A0%E5%B0%84%E5%BD%92%E7%BA%A6%E9%93%BE%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">9. MapReduceChain（映射归约链）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="AI模型研究所"
+      src="/images/avatar.ico">
+  <p class="site-author-name" itemprop="name">AI模型研究所</p>
+  <div class="site-description" itemprop="description">心有所向，无问东西</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://v.douyin.com/i56Pn1TV/%204@7.com" title="我的抖音主页 → https:&#x2F;&#x2F;v.douyin.com&#x2F;i56Pn1TV&#x2F; 4@7.com" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>我的抖音主页</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/hfhfn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hfhfn" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1103562450" title="我的B站主页 → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1103562450" rel="noopener me" target="_blank"><i class="fab fa-facebook fa-fw"></i>我的B站主页</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hfhfn@sina.com" title="E-Mail → mailto:hfhfn@sina.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+	  
+	  <div class="douyin_qun">
+		  <span>欢迎加入我的抖音粉丝群</span>
+		  <br>
+		  <!-- 这里添加你的二维码图片 -->
+		  <img src ="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/52f82e8e3251882d6d857256bd49395.jpg">
+	  </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://pan.baidu.com/s/1XxC56NKwXaDmJIMxYzY_2w?pwd=da3c" title="https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1XxC56NKwXaDmJIMxYzY_2w?pwd&#x3D;da3c" rel="noopener" target="_blank">百度网盘Dify分享</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq" title="https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;12hTcfYD3qDir_-_SSr9yxw?pwd&#x3D;cghq" rel="noopener" target="_blank">百度网盘技术分享</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="AI模型研究所">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="打开AI世界的大门">
+      <meta itemprop="description" content="心有所向，无问东西">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="LangChain链的类型及示例 | 打开AI世界的大门">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LangChain链的类型及示例
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-25 16:19:00 / 修改时间：16:21:16" itemprop="dateCreated datePublished" datetime="2025-03-25T16:19:00+08:00">2025-03-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/RAG/" itemprop="url" rel="index"><span itemprop="name">RAG</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/RAG/langchain/" itemprop="url" rel="index"><span itemprop="name">langchain</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>LangChain 中的链（Chains）类型及示例</h1>
+<p>LangChain 提供了多种类型的链（Chains），用于将多个组件组合起来完成复杂任务。以下是主要的链类型及示例：</p>
+<h2 id="1-LLMChain（基础链）">1. LLMChain（基础链）</h2>
+<p>最基本的链类型，将提示模板、LLM和输出解析器组合在一起。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> LLMChain</span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> PromptTemplate</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0.9</span>)</span><br><span class="line">chain = LLMChain(llm=llm, prompt=prompt)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(chain.run(<span class="string">&quot;环保水杯&quot;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="2-SequentialChain（顺序链）">2. SequentialChain（顺序链）</h2>
+<p>按顺序执行多个链，前一个链的输出作为下一个链的输入。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> SequentialChain, LLMChain</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一个链：生成广告文案</span></span><br><span class="line">prompt1 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain1 = LLMChain(llm=llm, prompt=prompt1, output_key=<span class="string">&quot;ad_copy&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个链：评估广告效果</span></span><br><span class="line">prompt2 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;ad_copy&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;评估以下广告的效果:\n&#123;ad_copy&#125;\n\n评估结果:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain2 = LLMChain(llm=llm, prompt=prompt2, output_key=<span class="string">&quot;review&quot;</span>)</span><br><span class="line"></span><br><span class="line">overall_chain = SequentialChain(</span><br><span class="line">    chains=[chain1, chain2],</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    output_variables=[<span class="string">&quot;ad_copy&quot;</span>, <span class="string">&quot;review&quot;</span>]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">result = overall_chain(&#123;<span class="string">&quot;product&quot;</span>: <span class="string">&quot;智能手表&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<h2 id="3-TransformChain（转换链）">3. TransformChain（转换链）</h2>
+<p>对输入进行转换而不调用LLM。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> TransformChain</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform_func</span>(<span class="params">inputs: <span class="built_in">dict</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    text = inputs[<span class="string">&quot;text&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;output_text&quot;</span>: text.upper()&#125;</span><br><span class="line"></span><br><span class="line">transform_chain = TransformChain(</span><br><span class="line">    input_variables=[<span class="string">&quot;text&quot;</span>], </span><br><span class="line">    output_variables=[<span class="string">&quot;output_text&quot;</span>],</span><br><span class="line">    transform=transform_func</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">transform_chain.run(&#123;<span class="string">&quot;text&quot;</span>: <span class="string">&quot;hello world&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="4-RouterChain（路由链）">4. RouterChain（路由链）</h2>
+<p>根据输入决定使用哪个子链。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains.router <span class="keyword">import</span> MultiPromptChain</span><br><span class="line"><span class="keyword">from</span> langchain.chains.router.llm_router <span class="keyword">import</span> LLMRouterChain, RouterOutputParser</span><br><span class="line"></span><br><span class="line">physics_template = <span class="string">&quot;&quot;&quot;你是一位物理专家。回答物理问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line">math_template = <span class="string">&quot;&quot;&quot;你是一位数学专家。回答数学问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">prompt_infos = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;physics&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答物理问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: physics_template</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;math&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答数学问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: math_template</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">router_chain = MultiPromptChain.from_prompts(</span><br><span class="line">    llm,</span><br><span class="line">    prompt_infos,</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;什么是相对论?&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;2+2等于几?&quot;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="5-APIChain（API链）">5. APIChain（API链）</h2>
+<p>与外部API交互的链。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> APIChain</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">api_docs = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">API文档:</span></span><br><span class="line"><span class="string">BASE URL: https://api.example.com</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">端点:</span></span><br><span class="line"><span class="string">GET /weather?location=&#123;location&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">参数:</span></span><br><span class="line"><span class="string">- location: 城市名称</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">响应:</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;temp&quot;: 温度,</span></span><br><span class="line"><span class="string">    &quot;condition&quot;: 天气状况</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">chain = APIChain.from_llm_and_api_docs(llm, api_docs, verbose=<span class="literal">True</span>)</span><br><span class="line">chain.run(<span class="string">&quot;上海现在的天气如何?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="6-SQLDatabaseChain（数据库链）">6. SQLDatabaseChain（数据库链）</h2>
+<p>与SQL数据库交互的链。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain <span class="keyword">import</span> SQLDatabase, SQLDatabaseChain</span><br><span class="line"></span><br><span class="line">db = SQLDatabase.from_uri(<span class="string">&quot;sqlite:///chinook.db&quot;</span>)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">db_chain = SQLDatabaseChain(llm=llm, database=db, verbose=<span class="literal">True</span>)</span><br><span class="line">db_chain.run(<span class="string">&quot;有多少位顾客?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="7-RetrievalQAChain（检索问答链）">7. RetrievalQAChain（检索问答链）</h2>
+<p>结合检索器和LLM的问答链。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA</span><br><span class="line"><span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> TextLoader</span><br><span class="line"><span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> FAISS</span><br><span class="line"></span><br><span class="line">loader = TextLoader(<span class="string">&quot;state_of_the_union.txt&quot;</span>)</span><br><span class="line">documents = loader.load()</span><br><span class="line">text_splitter = CharacterTextSplitter(chunk_size=<span class="number">1000</span>, chunk_overlap=<span class="number">0</span>)</span><br><span class="line">texts = text_splitter.split_documents(documents)</span><br><span class="line"></span><br><span class="line">embeddings = OpenAIEmbeddings()</span><br><span class="line">docsearch = FAISS.from_documents(texts, embeddings)</span><br><span class="line"></span><br><span class="line">qa = RetrievalQA.from_chain_type(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    chain_type=<span class="string">&quot;stuff&quot;</span>,</span><br><span class="line">    retriever=docsearch.as_retriever()</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">query = <span class="string">&quot;总统提到了什么重要政策?&quot;</span></span><br><span class="line">qa.run(query)</span><br></pre></td></tr></table></figure>
+<h2 id="8-ConversationChain（对话链）">8. ConversationChain（对话链）</h2>
+<p>维护对话上下文的链。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> ConversationChain</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory</span><br><span class="line"></span><br><span class="line">conversation = ConversationChain(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    memory=ConversationBufferMemory(),</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;你好!&quot;</span>)</span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;我很好，谢谢!你呢?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="9-MapReduceChain（映射归约链）">9. MapReduceChain（映射归约链）</h2>
+<p>处理长文档的链，先映射处理各部分，再归约总结。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> MapReduceChain</span><br><span class="line"></span><br><span class="line">map_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;page&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;总结以下文本:\n&#123;page&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line">reduce_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;summaries&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;结合以下总结写出最终总结:\n&#123;summaries&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">chain = MapReduceChain.from_params(</span><br><span class="line">    llm=llm,</span><br><span class="line">    map_prompt=map_prompt,</span><br><span class="line">    reduce_prompt=reduce_prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;long_document.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    long_text = f.read()</span><br><span class="line">    </span><br><span class="line">result = chain.run(&#123;<span class="string">&quot;input_text&quot;</span>: long_text&#125;)</span><br></pre></td></tr></table></figure>
+<p>这些链可以单独使用，也可以组合起来构建更复杂的应用。LangChain还允许创建自定义链以满足特定需求。</p>
+<span id="more"></span>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-widgets">
+      <div id="needsharebutton-postbottom">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.png" alt="AI模型研究所 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98.png" alt="AI模型研究所 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="douyin_qun">
+  <span>欢迎加入我的抖音粉丝群</span>
+  <br>
+  <!-- 这里添加你的二维码图片 -->
+  <img src ="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/52f82e8e3251882d6d857256bd49395.jpg">
+</div>
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>AI模型研究所
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/" title="LangChain链的类型及示例">http://example.com/2025/03/25/LangChain链的类型及示例/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/RAG/" rel="tag"># RAG</a>
+              <a href="/tags/langchain/" rel="tag"># langchain</a>
+              <a href="/tags/chains/" rel="tag"># chains</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/" rel="prev" title="RAG生成（二）：提示词工程">
+                  <i class="fa fa-angle-left"></i> RAG生成（二）：提示词工程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">true</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">38k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/hfhfn" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+
+
+
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
+  <script>
+      pbOptions = {};
+        pbOptions.iconStyle = "box";
+        pbOptions.boxForm = "horizontal";
+        pbOptions.position = "bottomCenter";
+        pbOptions.networks = "Wechat,QQZone,Weibo,Douban,Twitter,Facebook";
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+  </script>
+  
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>

@@ -173,18 +173,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">41</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -240,6 +240,144 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="AI模型研究所">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="打开AI世界的大门">
+      <meta itemprop="description" content="心有所向，无问东西">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 打开AI世界的大门">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/" class="post-title-link" itemprop="url">LangChain链的类型及示例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-25 16:19:00 / 修改时间：16:21:16" itemprop="dateCreated datePublished" datetime="2025-03-25T16:19:00+08:00">2025-03-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/RAG/" itemprop="url" rel="index"><span itemprop="name">RAG</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/RAG/langchain/" itemprop="url" rel="index"><span itemprop="name">langchain</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1>LangChain 中的链（Chains）类型及示例</h1>
+<p>LangChain 提供了多种类型的链（Chains），用于将多个组件组合起来完成复杂任务。以下是主要的链类型及示例：</p>
+<h2 id="1-LLMChain（基础链）">1. LLMChain（基础链）</h2>
+<p>最基本的链类型，将提示模板、LLM和输出解析器组合在一起。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> LLMChain</span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> PromptTemplate</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0.9</span>)</span><br><span class="line">chain = LLMChain(llm=llm, prompt=prompt)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(chain.run(<span class="string">&quot;环保水杯&quot;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="2-SequentialChain（顺序链）">2. SequentialChain（顺序链）</h2>
+<p>按顺序执行多个链，前一个链的输出作为下一个链的输入。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> SequentialChain, LLMChain</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一个链：生成广告文案</span></span><br><span class="line">prompt1 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain1 = LLMChain(llm=llm, prompt=prompt1, output_key=<span class="string">&quot;ad_copy&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个链：评估广告效果</span></span><br><span class="line">prompt2 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;ad_copy&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;评估以下广告的效果:\n&#123;ad_copy&#125;\n\n评估结果:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain2 = LLMChain(llm=llm, prompt=prompt2, output_key=<span class="string">&quot;review&quot;</span>)</span><br><span class="line"></span><br><span class="line">overall_chain = SequentialChain(</span><br><span class="line">    chains=[chain1, chain2],</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    output_variables=[<span class="string">&quot;ad_copy&quot;</span>, <span class="string">&quot;review&quot;</span>]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">result = overall_chain(&#123;<span class="string">&quot;product&quot;</span>: <span class="string">&quot;智能手表&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<h2 id="3-TransformChain（转换链）">3. TransformChain（转换链）</h2>
+<p>对输入进行转换而不调用LLM。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> TransformChain</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform_func</span>(<span class="params">inputs: <span class="built_in">dict</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    text = inputs[<span class="string">&quot;text&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;output_text&quot;</span>: text.upper()&#125;</span><br><span class="line"></span><br><span class="line">transform_chain = TransformChain(</span><br><span class="line">    input_variables=[<span class="string">&quot;text&quot;</span>], </span><br><span class="line">    output_variables=[<span class="string">&quot;output_text&quot;</span>],</span><br><span class="line">    transform=transform_func</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">transform_chain.run(&#123;<span class="string">&quot;text&quot;</span>: <span class="string">&quot;hello world&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="4-RouterChain（路由链）">4. RouterChain（路由链）</h2>
+<p>根据输入决定使用哪个子链。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains.router <span class="keyword">import</span> MultiPromptChain</span><br><span class="line"><span class="keyword">from</span> langchain.chains.router.llm_router <span class="keyword">import</span> LLMRouterChain, RouterOutputParser</span><br><span class="line"></span><br><span class="line">physics_template = <span class="string">&quot;&quot;&quot;你是一位物理专家。回答物理问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line">math_template = <span class="string">&quot;&quot;&quot;你是一位数学专家。回答数学问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">prompt_infos = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;physics&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答物理问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: physics_template</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;math&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答数学问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: math_template</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">router_chain = MultiPromptChain.from_prompts(</span><br><span class="line">    llm,</span><br><span class="line">    prompt_infos,</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;什么是相对论?&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;2+2等于几?&quot;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="5-APIChain（API链）">5. APIChain（API链）</h2>
+<p>与外部API交互的链。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> APIChain</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">api_docs = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">API文档:</span></span><br><span class="line"><span class="string">BASE URL: https://api.example.com</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">端点:</span></span><br><span class="line"><span class="string">GET /weather?location=&#123;location&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">参数:</span></span><br><span class="line"><span class="string">- location: 城市名称</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">响应:</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;temp&quot;: 温度,</span></span><br><span class="line"><span class="string">    &quot;condition&quot;: 天气状况</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">chain = APIChain.from_llm_and_api_docs(llm, api_docs, verbose=<span class="literal">True</span>)</span><br><span class="line">chain.run(<span class="string">&quot;上海现在的天气如何?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="6-SQLDatabaseChain（数据库链）">6. SQLDatabaseChain（数据库链）</h2>
+<p>与SQL数据库交互的链。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain <span class="keyword">import</span> SQLDatabase, SQLDatabaseChain</span><br><span class="line"></span><br><span class="line">db = SQLDatabase.from_uri(<span class="string">&quot;sqlite:///chinook.db&quot;</span>)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">db_chain = SQLDatabaseChain(llm=llm, database=db, verbose=<span class="literal">True</span>)</span><br><span class="line">db_chain.run(<span class="string">&quot;有多少位顾客?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="7-RetrievalQAChain（检索问答链）">7. RetrievalQAChain（检索问答链）</h2>
+<p>结合检索器和LLM的问答链。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA</span><br><span class="line"><span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> TextLoader</span><br><span class="line"><span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> FAISS</span><br><span class="line"></span><br><span class="line">loader = TextLoader(<span class="string">&quot;state_of_the_union.txt&quot;</span>)</span><br><span class="line">documents = loader.load()</span><br><span class="line">text_splitter = CharacterTextSplitter(chunk_size=<span class="number">1000</span>, chunk_overlap=<span class="number">0</span>)</span><br><span class="line">texts = text_splitter.split_documents(documents)</span><br><span class="line"></span><br><span class="line">embeddings = OpenAIEmbeddings()</span><br><span class="line">docsearch = FAISS.from_documents(texts, embeddings)</span><br><span class="line"></span><br><span class="line">qa = RetrievalQA.from_chain_type(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    chain_type=<span class="string">&quot;stuff&quot;</span>,</span><br><span class="line">    retriever=docsearch.as_retriever()</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">query = <span class="string">&quot;总统提到了什么重要政策?&quot;</span></span><br><span class="line">qa.run(query)</span><br></pre></td></tr></table></figure>
+<h2 id="8-ConversationChain（对话链）">8. ConversationChain（对话链）</h2>
+<p>维护对话上下文的链。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> ConversationChain</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory</span><br><span class="line"></span><br><span class="line">conversation = ConversationChain(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    memory=ConversationBufferMemory(),</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;你好!&quot;</span>)</span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;我很好，谢谢!你呢?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="9-MapReduceChain（映射归约链）">9. MapReduceChain（映射归约链）</h2>
+<p>处理长文档的链，先映射处理各部分，再归约总结。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> MapReduceChain</span><br><span class="line"></span><br><span class="line">map_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;page&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;总结以下文本:\n&#123;page&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line">reduce_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;summaries&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;结合以下总结写出最终总结:\n&#123;summaries&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">chain = MapReduceChain.from_params(</span><br><span class="line">    llm=llm,</span><br><span class="line">    map_prompt=map_prompt,</span><br><span class="line">    reduce_prompt=reduce_prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;long_document.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    long_text = f.read()</span><br><span class="line">    </span><br><span class="line">result = chain.run(&#123;<span class="string">&quot;input_text&quot;</span>: long_text&#125;)</span><br></pre></td></tr></table></figure>
+<p>这些链可以单独使用，也可以组合起来构建更复杂的应用。LangChain还允许创建自定义链以满足特定需求。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1255,138 +1393,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.ico">
-      <meta itemprop="name" content="AI模型研究所">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="打开AI世界的大门">
-      <meta itemprop="description" content="心有所向，无问东西">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 打开AI世界的大门">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/" class="post-title-link" itemprop="url">RAG索引（二）：分块策略</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-09 01:00:00 / 修改时间：08:05:56" itemprop="dateCreated datePublished" datetime="2025-03-09T01:00:00+08:00">2025-03-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AI/RAG/" itemprop="url" rel="index"><span itemprop="name">RAG</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AI/RAG/%E7%B4%A2%E5%BC%95/" itemprop="url" rel="index"><span itemprop="name">索引</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/" itemprop="url" rel="index"><span itemprop="name">分块策略</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.9k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使-RAG-系统能够高效处理和精准检索这些片段信息。">文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。</h3>
-<h3 id="选择适合特定场景的分块策略是提升-RAG-系统召回率的关键。">选择适合特定场景的分块策略是提升 RAG 系统召回率的关键。</h3>
-<ul>
-<li>
-<h4 id="为什么说分块很重要？">为什么说分块很重要？</h4>
-<ul>
-<li>
-<p>分块的目标在于确保每个片段在<strong>保留核心语义</strong>的同时，具备<strong>相对独立的语义完整性</strong>，从而使模型在处理时不必依赖广泛的上下文信息，<strong>增强检索召回的准确性</strong>。</p>
-</li>
-<li>
-<p><strong>分块的重要性在于</strong>它直接影响 RAG 系统的生成质量。首先，合理的分块能够确保<strong>检索到的片段与用户查询信息高度匹配</strong>，避免信息冗余或丢失。</p>
-</li>
-<li>
-<p><strong>好的分块有助于提升生成内容的连贯性</strong>，精心设计的独立语义片段可以<strong>降低模型对上下文的依赖</strong>，从而增强生成的逻辑性与一致性。</p>
-</li>
-<li>
-<p>分块策略的选择还会<strong>影响系统的响应速度与效率</strong>，模型能够更快、更准确地处理和生成内容。</p>
-</li>
-<li>
-<h4 id="分块策略最大的挑战在于确定分块的大小。">分块策略最大的挑战在于确定分块的大小。</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1411,14 +1417,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">33k</span>
+    <span title="站点总字数">38k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:01</span>
+    <span title="站点阅读时长">1:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
