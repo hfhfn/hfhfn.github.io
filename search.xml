@@ -1,112 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Manus 首款通用AI智能体</title>
-    <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
-    <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
-<ul>
-<li>
-<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
-</li>
-<li>
-<h3 id="说说我的想法">说说我的想法</h3>
-<ul>
-<li>
-<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
-</li>
-<li>
-<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
-<ul>
-<li>从目前头部的几个集成平台说起：</li>
-<li><strong>字节的扣子</strong>
-<ul>
-<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
-</ul>
-</li>
-<li><strong>Dify</strong><br>
-一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
-<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
-<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>
-<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
-<ul>
-<li>
-<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
-<ul>
-<li>商业研究</li>
-<li>生活帮手</li>
-<li>数据分析</li>
-<li>教育可视化</li>
-<li>以及各种提升生产率的工具</li>
-</ul>
-</li>
-<li>
-<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
-<ul>
-<li><a href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
-</ul>
-</li>
-<li>
-<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
-<ul>
-<li><a href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
-</ul>
-</li>
-<li>
-<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
-<ul>
-<li><a href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
-</ul>
-</li>
-<li>
-<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
-<ul>
-<li>
-<div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
-</div>
-</li>
-<li>
-<div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
-</div>
-</li>
-<li>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
-</li>
-</ul>
-</li>
-<li>
-<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
-</li>
-<li>
-<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>Agent</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>Agent</tag>
-        <tag>Manus</tag>
-        <tag>智能体</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo踩坑</title>
     <url>/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/</url>
     <content><![CDATA[<hr>
@@ -305,6 +199,158 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
+    <title>Manus 首款通用AI智能体</title>
+    <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
+    <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
+<ul>
+<li>
+<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
+</li>
+<li>
+<h3 id="说说我的想法">说说我的想法</h3>
+<ul>
+<li>
+<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
+</li>
+<li>
+<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
+<ul>
+<li>从目前头部的几个集成平台说起：</li>
+<li><strong>字节的扣子</strong>
+<ul>
+<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
+</ul>
+</li>
+<li><strong>Dify</strong><br>
+一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
+<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
+<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
+<ul>
+<li>
+<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
+<ul>
+<li>商业研究</li>
+<li>生活帮手</li>
+<li>数据分析</li>
+<li>教育可视化</li>
+<li>以及各种提升生产率的工具</li>
+</ul>
+</li>
+<li>
+<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
+<ul>
+<li><a href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
+</ul>
+</li>
+<li>
+<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
+<ul>
+<li><a href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
+</ul>
+</li>
+<li>
+<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
+<ul>
+<li><a href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
+</ul>
+</li>
+<li>
+<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
+<ul>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
+</li>
+<li>
+<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>Agent</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Manus</tag>
+        <tag>智能体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LangChain链的类型及示例</title>
+    <url>/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/</url>
+    <content><![CDATA[<h1>LangChain 中的链（Chains）类型及示例</h1>
+<p>LangChain 提供了多种类型的链（Chains），用于将多个组件组合起来完成复杂任务。以下是主要的链类型及示例：</p>
+<h2 id="1-LLMChain（基础链）">1. LLMChain（基础链）</h2>
+<p>最基本的链类型，将提示模板、LLM和输出解析器组合在一起。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> LLMChain</span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> PromptTemplate</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0.9</span>)</span><br><span class="line">chain = LLMChain(llm=llm, prompt=prompt)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(chain.run(<span class="string">&quot;环保水杯&quot;</span>))</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="2-SequentialChain（顺序链）">2. SequentialChain（顺序链）</h2>
+<p>按顺序执行多个链，前一个链的输出作为下一个链的输入。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> SequentialChain, LLMChain</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一个链：生成广告文案</span></span><br><span class="line">prompt1 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain1 = LLMChain(llm=llm, prompt=prompt1, output_key=<span class="string">&quot;ad_copy&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个链：评估广告效果</span></span><br><span class="line">prompt2 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;ad_copy&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;评估以下广告的效果:\n&#123;ad_copy&#125;\n\n评估结果:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain2 = LLMChain(llm=llm, prompt=prompt2, output_key=<span class="string">&quot;review&quot;</span>)</span><br><span class="line"></span><br><span class="line">overall_chain = SequentialChain(</span><br><span class="line">    chains=[chain1, chain2],</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    output_variables=[<span class="string">&quot;ad_copy&quot;</span>, <span class="string">&quot;review&quot;</span>]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">result = overall_chain(&#123;<span class="string">&quot;product&quot;</span>: <span class="string">&quot;智能手表&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<h2 id="3-TransformChain（转换链）">3. TransformChain（转换链）</h2>
+<p>对输入进行转换而不调用LLM。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> TransformChain</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform_func</span>(<span class="params">inputs: <span class="built_in">dict</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    text = inputs[<span class="string">&quot;text&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;output_text&quot;</span>: text.upper()&#125;</span><br><span class="line"></span><br><span class="line">transform_chain = TransformChain(</span><br><span class="line">    input_variables=[<span class="string">&quot;text&quot;</span>], </span><br><span class="line">    output_variables=[<span class="string">&quot;output_text&quot;</span>],</span><br><span class="line">    transform=transform_func</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">transform_chain.run(&#123;<span class="string">&quot;text&quot;</span>: <span class="string">&quot;hello world&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="4-RouterChain（路由链）">4. RouterChain（路由链）</h2>
+<p>根据输入决定使用哪个子链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains.router <span class="keyword">import</span> MultiPromptChain</span><br><span class="line"><span class="keyword">from</span> langchain.chains.router.llm_router <span class="keyword">import</span> LLMRouterChain, RouterOutputParser</span><br><span class="line"></span><br><span class="line">physics_template = <span class="string">&quot;&quot;&quot;你是一位物理专家。回答物理问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line">math_template = <span class="string">&quot;&quot;&quot;你是一位数学专家。回答数学问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">prompt_infos = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;physics&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答物理问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: physics_template</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;math&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答数学问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: math_template</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">router_chain = MultiPromptChain.from_prompts(</span><br><span class="line">    llm,</span><br><span class="line">    prompt_infos,</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;什么是相对论?&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;2+2等于几?&quot;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="5-APIChain（API链）">5. APIChain（API链）</h2>
+<p>与外部API交互的链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> APIChain</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">api_docs = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">API文档:</span></span><br><span class="line"><span class="string">BASE URL: https://api.example.com</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">端点:</span></span><br><span class="line"><span class="string">GET /weather?location=&#123;location&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">参数:</span></span><br><span class="line"><span class="string">- location: 城市名称</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">响应:</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;temp&quot;: 温度,</span></span><br><span class="line"><span class="string">    &quot;condition&quot;: 天气状况</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">chain = APIChain.from_llm_and_api_docs(llm, api_docs, verbose=<span class="literal">True</span>)</span><br><span class="line">chain.run(<span class="string">&quot;上海现在的天气如何?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="6-SQLDatabaseChain（数据库链）">6. SQLDatabaseChain（数据库链）</h2>
+<p>与SQL数据库交互的链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain <span class="keyword">import</span> SQLDatabase, SQLDatabaseChain</span><br><span class="line"></span><br><span class="line">db = SQLDatabase.from_uri(<span class="string">&quot;sqlite:///chinook.db&quot;</span>)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">db_chain = SQLDatabaseChain(llm=llm, database=db, verbose=<span class="literal">True</span>)</span><br><span class="line">db_chain.run(<span class="string">&quot;有多少位顾客?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="7-RetrievalQAChain（检索问答链）">7. RetrievalQAChain（检索问答链）</h2>
+<p>结合检索器和LLM的问答链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA</span><br><span class="line"><span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> TextLoader</span><br><span class="line"><span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> FAISS</span><br><span class="line"></span><br><span class="line">loader = TextLoader(<span class="string">&quot;state_of_the_union.txt&quot;</span>)</span><br><span class="line">documents = loader.load()</span><br><span class="line">text_splitter = CharacterTextSplitter(chunk_size=<span class="number">1000</span>, chunk_overlap=<span class="number">0</span>)</span><br><span class="line">texts = text_splitter.split_documents(documents)</span><br><span class="line"></span><br><span class="line">embeddings = OpenAIEmbeddings()</span><br><span class="line">docsearch = FAISS.from_documents(texts, embeddings)</span><br><span class="line"></span><br><span class="line">qa = RetrievalQA.from_chain_type(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    chain_type=<span class="string">&quot;stuff&quot;</span>,</span><br><span class="line">    retriever=docsearch.as_retriever()</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">query = <span class="string">&quot;总统提到了什么重要政策?&quot;</span></span><br><span class="line">qa.run(query)</span><br></pre></td></tr></table></figure>
+<h2 id="8-ConversationChain（对话链）">8. ConversationChain（对话链）</h2>
+<p>维护对话上下文的链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> ConversationChain</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory</span><br><span class="line"></span><br><span class="line">conversation = ConversationChain(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    memory=ConversationBufferMemory(),</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;你好!&quot;</span>)</span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;我很好，谢谢!你呢?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="9-MapReduceChain（映射归约链）">9. MapReduceChain（映射归约链）</h2>
+<p>处理长文档的链，先映射处理各部分，再归约总结。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> MapReduceChain</span><br><span class="line"></span><br><span class="line">map_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;page&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;总结以下文本:\n&#123;page&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line">reduce_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;summaries&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;结合以下总结写出最终总结:\n&#123;summaries&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">chain = MapReduceChain.from_params(</span><br><span class="line">    llm=llm,</span><br><span class="line">    map_prompt=map_prompt,</span><br><span class="line">    reduce_prompt=reduce_prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;long_document.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    long_text = f.read()</span><br><span class="line">    </span><br><span class="line">result = chain.run(&#123;<span class="string">&quot;input_text&quot;</span>: long_text&#125;)</span><br></pre></td></tr></table></figure>
+<p>这些链可以单独使用，也可以组合起来构建更复杂的应用。LangChain还允许创建自定义链以满足特定需求。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>langchain</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>langchain</tag>
+        <tag>chains</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RAG向量数据库原理与常用向量库</title>
     <url>/2025/03/11/RAG%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%90%91%E9%87%8F%E5%BA%93/</url>
     <content><![CDATA[<h3 id="在前面的课程中，我们已经学习了-RAG-检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。">在前面的课程中，我们已经学习了 RAG 检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。</h3>
@@ -422,165 +468,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>LangChain链的类型及示例</title>
-    <url>/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/</url>
-    <content><![CDATA[<h1>LangChain 中的链（Chains）类型及示例</h1>
-<p>LangChain 提供了多种类型的链（Chains），用于将多个组件组合起来完成复杂任务。以下是主要的链类型及示例：</p>
-<h2 id="1-LLMChain（基础链）">1. LLMChain（基础链）</h2>
-<p>最基本的链类型，将提示模板、LLM和输出解析器组合在一起。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> LLMChain</span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> PromptTemplate</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0.9</span>)</span><br><span class="line">chain = LLMChain(llm=llm, prompt=prompt)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(chain.run(<span class="string">&quot;环保水杯&quot;</span>))</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h2 id="2-SequentialChain（顺序链）">2. SequentialChain（顺序链）</h2>
-<p>按顺序执行多个链，前一个链的输出作为下一个链的输入。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> SequentialChain, LLMChain</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一个链：生成广告文案</span></span><br><span class="line">prompt1 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain1 = LLMChain(llm=llm, prompt=prompt1, output_key=<span class="string">&quot;ad_copy&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个链：评估广告效果</span></span><br><span class="line">prompt2 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;ad_copy&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;评估以下广告的效果:\n&#123;ad_copy&#125;\n\n评估结果:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain2 = LLMChain(llm=llm, prompt=prompt2, output_key=<span class="string">&quot;review&quot;</span>)</span><br><span class="line"></span><br><span class="line">overall_chain = SequentialChain(</span><br><span class="line">    chains=[chain1, chain2],</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    output_variables=[<span class="string">&quot;ad_copy&quot;</span>, <span class="string">&quot;review&quot;</span>]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">result = overall_chain(&#123;<span class="string">&quot;product&quot;</span>: <span class="string">&quot;智能手表&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
-<h2 id="3-TransformChain（转换链）">3. TransformChain（转换链）</h2>
-<p>对输入进行转换而不调用LLM。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> TransformChain</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform_func</span>(<span class="params">inputs: <span class="built_in">dict</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    text = inputs[<span class="string">&quot;text&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;output_text&quot;</span>: text.upper()&#125;</span><br><span class="line"></span><br><span class="line">transform_chain = TransformChain(</span><br><span class="line">    input_variables=[<span class="string">&quot;text&quot;</span>], </span><br><span class="line">    output_variables=[<span class="string">&quot;output_text&quot;</span>],</span><br><span class="line">    transform=transform_func</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">transform_chain.run(&#123;<span class="string">&quot;text&quot;</span>: <span class="string">&quot;hello world&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="4-RouterChain（路由链）">4. RouterChain（路由链）</h2>
-<p>根据输入决定使用哪个子链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains.router <span class="keyword">import</span> MultiPromptChain</span><br><span class="line"><span class="keyword">from</span> langchain.chains.router.llm_router <span class="keyword">import</span> LLMRouterChain, RouterOutputParser</span><br><span class="line"></span><br><span class="line">physics_template = <span class="string">&quot;&quot;&quot;你是一位物理专家。回答物理问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line">math_template = <span class="string">&quot;&quot;&quot;你是一位数学专家。回答数学问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">prompt_infos = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;physics&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答物理问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: physics_template</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;math&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答数学问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: math_template</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">router_chain = MultiPromptChain.from_prompts(</span><br><span class="line">    llm,</span><br><span class="line">    prompt_infos,</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;什么是相对论?&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;2+2等于几?&quot;</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="5-APIChain（API链）">5. APIChain（API链）</h2>
-<p>与外部API交互的链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> APIChain</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">api_docs = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">API文档:</span></span><br><span class="line"><span class="string">BASE URL: https://api.example.com</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">端点:</span></span><br><span class="line"><span class="string">GET /weather?location=&#123;location&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">参数:</span></span><br><span class="line"><span class="string">- location: 城市名称</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">响应:</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;temp&quot;: 温度,</span></span><br><span class="line"><span class="string">    &quot;condition&quot;: 天气状况</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">chain = APIChain.from_llm_and_api_docs(llm, api_docs, verbose=<span class="literal">True</span>)</span><br><span class="line">chain.run(<span class="string">&quot;上海现在的天气如何?&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="6-SQLDatabaseChain（数据库链）">6. SQLDatabaseChain（数据库链）</h2>
-<p>与SQL数据库交互的链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain <span class="keyword">import</span> SQLDatabase, SQLDatabaseChain</span><br><span class="line"></span><br><span class="line">db = SQLDatabase.from_uri(<span class="string">&quot;sqlite:///chinook.db&quot;</span>)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">db_chain = SQLDatabaseChain(llm=llm, database=db, verbose=<span class="literal">True</span>)</span><br><span class="line">db_chain.run(<span class="string">&quot;有多少位顾客?&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="7-RetrievalQAChain（检索问答链）">7. RetrievalQAChain（检索问答链）</h2>
-<p>结合检索器和LLM的问答链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA</span><br><span class="line"><span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> TextLoader</span><br><span class="line"><span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> FAISS</span><br><span class="line"></span><br><span class="line">loader = TextLoader(<span class="string">&quot;state_of_the_union.txt&quot;</span>)</span><br><span class="line">documents = loader.load()</span><br><span class="line">text_splitter = CharacterTextSplitter(chunk_size=<span class="number">1000</span>, chunk_overlap=<span class="number">0</span>)</span><br><span class="line">texts = text_splitter.split_documents(documents)</span><br><span class="line"></span><br><span class="line">embeddings = OpenAIEmbeddings()</span><br><span class="line">docsearch = FAISS.from_documents(texts, embeddings)</span><br><span class="line"></span><br><span class="line">qa = RetrievalQA.from_chain_type(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    chain_type=<span class="string">&quot;stuff&quot;</span>,</span><br><span class="line">    retriever=docsearch.as_retriever()</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">query = <span class="string">&quot;总统提到了什么重要政策?&quot;</span></span><br><span class="line">qa.run(query)</span><br></pre></td></tr></table></figure>
-<h2 id="8-ConversationChain（对话链）">8. ConversationChain（对话链）</h2>
-<p>维护对话上下文的链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> ConversationChain</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory</span><br><span class="line"></span><br><span class="line">conversation = ConversationChain(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    memory=ConversationBufferMemory(),</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;你好!&quot;</span>)</span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;我很好，谢谢!你呢?&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="9-MapReduceChain（映射归约链）">9. MapReduceChain（映射归约链）</h2>
-<p>处理长文档的链，先映射处理各部分，再归约总结。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> MapReduceChain</span><br><span class="line"></span><br><span class="line">map_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;page&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;总结以下文本:\n&#123;page&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line">reduce_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;summaries&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;结合以下总结写出最终总结:\n&#123;summaries&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">chain = MapReduceChain.from_params(</span><br><span class="line">    llm=llm,</span><br><span class="line">    map_prompt=map_prompt,</span><br><span class="line">    reduce_prompt=reduce_prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;long_document.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    long_text = f.read()</span><br><span class="line">    </span><br><span class="line">result = chain.run(&#123;<span class="string">&quot;input_text&quot;</span>: long_text&#125;)</span><br></pre></td></tr></table></figure>
-<p>这些链可以单独使用，也可以组合起来构建更复杂的应用。LangChain还允许创建自定义链以满足特定需求。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>langchain</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>langchain</tag>
-        <tag>chains</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG生成（二）：提示词工程</title>
-    <url>/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</url>
-    <content><![CDATA[<h4 id="提示词概述">提示词概述</h4>
-<p><strong>提示词工程（Prompt Engineering）</strong>，旨在通过开发和优化提示来有效利用语言模型的潜力。</p>
-<p>提示词工程是为生成式 AI 模型<strong>设计输入</strong>以获取最佳输出的实践。 <strong>这些输入被称为提示词（Prompt）</strong> 。</p>
-<p>提示词工程<strong>核心理念</strong>是，通过提供更优质的输入，可以让生成式 AI 模型（如大型语言模型）生成更符合需求的结果，也就是<strong>让模型能够更好地执行各种任务</strong> ，包括生成创作，生成代码，聊天互动等。</p>
-<span id="more"></span>
-<h4 id="一个通用的提示词通常包含以下几个元素：">一个通用的提示词通常包含以下几个元素：</h4>
-<p><strong>1. 指令（Instruction）：<strong>指明模型要</strong>执行的特定任务或操作</strong>。</p>
-<p><strong>2. 上下文（Context）：<strong>为模型提供</strong>额外信息或背景</strong>，可以帮助引导模型生成更准确的响应。</p>
-<p><strong>3. 输入数据（Input Data）：</strong> 我们希望模型回答的问题或感兴趣的输入内容。</p>
-<p><strong>4. 输出指示符（Output Indicator）：<strong>指定模型的</strong>输出类型或格式</strong>，例如格式、是否要求生成代码、总结文本或回答具体问题。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323075425612.png" alt="image-20250323075425612"></p>
-<p>提示词工程不仅仅是设计提示，而是<strong>通过深刻理解模型的功能和局限性</strong>，创造能够与模型输入产生最佳互动的提示，这其中包含了一系列的技巧。</p>
-<h4 id="RAG中提示词工程的技巧">RAG中提示词工程的技巧</h4>
-<p>这些技巧就是解决RAG中的问题，如缺失内容，格式错误，缺乏细节，回答不全面等采取的具体措施, 也是对评测指标答案及时性、信息整合能力、拒答能力、检错和纠错能力所做的针对设计。</p>
-<p><strong>1. 具体指令法</strong> （优化指令）</p>
-<p>指定回答预期，防止内容缺失，回答不全面：</p>
-<p>清晰的指令可以让模型输出：更<strong>明确的任务目标和更符合预期</strong>的内容。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">请根据上传的银行业报告，简洁总结当前的市场趋势，重点分析政策变化对行业的影响，输出为以下Markdown格式：</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**市场趋势**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**政策影响**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**竞争风险**</span></span><br></pre></td></tr></table></figure>
-<p><strong>2 . 解释理由法</strong> （优化指令, 强调指令的原因）</p>
-<p>提升模型对任务特定规则或背景的理解能力：</p>
-<p>在编写提示时，向模型解释为什么某些任务需要特定的处理方式。这样可以帮助模型更好地理解任务背景，从而提高输出的质量和相关性。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">请生成一份简明扼要的银行业报告摘要，不要逐字重复段落内容。原因：读者可以访问完整文档，如果需要可以详细阅读全文。</span><br></pre></td></tr></table></figure>
-<p><strong>3. 任务角色设定</strong> (优化上下文，指定模型身份、立场和责任)</p>
-<p>提升模型专业领域回答能力：</p>
-<p>通过为模型设定特定的角色身份，可以帮助模型更好地理解任务要求和角色责任，从而输出更加一致、专业的内容。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">你的角色: 知识库专家</span><br><span class="line"><span class="bullet">-</span> 背景：分析银行业市场数据</span><br><span class="line"><span class="bullet">-</span> 目标：生成一份详细的行业趋势分析</span><br><span class="line"><span class="bullet">-</span> 限制：仅根据报告中的数据生成分析</span><br></pre></td></tr></table></figure>
-<p><strong>4. 文档基础说明</strong> （优化上下文，对输入数据提供背景和来源信息）</p>
-<p>奠定模型任务推理的基调：</p>
-<p>为模型提供文档的背景信息和文本来源可以帮助奠定任务基础，让模型更好地进行任务推理和回答。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是关于银行业政策变化的相关规则，它们将用于回答有关政策对银行业影响的问题。</span><br></pre></td></tr></table></figure>
-<p><strong>5. 示例学习</strong> （优化输出指示符）</p>
-<p>优化回答细节以及格式：</p>
-<p>通过给模型提供多个<strong>参考示例</strong>，模型可以基于这些示例进行模式识别，进而<strong>模仿、思考并生成类似的答案</strong>。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是两个关于银行业的分析示例，请按照这种格式对新的报告进行分析：</span><br><span class="line"><span class="bullet">-</span> 示例 1：<span class="strong">**市场趋势**</span>：由于政策放宽，银行贷款增长迅速。</span><br><span class="line"><span class="bullet">-</span> 示例 2：<span class="strong">**政策影响**</span>：新的利率政策可能会对中小企业贷款产生负面影响。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">请对下面报告进行同样的分析。</span><br></pre></td></tr></table></figure>
-<p><strong>6. 默认回复策略</strong> （放在指令，上下文或者输出指示符部分都可以，旨在强调基于文档回答）</p>
-<p>提升模型的拒答能力：</p>
-<p>当模型无法从文档中获取足够信息时，通过设定默认回复策略，避免模型产生“幻觉”，即生成虚假的答案。这可以确保模型仅基于文档中的事实进行回答。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">如果文档中没有足够的事实回答问题，请返回&#123;无法从文档中获得相关内容&#125;，而不是进行推测。</span><br></pre></td></tr></table></figure>
-<p>通过以上提示工程技巧，RAG 任务的输出质量可以高效、低成本地提升，解决常见生成问题。</p>
-<h4 id="写在最后：">写在最后：</h4>
-<p>在提示工程中，过于具体的指令可能会限制模型的创造性，过于宽泛的提示则可能导致生成偏差。</p>
-<p>如何在提示设计中找到合适的权衡点，既能够引导模型生成高质量结果，又不过度限制模型的灵活性，需要大家在实际场景中探索。</p>
-<p><strong>进阶：</strong> 深入理解模型提示词的原理</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104447095.png" alt="image-20250323104447095"></p>
-<p><strong>突破路径：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104703182.png" alt="image-20250323104703182"></p>
-<p>提示词参考阅读：</p>
-<p><a href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq">DeepSeek：从入门到精通（点开是百度网盘链接，放在书籍&amp;手册目录下）</a></p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>生成</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>生成</tag>
-        <tag>generate</tag>
-        <tag>提示词</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG检索流程（一）：混合检索</title>
-    <url>/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/</url>
-    <content><![CDATA[<h3 id="为什么需要混合检索？">为什么需要混合检索？</h3>
-<p>我们本节课正式开始讲解 <strong>RAG 检索流程</strong>。当前主流的 RAG 检索方式主要采用<strong>向量检索（Vector Search）</strong>，通过语义相似度来匹配文本切块。这种方法在我们之前的课程中已经深入探讨过了。然而，向量检索并非万能，它在某些场景下无法替代<strong>传统关键词检索</strong>的优势。</p>
-<p>例如，当你需要精准搜索某个订单 ID、品牌名称或地址，或者搜索特定人物或物品的名字（如伊隆·马斯克、iPhone 15）时，<strong>向量检索的<mark>准确性</mark>往往不如关键词检索</strong>。此外，当用户输入的<strong>问题非常简短</strong>，仅包含几个单词时，比如搜索缩写词或短语（如 RAG、LLM），<strong>语义匹配的效果也可能不尽理想</strong>。</p>
-<p>这些正是传统关键词检索的优势所在。关键词检索（Keyword Search）在几个场景中表现尤为出色：<strong>精确匹配</strong>，如产品名称、姓名、产品编号；少量字符的匹配，用户习惯于输入几个关键词，而少量字符进行向量检索时效果可能较差；以及<strong>低频词汇的匹配</strong>，低频词汇往往承载了关键意义，如在“你想跟我去喝咖啡吗？”这句话中，“喝”“咖啡”比“你”“吗”更具重要性。</p>
-<span id="more"></span>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312122858648.png" alt="image-20250312122858648"></p>
-<p>在上述案例中，虽然依靠<strong>关键词检索可以精确找到与“订单 12345”匹配的特定信息</strong>，<strong>但它无法提供与订单相关的更广泛上下文</strong>。另一方面，<strong>语义匹配</strong>虽然能够识别“订单”和“配送”等相关概念，但在处理具体的订单 ID 时，往往容易出错。</p>
-<p><strong><mark>混合检索（Hybrid Search）通过结合关键词检索和语义匹配的优势</mark></strong>，可以首先利用关键词检索精确定位到“订单 12345”的信息，然后通过语义匹配扩展与该订单相关的其他上下文或客户操作的信息，例如“12 开头的订单、包装破损严重”等。这样不仅能够获取精确的订单详情，还能获得与之相关的额外有用信息。</p>
-<p>在 RAG 检索场景中，<strong>首要目标是确保最相关的结果能够出现在候选列表中</strong>。向量检索和关键词检索各有其独特优势，混合检索通过结合这多种检索技术，弥补了各自的不足，提供了一种更加全面的搜索方案。</p>
-<h3 id="混合检索（多路召回）">混合检索（多路召回）</h3>
-<p>混合检索是指在检索过程中同时采用多种检索方式，并将各类检索结果进行融合，从而得到最终的检索结果。<strong>混合检索的优势在于能够充分利用不同检索方式的优点，弥补各自的不足，从而提升检索的准确性和效率</strong>。下图展示了混合检索的流程：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312133821822.png" alt="image-20250312133821822"></p>
-<p>混合检索实际上并没有严格限定必须包含哪几种检索方式。这里我们以<strong>向量检索</strong>和<strong>关键词检索</strong>的组合为例，但实际上可以包含多种检索方式的组合。如果我们将其他搜索算法结合在一起，也同样可以称为“混合检索”。例如，可以将**知识图谱（graphRAG）**技术用于检索实体关系，并与向量检索技术相结合。</p>
-<p>更多的 RAG 检索方式还包括多重提问检索、上下文压缩检索、集成检索、多向量检索、自查询检索等，每种检索方式说明如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312134208626.png" alt="image-20250312134208626"></p>
-<p>上述方法均包含在 LangChain 的检索器模块 <strong>langchain.retrievers</strong> 中，具体详情可以查看 <a href="https://python.langchain.com/api_reference/langchain/retrievers.html">LangChain 检索器站点</a>。</p>
-<p>混合检索后，我们需要对多个检索方式的检索结果进行综合排名。下节课会详细讲解重排序技术，这里我们简单了解一种更简单的方法来排序，称为<strong>递归折减融合（Reciprocal Rank Fusion, RRF）排序</strong>。RRF 是一种把来自不同检索方法的排名结果结合起来的技巧。它的基本思想是，如果一个文档在不同的检索结果中都排得比较靠前，那么它在综合排名中就应该得到更高的位置。</p>
-<p>相比于复杂的重排序技术，RRF 的操作更加简单，不需要对每种检索结果进行复杂的调整或计算。它通过直接考虑文档在不同方法中的排名，快速生成一个合理的综合排名。这种方法非常适合那些需要快速融合多个检索结果的场景，短时间内得到一个有参考价值的排序。</p>
-<p>选择何种检索技术，取决于开发者需要解决什么样的问题，系统的性能要求、数据的复杂性以及用户的搜索习惯等。针对具体需求选择合适的检索技术，能够最大化地提升 RAG 系统的效率和准确性。</p>
-<h3 id="混合检索技术实战">混合检索技术实战</h3>
-<p>在实战中，我们使用 <strong>rank_bm25</strong> 作为 RAG 项目的关键词搜索技术。BM25 是一种强大的关键词搜索算法，通过分析词频（TF）和逆向文档频率（IDF）来评估文档与查询的相关性。具体来说，BM25 检查查询词在文档中的出现频率，以及该词在所有文档中出现的稀有程度。<strong>如果一个词在特定文档中频繁出现，但在其他文档中较少见，那么 BM25 会将该文档评为高度相关。</strong></p>
-<p>此外，BM25 还通过调整文档长度的影响，防止因文档长度不同而导致的词频偏差。正是这种结合了词频和文档长度平衡的机制，使得 BM25 在关键词搜索中能够提供精准的检索结果，在 RAG 项目中尤为有效。</p>
-<p>需要安装的依赖库：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install -U pip jieba rank_bm25 chromadb langchain langchain_community sentence-transformers unstructured pdfplumber python-docx python-pptx markdown openpyxl pandas -i https://pypi.tuna.tsinghua.edu.cn/simple </span><br></pre></td></tr></table></figure>
-<p>代码内容：</p>
-<ol>
-<li>引入了 rank_bm25 库中的 <strong>BM25Okapi</strong> 类，用于实现 BM25 算法的检索功能。</li>
-<li>引入了 <strong>jieba</strong> 库，用于对中文文本进行分词处理，这对于 BM25 算法处理中文文本起关键作用。</li>
-<li>在 <strong>retrieval_process</strong> 方法中，从 Chroma 的 collection 中提取所有存储的文档内容，并使用 jieba 对这些文档进行中文分词，将分词结果存储为 <strong>tokenized_corpus</strong>，为后续的 BM25 检索做准备。</li>
-<li>利用分词后的文档集合实例化 BM25Okapi 对象，并对查询语句进行分词处理。</li>
-<li>计算查询语句与每个文档之间的 BM25 相关性得分 (bm25_scores)，然后选择得分最高的前 top_k 个文档，并提取这些文档的内容。</li>
-<li>返回合并后的全部检索结果，包含向量检索和 BM25 检索的结果。（下节内容会引入重排序，这里只做简单顺序合并）</li>
-</ol>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>检索</category>
-        <category>混合检索</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>检索</tag>
-        <tag>混合检索</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RAG检索流程（二）：重排序</title>
     <url>/2025/03/19/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E9%87%8D%E6%8E%92%E5%BA%8F/</url>
     <content><![CDATA[<h4 id="重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。">重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。</h4>
@@ -682,8 +569,57 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       <tags>
         <tag>RAG</tag>
         <tag>生成</tag>
-        <tag>提示词</tag>
         <tag>大模型</tag>
+        <tag>提示词</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RAG检索流程（一）：混合检索</title>
+    <url>/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/</url>
+    <content><![CDATA[<h3 id="为什么需要混合检索？">为什么需要混合检索？</h3>
+<p>我们本节课正式开始讲解 <strong>RAG 检索流程</strong>。当前主流的 RAG 检索方式主要采用<strong>向量检索（Vector Search）</strong>，通过语义相似度来匹配文本切块。这种方法在我们之前的课程中已经深入探讨过了。然而，向量检索并非万能，它在某些场景下无法替代<strong>传统关键词检索</strong>的优势。</p>
+<p>例如，当你需要精准搜索某个订单 ID、品牌名称或地址，或者搜索特定人物或物品的名字（如伊隆·马斯克、iPhone 15）时，<strong>向量检索的<mark>准确性</mark>往往不如关键词检索</strong>。此外，当用户输入的<strong>问题非常简短</strong>，仅包含几个单词时，比如搜索缩写词或短语（如 RAG、LLM），<strong>语义匹配的效果也可能不尽理想</strong>。</p>
+<p>这些正是传统关键词检索的优势所在。关键词检索（Keyword Search）在几个场景中表现尤为出色：<strong>精确匹配</strong>，如产品名称、姓名、产品编号；少量字符的匹配，用户习惯于输入几个关键词，而少量字符进行向量检索时效果可能较差；以及<strong>低频词汇的匹配</strong>，低频词汇往往承载了关键意义，如在“你想跟我去喝咖啡吗？”这句话中，“喝”“咖啡”比“你”“吗”更具重要性。</p>
+<span id="more"></span>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312122858648.png" alt="image-20250312122858648"></p>
+<p>在上述案例中，虽然依靠<strong>关键词检索可以精确找到与“订单 12345”匹配的特定信息</strong>，<strong>但它无法提供与订单相关的更广泛上下文</strong>。另一方面，<strong>语义匹配</strong>虽然能够识别“订单”和“配送”等相关概念，但在处理具体的订单 ID 时，往往容易出错。</p>
+<p><strong><mark>混合检索（Hybrid Search）通过结合关键词检索和语义匹配的优势</mark></strong>，可以首先利用关键词检索精确定位到“订单 12345”的信息，然后通过语义匹配扩展与该订单相关的其他上下文或客户操作的信息，例如“12 开头的订单、包装破损严重”等。这样不仅能够获取精确的订单详情，还能获得与之相关的额外有用信息。</p>
+<p>在 RAG 检索场景中，<strong>首要目标是确保最相关的结果能够出现在候选列表中</strong>。向量检索和关键词检索各有其独特优势，混合检索通过结合这多种检索技术，弥补了各自的不足，提供了一种更加全面的搜索方案。</p>
+<h3 id="混合检索（多路召回）">混合检索（多路召回）</h3>
+<p>混合检索是指在检索过程中同时采用多种检索方式，并将各类检索结果进行融合，从而得到最终的检索结果。<strong>混合检索的优势在于能够充分利用不同检索方式的优点，弥补各自的不足，从而提升检索的准确性和效率</strong>。下图展示了混合检索的流程：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312133821822.png" alt="image-20250312133821822"></p>
+<p>混合检索实际上并没有严格限定必须包含哪几种检索方式。这里我们以<strong>向量检索</strong>和<strong>关键词检索</strong>的组合为例，但实际上可以包含多种检索方式的组合。如果我们将其他搜索算法结合在一起，也同样可以称为“混合检索”。例如，可以将**知识图谱（graphRAG）**技术用于检索实体关系，并与向量检索技术相结合。</p>
+<p>更多的 RAG 检索方式还包括多重提问检索、上下文压缩检索、集成检索、多向量检索、自查询检索等，每种检索方式说明如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250312134208626.png" alt="image-20250312134208626"></p>
+<p>上述方法均包含在 LangChain 的检索器模块 <strong>langchain.retrievers</strong> 中，具体详情可以查看 <a href="https://python.langchain.com/api_reference/langchain/retrievers.html">LangChain 检索器站点</a>。</p>
+<p>混合检索后，我们需要对多个检索方式的检索结果进行综合排名。下节课会详细讲解重排序技术，这里我们简单了解一种更简单的方法来排序，称为<strong>递归折减融合（Reciprocal Rank Fusion, RRF）排序</strong>。RRF 是一种把来自不同检索方法的排名结果结合起来的技巧。它的基本思想是，如果一个文档在不同的检索结果中都排得比较靠前，那么它在综合排名中就应该得到更高的位置。</p>
+<p>相比于复杂的重排序技术，RRF 的操作更加简单，不需要对每种检索结果进行复杂的调整或计算。它通过直接考虑文档在不同方法中的排名，快速生成一个合理的综合排名。这种方法非常适合那些需要快速融合多个检索结果的场景，短时间内得到一个有参考价值的排序。</p>
+<p>选择何种检索技术，取决于开发者需要解决什么样的问题，系统的性能要求、数据的复杂性以及用户的搜索习惯等。针对具体需求选择合适的检索技术，能够最大化地提升 RAG 系统的效率和准确性。</p>
+<h3 id="混合检索技术实战">混合检索技术实战</h3>
+<p>在实战中，我们使用 <strong>rank_bm25</strong> 作为 RAG 项目的关键词搜索技术。BM25 是一种强大的关键词搜索算法，通过分析词频（TF）和逆向文档频率（IDF）来评估文档与查询的相关性。具体来说，BM25 检查查询词在文档中的出现频率，以及该词在所有文档中出现的稀有程度。<strong>如果一个词在特定文档中频繁出现，但在其他文档中较少见，那么 BM25 会将该文档评为高度相关。</strong></p>
+<p>此外，BM25 还通过调整文档长度的影响，防止因文档长度不同而导致的词频偏差。正是这种结合了词频和文档长度平衡的机制，使得 BM25 在关键词搜索中能够提供精准的检索结果，在 RAG 项目中尤为有效。</p>
+<p>需要安装的依赖库：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install -U pip jieba rank_bm25 chromadb langchain langchain_community sentence-transformers unstructured pdfplumber python-docx python-pptx markdown openpyxl pandas -i https://pypi.tuna.tsinghua.edu.cn/simple </span><br></pre></td></tr></table></figure>
+<p>代码内容：</p>
+<ol>
+<li>引入了 rank_bm25 库中的 <strong>BM25Okapi</strong> 类，用于实现 BM25 算法的检索功能。</li>
+<li>引入了 <strong>jieba</strong> 库，用于对中文文本进行分词处理，这对于 BM25 算法处理中文文本起关键作用。</li>
+<li>在 <strong>retrieval_process</strong> 方法中，从 Chroma 的 collection 中提取所有存储的文档内容，并使用 jieba 对这些文档进行中文分词，将分词结果存储为 <strong>tokenized_corpus</strong>，为后续的 BM25 检索做准备。</li>
+<li>利用分词后的文档集合实例化 BM25Okapi 对象，并对查询语句进行分词处理。</li>
+<li>计算查询语句与每个文档之间的 BM25 相关性得分 (bm25_scores)，然后选择得分最高的前 top_k 个文档，并提取这些文档的内容。</li>
+<li>返回合并后的全部检索结果，包含向量检索和 BM25 检索的结果。（下节内容会引入重排序，这里只做简单顺序合并）</li>
+</ol>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>检索</category>
+        <category>混合检索</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>检索</tag>
+        <tag>混合检索</tag>
       </tags>
   </entry>
   <entry>
@@ -751,111 +687,67 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>Text2SQL应用对比</title>
-    <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
-    <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
-<hr>
+    <title>RAG生成（二）：提示词工程</title>
+    <url>/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<h4 id="提示词概述">提示词概述</h4>
+<p><strong>提示词工程（Prompt Engineering）</strong>，旨在通过开发和优化提示来有效利用语言模型的潜力。</p>
+<p>提示词工程是为生成式 AI 模型<strong>设计输入</strong>以获取最佳输出的实践。 <strong>这些输入被称为提示词（Prompt）</strong> 。</p>
+<p>提示词工程<strong>核心理念</strong>是，通过提供更优质的输入，可以让生成式 AI 模型（如大型语言模型）生成更符合需求的结果，也就是<strong>让模型能够更好地执行各种任务</strong> ，包括生成创作，生成代码，聊天互动等。</p>
 <span id="more"></span>
-<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
-<ul>
-<li><strong>类型</strong>：在线工具</li>
-<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
-<li><strong>特点</strong>：
-<ul>
-<li>无需安装或配置，直接在浏览器中使用。</li>
-<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
-<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
-<li>支持标准的 PostgreSQL 功能。</li>
-</ul>
-</li>
-<li><strong>适用场景</strong>：
-<ul>
-<li>快速测试 SQL 查询。</li>
-<li>教学或演示 PostgreSQL 功能。</li>
-<li>临时需要数据库环境的场景。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
-<ul>
-<li><strong>类型</strong>：AI 驱动的工具</li>
-<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
-<li><strong>特点</strong>：
-<ul>
-<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
-<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
-<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
-<li>提供 Python 库，方便集成到数据工作流中。</li>
-</ul>
-</li>
-<li><strong>适用场景</strong>：
-<ul>
-<li>非技术用户需要查询数据库。</li>
-<li>快速生成复杂 SQL 查询。</li>
-<li>数据分析师或开发人员希望提高工作效率。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="对比总结"><strong>对比总结</strong></h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Postgres.new</th>
-<th>Vanna</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>类型</strong></td>
-<td>在线临时数据库工具</td>
-<td>AI 驱动的 SQL 生成工具</td>
-</tr>
-<tr>
-<td><strong>主要用途</strong></td>
-<td>创建临时 PostgreSQL 实例</td>
-<td>通过自然语言生成 SQL 查询</td>
-</tr>
-<tr>
-<td><strong>用户群体</strong></td>
-<td>开发者、测试人员、学习者</td>
-<td>数据分析师、非技术用户、开发者</td>
-</tr>
-<tr>
-<td><strong>技术依赖</strong></td>
-<td>无需 AI，纯数据库工具</td>
-<td>依赖 AI 模型（如 GPT）</td>
-</tr>
-<tr>
-<td><strong>集成能力</strong></td>
-<td>无</td>
-<td>支持 Python 库，可集成到工作流</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>测试、演示、学习</td>
-<td>数据分析、快速生成 SQL、简化查询</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="选择建议"><strong>选择建议</strong></h3>
-<ul>
-<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
-<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
-</ul>
-<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
+<h4 id="一个通用的提示词通常包含以下几个元素：">一个通用的提示词通常包含以下几个元素：</h4>
+<p><strong>1. 指令（Instruction）：<strong>指明模型要</strong>执行的特定任务或操作</strong>。</p>
+<p><strong>2. 上下文（Context）：<strong>为模型提供</strong>额外信息或背景</strong>，可以帮助引导模型生成更准确的响应。</p>
+<p><strong>3. 输入数据（Input Data）：</strong> 我们希望模型回答的问题或感兴趣的输入内容。</p>
+<p><strong>4. 输出指示符（Output Indicator）：<strong>指定模型的</strong>输出类型或格式</strong>，例如格式、是否要求生成代码、总结文本或回答具体问题。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323075425612.png" alt="image-20250323075425612"></p>
+<p>提示词工程不仅仅是设计提示，而是<strong>通过深刻理解模型的功能和局限性</strong>，创造能够与模型输入产生最佳互动的提示，这其中包含了一系列的技巧。</p>
+<h4 id="RAG中提示词工程的技巧">RAG中提示词工程的技巧</h4>
+<p>这些技巧就是解决RAG中的问题，如缺失内容，格式错误，缺乏细节，回答不全面等采取的具体措施, 也是对评测指标答案及时性、信息整合能力、拒答能力、检错和纠错能力所做的针对设计。</p>
+<p><strong>1. 具体指令法</strong> （优化指令）</p>
+<p>指定回答预期，防止内容缺失，回答不全面：</p>
+<p>清晰的指令可以让模型输出：更<strong>明确的任务目标和更符合预期</strong>的内容。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">请根据上传的银行业报告，简洁总结当前的市场趋势，重点分析政策变化对行业的影响，输出为以下Markdown格式：</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**市场趋势**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**政策影响**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**竞争风险**</span></span><br></pre></td></tr></table></figure>
+<p><strong>2 . 解释理由法</strong> （优化指令, 强调指令的原因）</p>
+<p>提升模型对任务特定规则或背景的理解能力：</p>
+<p>在编写提示时，向模型解释为什么某些任务需要特定的处理方式。这样可以帮助模型更好地理解任务背景，从而提高输出的质量和相关性。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">请生成一份简明扼要的银行业报告摘要，不要逐字重复段落内容。原因：读者可以访问完整文档，如果需要可以详细阅读全文。</span><br></pre></td></tr></table></figure>
+<p><strong>3. 任务角色设定</strong> (优化上下文，指定模型身份、立场和责任)</p>
+<p>提升模型专业领域回答能力：</p>
+<p>通过为模型设定特定的角色身份，可以帮助模型更好地理解任务要求和角色责任，从而输出更加一致、专业的内容。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">你的角色: 知识库专家</span><br><span class="line"><span class="bullet">-</span> 背景：分析银行业市场数据</span><br><span class="line"><span class="bullet">-</span> 目标：生成一份详细的行业趋势分析</span><br><span class="line"><span class="bullet">-</span> 限制：仅根据报告中的数据生成分析</span><br></pre></td></tr></table></figure>
+<p><strong>4. 文档基础说明</strong> （优化上下文，对输入数据提供背景和来源信息）</p>
+<p>奠定模型任务推理的基调：</p>
+<p>为模型提供文档的背景信息和文本来源可以帮助奠定任务基础，让模型更好地进行任务推理和回答。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是关于银行业政策变化的相关规则，它们将用于回答有关政策对银行业影响的问题。</span><br></pre></td></tr></table></figure>
+<p><strong>5. 示例学习</strong> （优化输出指示符）</p>
+<p>优化回答细节以及格式：</p>
+<p>通过给模型提供多个<strong>参考示例</strong>，模型可以基于这些示例进行模式识别，进而<strong>模仿、思考并生成类似的答案</strong>。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是两个关于银行业的分析示例，请按照这种格式对新的报告进行分析：</span><br><span class="line"><span class="bullet">-</span> 示例 1：<span class="strong">**市场趋势**</span>：由于政策放宽，银行贷款增长迅速。</span><br><span class="line"><span class="bullet">-</span> 示例 2：<span class="strong">**政策影响**</span>：新的利率政策可能会对中小企业贷款产生负面影响。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">请对下面报告进行同样的分析。</span><br></pre></td></tr></table></figure>
+<p><strong>6. 默认回复策略</strong> （放在指令，上下文或者输出指示符部分都可以，旨在强调基于文档回答）</p>
+<p>提升模型的拒答能力：</p>
+<p>当模型无法从文档中获取足够信息时，通过设定默认回复策略，避免模型产生“幻觉”，即生成虚假的答案。这可以确保模型仅基于文档中的事实进行回答。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">如果文档中没有足够的事实回答问题，请返回&#123;无法从文档中获得相关内容&#125;，而不是进行推测。</span><br></pre></td></tr></table></figure>
+<p>通过以上提示工程技巧，RAG 任务的输出质量可以高效、低成本地提升，解决常见生成问题。</p>
+<h4 id="写在最后：">写在最后：</h4>
+<p>在提示工程中，过于具体的指令可能会限制模型的创造性，过于宽泛的提示则可能导致生成偏差。</p>
+<p>如何在提示设计中找到合适的权衡点，既能够引导模型生成高质量结果，又不过度限制模型的灵活性，需要大家在实际场景中探索。</p>
+<p><strong>进阶：</strong> 深入理解模型提示词的原理</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104447095.png" alt="image-20250323104447095"></p>
+<p><strong>突破路径：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104703182.png" alt="image-20250323104703182"></p>
+<p>提示词参考阅读：</p>
+<p><a href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq">DeepSeek：从入门到精通（点开是百度网盘链接，放在书籍&amp;手册目录下）</a></p>
 ]]></content>
       <categories>
         <category>AI</category>
-        <category>AI工具</category>
+        <category>RAG</category>
+        <category>生成</category>
       </categories>
       <tags>
-        <tag>AI工具</tag>
-        <tag>Text2SQL</tag>
-        <tag>自然语言操作数据库</tag>
+        <tag>RAG</tag>
+        <tag>生成</tag>
+        <tag>提示词</tag>
+        <tag>generate</tag>
       </tags>
   </entry>
   <entry>
@@ -1105,10 +997,118 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       <tags>
         <tag>AI</tag>
         <tag>RAG</tag>
-        <tag>索引</tag>
         <tag>langchain</tag>
+        <tag>索引</tag>
         <tag>分块策略</tag>
         <tag>Chunk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Text2SQL应用对比</title>
+    <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
+    <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
+<hr>
+<span id="more"></span>
+<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
+<ul>
+<li><strong>类型</strong>：在线工具</li>
+<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>无需安装或配置，直接在浏览器中使用。</li>
+<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
+<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
+<li>支持标准的 PostgreSQL 功能。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>快速测试 SQL 查询。</li>
+<li>教学或演示 PostgreSQL 功能。</li>
+<li>临时需要数据库环境的场景。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
+<ul>
+<li><strong>类型</strong>：AI 驱动的工具</li>
+<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
+<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
+<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
+<li>提供 Python 库，方便集成到数据工作流中。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>非技术用户需要查询数据库。</li>
+<li>快速生成复杂 SQL 查询。</li>
+<li>数据分析师或开发人员希望提高工作效率。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="对比总结"><strong>对比总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Postgres.new</th>
+<th>Vanna</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>类型</strong></td>
+<td>在线临时数据库工具</td>
+<td>AI 驱动的 SQL 生成工具</td>
+</tr>
+<tr>
+<td><strong>主要用途</strong></td>
+<td>创建临时 PostgreSQL 实例</td>
+<td>通过自然语言生成 SQL 查询</td>
+</tr>
+<tr>
+<td><strong>用户群体</strong></td>
+<td>开发者、测试人员、学习者</td>
+<td>数据分析师、非技术用户、开发者</td>
+</tr>
+<tr>
+<td><strong>技术依赖</strong></td>
+<td>无需 AI，纯数据库工具</td>
+<td>依赖 AI 模型（如 GPT）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>无</td>
+<td>支持 Python 库，可集成到工作流</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>测试、演示、学习</td>
+<td>数据分析、快速生成 SQL、简化查询</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="选择建议"><strong>选择建议</strong></h3>
+<ul>
+<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
+<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
+</ul>
+<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>AI工具</category>
+      </categories>
+      <tags>
+        <tag>AI工具</tag>
+        <tag>Text2SQL</tag>
+        <tag>自然语言操作数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -1357,6 +1357,37 @@ H<sub>2</sub>O</li>
       </tags>
   </entry>
   <entry>
+    <title>升级 Dify</title>
+    <url>/2025/03/19/%E5%8D%87%E7%BA%A7dify/</url>
+    <content><![CDATA[<h4 id="将社区版迁移至-v1-x-x（0-15-x版本迁移至1-x-x版本）">将社区版迁移至 v1.x.x（0.15.x版本迁移至1.x.x版本）</h4>
+<p>链接：<a href="https://docs.dify.ai/development/migration/migrate-to-v1">https://docs.dify.ai/development/migration/migrate-to-v1</a></p>
+<h4 id="小版本升级参考如下：">小版本升级参考如下：</h4>
+<ul>
+<li>
+<h5 id="进入dify源码的docker目录，执行以下命令：">进入dify源码的docker目录，执行以下命令：</h5>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd dify/docker</span><br><span class="line">cp docker-compose.yaml docker-compose.yaml.$(date +%s).bak  #备份compose文件（可选）</span><br><span class="line">docker compose down</span><br><span class="line">git checkout main</span><br><span class="line">git pull origin main</span><br><span class="line">tar -cvf volumes-$(date +%s).tgz volumes  # 备份数据（可选）</span><br><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<h5 id="同步环境变量配置（重要）">同步环境变量配置（重要）</h5>
+</li>
+</ul>
+<p>去到dify/docker目录下，查看.env.example文件的更新日期判断是否已更新</p>
+<p>如果.env.example文件已更新，请确保相应地修改本地的.env文件。</p>
+<p>根据需要检查并修改.env文件中的配置项，以确保它们与您的实际环境相匹配。您可能需要添加任何新变量从.env.example到.env文件中，并更新任何已更改的值。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>AI工具</category>
+      </categories>
+      <tags>
+        <tag>dify</tag>
+        <tag>rag</tag>
+        <tag>agent</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多智能体框架ChatDev与MetaGPT介绍</title>
     <url>/2025/03/21/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<p>ChatDev、MetaGPT 等多智能体框架是近年来在人工智能领域，特别是多智能体系统（Multi-Agent Systems, MAS）和生成式 AI 领域的重要进展。这些框架旨在通过多个智能体（Agents）的协作，完成复杂的任务或生成高质量的内容。以下是对这些框架的简要介绍和对比：</p>
@@ -1459,26 +1490,6 @@ H<sub>2</sub>O</li>
         <tag>多智能体</tag>
         <tag>ChatDev</tag>
         <tag>MetaGPT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>升级 Dify</title>
-    <url>/2025/03/19/%E5%8D%87%E7%BA%A7dify/</url>
-    <content><![CDATA[<h4 id="进入dify源码的docker目录，执行以下命令：">进入dify源码的docker目录，执行以下命令：</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd dify/docker</span><br><span class="line">docker compose down</span><br><span class="line">git pull origin main</span><br><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
-<h4 id="同步环境变量配置（重要）">同步环境变量配置（重要）</h4>
-<p>去到dify/docker目录下，查看.env.example文件的更新日期判断是否已更新</p>
-<p>如果.env.example文件已更新，请确保相应地修改本地的.env文件。</p>
-<p>根据需要检查并修改.env文件中的配置项，以确保它们与您的实际环境相匹配。您可能需要添加任何新变量从.env.example到.env文件中，并更新任何已更改的值。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>AI工具</category>
-      </categories>
-      <tags>
-        <tag>dify</tag>
-        <tag>rag</tag>
-        <tag>agent</tag>
       </tags>
   </entry>
   <entry>
