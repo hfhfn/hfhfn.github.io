@@ -15,3 +15,15 @@
 .katex {
     font-size: 1.1em; /* 调整公式字体大小 */
 }
+
+/* 强制覆盖主题样式 */
+.post .post-body ul,
+.post .post-body ol {
+  padding-left: 2em !important;
+  list-style-type: disc !important;  /* 无序列表样式 */
+}
+
+/* 有序列表样式 */
+.post .post-body ol {
+  list-style-type: decimal !important;
+}

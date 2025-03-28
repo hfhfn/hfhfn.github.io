@@ -4,10 +4,10 @@
     <title>Hexo踩坑</title>
     <url>/2025/03/06/Hexo%E8%B8%A9%E5%9D%91/</url>
     <content><![CDATA[<hr>
-<h1>一. 在 <strong>Hexo</strong> 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</h1>
+<h3 id="一-在-Hexo-博客中无法渲染数学公式，通常是因为-Hexo-默认不支持-LaTeX-公式渲染。你需要安装插件并配置-Hexo-以支持数学公式。以下是解决方案：">一. 在 <strong>Hexo</strong> 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</h3>
 <hr>
 <span id="more"></span>
-<h3 id="方法-1：使用-hexo-renderer-markdown-it-和-markdown-it-katex">方法 1：使用 <code>hexo-renderer-markdown-it</code> 和 <code>markdown-it-katex</code></h3>
+<h4 id="方法-1：使用-hexo-renderer-markdown-it-和-markdown-it-katex">方法 1：使用 <code>hexo-renderer-markdown-it</code> 和 <code>markdown-it-katex</code></h4>
 <ol>
 <li>
 <p><strong>卸载默认的 Markdown 渲染器</strong><br>
@@ -41,7 +41,7 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ol>
 <hr>
-<h3 id="方法-2：使用-hexo-renderer-pandoc（推荐）">方法 2：使用 <code>hexo-renderer-pandoc</code>（推荐）</h3>
+<h4 id="方法-2：使用-hexo-renderer-pandoc（推荐）">方法 2：使用 <code>hexo-renderer-pandoc</code>（推荐）</h4>
 <p>如果你需要更强大的数学公式支持（如复杂的 LaTeX 公式），可以使用 <code>hexo-renderer-pandoc</code>。</p>
 <ol>
 <li>
@@ -77,7 +77,7 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ol>
 <hr>
-<h3 id="方法-3：使用-hexo-filter-mathjax（简单但性能较差）">方法 3：使用 <code>hexo-filter-mathjax</code>（简单但性能较差）</h3>
+<h4 id="方法-3：使用-hexo-filter-mathjax（简单但性能较差）">方法 3：使用 <code>hexo-filter-mathjax</code>（简单但性能较差）</h4>
 <p>如果你不想折腾，可以使用 <code>hexo-filter-mathjax</code>，这是一个简单的插件，但性能较差。</p>
 <ol>
 <li>
@@ -97,7 +97,7 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ol>
 <hr>
-<h3 id="测试公式">测试公式</h3>
+<h4 id="测试公式">测试公式</h4>
 <p>在你的博客文章中，使用以下语法测试公式：</p>
 <ul>
 <li>
@@ -112,17 +112,17 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ul>
 <hr>
-<h3 id="总结">总结</h3>
+<h4 id="总结">总结</h4>
 <ul>
 <li>如果你需要简单的公式支持，推荐使用 <strong>方法 1</strong>（<code>hexo-renderer-markdown-it</code> + <code>markdown-it-katex</code>）。</li>
 <li>如果你需要更强大的公式支持，推荐使用 <strong>方法 2</strong>（<code>hexo-renderer-pandoc</code>）。</li>
 <li>如果你不想折腾，可以使用 <strong>方法 3</strong>（<code>hexo-filter-mathjax</code>），但性能较差。</li>
 </ul>
-<h1>二. Hexo Admin后台新建posts，一直显示loading</h1>
+<h3 id="二-Hexo-Admin后台新建posts，一直显示loading">二. Hexo Admin后台新建posts，一直显示loading</h3>
 <p>从错误信息来看，问题是由于 <code>js-yaml</code> 库的版本升级导致的。在 <code>js-yaml</code> 4.0.0 及以上版本中，<code>yaml.safeLoad</code> 方法已被移除，建议使用 <code>yaml.load</code> 方法代替。Hexo Admin 插件可能还在使用旧的 <code>yaml.safeLoad</code> 方法，因此导致了错误。</p>
 <p>以下是解决该问题的步骤：</p>
 <hr>
-<h3 id="1-修改-Hexo-Admin-源码">1. <strong>修改 Hexo Admin 源码</strong></h3>
+<h4 id="1-修改-Hexo-Admin-源码">1. <strong>修改 Hexo Admin 源码</strong></h4>
 <ul>
 <li>找到 Hexo Admin 插件中使用 <code>yaml.safeLoad</code> 的地方，将其替换为 <code>yaml.load</code>。</li>
 <li>根据错误日志，问题出现在 <code>D:\AIGC\my_blog\node_modules\.pnpm\hexo-admin@2.3.0\node_modules\hexo-admin\api.js</code> 文件的第 44 行。</li>
@@ -132,7 +132,7 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ul>
 <hr>
-<h3 id="2-降级-js-yaml-版本">2. <strong>降级 <code>js-yaml</code> 版本</strong></h3>
+<h4 id="2-降级-js-yaml-版本">2. <strong>降级 <code>js-yaml</code> 版本</strong></h4>
 <ul>
 <li>如果你不想修改源码，可以尝试将 <code>js-yaml</code> 降级到 3.x 版本，该版本仍然支持 <code>yaml.safeLoad</code>。</li>
 <li>运行以下命令：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install js-yaml@3.14.1 --save</span><br></pre></td></tr></table></figure>
@@ -140,20 +140,20 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 <li>然后重新启动 Hexo 服务器。</li>
 </ul>
 <hr>
-<h3 id="3-更新-Hexo-Admin-插件">3. <strong>更新 Hexo Admin 插件</strong></h3>
+<h4 id="3-更新-Hexo-Admin-插件">3. <strong>更新 Hexo Admin 插件</strong></h4>
 <ul>
 <li>检查是否有新版本的 Hexo Admin 插件，可能已经修复了该问题。</li>
 <li>运行以下命令更新插件：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-admin@latest --save</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <hr>
-<h3 id="4-检查-Hexo-和插件兼容性">4. <strong>检查 Hexo 和插件兼容性</strong></h3>
+<h4 id="4-检查-Hexo-和插件兼容性">4. <strong>检查 Hexo 和插件兼容性</strong></h4>
 <ul>
 <li>确保 Hexo 和 Hexo Admin 插件的版本兼容。</li>
 <li>查看 Hexo Admin 的官方文档或 GitHub 仓库，确认支持的 Hexo 版本。</li>
 </ul>
 <hr>
-<h3 id="5-清理缓存并重启">5. <strong>清理缓存并重启</strong></h3>
+<h4 id="5-清理缓存并重启">5. <strong>清理缓存并重启</strong></h4>
 <ul>
 <li>清理 Hexo 缓存并重新生成静态文件：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
 </li>
@@ -161,33 +161,59 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ul>
 <hr>
-<h3 id="6-检查-YAML-文件格式">6. <strong>检查 YAML 文件格式</strong></h3>
+<h4 id="6-检查-YAML-文件格式">6. <strong>检查 YAML 文件格式</strong></h4>
 <ul>
 <li>确保 Hexo Admin 使用的 YAML 配置文件格式正确，没有语法错误。</li>
 <li>可以使用在线 YAML 校验工具（如 <a href="https://www.yamllint.com/">YAML Lint</a>）检查配置文件。</li>
 </ul>
 <hr>
-<h3 id="7-全局替换-yaml-safeLoad">7. <strong>全局替换 <code>yaml.safeLoad</code></strong></h3>
+<h4 id="7-全局替换-yaml-safeLoad">7. <strong>全局替换 <code>yaml.safeLoad</code></strong></h4>
 <ul>
 <li>如果你的项目中还有其他地方使用了 <code>yaml.safeLoad</code>，可以全局替换为 <code>yaml.load</code>。</li>
 <li>使用代码编辑器的全局搜索功能，查找并替换所有 <code>yaml.safeLoad</code> 为 <code>yaml.load</code>。</li>
 </ul>
 <hr>
-<h3 id="8-提交-Issue-给-Hexo-Admin">8. <strong>提交 Issue 给 Hexo Admin</strong></h3>
+<h4 id="8-提交-Issue-给-Hexo-Admin">8. <strong>提交 Issue 给 Hexo Admin</strong></h4>
 <ul>
 <li>如果以上方法无效，建议到 Hexo Admin 的 GitHub 仓库提交 Issue，说明你的问题和环境信息（如 Hexo 版本、Node.js 版本等）。</li>
 <li>Hexo Admin 仓库地址：<a href="https://github.com/hexojs/hexo-admin">https://github.com/hexojs/hexo-admin</a></li>
 </ul>
 <hr>
-<h3 id="9-临时解决方案">9. <strong>临时解决方案</strong></h3>
+<h4 id="9-临时解决方案">9. <strong>临时解决方案</strong></h4>
 <ul>
 <li>如果你急需解决问题，可以暂时锁定 <code>js-yaml</code> 的版本为 3.x，在 <code>package.json</code> 中添加以下内容：<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;resolutions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;js-yaml&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3.14.1&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li>然后运行 <code>npm install</code> 重新安装依赖。</li>
 </ul>
 <hr>
-<p>通过以上方法，你应该能够解决 <code>yaml.safeLoad</code> 被移除的问题。如果问题仍然存在，请提供更多上下文信息，我会进一步协助你排查问题。</p>
-<h1>三.</h1>
+<p>通过以上方法，你应该能够解决 <code>yaml.safeLoad</code> 被移除的问题。</p>
+<h3 id="三-Hexo的next主题markdown列表无法正常渲染的问题">三. Hexo的next主题markdown列表无法正常渲染的问题</h3>
+<h4 id="解决方案：">解决方案：</h4>
+<ul>
+<li>
+<p>修改custom.css样式</p>
+</li>
+<li>
+<p>打开 <code>themes/next/source/css/custom.css</code> 添加以下代码修复列表样式：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> /* 强制覆盖主题样式 */</span><br><span class="line">.post .post-body ul,</span><br><span class="line">.post .post-body ol &#123;</span><br><span class="line">  padding-left: 2em !important;</span><br><span class="line">  list-style-type: disc !important;  /* 无序列表样式 */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 有序列表样式 */</span><br><span class="line">.post .post-body ol &#123;</span><br><span class="line">  list-style-type: decimal !important;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>通过主题中的_config.yml自定义样式，加载custom.css文件</p>
+<ul>
+<li>
+<p>打开 themes/next/_config.yml</p>
+</li>
+<li>
+<p>找到 custom_file_path 部分，确保 style 指向正确路径：</p>
+</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">custom_file_path:</span><br><span class="line">	style: source/css/custom.css  # 取消注释</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>清理缓存重新生成：</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>自媒体</category>
@@ -196,6 +222,158 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       <tags>
         <tag>博客</tag>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Manus 首款通用AI智能体</title>
+    <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
+    <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
+<ul>
+<li>
+<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
+</li>
+<li>
+<h3 id="说说我的想法">说说我的想法</h3>
+<ul>
+<li>
+<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
+</li>
+<li>
+<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
+<ul>
+<li>从目前头部的几个集成平台说起：</li>
+<li><strong>字节的扣子</strong>
+<ul>
+<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
+</ul>
+</li>
+<li><strong>Dify</strong><br>
+一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
+<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
+<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
+<ul>
+<li>
+<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
+<ul>
+<li>商业研究</li>
+<li>生活帮手</li>
+<li>数据分析</li>
+<li>教育可视化</li>
+<li>以及各种提升生产率的工具</li>
+</ul>
+</li>
+<li>
+<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
+<ul>
+<li><a href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
+</ul>
+</li>
+<li>
+<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
+<ul>
+<li><a href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
+</ul>
+</li>
+<li>
+<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
+<ul>
+<li><a href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
+</ul>
+</li>
+<li>
+<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
+<ul>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<div style="display: flex;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
+  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
+</div>
+</li>
+<li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
+</li>
+<li>
+<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>Agent</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>Manus</tag>
+        <tag>智能体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LangChain链的类型及示例</title>
+    <url>/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/</url>
+    <content><![CDATA[<h1>LangChain 中的链（Chains）类型及示例</h1>
+<p>LangChain 提供了多种类型的链（Chains），用于将多个组件组合起来完成复杂任务。以下是主要的链类型及示例：</p>
+<h2 id="1-LLMChain（基础链）">1. LLMChain（基础链）</h2>
+<p>最基本的链类型，将提示模板、LLM和输出解析器组合在一起。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> LLMChain</span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> PromptTemplate</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0.9</span>)</span><br><span class="line">chain = LLMChain(llm=llm, prompt=prompt)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(chain.run(<span class="string">&quot;环保水杯&quot;</span>))</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="2-SequentialChain（顺序链）">2. SequentialChain（顺序链）</h2>
+<p>按顺序执行多个链，前一个链的输出作为下一个链的输入。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> SequentialChain, LLMChain</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一个链：生成广告文案</span></span><br><span class="line">prompt1 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain1 = LLMChain(llm=llm, prompt=prompt1, output_key=<span class="string">&quot;ad_copy&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个链：评估广告效果</span></span><br><span class="line">prompt2 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;ad_copy&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;评估以下广告的效果:\n&#123;ad_copy&#125;\n\n评估结果:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain2 = LLMChain(llm=llm, prompt=prompt2, output_key=<span class="string">&quot;review&quot;</span>)</span><br><span class="line"></span><br><span class="line">overall_chain = SequentialChain(</span><br><span class="line">    chains=[chain1, chain2],</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    output_variables=[<span class="string">&quot;ad_copy&quot;</span>, <span class="string">&quot;review&quot;</span>]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">result = overall_chain(&#123;<span class="string">&quot;product&quot;</span>: <span class="string">&quot;智能手表&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<h2 id="3-TransformChain（转换链）">3. TransformChain（转换链）</h2>
+<p>对输入进行转换而不调用LLM。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> TransformChain</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform_func</span>(<span class="params">inputs: <span class="built_in">dict</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    text = inputs[<span class="string">&quot;text&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;output_text&quot;</span>: text.upper()&#125;</span><br><span class="line"></span><br><span class="line">transform_chain = TransformChain(</span><br><span class="line">    input_variables=[<span class="string">&quot;text&quot;</span>], </span><br><span class="line">    output_variables=[<span class="string">&quot;output_text&quot;</span>],</span><br><span class="line">    transform=transform_func</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">transform_chain.run(&#123;<span class="string">&quot;text&quot;</span>: <span class="string">&quot;hello world&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="4-RouterChain（路由链）">4. RouterChain（路由链）</h2>
+<p>根据输入决定使用哪个子链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains.router <span class="keyword">import</span> MultiPromptChain</span><br><span class="line"><span class="keyword">from</span> langchain.chains.router.llm_router <span class="keyword">import</span> LLMRouterChain, RouterOutputParser</span><br><span class="line"></span><br><span class="line">physics_template = <span class="string">&quot;&quot;&quot;你是一位物理专家。回答物理问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line">math_template = <span class="string">&quot;&quot;&quot;你是一位数学专家。回答数学问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">prompt_infos = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;physics&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答物理问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: physics_template</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;math&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答数学问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: math_template</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">router_chain = MultiPromptChain.from_prompts(</span><br><span class="line">    llm,</span><br><span class="line">    prompt_infos,</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;什么是相对论?&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;2+2等于几?&quot;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="5-APIChain（API链）">5. APIChain（API链）</h2>
+<p>与外部API交互的链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> APIChain</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">api_docs = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">API文档:</span></span><br><span class="line"><span class="string">BASE URL: https://api.example.com</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">端点:</span></span><br><span class="line"><span class="string">GET /weather?location=&#123;location&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">参数:</span></span><br><span class="line"><span class="string">- location: 城市名称</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">响应:</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;temp&quot;: 温度,</span></span><br><span class="line"><span class="string">    &quot;condition&quot;: 天气状况</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">chain = APIChain.from_llm_and_api_docs(llm, api_docs, verbose=<span class="literal">True</span>)</span><br><span class="line">chain.run(<span class="string">&quot;上海现在的天气如何?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="6-SQLDatabaseChain（数据库链）">6. SQLDatabaseChain（数据库链）</h2>
+<p>与SQL数据库交互的链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain <span class="keyword">import</span> SQLDatabase, SQLDatabaseChain</span><br><span class="line"></span><br><span class="line">db = SQLDatabase.from_uri(<span class="string">&quot;sqlite:///chinook.db&quot;</span>)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">db_chain = SQLDatabaseChain(llm=llm, database=db, verbose=<span class="literal">True</span>)</span><br><span class="line">db_chain.run(<span class="string">&quot;有多少位顾客?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="7-RetrievalQAChain（检索问答链）">7. RetrievalQAChain（检索问答链）</h2>
+<p>结合检索器和LLM的问答链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA</span><br><span class="line"><span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> TextLoader</span><br><span class="line"><span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> FAISS</span><br><span class="line"></span><br><span class="line">loader = TextLoader(<span class="string">&quot;state_of_the_union.txt&quot;</span>)</span><br><span class="line">documents = loader.load()</span><br><span class="line">text_splitter = CharacterTextSplitter(chunk_size=<span class="number">1000</span>, chunk_overlap=<span class="number">0</span>)</span><br><span class="line">texts = text_splitter.split_documents(documents)</span><br><span class="line"></span><br><span class="line">embeddings = OpenAIEmbeddings()</span><br><span class="line">docsearch = FAISS.from_documents(texts, embeddings)</span><br><span class="line"></span><br><span class="line">qa = RetrievalQA.from_chain_type(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    chain_type=<span class="string">&quot;stuff&quot;</span>,</span><br><span class="line">    retriever=docsearch.as_retriever()</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">query = <span class="string">&quot;总统提到了什么重要政策?&quot;</span></span><br><span class="line">qa.run(query)</span><br></pre></td></tr></table></figure>
+<h2 id="8-ConversationChain（对话链）">8. ConversationChain（对话链）</h2>
+<p>维护对话上下文的链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> ConversationChain</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory</span><br><span class="line"></span><br><span class="line">conversation = ConversationChain(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    memory=ConversationBufferMemory(),</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;你好!&quot;</span>)</span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;我很好，谢谢!你呢?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="9-MapReduceChain（映射归约链）">9. MapReduceChain（映射归约链）</h2>
+<p>处理长文档的链，先映射处理各部分，再归约总结。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> MapReduceChain</span><br><span class="line"></span><br><span class="line">map_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;page&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;总结以下文本:\n&#123;page&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line">reduce_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;summaries&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;结合以下总结写出最终总结:\n&#123;summaries&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">chain = MapReduceChain.from_params(</span><br><span class="line">    llm=llm,</span><br><span class="line">    map_prompt=map_prompt,</span><br><span class="line">    reduce_prompt=reduce_prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;long_document.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    long_text = f.read()</span><br><span class="line">    </span><br><span class="line">result = chain.run(&#123;<span class="string">&quot;input_text&quot;</span>: long_text&#125;)</span><br></pre></td></tr></table></figure>
+<p>这些链可以单独使用，也可以组合起来构建更复杂的应用。LangChain还允许创建自定义链以满足特定需求。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>langchain</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>langchain</tag>
+        <tag>chains</tag>
       </tags>
   </entry>
   <entry>
@@ -316,52 +494,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>LangChain链的类型及示例</title>
-    <url>/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/</url>
-    <content><![CDATA[<h1>LangChain 中的链（Chains）类型及示例</h1>
-<p>LangChain 提供了多种类型的链（Chains），用于将多个组件组合起来完成复杂任务。以下是主要的链类型及示例：</p>
-<h2 id="1-LLMChain（基础链）">1. LLMChain（基础链）</h2>
-<p>最基本的链类型，将提示模板、LLM和输出解析器组合在一起。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> LLMChain</span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> PromptTemplate</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0.9</span>)</span><br><span class="line">chain = LLMChain(llm=llm, prompt=prompt)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(chain.run(<span class="string">&quot;环保水杯&quot;</span>))</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h2 id="2-SequentialChain（顺序链）">2. SequentialChain（顺序链）</h2>
-<p>按顺序执行多个链，前一个链的输出作为下一个链的输入。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> SequentialChain, LLMChain</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一个链：生成广告文案</span></span><br><span class="line">prompt1 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain1 = LLMChain(llm=llm, prompt=prompt1, output_key=<span class="string">&quot;ad_copy&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个链：评估广告效果</span></span><br><span class="line">prompt2 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;ad_copy&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;评估以下广告的效果:\n&#123;ad_copy&#125;\n\n评估结果:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain2 = LLMChain(llm=llm, prompt=prompt2, output_key=<span class="string">&quot;review&quot;</span>)</span><br><span class="line"></span><br><span class="line">overall_chain = SequentialChain(</span><br><span class="line">    chains=[chain1, chain2],</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    output_variables=[<span class="string">&quot;ad_copy&quot;</span>, <span class="string">&quot;review&quot;</span>]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">result = overall_chain(&#123;<span class="string">&quot;product&quot;</span>: <span class="string">&quot;智能手表&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
-<h2 id="3-TransformChain（转换链）">3. TransformChain（转换链）</h2>
-<p>对输入进行转换而不调用LLM。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> TransformChain</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform_func</span>(<span class="params">inputs: <span class="built_in">dict</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    text = inputs[<span class="string">&quot;text&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;output_text&quot;</span>: text.upper()&#125;</span><br><span class="line"></span><br><span class="line">transform_chain = TransformChain(</span><br><span class="line">    input_variables=[<span class="string">&quot;text&quot;</span>], </span><br><span class="line">    output_variables=[<span class="string">&quot;output_text&quot;</span>],</span><br><span class="line">    transform=transform_func</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">transform_chain.run(&#123;<span class="string">&quot;text&quot;</span>: <span class="string">&quot;hello world&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="4-RouterChain（路由链）">4. RouterChain（路由链）</h2>
-<p>根据输入决定使用哪个子链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains.router <span class="keyword">import</span> MultiPromptChain</span><br><span class="line"><span class="keyword">from</span> langchain.chains.router.llm_router <span class="keyword">import</span> LLMRouterChain, RouterOutputParser</span><br><span class="line"></span><br><span class="line">physics_template = <span class="string">&quot;&quot;&quot;你是一位物理专家。回答物理问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line">math_template = <span class="string">&quot;&quot;&quot;你是一位数学专家。回答数学问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">prompt_infos = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;physics&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答物理问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: physics_template</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;math&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答数学问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: math_template</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">router_chain = MultiPromptChain.from_prompts(</span><br><span class="line">    llm,</span><br><span class="line">    prompt_infos,</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;什么是相对论?&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;2+2等于几?&quot;</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="5-APIChain（API链）">5. APIChain（API链）</h2>
-<p>与外部API交互的链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> APIChain</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">api_docs = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">API文档:</span></span><br><span class="line"><span class="string">BASE URL: https://api.example.com</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">端点:</span></span><br><span class="line"><span class="string">GET /weather?location=&#123;location&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">参数:</span></span><br><span class="line"><span class="string">- location: 城市名称</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">响应:</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;temp&quot;: 温度,</span></span><br><span class="line"><span class="string">    &quot;condition&quot;: 天气状况</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">chain = APIChain.from_llm_and_api_docs(llm, api_docs, verbose=<span class="literal">True</span>)</span><br><span class="line">chain.run(<span class="string">&quot;上海现在的天气如何?&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="6-SQLDatabaseChain（数据库链）">6. SQLDatabaseChain（数据库链）</h2>
-<p>与SQL数据库交互的链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain <span class="keyword">import</span> SQLDatabase, SQLDatabaseChain</span><br><span class="line"></span><br><span class="line">db = SQLDatabase.from_uri(<span class="string">&quot;sqlite:///chinook.db&quot;</span>)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">db_chain = SQLDatabaseChain(llm=llm, database=db, verbose=<span class="literal">True</span>)</span><br><span class="line">db_chain.run(<span class="string">&quot;有多少位顾客?&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="7-RetrievalQAChain（检索问答链）">7. RetrievalQAChain（检索问答链）</h2>
-<p>结合检索器和LLM的问答链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA</span><br><span class="line"><span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> TextLoader</span><br><span class="line"><span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> FAISS</span><br><span class="line"></span><br><span class="line">loader = TextLoader(<span class="string">&quot;state_of_the_union.txt&quot;</span>)</span><br><span class="line">documents = loader.load()</span><br><span class="line">text_splitter = CharacterTextSplitter(chunk_size=<span class="number">1000</span>, chunk_overlap=<span class="number">0</span>)</span><br><span class="line">texts = text_splitter.split_documents(documents)</span><br><span class="line"></span><br><span class="line">embeddings = OpenAIEmbeddings()</span><br><span class="line">docsearch = FAISS.from_documents(texts, embeddings)</span><br><span class="line"></span><br><span class="line">qa = RetrievalQA.from_chain_type(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    chain_type=<span class="string">&quot;stuff&quot;</span>,</span><br><span class="line">    retriever=docsearch.as_retriever()</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">query = <span class="string">&quot;总统提到了什么重要政策?&quot;</span></span><br><span class="line">qa.run(query)</span><br></pre></td></tr></table></figure>
-<h2 id="8-ConversationChain（对话链）">8. ConversationChain（对话链）</h2>
-<p>维护对话上下文的链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> ConversationChain</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory</span><br><span class="line"></span><br><span class="line">conversation = ConversationChain(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    memory=ConversationBufferMemory(),</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;你好!&quot;</span>)</span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;我很好，谢谢!你呢?&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="9-MapReduceChain（映射归约链）">9. MapReduceChain（映射归约链）</h2>
-<p>处理长文档的链，先映射处理各部分，再归约总结。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> MapReduceChain</span><br><span class="line"></span><br><span class="line">map_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;page&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;总结以下文本:\n&#123;page&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line">reduce_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;summaries&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;结合以下总结写出最终总结:\n&#123;summaries&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">chain = MapReduceChain.from_params(</span><br><span class="line">    llm=llm,</span><br><span class="line">    map_prompt=map_prompt,</span><br><span class="line">    reduce_prompt=reduce_prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;long_document.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    long_text = f.read()</span><br><span class="line">    </span><br><span class="line">result = chain.run(&#123;<span class="string">&quot;input_text&quot;</span>: long_text&#125;)</span><br></pre></td></tr></table></figure>
-<p>这些链可以单独使用，也可以组合起来构建更复杂的应用。LangChain还允许创建自定义链以满足特定需求。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>langchain</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>langchain</tag>
-        <tag>chains</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RAG优化技术</title>
     <url>/2025/03/28/RAG%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/</url>
     <content><![CDATA[<h4 id="之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：">之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：</h4>
@@ -369,33 +501,51 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 <li>
 <p>索引阶段</p>
 <ul>
-<li>文档解析技术</li>
-<li>分块策略
+<li>
+<p>文档解析技术</p>
+</li>
+<li>
+<p>分块策略</p>
 <ul>
 <li><strong>固定大小分块、重叠分块、递归分块、文档特定分块、语义分块、混合分块</strong></li>
 </ul>
 </li>
-<li>嵌入模型选择</li>
+<li>
+<p>嵌入模型选择</p>
+</li>
 </ul>
 </li>
 <li>
 <p>检索阶段</p>
 <ul>
-<li>向量数据库选择</li>
-<li>混合检索
+<li>
+<p>向量数据库选择</p>
+</li>
+<li>
+<p>混合检索</p>
 <ul>
-<li>关键词检索</li>
-<li>向量检索</li>
+<li>
+<p>关键词检索</p>
+</li>
+<li>
+<p>向量检索</p>
+</li>
 </ul>
 </li>
-<li>重排序</li>
+<li>
+<p>重排序</p>
+</li>
 </ul>
 </li>
 <li>
 <p>生成阶段</p>
 <ul>
-<li>大语言模型选择</li>
-<li>提示词工程</li>
+<li>
+<p>大语言模型选择</p>
+</li>
+<li>
+<p>提示词工程</p>
+</li>
 </ul>
 </li>
 </ul>
@@ -405,19 +555,23 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 <li>
 <p>索引阶段（提升检索的精度和效率）</p>
 <ul>
-<li>除了常规的分块策略，这里介绍几个其他的知识入库的技术
+<li>
+<p>除了常规的分块策略，这里介绍几个其他的知识入库的技术</p>
 <ul>
-<li><strong>按树入库</strong>
+<li>
+<p><strong>按树入库</strong></p>
 <ul>
 <li>我们可以将知识按树入库。我们可以这样想象，我们像整理一本书那样将知识入库，例如按章、节、小节、段这样把内容整理成一棵树，其中每章包括哪些节，每节包括哪些小节，每小节包括哪些段。</li>
 </ul>
 </li>
-<li><strong>分层入库</strong>
+<li>
+<p><strong>分层入库</strong></p>
 <ul>
 <li>我们可以将知识分成多层，然后再入库。例如我们可以建立一个两层系统，一层是文本摘要，一层是详细内容，然后两者都包含指向数据中相同位置的元数据。</li>
 </ul>
 </li>
-<li><strong>信息压缩入库</strong>
+<li>
+<p><strong>信息压缩入库</strong></p>
 <ul>
 <li>有些业务场景下，我们不需要把所有信息都入库，只需要把关键的信息入库，这时候我们可以使用大模型将与业务场景无关或者次要的信息先剔除掉，然后再入库。</li>
 </ul>
@@ -495,109 +649,123 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>Manus 首款通用AI智能体</title>
-    <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
-    <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
-<ul>
-<li>
-<h2 id="首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。">首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。</h2>
-</li>
-<li>
-<h3 id="说说我的想法">说说我的想法</h3>
-<ul>
-<li>
-<h3 id="第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。">第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。</h3>
-</li>
-<li>
-<h3 id="再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。">再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。</h3>
-<ul>
-<li>从目前头部的几个集成平台说起：</li>
-<li><strong>字节的扣子</strong>
-<ul>
-<li>积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。</li>
-</ul>
-</li>
-<li><strong>Dify</strong><br>
-一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。</li>
-<li>再者还有腾讯的元宝或者说元器平台也是有机会的。</li>
-<li>这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+    <title>RAG检索流程（二）：重排序</title>
+    <url>/2025/03/19/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E9%87%8D%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h4 id="重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。">重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。</h4>
+<p>下图中仅仅混合检索，由于缺乏有效的排序，我们期望的结果位于第一和第四位，尽管依然可以被检索到，但理想情况下，如果检索方式更为精确，该结果应该被优先排序在前两位。</p>
 <span id="more"></span>
-<ul>
-<li>
-<h2 id="最后说下Manus的效果和启发：">最后说下Manus的效果和启发：</h2>
-<ul>
-<li>
-<h4 id="Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：">Manus就像一个能力超群的全能助手，简单点就是：一句话他就可以接管你的电脑为你做：</h4>
-<ul>
-<li>商业研究</li>
-<li>生活帮手</li>
-<li>数据分析</li>
-<li>教育可视化</li>
-<li>以及各种提升生产率的工具</li>
-</ul>
-</li>
-<li>
-<p><strong>生活案例</strong>：规划4月去日本旅行(<strong>执行过程中还创建了日本旅游手册</strong>)</p>
-<ul>
-<li><a href="https://hfhfn.github.io/image_storage/html/%E6%97%A5%E6%9C%AC%E6%97%85%E6%B8%B8%E6%89%8B%E5%86%8C.html">日本旅游手册</a></li>
-</ul>
-</li>
-<li>
-<p><strong>生活分析案例</strong>：分析特斯拉的股票（<strong>创建了分析仪表板面</strong>）</p>
-<ul>
-<li><a href="https://pljclduq.manus.space/">特斯拉股票分析仪表板</a></li>
-</ul>
-</li>
-<li>
-<p><strong>教育展示案例</strong>：生成互动课程：<strong>动量定理</strong></p>
-<ul>
-<li><a href="https://hfhfn.github.io/image_storage/html/conservation_momentum/index.html">互动课程：动量定理</a></li>
-</ul>
-</li>
-<li>
-<p><strong>数据分析案例</strong>：雪松-西奈急救中心的人口和疾病患病率（<strong>只展示它分析中生成的图表，看看这图表的炸裂效果</strong>）</p>
-<ul>
-<li>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250319155715601.png" alt="image-20250319155715601"></p>
+<p>在这个案例中，我们通过重排序技术成功找到了与问题语义最契合的结果。系统评分显示，“订单 12345 于 2023 年 8 月 15 日在上海，客户不满意。”与“该 12 开头的订单客户不满意的地方在于包装破损严重。”这两个文档块的相关性分别为 0.9 和 0.8，排序为第一和第二位。</p>
+<p>重排序技术在检索系统中扮演着至关重要的角色。即使检索算法已经能够捕捉到所有相关的结果，重排序过程依然不可或缺。它确保最符合用户意图和查询语义的结果优先展示，从而提升用户的搜索体验和结果的准确性。通过重排序，检索系统不仅能找到相关信息，还能智能地将最重要的信息呈现在用户面前。</p>
+<h4 id="为什么要使用重排序技术？">为什么要使用重排序技术？</h4>
+<p>在 RAG 检索流程中，重排序技术（Reranking）通过对初始检索结果进行重新排序，改善检索结果的相关性，为生成模型提供更优质的上下文，从而提升整体 RAG 系统的效果。</p>
+<p>尽管向量检索技术能够为每个文档块生成初步的相关性分数，但引入重排序模型仍然至关重要。<strong>向量检索</strong>主要依赖于<strong>全局语义相似性</strong>，通过将查询和文档映射到高维语义空间中进行匹配。然而，这种方法往往忽略了查询与文档具体内容之间的细粒度交互。</p>
+<p><strong>重排序模型大多是基于双塔或交叉编码架构的模型</strong>，在此基础上进一步计算更精确的相关性分数，能够<strong>捕捉查询词与文档块之间更细致的相关性</strong>，从而在细节层面上提高检索精度。因此，尽管向量检索提供了有效的初步筛选，重排序模型则通过更深入的分析和排序，确保最终结果在语义和内容层面上更紧密地契合查询意图，实现了检索质量的提升。</p>
+<p>2023 年，Microsoft Azure AI 发布了《Azure 认知搜索：通过混合检索和排序能力超越向量搜索》一文。这篇文章对在 LLM RAG 应用中引入混合检索和重排序技术进行了全面的实验数据评估，并量化了这些技术组合在提升文档召回率和准确性方面的显著效果。实验结果表明，在多个数据集和多种检索任务中，混合检索与重排序的组合均取得了最佳表现。</p>
 <div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_comparison.png" alt="Image 1" style="width: 50%;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_prevalence_chart.png" alt="Image 2" style="width: 50%;">
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321150711668.png" alt="Image 1" style="width: 50%;">
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321150950573.png" alt="Image 2" style="width: 50%;">
 </div>
+<p>以下是使用重排序技术的几个优势：</p>
+<ol>
+<li>
+<p>优化检索结果</p>
+<p>在 RAG 系统中，初始的检索结果通常来自于向量搜索或基于关键词的检索方法。然而，这些初始检索结果可能包含大量的冗余信息或与查询不完全相关的文档。通过重排序技术，我们可以对这些初步检索到的文档进行进一步的筛选和排序，将最相关、最重要的文档置于前列。</p>
 </li>
 <li>
-<div style="display: flex;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/population_distribution.png" alt="Image 1" style="width: 50%;">
-  <img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/neighborhood_disease_heatmap.png" alt="Image 2" style="width: 50%;">
-</div>
+<p>增强上下文相关性</p>
+<p>RAG 系统依赖于检索到的文档作为生成模型的上下文。因此，上下文的质量直接影响生成的结果。重排序技术通过重新评估文档与查询的相关性，确保生成模型优先使用那些与查询最相关的文档，从而提高了生成内容的准确性和连贯性。</p>
 </li>
 <li>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/disease_by_neighborhood_3d.png" alt="disease_by_neighborhood_3d"></p>
+<p>应对复杂查询</p>
+<p>对于复杂的查询，初始检索可能会返回一些表面上相关但实际上不太匹配的文档。重排序技术可以根据查询的复杂性和具体需求，对这些结果进行更细致的分析和排序，优先展示那些能够提供深入见解或关键信息的文档。</p>
 </li>
-</ul>
-</li>
-<li>
-<h4 id="启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。">启发1：我观察到Manus执行任务时，它会在网络上进行大规模的信息检索，但它能力再强，海量的数据造成的AI幻觉和AI偏见会变得越来越难以避免。</h4>
-</li>
-<li>
-<h4 id="启发2：-或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。">启发2： 或许我们不一定要去搭建自己的一个智能体，而是积累我们的大量知识库内容，等待大厂的通用Agent到来时，反而直接会被赋予更大的活力，真正实现更智能的交互和应用。</h4>
-</li>
-</ul>
-</li>
-</ul>
+</ol>
+<h4 id="重排序模型-Reranking-Model">重排序模型 Reranking Model</h4>
+<p>RAG 流程有两个概念，粗排和精排。粗排检索效率较快，但是召回的内容并不一定强相关。而精排效率较低，因此适合在粗排的基础上进行进一步优化。精排的代表就是重排序（Reranking）。</p>
+<p>**重排序模型（Reranking Model）**查询与每个文档块计算对应的相关性分数，并根据这些分数对文档进行重新排序，确保文档按照从最相关到最不相关的顺序排列，并返回前 top-k 个结果。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321143305625.png" alt="image-20250321143305625"></p>
+<p><strong>与嵌入模型不同，重排序模型将用户的查询（Query）和文档块作为输入，直接输出相似度评分</strong>，而非生成嵌入向量。目前，市面上可用的重排序模型并不多，商用的有 Cohere，<strong>开源的有 BGE</strong>、Sentence、Mixedbread、T5-Reranker 等，<strong>甚至可以使用指令</strong>（Prompt）让大模型（GPT、Claude、通义千问、文心一言等）进行重排，大模型指令参考如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是与查询 &#123;问题&#125; 相关的文档块：</span><br><span class="line">[1] &#123;文档块1&#125;</span><br><span class="line">[2] &#123;文档块2&#125;</span><br><span class="line">（更多文档块）</span><br><span class="line">请根据这些文档块与查询的相关性进行排序，以 “1,2,3,4”（文档块数字及逗号隔开的形式），输出排序结果。</span><br></pre></td></tr></table></figure>
+<p>在生产环境中使用重排序模型会面临资源和效率问题，包括计算资源消耗高、推理速度慢以及模型参数量大等问题。这些问题主要源于重排序模型在对候选项进行精细排序时，因其较大参数量而导致的高计算需求和复杂耗时的推理过程，从而对 RAG 系统的响应时间和整体效率产生负面影响。因此，在实际应用中，需要根据实际资源情况，在精度与效率之间进行平衡。</p>
+<h4 id="重排序技术实战">重排序技术实战</h4>
+<p>在实战中，我们使用来自北京人工智能研究院 BGE 的 <strong>bge-reranker-v2-m3</strong> 作为 RAG 项目的重排序模型，这是一种轻量级的开源和多语言的重排序模型。更多模型相关信息参考，可访问<a href="https://huggingface.co/BAAI/bge-reranker-v2-m3">https://huggingface.co/BAAI/bge-reranker-v2-m3</a></p>
+<p>这部分的代码文件为 rag_lesson_6。可到我的 Github 托管项目(<a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a>)下载，或使用 <code>git clone https://github.com/hfhfn/rag_learning.git</code> ，拉取最新代码.</p>
 ]]></content>
       <categories>
         <category>AI</category>
-        <category>Agent</category>
+        <category>RAG</category>
+        <category>检索</category>
+        <category>重排序</category>
       </categories>
       <tags>
-        <tag>AI</tag>
-        <tag>Agent</tag>
-        <tag>Manus</tag>
-        <tag>智能体</tag>
+        <tag>RAG</tag>
+        <tag>检索</tag>
+        <tag>重排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RAG生成（二）：提示词工程</title>
+    <url>/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<h4 id="提示词概述">提示词概述</h4>
+<p><strong>提示词工程（Prompt Engineering）</strong>，旨在通过开发和优化提示来有效利用语言模型的潜力。</p>
+<p>提示词工程是为生成式 AI 模型<strong>设计输入</strong>以获取最佳输出的实践。 <strong>这些输入被称为提示词（Prompt）</strong> 。</p>
+<p>提示词工程<strong>核心理念</strong>是，通过提供更优质的输入，可以让生成式 AI 模型（如大型语言模型）生成更符合需求的结果，也就是<strong>让模型能够更好地执行各种任务</strong> ，包括生成创作，生成代码，聊天互动等。</p>
+<span id="more"></span>
+<h4 id="一个通用的提示词通常包含以下几个元素：">一个通用的提示词通常包含以下几个元素：</h4>
+<p><strong>1. 指令（Instruction）：<strong>指明模型要</strong>执行的特定任务或操作</strong>。</p>
+<p><strong>2. 上下文（Context）：<strong>为模型提供</strong>额外信息或背景</strong>，可以帮助引导模型生成更准确的响应。</p>
+<p><strong>3. 输入数据（Input Data）：</strong> 我们希望模型回答的问题或感兴趣的输入内容。</p>
+<p><strong>4. 输出指示符（Output Indicator）：<strong>指定模型的</strong>输出类型或格式</strong>，例如格式、是否要求生成代码、总结文本或回答具体问题。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323075425612.png" alt="image-20250323075425612"></p>
+<p>提示词工程不仅仅是设计提示，而是<strong>通过深刻理解模型的功能和局限性</strong>，创造能够与模型输入产生最佳互动的提示，这其中包含了一系列的技巧。</p>
+<h4 id="RAG中提示词工程的技巧">RAG中提示词工程的技巧</h4>
+<p>这些技巧就是解决RAG中的问题，如缺失内容，格式错误，缺乏细节，回答不全面等采取的具体措施, 也是对评测指标答案及时性、信息整合能力、拒答能力、检错和纠错能力所做的针对设计。</p>
+<p><strong>1. 具体指令法</strong> （优化指令）</p>
+<p>指定回答预期，防止内容缺失，回答不全面：</p>
+<p>清晰的指令可以让模型输出：更<strong>明确的任务目标和更符合预期</strong>的内容。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">请根据上传的银行业报告，简洁总结当前的市场趋势，重点分析政策变化对行业的影响，输出为以下Markdown格式：</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**市场趋势**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**政策影响**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**竞争风险**</span></span><br></pre></td></tr></table></figure>
+<p><strong>2 . 解释理由法</strong> （优化指令, 强调指令的原因）</p>
+<p>提升模型对任务特定规则或背景的理解能力：</p>
+<p>在编写提示时，向模型解释为什么某些任务需要特定的处理方式。这样可以帮助模型更好地理解任务背景，从而提高输出的质量和相关性。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">请生成一份简明扼要的银行业报告摘要，不要逐字重复段落内容。原因：读者可以访问完整文档，如果需要可以详细阅读全文。</span><br></pre></td></tr></table></figure>
+<p><strong>3. 任务角色设定</strong> (优化上下文，指定模型身份、立场和责任)</p>
+<p>提升模型专业领域回答能力：</p>
+<p>通过为模型设定特定的角色身份，可以帮助模型更好地理解任务要求和角色责任，从而输出更加一致、专业的内容。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">你的角色: 知识库专家</span><br><span class="line"><span class="bullet">-</span> 背景：分析银行业市场数据</span><br><span class="line"><span class="bullet">-</span> 目标：生成一份详细的行业趋势分析</span><br><span class="line"><span class="bullet">-</span> 限制：仅根据报告中的数据生成分析</span><br></pre></td></tr></table></figure>
+<p><strong>4. 文档基础说明</strong> （优化上下文，对输入数据提供背景和来源信息）</p>
+<p>奠定模型任务推理的基调：</p>
+<p>为模型提供文档的背景信息和文本来源可以帮助奠定任务基础，让模型更好地进行任务推理和回答。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是关于银行业政策变化的相关规则，它们将用于回答有关政策对银行业影响的问题。</span><br></pre></td></tr></table></figure>
+<p><strong>5. 示例学习</strong> （优化输出指示符）</p>
+<p>优化回答细节以及格式：</p>
+<p>通过给模型提供多个<strong>参考示例</strong>，模型可以基于这些示例进行模式识别，进而<strong>模仿、思考并生成类似的答案</strong>。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是两个关于银行业的分析示例，请按照这种格式对新的报告进行分析：</span><br><span class="line"><span class="bullet">-</span> 示例 1：<span class="strong">**市场趋势**</span>：由于政策放宽，银行贷款增长迅速。</span><br><span class="line"><span class="bullet">-</span> 示例 2：<span class="strong">**政策影响**</span>：新的利率政策可能会对中小企业贷款产生负面影响。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">请对下面报告进行同样的分析。</span><br></pre></td></tr></table></figure>
+<p><strong>6. 默认回复策略</strong> （放在指令，上下文或者输出指示符部分都可以，旨在强调基于文档回答）</p>
+<p>提升模型的拒答能力：</p>
+<p>当模型无法从文档中获取足够信息时，通过设定默认回复策略，避免模型产生“幻觉”，即生成虚假的答案。这可以确保模型仅基于文档中的事实进行回答。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">如果文档中没有足够的事实回答问题，请返回&#123;无法从文档中获得相关内容&#125;，而不是进行推测。</span><br></pre></td></tr></table></figure>
+<p>通过以上提示工程技巧，RAG 任务的输出质量可以高效、低成本地提升，解决常见生成问题。</p>
+<h4 id="写在最后：">写在最后：</h4>
+<p>在提示工程中，过于具体的指令可能会限制模型的创造性，过于宽泛的提示则可能导致生成偏差。</p>
+<p>如何在提示设计中找到合适的权衡点，既能够引导模型生成高质量结果，又不过度限制模型的灵活性，需要大家在实际场景中探索。</p>
+<p><strong>进阶：</strong> 深入理解模型提示词的原理</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104447095.png" alt="image-20250323104447095"></p>
+<p><strong>突破路径：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104703182.png" alt="image-20250323104703182"></p>
+<p>提示词参考阅读：</p>
+<p><a href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq">DeepSeek：从入门到精通（点开是百度网盘链接，放在书籍&amp;手册目录下）</a></p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>生成</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>生成</tag>
+        <tag>generate</tag>
+        <tag>提示词</tag>
       </tags>
   </entry>
   <entry>
@@ -695,64 +863,8 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       <tags>
         <tag>RAG</tag>
         <tag>生成</tag>
-        <tag>大模型</tag>
         <tag>提示词</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG检索流程（二）：重排序</title>
-    <url>/2025/03/19/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E9%87%8D%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[<h4 id="重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。">重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。</h4>
-<p>下图中仅仅混合检索，由于缺乏有效的排序，我们期望的结果位于第一和第四位，尽管依然可以被检索到，但理想情况下，如果检索方式更为精确，该结果应该被优先排序在前两位。</p>
-<span id="more"></span>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250319155715601.png" alt="image-20250319155715601"></p>
-<p>在这个案例中，我们通过重排序技术成功找到了与问题语义最契合的结果。系统评分显示，“订单 12345 于 2023 年 8 月 15 日在上海，客户不满意。”与“该 12 开头的订单客户不满意的地方在于包装破损严重。”这两个文档块的相关性分别为 0.9 和 0.8，排序为第一和第二位。</p>
-<p>重排序技术在检索系统中扮演着至关重要的角色。即使检索算法已经能够捕捉到所有相关的结果，重排序过程依然不可或缺。它确保最符合用户意图和查询语义的结果优先展示，从而提升用户的搜索体验和结果的准确性。通过重排序，检索系统不仅能找到相关信息，还能智能地将最重要的信息呈现在用户面前。</p>
-<h4 id="为什么要使用重排序技术？">为什么要使用重排序技术？</h4>
-<p>在 RAG 检索流程中，重排序技术（Reranking）通过对初始检索结果进行重新排序，改善检索结果的相关性，为生成模型提供更优质的上下文，从而提升整体 RAG 系统的效果。</p>
-<p>尽管向量检索技术能够为每个文档块生成初步的相关性分数，但引入重排序模型仍然至关重要。<strong>向量检索</strong>主要依赖于<strong>全局语义相似性</strong>，通过将查询和文档映射到高维语义空间中进行匹配。然而，这种方法往往忽略了查询与文档具体内容之间的细粒度交互。</p>
-<p><strong>重排序模型大多是基于双塔或交叉编码架构的模型</strong>，在此基础上进一步计算更精确的相关性分数，能够<strong>捕捉查询词与文档块之间更细致的相关性</strong>，从而在细节层面上提高检索精度。因此，尽管向量检索提供了有效的初步筛选，重排序模型则通过更深入的分析和排序，确保最终结果在语义和内容层面上更紧密地契合查询意图，实现了检索质量的提升。</p>
-<p>2023 年，Microsoft Azure AI 发布了《Azure 认知搜索：通过混合检索和排序能力超越向量搜索》一文。这篇文章对在 LLM RAG 应用中引入混合检索和重排序技术进行了全面的实验数据评估，并量化了这些技术组合在提升文档召回率和准确性方面的显著效果。实验结果表明，在多个数据集和多种检索任务中，混合检索与重排序的组合均取得了最佳表现。</p>
-<div style="display: flex;">
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321150711668.png" alt="Image 1" style="width: 50%;">
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321150950573.png" alt="Image 2" style="width: 50%;">
-</div>
-<p>以下是使用重排序技术的几个优势：</p>
-<ol>
-<li>
-<p>优化检索结果</p>
-<p>在 RAG 系统中，初始的检索结果通常来自于向量搜索或基于关键词的检索方法。然而，这些初始检索结果可能包含大量的冗余信息或与查询不完全相关的文档。通过重排序技术，我们可以对这些初步检索到的文档进行进一步的筛选和排序，将最相关、最重要的文档置于前列。</p>
-</li>
-<li>
-<p>增强上下文相关性</p>
-<p>RAG 系统依赖于检索到的文档作为生成模型的上下文。因此，上下文的质量直接影响生成的结果。重排序技术通过重新评估文档与查询的相关性，确保生成模型优先使用那些与查询最相关的文档，从而提高了生成内容的准确性和连贯性。</p>
-</li>
-<li>
-<p>应对复杂查询</p>
-<p>对于复杂的查询，初始检索可能会返回一些表面上相关但实际上不太匹配的文档。重排序技术可以根据查询的复杂性和具体需求，对这些结果进行更细致的分析和排序，优先展示那些能够提供深入见解或关键信息的文档。</p>
-</li>
-</ol>
-<h4 id="重排序模型-Reranking-Model">重排序模型 Reranking Model</h4>
-<p>RAG 流程有两个概念，粗排和精排。粗排检索效率较快，但是召回的内容并不一定强相关。而精排效率较低，因此适合在粗排的基础上进行进一步优化。精排的代表就是重排序（Reranking）。</p>
-<p>**重排序模型（Reranking Model）**查询与每个文档块计算对应的相关性分数，并根据这些分数对文档进行重新排序，确保文档按照从最相关到最不相关的顺序排列，并返回前 top-k 个结果。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250321143305625.png" alt="image-20250321143305625"></p>
-<p><strong>与嵌入模型不同，重排序模型将用户的查询（Query）和文档块作为输入，直接输出相似度评分</strong>，而非生成嵌入向量。目前，市面上可用的重排序模型并不多，商用的有 Cohere，<strong>开源的有 BGE</strong>、Sentence、Mixedbread、T5-Reranker 等，<strong>甚至可以使用指令</strong>（Prompt）让大模型（GPT、Claude、通义千问、文心一言等）进行重排，大模型指令参考如下：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是与查询 &#123;问题&#125; 相关的文档块：</span><br><span class="line">[1] &#123;文档块1&#125;</span><br><span class="line">[2] &#123;文档块2&#125;</span><br><span class="line">（更多文档块）</span><br><span class="line">请根据这些文档块与查询的相关性进行排序，以 “1,2,3,4”（文档块数字及逗号隔开的形式），输出排序结果。</span><br></pre></td></tr></table></figure>
-<p>在生产环境中使用重排序模型会面临资源和效率问题，包括计算资源消耗高、推理速度慢以及模型参数量大等问题。这些问题主要源于重排序模型在对候选项进行精细排序时，因其较大参数量而导致的高计算需求和复杂耗时的推理过程，从而对 RAG 系统的响应时间和整体效率产生负面影响。因此，在实际应用中，需要根据实际资源情况，在精度与效率之间进行平衡。</p>
-<h4 id="重排序技术实战">重排序技术实战</h4>
-<p>在实战中，我们使用来自北京人工智能研究院 BGE 的 <strong>bge-reranker-v2-m3</strong> 作为 RAG 项目的重排序模型，这是一种轻量级的开源和多语言的重排序模型。更多模型相关信息参考，可访问<a href="https://huggingface.co/BAAI/bge-reranker-v2-m3">https://huggingface.co/BAAI/bge-reranker-v2-m3</a></p>
-<p>这部分的代码文件为 rag_lesson_6。可到我的 Github 托管项目(<a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a>)下载，或使用 <code>git clone https://github.com/hfhfn/rag_learning.git</code> ，拉取最新代码.</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>检索</category>
-        <category>重排序</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>检索</tag>
-        <tag>重排序</tag>
+        <tag>大模型</tag>
       </tags>
   </entry>
   <entry>
@@ -817,70 +929,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>langchain_community.document_loaders</tag>
         <tag>pdfplumber</tag>
         <tag>unstructured</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG生成（二）：提示词工程</title>
-    <url>/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</url>
-    <content><![CDATA[<h4 id="提示词概述">提示词概述</h4>
-<p><strong>提示词工程（Prompt Engineering）</strong>，旨在通过开发和优化提示来有效利用语言模型的潜力。</p>
-<p>提示词工程是为生成式 AI 模型<strong>设计输入</strong>以获取最佳输出的实践。 <strong>这些输入被称为提示词（Prompt）</strong> 。</p>
-<p>提示词工程<strong>核心理念</strong>是，通过提供更优质的输入，可以让生成式 AI 模型（如大型语言模型）生成更符合需求的结果，也就是<strong>让模型能够更好地执行各种任务</strong> ，包括生成创作，生成代码，聊天互动等。</p>
-<span id="more"></span>
-<h4 id="一个通用的提示词通常包含以下几个元素：">一个通用的提示词通常包含以下几个元素：</h4>
-<p><strong>1. 指令（Instruction）：<strong>指明模型要</strong>执行的特定任务或操作</strong>。</p>
-<p><strong>2. 上下文（Context）：<strong>为模型提供</strong>额外信息或背景</strong>，可以帮助引导模型生成更准确的响应。</p>
-<p><strong>3. 输入数据（Input Data）：</strong> 我们希望模型回答的问题或感兴趣的输入内容。</p>
-<p><strong>4. 输出指示符（Output Indicator）：<strong>指定模型的</strong>输出类型或格式</strong>，例如格式、是否要求生成代码、总结文本或回答具体问题。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323075425612.png" alt="image-20250323075425612"></p>
-<p>提示词工程不仅仅是设计提示，而是<strong>通过深刻理解模型的功能和局限性</strong>，创造能够与模型输入产生最佳互动的提示，这其中包含了一系列的技巧。</p>
-<h4 id="RAG中提示词工程的技巧">RAG中提示词工程的技巧</h4>
-<p>这些技巧就是解决RAG中的问题，如缺失内容，格式错误，缺乏细节，回答不全面等采取的具体措施, 也是对评测指标答案及时性、信息整合能力、拒答能力、检错和纠错能力所做的针对设计。</p>
-<p><strong>1. 具体指令法</strong> （优化指令）</p>
-<p>指定回答预期，防止内容缺失，回答不全面：</p>
-<p>清晰的指令可以让模型输出：更<strong>明确的任务目标和更符合预期</strong>的内容。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">请根据上传的银行业报告，简洁总结当前的市场趋势，重点分析政策变化对行业的影响，输出为以下Markdown格式：</span><br><span class="line"><span class="bullet">-</span> <span class="strong">**市场趋势**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**政策影响**</span></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**竞争风险**</span></span><br></pre></td></tr></table></figure>
-<p><strong>2 . 解释理由法</strong> （优化指令, 强调指令的原因）</p>
-<p>提升模型对任务特定规则或背景的理解能力：</p>
-<p>在编写提示时，向模型解释为什么某些任务需要特定的处理方式。这样可以帮助模型更好地理解任务背景，从而提高输出的质量和相关性。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">请生成一份简明扼要的银行业报告摘要，不要逐字重复段落内容。原因：读者可以访问完整文档，如果需要可以详细阅读全文。</span><br></pre></td></tr></table></figure>
-<p><strong>3. 任务角色设定</strong> (优化上下文，指定模型身份、立场和责任)</p>
-<p>提升模型专业领域回答能力：</p>
-<p>通过为模型设定特定的角色身份，可以帮助模型更好地理解任务要求和角色责任，从而输出更加一致、专业的内容。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">你的角色: 知识库专家</span><br><span class="line"><span class="bullet">-</span> 背景：分析银行业市场数据</span><br><span class="line"><span class="bullet">-</span> 目标：生成一份详细的行业趋势分析</span><br><span class="line"><span class="bullet">-</span> 限制：仅根据报告中的数据生成分析</span><br></pre></td></tr></table></figure>
-<p><strong>4. 文档基础说明</strong> （优化上下文，对输入数据提供背景和来源信息）</p>
-<p>奠定模型任务推理的基调：</p>
-<p>为模型提供文档的背景信息和文本来源可以帮助奠定任务基础，让模型更好地进行任务推理和回答。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是关于银行业政策变化的相关规则，它们将用于回答有关政策对银行业影响的问题。</span><br></pre></td></tr></table></figure>
-<p><strong>5. 示例学习</strong> （优化输出指示符）</p>
-<p>优化回答细节以及格式：</p>
-<p>通过给模型提供多个<strong>参考示例</strong>，模型可以基于这些示例进行模式识别，进而<strong>模仿、思考并生成类似的答案</strong>。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">以下是两个关于银行业的分析示例，请按照这种格式对新的报告进行分析：</span><br><span class="line"><span class="bullet">-</span> 示例 1：<span class="strong">**市场趋势**</span>：由于政策放宽，银行贷款增长迅速。</span><br><span class="line"><span class="bullet">-</span> 示例 2：<span class="strong">**政策影响**</span>：新的利率政策可能会对中小企业贷款产生负面影响。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">请对下面报告进行同样的分析。</span><br></pre></td></tr></table></figure>
-<p><strong>6. 默认回复策略</strong> （放在指令，上下文或者输出指示符部分都可以，旨在强调基于文档回答）</p>
-<p>提升模型的拒答能力：</p>
-<p>当模型无法从文档中获取足够信息时，通过设定默认回复策略，避免模型产生“幻觉”，即生成虚假的答案。这可以确保模型仅基于文档中的事实进行回答。</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">如果文档中没有足够的事实回答问题，请返回&#123;无法从文档中获得相关内容&#125;，而不是进行推测。</span><br></pre></td></tr></table></figure>
-<p>通过以上提示工程技巧，RAG 任务的输出质量可以高效、低成本地提升，解决常见生成问题。</p>
-<h4 id="写在最后：">写在最后：</h4>
-<p>在提示工程中，过于具体的指令可能会限制模型的创造性，过于宽泛的提示则可能导致生成偏差。</p>
-<p>如何在提示设计中找到合适的权衡点，既能够引导模型生成高质量结果，又不过度限制模型的灵活性，需要大家在实际场景中探索。</p>
-<p><strong>进阶：</strong> 深入理解模型提示词的原理</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104447095.png" alt="image-20250323104447095"></p>
-<p><strong>突破路径：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250323104703182.png" alt="image-20250323104703182"></p>
-<p>提示词参考阅读：</p>
-<p><a href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq">DeepSeek：从入门到精通（点开是百度网盘链接，放在书籍&amp;手册目录下）</a></p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>生成</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>生成</tag>
-        <tag>提示词</tag>
-        <tag>generate</tag>
       </tags>
   </entry>
   <entry>
@@ -1108,12 +1156,140 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <category>分块策略</category>
       </categories>
       <tags>
-        <tag>RAG</tag>
-        <tag>索引</tag>
-        <tag>langchain</tag>
         <tag>AI</tag>
+        <tag>RAG</tag>
+        <tag>langchain</tag>
+        <tag>索引</tag>
         <tag>分块策略</tag>
         <tag>Chunk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/03/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Text2SQL应用对比</title>
+    <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
+    <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
+<hr>
+<span id="more"></span>
+<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
+<ul>
+<li><strong>类型</strong>：在线工具</li>
+<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>无需安装或配置，直接在浏览器中使用。</li>
+<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
+<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
+<li>支持标准的 PostgreSQL 功能。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>快速测试 SQL 查询。</li>
+<li>教学或演示 PostgreSQL 功能。</li>
+<li>临时需要数据库环境的场景。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
+<ul>
+<li><strong>类型</strong>：AI 驱动的工具</li>
+<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
+<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
+<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
+<li>提供 Python 库，方便集成到数据工作流中。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>非技术用户需要查询数据库。</li>
+<li>快速生成复杂 SQL 查询。</li>
+<li>数据分析师或开发人员希望提高工作效率。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="对比总结"><strong>对比总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Postgres.new</th>
+<th>Vanna</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>类型</strong></td>
+<td>在线临时数据库工具</td>
+<td>AI 驱动的 SQL 生成工具</td>
+</tr>
+<tr>
+<td><strong>主要用途</strong></td>
+<td>创建临时 PostgreSQL 实例</td>
+<td>通过自然语言生成 SQL 查询</td>
+</tr>
+<tr>
+<td><strong>用户群体</strong></td>
+<td>开发者、测试人员、学习者</td>
+<td>数据分析师、非技术用户、开发者</td>
+</tr>
+<tr>
+<td><strong>技术依赖</strong></td>
+<td>无需 AI，纯数据库工具</td>
+<td>依赖 AI 模型（如 GPT）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>无</td>
+<td>支持 Python 库，可集成到工作流</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>测试、演示、学习</td>
+<td>数据分析、快速生成 SQL、简化查询</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="选择建议"><strong>选择建议</strong></h3>
+<ul>
+<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
+<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
+</ul>
+<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>AI工具</category>
+      </categories>
+      <tags>
+        <tag>AI工具</tag>
+        <tag>Text2SQL</tag>
+        <tag>自然语言操作数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -1268,226 +1444,6 @@ H<sub>2</sub>O</li>
         <tag>Markdown插件</tag>
         <tag>自媒体</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Text2SQL应用对比</title>
-    <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
-    <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
-<hr>
-<span id="more"></span>
-<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
-<ul>
-<li><strong>类型</strong>：在线工具</li>
-<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
-<li><strong>特点</strong>：
-<ul>
-<li>无需安装或配置，直接在浏览器中使用。</li>
-<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
-<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
-<li>支持标准的 PostgreSQL 功能。</li>
-</ul>
-</li>
-<li><strong>适用场景</strong>：
-<ul>
-<li>快速测试 SQL 查询。</li>
-<li>教学或演示 PostgreSQL 功能。</li>
-<li>临时需要数据库环境的场景。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
-<ul>
-<li><strong>类型</strong>：AI 驱动的工具</li>
-<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
-<li><strong>特点</strong>：
-<ul>
-<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
-<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
-<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
-<li>提供 Python 库，方便集成到数据工作流中。</li>
-</ul>
-</li>
-<li><strong>适用场景</strong>：
-<ul>
-<li>非技术用户需要查询数据库。</li>
-<li>快速生成复杂 SQL 查询。</li>
-<li>数据分析师或开发人员希望提高工作效率。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="对比总结"><strong>对比总结</strong></h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Postgres.new</th>
-<th>Vanna</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>类型</strong></td>
-<td>在线临时数据库工具</td>
-<td>AI 驱动的 SQL 生成工具</td>
-</tr>
-<tr>
-<td><strong>主要用途</strong></td>
-<td>创建临时 PostgreSQL 实例</td>
-<td>通过自然语言生成 SQL 查询</td>
-</tr>
-<tr>
-<td><strong>用户群体</strong></td>
-<td>开发者、测试人员、学习者</td>
-<td>数据分析师、非技术用户、开发者</td>
-</tr>
-<tr>
-<td><strong>技术依赖</strong></td>
-<td>无需 AI，纯数据库工具</td>
-<td>依赖 AI 模型（如 GPT）</td>
-</tr>
-<tr>
-<td><strong>集成能力</strong></td>
-<td>无</td>
-<td>支持 Python 库，可集成到工作流</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>测试、演示、学习</td>
-<td>数据分析、快速生成 SQL、简化查询</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="选择建议"><strong>选择建议</strong></h3>
-<ul>
-<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
-<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
-</ul>
-<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>AI工具</category>
-      </categories>
-      <tags>
-        <tag>AI工具</tag>
-        <tag>Text2SQL</tag>
-        <tag>自然语言操作数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rag-lesson-1</title>
-    <url>/2025/03/05/rag-lesson-1/</url>
-    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
-<ul>
-<li>
-<h2 id="技术框架与选型">技术框架与选型</h2>
-<ul>
-<li>
-<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
-<ul>
-<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>
-<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
-<ul>
-<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
-<ul>
-<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
-<ul>
-<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
-<ul>
-<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
-</ul>
-</li>
-<li>
-<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
-<ul>
-<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
-</ul>
-</li>
-<li>
-<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
-<ul>
-<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
-<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
-<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
-<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h2 id="开发环境与技术库">开发环境与技术库</h2>
-<ul>
-<li>
-<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
-</li>
-<li>
-<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="安装技术依赖库">安装技术依赖库</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
-<ol>
-<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>AI,</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2025/03/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>升级 Dify</title>
@@ -1798,6 +1754,98 @@ H<sub>2</sub>O</li>
         <tag>AI</tag>
         <tag>大模型</tag>
         <tag>生成模型方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rag-lesson-1</title>
+    <url>/2025/03/05/rag-lesson-1/</url>
+    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
+<ul>
+<li>
+<h2 id="技术框架与选型">技术框架与选型</h2>
+<ul>
+<li>
+<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
+<ul>
+<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
+<ul>
+<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
+<ul>
+<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
+<ul>
+<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
+<ul>
+<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
+</ul>
+</li>
+<li>
+<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
+<ul>
+<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
+</ul>
+</li>
+<li>
+<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
+<ul>
+<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
+<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
+<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
+<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h2 id="开发环境与技术库">开发环境与技术库</h2>
+<ul>
+<li>
+<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
+</li>
+<li>
+<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="安装技术依赖库">安装技术依赖库</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
+<ol>
+<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>AI,</tag>
       </tags>
   </entry>
   <entry>

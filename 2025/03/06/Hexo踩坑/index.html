@@ -32,7 +32,7 @@
 <meta property="og:description" content="一. 在 Hexo 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-05T23:19:00.000Z">
-<meta property="article:modified_time" content="2025-03-09T00:56:18.436Z">
+<meta property="article:modified_time" content="2025-03-28T03:45:42.386Z">
 <meta property="article:author" content="AI模型研究所">
 <meta property="article:tag" content="博客">
 <meta property="article:tag" content="Hexo">
@@ -162,7 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">一. 在 Hexo 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9A%E4%BD%BF%E7%94%A8-hexo-renderer-markdown-it-%E5%92%8C-markdown-it-katex"><span class="nav-number">1.0.1.</span> <span class="nav-text">方法 1：使用 hexo-renderer-markdown-it 和 markdown-it-katex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-2%EF%BC%9A%E4%BD%BF%E7%94%A8-hexo-renderer-pandoc%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">1.0.2.</span> <span class="nav-text">方法 2：使用 hexo-renderer-pandoc（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-3%EF%BC%9A%E4%BD%BF%E7%94%A8-hexo-filter-mathjax%EF%BC%88%E7%AE%80%E5%8D%95%E4%BD%86%E6%80%A7%E8%83%BD%E8%BE%83%E5%B7%AE%EF%BC%89"><span class="nav-number">1.0.3.</span> <span class="nav-text">方法 3：使用 hexo-filter-mathjax（简单但性能较差）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%85%AC%E5%BC%8F"><span class="nav-number">1.0.4.</span> <span class="nav-text">测试公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.0.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">二. Hexo Admin后台新建posts，一直显示loading</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BF%AE%E6%94%B9-Hexo-Admin-%E6%BA%90%E7%A0%81"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 修改 Hexo Admin 源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%99%8D%E7%BA%A7-js-yaml-%E7%89%88%E6%9C%AC"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. 降级 js-yaml 版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9B%B4%E6%96%B0-Hexo-Admin-%E6%8F%92%E4%BB%B6"><span class="nav-number">2.0.3.</span> <span class="nav-text">3. 更新 Hexo Admin 插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%A3%80%E6%9F%A5-Hexo-%E5%92%8C%E6%8F%92%E4%BB%B6%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-number">2.0.4.</span> <span class="nav-text">4. 检查 Hexo 和插件兼容性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%B8%85%E7%90%86%E7%BC%93%E5%AD%98%E5%B9%B6%E9%87%8D%E5%90%AF"><span class="nav-number">2.0.5.</span> <span class="nav-text">5. 清理缓存并重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%A3%80%E6%9F%A5-YAML-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.0.6.</span> <span class="nav-text">6. 检查 YAML 文件格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%85%A8%E5%B1%80%E6%9B%BF%E6%8D%A2-yaml-safeLoad"><span class="nav-number">2.0.7.</span> <span class="nav-text">7. 全局替换 yaml.safeLoad</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%8F%90%E4%BA%A4-Issue-%E7%BB%99-Hexo-Admin"><span class="nav-number">2.0.8.</span> <span class="nav-text">8. 提交 Issue 给 Hexo Admin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E4%B8%B4%E6%97%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.0.9.</span> <span class="nav-text">9. 临时解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">三.</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E5%9C%A8-Hexo-%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%97%A0%E6%B3%95%E6%B8%B2%E6%9F%93%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%EF%BC%8C%E9%80%9A%E5%B8%B8%E6%98%AF%E5%9B%A0%E4%B8%BA-Hexo-%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%94%AF%E6%8C%81-LaTeX-%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93%E3%80%82%E4%BD%A0%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E5%B9%B6%E9%85%8D%E7%BD%AE-Hexo-%E4%BB%A5%E6%94%AF%E6%8C%81%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E3%80%82%E4%BB%A5%E4%B8%8B%E6%98%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">一. 在 Hexo 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-1%EF%BC%9A%E4%BD%BF%E7%94%A8-hexo-renderer-markdown-it-%E5%92%8C-markdown-it-katex"><span class="nav-number">1.1.</span> <span class="nav-text">方法 1：使用 hexo-renderer-markdown-it 和 markdown-it-katex</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-2%EF%BC%9A%E4%BD%BF%E7%94%A8-hexo-renderer-pandoc%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">方法 2：使用 hexo-renderer-pandoc（推荐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95-3%EF%BC%9A%E4%BD%BF%E7%94%A8-hexo-filter-mathjax%EF%BC%88%E7%AE%80%E5%8D%95%E4%BD%86%E6%80%A7%E8%83%BD%E8%BE%83%E5%B7%AE%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">方法 3：使用 hexo-filter-mathjax（简单但性能较差）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%85%AC%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">测试公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-Hexo-Admin%E5%90%8E%E5%8F%B0%E6%96%B0%E5%BB%BAposts%EF%BC%8C%E4%B8%80%E7%9B%B4%E6%98%BE%E7%A4%BAloading"><span class="nav-number">2.</span> <span class="nav-text">二. Hexo Admin后台新建posts，一直显示loading</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BF%AE%E6%94%B9-Hexo-Admin-%E6%BA%90%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">1. 修改 Hexo Admin 源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%99%8D%E7%BA%A7-js-yaml-%E7%89%88%E6%9C%AC"><span class="nav-number">2.2.</span> <span class="nav-text">2. 降级 js-yaml 版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%9B%B4%E6%96%B0-Hexo-Admin-%E6%8F%92%E4%BB%B6"><span class="nav-number">2.3.</span> <span class="nav-text">3. 更新 Hexo Admin 插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%A3%80%E6%9F%A5-Hexo-%E5%92%8C%E6%8F%92%E4%BB%B6%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-number">2.4.</span> <span class="nav-text">4. 检查 Hexo 和插件兼容性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%B8%85%E7%90%86%E7%BC%93%E5%AD%98%E5%B9%B6%E9%87%8D%E5%90%AF"><span class="nav-number">2.5.</span> <span class="nav-text">5. 清理缓存并重启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E6%A3%80%E6%9F%A5-YAML-%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.6.</span> <span class="nav-text">6. 检查 YAML 文件格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%85%A8%E5%B1%80%E6%9B%BF%E6%8D%A2-yaml-safeLoad"><span class="nav-number">2.7.</span> <span class="nav-text">7. 全局替换 yaml.safeLoad</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E6%8F%90%E4%BA%A4-Issue-%E7%BB%99-Hexo-Admin"><span class="nav-number">2.8.</span> <span class="nav-text">8. 提交 Issue 给 Hexo Admin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E4%B8%B4%E6%97%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.9.</span> <span class="nav-text">9. 临时解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-Hexo%E7%9A%84next%E4%B8%BB%E9%A2%98markdown%E5%88%97%E8%A1%A8%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E6%B8%B2%E6%9F%93%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">三. Hexo的next主题markdown列表无法正常渲染的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">解决方案：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -290,7 +290,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-09 08:56:18" itemprop="dateModified" datetime="2025-03-09T08:56:18+08:00">2025-03-09</time>
+      <time title="修改时间：2025-03-28 11:45:42" itemprop="dateModified" datetime="2025-03-28T11:45:42+08:00">2025-03-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -320,14 +320,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.3k</span>
+      <span>3.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
+      <span>7 分钟</span>
     </span>
 </div>
 
@@ -338,10 +338,10 @@
     
     
     <div class="post-body" itemprop="articleBody"><hr>
-<h1>一. 在 <strong>Hexo</strong> 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</h1>
+<h3 id="一-在-Hexo-博客中无法渲染数学公式，通常是因为-Hexo-默认不支持-LaTeX-公式渲染。你需要安装插件并配置-Hexo-以支持数学公式。以下是解决方案：">一. 在 <strong>Hexo</strong> 博客中无法渲染数学公式，通常是因为 Hexo 默认不支持 LaTeX 公式渲染。你需要安装插件并配置 Hexo 以支持数学公式。以下是解决方案：</h3>
 <hr>
 <span id="more"></span>
-<h3 id="方法-1：使用-hexo-renderer-markdown-it-和-markdown-it-katex">方法 1：使用 <code>hexo-renderer-markdown-it</code> 和 <code>markdown-it-katex</code></h3>
+<h4 id="方法-1：使用-hexo-renderer-markdown-it-和-markdown-it-katex">方法 1：使用 <code>hexo-renderer-markdown-it</code> 和 <code>markdown-it-katex</code></h4>
 <ol>
 <li>
 <p><strong>卸载默认的 Markdown 渲染器</strong><br>
@@ -375,7 +375,7 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ol>
 <hr>
-<h3 id="方法-2：使用-hexo-renderer-pandoc（推荐）">方法 2：使用 <code>hexo-renderer-pandoc</code>（推荐）</h3>
+<h4 id="方法-2：使用-hexo-renderer-pandoc（推荐）">方法 2：使用 <code>hexo-renderer-pandoc</code>（推荐）</h4>
 <p>如果你需要更强大的数学公式支持（如复杂的 LaTeX 公式），可以使用 <code>hexo-renderer-pandoc</code>。</p>
 <ol>
 <li>
@@ -411,7 +411,7 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ol>
 <hr>
-<h3 id="方法-3：使用-hexo-filter-mathjax（简单但性能较差）">方法 3：使用 <code>hexo-filter-mathjax</code>（简单但性能较差）</h3>
+<h4 id="方法-3：使用-hexo-filter-mathjax（简单但性能较差）">方法 3：使用 <code>hexo-filter-mathjax</code>（简单但性能较差）</h4>
 <p>如果你不想折腾，可以使用 <code>hexo-filter-mathjax</code>，这是一个简单的插件，但性能较差。</p>
 <ol>
 <li>
@@ -431,7 +431,7 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ol>
 <hr>
-<h3 id="测试公式">测试公式</h3>
+<h4 id="测试公式">测试公式</h4>
 <p>在你的博客文章中，使用以下语法测试公式：</p>
 <ul>
 <li>
@@ -446,17 +446,17 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ul>
 <hr>
-<h3 id="总结">总结</h3>
+<h4 id="总结">总结</h4>
 <ul>
 <li>如果你需要简单的公式支持，推荐使用 <strong>方法 1</strong>（<code>hexo-renderer-markdown-it</code> + <code>markdown-it-katex</code>）。</li>
 <li>如果你需要更强大的公式支持，推荐使用 <strong>方法 2</strong>（<code>hexo-renderer-pandoc</code>）。</li>
 <li>如果你不想折腾，可以使用 <strong>方法 3</strong>（<code>hexo-filter-mathjax</code>），但性能较差。</li>
 </ul>
-<h1>二. Hexo Admin后台新建posts，一直显示loading</h1>
+<h3 id="二-Hexo-Admin后台新建posts，一直显示loading">二. Hexo Admin后台新建posts，一直显示loading</h3>
 <p>从错误信息来看，问题是由于 <code>js-yaml</code> 库的版本升级导致的。在 <code>js-yaml</code> 4.0.0 及以上版本中，<code>yaml.safeLoad</code> 方法已被移除，建议使用 <code>yaml.load</code> 方法代替。Hexo Admin 插件可能还在使用旧的 <code>yaml.safeLoad</code> 方法，因此导致了错误。</p>
 <p>以下是解决该问题的步骤：</p>
 <hr>
-<h3 id="1-修改-Hexo-Admin-源码">1. <strong>修改 Hexo Admin 源码</strong></h3>
+<h4 id="1-修改-Hexo-Admin-源码">1. <strong>修改 Hexo Admin 源码</strong></h4>
 <ul>
 <li>找到 Hexo Admin 插件中使用 <code>yaml.safeLoad</code> 的地方，将其替换为 <code>yaml.load</code>。</li>
 <li>根据错误日志，问题出现在 <code>D:\AIGC\my_blog\node_modules\.pnpm\hexo-admin@2.3.0\node_modules\hexo-admin\api.js</code> 文件的第 44 行。</li>
@@ -466,7 +466,7 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ul>
 <hr>
-<h3 id="2-降级-js-yaml-版本">2. <strong>降级 <code>js-yaml</code> 版本</strong></h3>
+<h4 id="2-降级-js-yaml-版本">2. <strong>降级 <code>js-yaml</code> 版本</strong></h4>
 <ul>
 <li>如果你不想修改源码，可以尝试将 <code>js-yaml</code> 降级到 3.x 版本，该版本仍然支持 <code>yaml.safeLoad</code>。</li>
 <li>运行以下命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install js-yaml@3.14.1 --save</span><br></pre></td></tr></table></figure>
@@ -474,20 +474,20 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 <li>然后重新启动 Hexo 服务器。</li>
 </ul>
 <hr>
-<h3 id="3-更新-Hexo-Admin-插件">3. <strong>更新 Hexo Admin 插件</strong></h3>
+<h4 id="3-更新-Hexo-Admin-插件">3. <strong>更新 Hexo Admin 插件</strong></h4>
 <ul>
 <li>检查是否有新版本的 Hexo Admin 插件，可能已经修复了该问题。</li>
 <li>运行以下命令更新插件：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-admin@latest --save</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <hr>
-<h3 id="4-检查-Hexo-和插件兼容性">4. <strong>检查 Hexo 和插件兼容性</strong></h3>
+<h4 id="4-检查-Hexo-和插件兼容性">4. <strong>检查 Hexo 和插件兼容性</strong></h4>
 <ul>
 <li>确保 Hexo 和 Hexo Admin 插件的版本兼容。</li>
 <li>查看 Hexo Admin 的官方文档或 GitHub 仓库，确认支持的 Hexo 版本。</li>
 </ul>
 <hr>
-<h3 id="5-清理缓存并重启">5. <strong>清理缓存并重启</strong></h3>
+<h4 id="5-清理缓存并重启">5. <strong>清理缓存并重启</strong></h4>
 <ul>
 <li>清理 Hexo 缓存并重新生成静态文件：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
 </li>
@@ -495,33 +495,59 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
 </li>
 </ul>
 <hr>
-<h3 id="6-检查-YAML-文件格式">6. <strong>检查 YAML 文件格式</strong></h3>
+<h4 id="6-检查-YAML-文件格式">6. <strong>检查 YAML 文件格式</strong></h4>
 <ul>
 <li>确保 Hexo Admin 使用的 YAML 配置文件格式正确，没有语法错误。</li>
 <li>可以使用在线 YAML 校验工具（如 <a target="_blank" rel="noopener" href="https://www.yamllint.com/">YAML Lint</a>）检查配置文件。</li>
 </ul>
 <hr>
-<h3 id="7-全局替换-yaml-safeLoad">7. <strong>全局替换 <code>yaml.safeLoad</code></strong></h3>
+<h4 id="7-全局替换-yaml-safeLoad">7. <strong>全局替换 <code>yaml.safeLoad</code></strong></h4>
 <ul>
 <li>如果你的项目中还有其他地方使用了 <code>yaml.safeLoad</code>，可以全局替换为 <code>yaml.load</code>。</li>
 <li>使用代码编辑器的全局搜索功能，查找并替换所有 <code>yaml.safeLoad</code> 为 <code>yaml.load</code>。</li>
 </ul>
 <hr>
-<h3 id="8-提交-Issue-给-Hexo-Admin">8. <strong>提交 Issue 给 Hexo Admin</strong></h3>
+<h4 id="8-提交-Issue-给-Hexo-Admin">8. <strong>提交 Issue 给 Hexo Admin</strong></h4>
 <ul>
 <li>如果以上方法无效，建议到 Hexo Admin 的 GitHub 仓库提交 Issue，说明你的问题和环境信息（如 Hexo 版本、Node.js 版本等）。</li>
 <li>Hexo Admin 仓库地址：<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-admin">https://github.com/hexojs/hexo-admin</a></li>
 </ul>
 <hr>
-<h3 id="9-临时解决方案">9. <strong>临时解决方案</strong></h3>
+<h4 id="9-临时解决方案">9. <strong>临时解决方案</strong></h4>
 <ul>
 <li>如果你急需解决问题，可以暂时锁定 <code>js-yaml</code> 的版本为 3.x，在 <code>package.json</code> 中添加以下内容：<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;resolutions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;js-yaml&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3.14.1&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li>然后运行 <code>npm install</code> 重新安装依赖。</li>
 </ul>
 <hr>
-<p>通过以上方法，你应该能够解决 <code>yaml.safeLoad</code> 被移除的问题。如果问题仍然存在，请提供更多上下文信息，我会进一步协助你排查问题。</p>
-<h1>三.</h1>
+<p>通过以上方法，你应该能够解决 <code>yaml.safeLoad</code> 被移除的问题。</p>
+<h3 id="三-Hexo的next主题markdown列表无法正常渲染的问题">三. Hexo的next主题markdown列表无法正常渲染的问题</h3>
+<h4 id="解决方案：">解决方案：</h4>
+<ul>
+<li>
+<p>修改custom.css样式</p>
+</li>
+<li>
+<p>打开 <code>themes/next/source/css/custom.css</code> 添加以下代码修复列表样式：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> /* 强制覆盖主题样式 */</span><br><span class="line">.post .post-body ul,</span><br><span class="line">.post .post-body ol &#123;</span><br><span class="line">  padding-left: 2em !important;</span><br><span class="line">  list-style-type: disc !important;  /* 无序列表样式 */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 有序列表样式 */</span><br><span class="line">.post .post-body ol &#123;</span><br><span class="line">  list-style-type: decimal !important;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>通过主题中的_config.yml自定义样式，加载custom.css文件</p>
+<ul>
+<li>
+<p>打开 themes/next/_config.yml</p>
+</li>
+<li>
+<p>找到 custom_file_path 部分，确保 style 指向正确路径：</p>
+</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">custom_file_path:</span><br><span class="line">	style: source/css/custom.css  # 取消注释</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>清理缓存重新生成：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
     </div>
 
@@ -633,7 +659,7 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:12</span>
+    <span title="站点阅读时长">1:13</span>
   </span>
 </div>
 <div class="busuanzi-count">
