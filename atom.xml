@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-25T08:33:31.517Z</updated>
+  <updated>2025-03-28T01:18:50.439Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,69 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RAG优化技术</title>
+    <link href="http://example.com/2025/03/28/RAG%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/"/>
+    <id>http://example.com/2025/03/28/RAG%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/</id>
+    <published>2025-03-27T23:35:00.000Z</published>
+    <updated>2025-03-28T01:18:50.439Z</updated>
+    
+    
+    <summary type="html">&lt;h4 id=&quot;之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：&quot;&gt;之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;索引阶段&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文档解析技术&lt;/li&gt;
+&lt;li&gt;分块策略
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;固定大小分块、重叠分块、递归分块、文档特定分块、语义分块、混合分块&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;嵌入模型选择&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;检索阶段&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;向量数据库选择&lt;/li&gt;
+&lt;li&gt;混合检索
+&lt;ul&gt;
+&lt;li&gt;关键词检索&lt;/li&gt;
+&lt;li&gt;向量检索&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;重排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;生成阶段&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;大语言模型选择&lt;/li&gt;
+&lt;li&gt;提示词工程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
+    
+    <category term="优化技术" scheme="http://example.com/categories/AI/RAG/%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="优化" scheme="http://example.com/tags/%E4%BC%98%E5%8C%96/"/>
+    
+    <category term="检索精度" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2%E7%B2%BE%E5%BA%A6/"/>
+    
+    <category term="检索效率" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2%E6%95%88%E7%8E%87/"/>
+    
+  </entry>
   
   <entry>
     <title>LangChain链的类型及示例</title>
@@ -377,13 +440,13 @@
     <category term="分块策略" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
     
     
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
-    
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
     <category term="langchain" scheme="http://example.com/tags/langchain/"/>
     
-    <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
     
     <category term="分块策略" scheme="http://example.com/tags/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
     
