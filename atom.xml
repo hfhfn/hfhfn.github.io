@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-28T03:10:37.419Z</updated>
+  <updated>2025-03-28T03:57:35.648Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2025/03/28/RAG%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/"/>
     <id>http://example.com/2025/03/28/RAG%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/</id>
     <published>2025-03-27T23:35:00.000Z</published>
-    <updated>2025-03-28T03:10:37.419Z</updated>
+    <updated>2025-03-28T03:57:35.648Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：&quot;&gt;之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：&lt;/h4&gt;
@@ -336,9 +336,9 @@
     
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
-    <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
     <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
+    
+    <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     

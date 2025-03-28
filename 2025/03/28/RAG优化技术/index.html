@@ -32,7 +32,7 @@
 <meta property="og:description" content="之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：   索引阶段   文档解析技术   分块策略  固定大小分块、重叠分块、递归分块、文档特定分块、语义分块、混合分块    嵌入模型选择     检索阶段   向量数据库选择   混合检索   关键词检索   向量检索     重排序     生成阶段   大语言模型选择   提示词工程">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-27T23:35:00.000Z">
-<meta property="article:modified_time" content="2025-03-28T03:10:37.419Z">
+<meta property="article:modified_time" content="2025-03-28T03:57:35.648Z">
 <meta property="article:author" content="AI模型研究所">
 <meta property="article:tag" content="RAG">
 <meta property="article:tag" content="优化">
@@ -220,7 +220,7 @@
 		  <span>欢迎加入我的抖音粉丝群</span>
 		  <br>
 		  <!-- 这里添加你的二维码图片 -->
-		  <img src ="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/52f82e8e3251882d6d857256bd49395.jpg">
+		  <img src ="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/c5950c23bf70f6443c863eb25722778.jpg">
 	  </div>
     </div>
 
@@ -286,7 +286,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-28 07:35:00 / 修改时间：11:10:37" itemprop="dateCreated datePublished" datetime="2025-03-28T07:35:00+08:00">2025-03-28</time>
+      <time title="创建时间：2025-03-28 07:35:00 / 修改时间：11:57:35" itemprop="dateCreated datePublished" datetime="2025-03-28T07:35:00+08:00">2025-03-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -456,17 +456,30 @@
 </li>
 <li>
 <p>查询扩展指令模板：</p>
-<ul>
-<li>
-<pre><code class="language-markdown">你是一个AI语言模型助手。
-你的任务是生成五个不同版本的用户问题，以便从向量数据库中检索相关文档。
-通过从多个角度生成用户问题，你的目标是帮助用户克服基于距离的相似性搜索的一些局限性。
-请将这些替代问题用换行符分隔。原始问题：&#123;查询原文&#125;
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 预生成问题和回答（命中缓存，撞库回答）</span><br><span class="line"></span><br><span class="line">    - 我们可以按照一些模式去预先生成问题，然后使用前面的一些高级但是比较耗时的方法，例如 AI 智能体检索和多轮检索的方式来生成回答。然后把这些问题和回答存进知识库，当用户提问时，我们根据用户提问检索对应的问题，并返回对应的回答。</span><br><span class="line"></span><br><span class="line">- 生成阶段</span><br><span class="line"></span><br><span class="line">  - 提示压缩</span><br><span class="line"></span><br><span class="line">    - 提示压缩旨在减少上下文中的噪声，并突出最相关的信息，从而提高检索精度和生成质量。在 RAG 系统中，检索到的文档通常包含大量无关的文本，这些无关内容可能会掩盖与查询高度相关的信息，导致生成结果的相关性下降。提示压缩通过精简上下文、过滤掉不相关的信息，确保系统只处理与查询最相关、最重要的内容。</span><br><span class="line"></span><br><span class="line">    - 提示压缩的指令模版</span><br><span class="line"></span><br><span class="line">      - ```markdown</span><br><span class="line">        你是一个AI语言模型助手，负责对检索到的文档进行上下文压缩。</span><br><span class="line">        你的目标是从文档中提取与用户查询高度相关的段落，并删除与查询无关或噪声较大的部分。</span><br><span class="line">        你应确保保留所有能够直接回答用户查询的问题核心信息。</span><br><span class="line">        </span><br><span class="line">        输入：</span><br><span class="line">        用户查询：&#123;用户的原始查询&#125;</span><br><span class="line">        检索到的文档：&#123;检索到的文档内容&#125;</span><br><span class="line">        </span><br><span class="line">        输出要求：</span><br><span class="line">        提取与用户查询最相关的段落和信息。</span><br><span class="line">        删除所有与查询无关的内容，包括噪声、背景信息或扩展讨论。</span><br><span class="line">        压缩后的内容应简洁清晰，直指用户的核心问题。</span><br><span class="line">        </span><br><span class="line">        输出格式：</span><br><span class="line">        &#123;压缩段落1&#125;</span><br><span class="line">        &#123;压缩段落2&#125;</span><br><span class="line">        &#123;压缩段落3&#125;</span><br></pre></td></tr></table></figure>
-
-</code></pre>
+  <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">你是一个AI语言模型助手。</span><br><span class="line">你的任务是生成五个不同版本的用户问题，以便从向量数据库中检索相关文档。</span><br><span class="line">通过从多个角度生成用户问题，你的目标是帮助用户克服基于距离的相似性搜索的一些局限性。</span><br><span class="line">请将这些替代问题用换行符分隔。原始问题：&#123;查询原文&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+</li>
+<li>
+<p>预生成问题和回答（命中缓存，撞库回答）</p>
+<ul>
+<li>我们可以按照一些模式去预先生成问题，然后使用前面的一些高级但是比较耗时的方法，例如 AI 智能体检索和多轮检索的方式来生成回答。然后把这些问题和回答存进知识库，当用户提问时，我们根据用户提问检索对应的问题，并返回对应的回答。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>生成阶段</p>
+<ul>
+<li>
+<p>提示压缩</p>
+<ul>
+<li>
+<p>提示压缩旨在减少上下文中的噪声，并突出最相关的信息，从而提高检索精度和生成质量。在 RAG 系统中，检索到的文档通常包含大量无关的文本，这些无关内容可能会掩盖与查询高度相关的信息，导致生成结果的相关性下降。提示压缩通过精简上下文、过滤掉不相关的信息，确保系统只处理与查询最相关、最重要的内容。</p>
+</li>
+<li>
+<p>提示压缩的指令模版</p>
+  <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">你是一个AI语言模型助手，负责对检索到的文档进行上下文压缩。</span><br><span class="line">你的目标是从文档中提取与用户查询高度相关的段落，并删除与查询无关或噪声较大的部分。</span><br><span class="line">你应确保保留所有能够直接回答用户查询的问题核心信息。</span><br><span class="line"></span><br><span class="line">输入：</span><br><span class="line">用户查询：&#123;用户的原始查询&#125;</span><br><span class="line">检索到的文档：&#123;检索到的文档内容&#125;</span><br><span class="line"></span><br><span class="line">输出要求：</span><br><span class="line">提取与用户查询最相关的段落和信息。</span><br><span class="line">删除所有与查询无关的内容，包括噪声、背景信息或扩展讨论。</span><br><span class="line">压缩后的内容应简洁清晰，直指用户的核心问题。</span><br><span class="line"></span><br><span class="line">输出格式：</span><br><span class="line">&#123;压缩段落1&#125;</span><br><span class="line">&#123;压缩段落2&#125;</span><br><span class="line">&#123;压缩段落3&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>通过提示压缩，系统能够准确提取出与查询高度相关的核心信息，去除冗余内容，并返回简洁的压缩结果。组合成为新的指令，输入大模型获得回复，提高 RAG 系统答案准确度。</p>
@@ -514,7 +527,7 @@
   <span>欢迎加入我的抖音粉丝群</span>
   <br>
   <!-- 这里添加你的二维码图片 -->
-  <img src ="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/52f82e8e3251882d6d857256bd49395.jpg">
+  <img src ="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/c5950c23bf70f6443c863eb25722778.jpg">
 </div>
 
 <div class="post-copyright">
