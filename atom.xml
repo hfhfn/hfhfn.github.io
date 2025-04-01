@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-03-28T03:57:35.648Z</updated>
+  <updated>2025-04-01T08:52:49.673Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一文看懂RAG的前世今生</title>
+    <link href="http://example.com/2025/04/01/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82RAG%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"/>
+    <id>http://example.com/2025/04/01/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82RAG%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</id>
+    <published>2025-04-01T04:38:00.000Z</published>
+    <updated>2025-04-01T08:52:49.673Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;1-大语言模型（LLM）的局限性&quot;&gt;1. 大语言模型（LLM）的局限性&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;LLM 容易出现“幻觉”现象，即&lt;strong&gt;生成不准确或虚构的内容&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;LLM 的&lt;strong&gt;上下文窗口有限&lt;/strong&gt;，无法处理过长的文本。&lt;/li&gt;
+&lt;li&gt;LLM 存在隐私泄露的风险，也就是&lt;strong&gt;数据安全&lt;/strong&gt;问题。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;为了弥补这些不足 RAG（检索增强生成）技术应运而生，也就是最早的&lt;strong&gt;Naive（朴素的） RAG&lt;/strong&gt;或者说&lt;strong&gt;Vanilla（普通的） RAG&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用如&lt;strong&gt;BM25（TF-IDF）或者Dense（Embedding） Retrieval&lt;/strong&gt;的方式。&lt;/p&gt;
+&lt;h2 id=&quot;2-RAG技术在适应复杂应用场景和不断发展的技术需求中经历了从Naive-RAG-，到流程优化的-Advanced-RAG，再到更具灵活性的-Modular-RAG-的演变。&quot;&gt;2. RAG技术在适应复杂应用场景和不断发展的技术需求中经历了从Naive RAG ，到流程优化的 Advanced RAG，再到更具灵活性的 Modular RAG 的演变。&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
+    
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="发展" scheme="http://example.com/tags/%E5%8F%91%E5%B1%95/"/>
+    
+    <category term="分享规划" scheme="http://example.com/tags/%E5%88%86%E4%BA%AB%E8%A7%84%E5%88%92/"/>
+    
+  </entry>
   
   <entry>
     <title>RAG优化技术</title>
@@ -154,9 +187,9 @@
     
     <category term="生成" scheme="http://example.com/tags/%E7%94%9F%E6%88%90/"/>
     
-    <category term="generate" scheme="http://example.com/tags/generate/"/>
-    
     <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
+    
+    <category term="generate" scheme="http://example.com/tags/generate/"/>
     
   </entry>
   
@@ -187,9 +220,9 @@
     
     <category term="生成" scheme="http://example.com/tags/%E7%94%9F%E6%88%90/"/>
     
-    <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
-    
     <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
     
   </entry>
   
@@ -458,11 +491,11 @@
     <category term="分块策略" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
     
     
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
-    
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
     <category term="langchain" scheme="http://example.com/tags/langchain/"/>
+    
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
@@ -701,21 +734,6 @@
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
     <category term="AI," scheme="http://example.com/tags/AI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://example.com/2025/03/05/hello-world/"/>
-    <id>http://example.com/2025/03/05/hello-world/</id>
-    <published>2025-03-05T01:58:15.184Z</published>
-    <updated>2025-03-05T04:39:34.570Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</summary>
-    
-    
-    
     
   </entry>
   

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":{"valine":{"Order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+
+<meta name="referrer" content="no-referrer" />
+    <meta name="description" content="1. 大语言模型（LLM）的局限性  LLM 容易出现“幻觉”现象，即生成不准确或虚构的内容。 LLM 的上下文窗口有限，无法处理过长的文本。 LLM 存在隐私泄露的风险，也就是数据安全问题。  为了弥补这些不足 RAG（检索增强生成）技术应运而生，也就是最早的Naive（朴素的） RAG或者说Vanilla（普通的） RAG 使用如BM25（TF-IDF）或者Dense（Embedding） R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一文看懂RAG的前世今生">
+<meta property="og:url" content="http://example.com/2025/04/01/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82RAG%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/index.html">
+<meta property="og:site_name" content="打开AI世界的大门">
+<meta property="og:description" content="1. 大语言模型（LLM）的局限性  LLM 容易出现“幻觉”现象，即生成不准确或虚构的内容。 LLM 的上下文窗口有限，无法处理过长的文本。 LLM 存在隐私泄露的风险，也就是数据安全问题。  为了弥补这些不足 RAG（检索增强生成）技术应运而生，也就是最早的Naive（朴素的） RAG或者说Vanilla（普通的） RAG 使用如BM25（TF-IDF）或者Dense（Embedding） R">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401131315866.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/x1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401142025317.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401145306424.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401161858764.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401162540092.png">
+<meta property="article:published_time" content="2025-04-01T04:38:00.000Z">
+<meta property="article:modified_time" content="2025-04-01T08:52:49.673Z">
+<meta property="article:author" content="AI模型研究所">
+<meta property="article:tag" content="RAG">
+<meta property="article:tag" content="发展">
+<meta property="article:tag" content="分享规划">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401131315866.png">
+
+
+<link rel="canonical" href="http://example.com/2025/04/01/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82RAG%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/04/01/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82RAG%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/","path":"2025/04/01/一文看懂RAG的前世今生/","title":"一文看懂RAG的前世今生"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+
+<meta name="referrer" content="no-referrer" /><title>一文看懂RAG的前世今生 | 打开AI世界的大门</title>
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css"><style>
+#needsharebutton-postbottom {
+  cursor: pointer;
+  height: 26px;
+  margin-top: 10px;
+  position: relative;
+}
+#needsharebutton-postbottom .btn {
+  border: 1px solid $btn-default-border-color;
+  border-radius: 3px;
+  display: initial;
+  padding: 1px 4px;
+}
+</style>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="打开AI世界的大门" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">打开AI世界的大门</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">奔赴山海，保持热爱</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM%EF%BC%89%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">1. 大语言模型（LLM）的局限性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-RAG%E6%8A%80%E6%9C%AF%E5%9C%A8%E9%80%82%E5%BA%94%E5%A4%8D%E6%9D%82%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E4%B8%8D%E6%96%AD%E5%8F%91%E5%B1%95%E7%9A%84%E6%8A%80%E6%9C%AF%E9%9C%80%E6%B1%82%E4%B8%AD%E7%BB%8F%E5%8E%86%E4%BA%86%E4%BB%8ENaive-RAG-%EF%BC%8C%E5%88%B0%E6%B5%81%E7%A8%8B%E4%BC%98%E5%8C%96%E7%9A%84-Advanced-RAG%EF%BC%8C%E5%86%8D%E5%88%B0%E6%9B%B4%E5%85%B7%E7%81%B5%E6%B4%BB%E6%80%A7%E7%9A%84-Modular-RAG-%E7%9A%84%E6%BC%94%E5%8F%98%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">2. RAG技术在适应复杂应用场景和不断发展的技术需求中经历了从Naive RAG ，到流程优化的 Advanced RAG，再到更具灵活性的 Modular RAG 的演变。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Advanced-RAG"><span class="nav-number">2.1.</span> <span class="nav-text">Advanced RAG</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A3%80%E7%B4%A2%E5%89%8D%E4%BC%98%E5%8C%96"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">检索前优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A3%80%E7%B4%A2%E4%BC%98%E5%8C%96"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">检索优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A3%80%E7%B4%A2%E5%90%8E%E4%BC%98%E5%8C%96"><span class="nav-number">2.1.0.3.</span> <span class="nav-text">检索后优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modular-RAG"><span class="nav-number">2.2.</span> <span class="nav-text">Modular RAG</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-GraphRAG%E8%A7%A3%E5%86%B3%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E9%9D%A2%E4%B8%B4%E7%9A%84%E4%B8%A4%E4%B8%AA%E4%B8%BB%E8%A6%81%E6%8C%91%E6%88%98%EF%BC%88%E6%97%A0%E6%B3%95%E6%8D%95%E6%8D%89%E4%BA%BA%E7%B1%BB%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%85%B3%E9%94%AE%E7%89%B9%E5%BE%81%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">3. GraphRAG解决向量检索面临的两个主要挑战（无法捕捉人类长期记忆的两个关键特征）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GraphRAG%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">GraphRAG的原理：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E7%BB%9FRAG%E5%92%8CGraphRAG%E5%AF%B9%E6%AF%94%EF%BC%9A"><span class="nav-number">3.2.</span> <span class="nav-text">传统RAG和GraphRAG对比：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9%E7%A7%8DGraphRAG%E5%AF%B9%E6%AF%94%EF%BC%9A%EF%BC%88%E5%B9%B6%E9%99%84%E4%B8%8A%E5%90%84%E7%A7%8D%E6%96%B9%E6%B3%95%E5%B7%B2%E6%9C%89%E7%9A%84%E5%BC%80%E6%BA%90%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">9种GraphRAG对比：（并附上各种方法已有的开源实现）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ZeroShot%EF%BC%88%E5%9F%BA%E4%BA%8EHuggingFace-Transformers%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-number">3.3.1.</span> <span class="nav-text">1. ZeroShot（基于HuggingFace Transformers实现）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-VanillaRAG%EF%BC%88%E5%9F%BA%E4%BA%8Elangchain%E5%BA%93%E5%AE%9E%E7%8E%B0-https-github-com-langchain-ai-langchain%EF%BC%89"><span class="nav-number">3.3.2.</span> <span class="nav-text">2. VanillaRAG（基于langchain库实现 https:&#x2F;&#x2F;github.com&#x2F;langchain-ai&#x2F;langchain）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-G-retriever%EF%BC%88https-github-com-XiaoxinHe-G-Retriever%EF%BC%89"><span class="nav-number">3.3.3.</span> <span class="nav-text">3. G-retriever（https:&#x2F;&#x2F;github.com&#x2F;XiaoxinHe&#x2F;G-Retriever）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-TGG"><span class="nav-number">3.3.4.</span> <span class="nav-text">4. TGG</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-KGP"><span class="nav-number">3.3.5.</span> <span class="nav-text">5. KGP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-DALK"><span class="nav-number">3.3.6.</span> <span class="nav-text">6. DALK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-LLightRAG-GLightRAG-HLightRAG%EF%BC%88https-github-com-HKUDS-LightRAG%EF%BC%89"><span class="nav-number">3.3.7.</span> <span class="nav-text">7. LLightRAG &#x2F; GLightRAG &#x2F; HLightRAG（https:&#x2F;&#x2F;github.com&#x2F;HKUDS&#x2F;LightRAG）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-FastGraphRAG%EF%BC%88https-github-com-circlemind-ai-fast-graphrag%EF%BC%89"><span class="nav-number">3.3.8.</span> <span class="nav-text">8. FastGraphRAG（https:&#x2F;&#x2F;github.com&#x2F;circlemind-ai&#x2F;fast-graphrag）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-HippoRAG%EF%BC%88https-github-com-OSU-NLP-Group-HippoRAG%EF%BC%89"><span class="nav-number">3.3.9.</span> <span class="nav-text">9. HippoRAG（https:&#x2F;&#x2F;github.com&#x2F;OSU-NLP-Group&#x2F;HippoRAG）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-LGraphRAG%EF%BC%88https-github-com-microsoft-graphrag%EF%BC%89"><span class="nav-number">3.3.10.</span> <span class="nav-text">10. LGraphRAG（https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;graphrag）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-RAPTOR%EF%BC%88https-github-com-parthsarthi03-raptor%EF%BC%89"><span class="nav-number">3.3.11.</span> <span class="nav-text">11. RAPTOR（https:&#x2F;&#x2F;github.com&#x2F;parthsarthi03&#x2F;raptor）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">3.3.12.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Agentic-RAG%EF%BC%88%E8%AF%A6%E7%BB%86%E5%86%85%E5%AE%B9%E5%8F%AF%E6%9F%A5%E7%9C%8B%E8%AE%BA%E6%96%87%E5%9C%B0%E5%9D%80%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">4. Agentic RAG（详细内容可查看论文地址）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Agentic-RAG-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%89%B9%E7%82%B9"><span class="nav-number">4.1.</span> <span class="nav-text">Agentic RAG 的核心特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AI%E4%BB%A3%E7%90%86RAG%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.2.</span> <span class="nav-text">AI代理RAG系统的基本实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E4%BB%A3%E7%90%86RAG%E7%B3%BB%E7%BB%9F"><span class="nav-number">4.3.</span> <span class="nav-text">多代理RAG系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%9C%80%E7%BB%88%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">5. 最终总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RAG%E8%8C%83%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94%E5%88%86%E6%9E%90"><span class="nav-number">5.1.</span> <span class="nav-text">RAG范式的对比分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E6%9C%AF%E8%AF%AD%E8%AF%B4%E6%98%8E"><span class="nav-number">5.2.</span> <span class="nav-text">关键术语说明</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="AI模型研究所"
+      src="/images/avatar.ico">
+  <p class="site-author-name" itemprop="name">AI模型研究所</p>
+  <div class="site-description" itemprop="description">心有所向，无问东西</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://v.douyin.com/i56Pn1TV/%204@7.com" title="我的抖音主页 → https:&#x2F;&#x2F;v.douyin.com&#x2F;i56Pn1TV&#x2F; 4@7.com" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>我的抖音主页</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/hfhfn" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hfhfn" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1103562450" title="我的B站主页 → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1103562450" rel="noopener me" target="_blank"><i class="fab fa-facebook fa-fw"></i>我的B站主页</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hfhfn@sina.com" title="E-Mail → mailto:hfhfn@sina.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+	  
+	  <div class="douyin_qun">
+		  <span>欢迎加入我的抖音粉丝群</span>
+		  <br>
+		  <!-- 这里添加你的二维码图片 -->
+		  <img src ="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/c5950c23bf70f6443c863eb25722778.jpg">
+	  </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://pan.baidu.com/s/1XxC56NKwXaDmJIMxYzY_2w?pwd=da3c" title="https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1XxC56NKwXaDmJIMxYzY_2w?pwd&#x3D;da3c" rel="noopener" target="_blank">百度网盘Dify分享</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://pan.baidu.com/s/12hTcfYD3qDir_-_SSr9yxw?pwd=cghq" title="https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;12hTcfYD3qDir_-_SSr9yxw?pwd&#x3D;cghq" rel="noopener" target="_blank">百度网盘技术分享</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/01/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82RAG%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.ico">
+      <meta itemprop="name" content="AI模型研究所">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="打开AI世界的大门">
+      <meta itemprop="description" content="心有所向，无问东西">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="一文看懂RAG的前世今生 | 打开AI世界的大门">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一文看懂RAG的前世今生
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-01 12:38:00 / 修改时间：16:52:49" itemprop="dateCreated datePublished" datetime="2025-04-01T12:38:00+08:00">2025-04-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/RAG/" itemprop="url" rel="index"><span itemprop="name">RAG</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>13 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="1-大语言模型（LLM）的局限性">1. 大语言模型（LLM）的局限性</h2>
+<ol>
+<li>LLM 容易出现“幻觉”现象，即<strong>生成不准确或虚构的内容</strong>。</li>
+<li>LLM 的<strong>上下文窗口有限</strong>，无法处理过长的文本。</li>
+<li>LLM 存在隐私泄露的风险，也就是<strong>数据安全</strong>问题。</li>
+</ol>
+<p>为了弥补这些不足 RAG（检索增强生成）技术应运而生，也就是最早的<strong>Naive（朴素的） RAG</strong>或者说<strong>Vanilla（普通的） RAG</strong></p>
+<p>使用如<strong>BM25（TF-IDF）或者Dense（Embedding） Retrieval</strong>的方式。</p>
+<h2 id="2-RAG技术在适应复杂应用场景和不断发展的技术需求中经历了从Naive-RAG-，到流程优化的-Advanced-RAG，再到更具灵活性的-Modular-RAG-的演变。">2. RAG技术在适应复杂应用场景和不断发展的技术需求中经历了从Naive RAG ，到流程优化的 Advanced RAG，再到更具灵活性的 Modular RAG 的演变。</h2>
+<span id="more"></span>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401131315866.png" alt="image-20250401131315866" style="zoom: 80%;" />
+<h3 id="Advanced-RAG">Advanced RAG</h3>
+<h5 id="检索前优化">检索前优化</h5>
+<p>检索前优化通过索引、分块、查询优化以及内容向量化等技术手段，提高检索内容的精确性和生成内容的相关性。</p>
+<ol>
+<li><strong>滑动窗口方法</strong>：经典的分块技术，通过在相邻的文本块之间创建重叠区域，确保关键信息不会因简单的分段而丢失。这种方法在索引过程中通过在块之间保留重复部分，保证了检索时上下文信息的连贯性，进而提高了检索的精度。</li>
+<li><strong>元数据添加</strong>：为每个分块添加元数据（如创建日期、章节名称、文档类型等），能够使系统在检索时快速过滤掉无关内容。例如，用户在查询时可以通过元数据筛选特定时间段的文档，减少不相关信息的干扰。</li>
+<li>分层索引：在索引过程中，可以采用句子级、段落级甚至文档级的多层次嵌入方法。这样，系统可以根据查询的具体要求，灵活地在不同层次进行检索。比如，当用户输入较为复杂的长句查询时，段落级别的嵌入能够提供更加全面的语义匹配；而对于简短查询，句子级的嵌入能够提供更精确的结果。</li>
+<li><strong>句子窗口检索</strong>：这种方法通过将文档中的每个句子独立嵌入，从而提高检索的精确度。在检索过程中，系统找到与查询最相关的句子后，会扩展句子前后的上下文窗口，保证生成模型能够获取足够的背景信息进行推理。这种方式既能够精准定位关键信息，又能确保生成的上下文连贯性。</li>
+<li><strong>查询重写</strong>：针对用户输入的原始查询进行重新表述，使其更加清晰易懂，并且与检索任务匹配。例如，针对用户模糊或含糊的提问，系统可以通过重写，使查询更加具体化，从而检索到更加精准的内容。</li>
+<li><strong>查询扩展</strong>：查询扩展通过增加同义词、相关词汇或概念扩展用户的原始查询，增加了检索结果的广度。这样，当用户输入简短或不完整的查询时，系统能够通过扩展词汇找到更多潜在相关的内容，从而提升检索效果。</li>
+<li><strong>长短不一的内容向量化</strong>：RAG 系统中，文档或查询的长度对向量化过程有着显著的影响。对于短句子或短语，其生成的向量更加聚焦于具体细节，能够实现更精确的句子级别匹配。段落或文档级别的向量化涵盖了更广泛的上下文信息，能够捕捉到内容的整体语义。</li>
+</ol>
+<h5 id="检索优化">检索优化</h5>
+<p>检索优化是 RAG 系统中直接影响检索效果和质量的核心环节。通过增强向量搜索、动态嵌入模型、混合检索等技术手段，系统能够高效、精准地找到与用户查询最相关的内容。</p>
+<ol>
+<li><strong>动态嵌入</strong>：RAG 系统通过动态嵌入模型根据上下文变化实时调整单词的嵌入表示，能够捕捉单词在不同上下文中的不同含义。例如，“bank”在“river bank”（河岸）和“financial bank”（银行）中的语义完全不同，动态嵌入可以根据具体语境生成合适的向量，从而提高检索的精准性。</li>
+<li><strong>领域特定嵌入微调</strong>：在实际应用中，不同领域的数据语境差异较大，通用的嵌入模型往往无法覆盖某些领域的专业术语或特定语义。通过对嵌入模型进行微调，可以增强其在特定领域中的表现。例如，针对医学、法律等专业领域，可以对嵌入模型进行定制化训练 / 微调，使其更好地理解这些领域中的特有词汇和语境。</li>
+<li><strong>假设文档嵌入</strong>：假设文档嵌入（Hypothetical Document Embeddings，HyDE）是一种创新的检索技术。HyDE 方法通过生成假设文档并将其向量化，以提升查询与检索结果之间的语义匹配度。当用户输入一个查询时，LLM 首先基于查询生成一个假设性答案，这个答案不一定是真实存在的文档内容，但它反映了查询的核心语义。然后，系统将该假设性答案向量化，与数据库中的向量进行匹配，寻找最接近的文档。例如，用户询问“拔除智齿需要多长时间？”，系统会生成一个假设性回答“拔智齿通常需要 30 分钟到两小时”，然后根据该假设文档进行检索，系统可能最终找到类似的真实文档，如“拔智齿的过程通常持续几分钟到 20 分钟以上”。通过假设文档，系统可以捕捉到更准确的相关文档。</li>
+<li><strong>混合检索</strong>：混合检索是结合向量搜索与关键词搜索等多种检索方法的混合方法，能够同时利用语义匹配与关键词匹配的优势。</li>
+<li><strong>小到大检索</strong>：这种方法首先通过较小的内容块（如单个句子或短段落）进行嵌入和检索，确保模型能找到与查询最匹配的小范围上下文。检索到相关内容后，再在生成阶段使用对应的较大文本块（如完整段落或全文）为模型提供更广泛的上下文支持。小块检索有助于提高精度，而大块生成则提供丰富的背景信息，使得生成的内容更加全面。</li>
+<li><strong>递归块合并</strong>：通过逐级扩展检索内容，确保生成阶段能够捕捉到更全面的上下文信息。该技术在细粒度的子块检索后，自动将相关的父块合并，以便提供完整的上下文供生成模型参考。</li>
+</ol>
+<h5 id="检索后优化">检索后优化</h5>
+<p>检索后优化目的是对已经检索到的内容进行进一步的处理和筛选，常用的技术包括重排序、提示压缩等，以确保最终生成的答案具有高度的相关性和准确性。</p>
+<ol>
+<li><strong>重排序</strong>：在 RAG 系统中，虽然初始检索可以找到多个与查询相关的内容块，但这些内容的相关性可能存在差异，因此需要进一步排序以优化生成结果。重排序通过重排序模型根据上下文的重要性、相关性评分等因素对已检索内容重新打分，以确保最相关的信息被优先处理。</li>
+<li><strong>提示压缩</strong>：通过删除冗余信息、合并相关内容、突出关键信息等方式来压缩提示，为生成模型提供更简洁、更相关的输入。</li>
+<li>上下文重构：通过对检索到的内容进行再加工或重组，以便更好地符合查询的需求。常见的做法是将多个检索到的上下文片段整合成一个更具连贯性的文本块，减少重复或冲突的内容，从而为生成模型提供一个统一、清晰的输入。</li>
+<li><strong>内容过滤</strong>：根据预先设定的规则进行，包括过滤掉与查询无直接关联的内容、语义相似度较低的片段、冗长且无关的背景信息等，避免对生成结果产生负面影响。</li>
+<li><strong>多跳推理</strong>：系统通过多个推理步骤，逐步整合信息，以回答复杂查询。通常用于需要跨多个上下文或多步推理的问题。例如，用户询问“某个技术的演化历程”，系统可能先检索到该技术的某个时间点的关键事件，然后再通过进一步检索，找到关于这些关键事件的详细说明，最终给出完整的回答。</li>
+<li><strong>知识注入</strong>：在检索后通过外部知识库或预定义的领域知识，增强生成的上下文内容。这种方式适用于对准确性要求较高的场景，尤其是在特定领域或技术场景下，系统需要补充额外的专业知识。</li>
+</ol>
+<h3 id="Modular-RAG">Modular RAG</h3>
+<p><strong>编排模块（Orchestration）</strong> 是 Modular RAG 区别于 Advanced RAG 的核心，它通过灵活的路由、调度、知识引导与推理路径来动态决定处理流程，从而提升了整个系统在复杂查询场景下的适应性和处理能力。</p>
+<ol>
+<li>
+<p><strong>Routing（路由）</strong></p>
+<p>路由是编排流程中的关键步骤。它的主要功能是在收到用户查询后，根据查询的特点和上下文，选择最合适的流程。具体来说，Routing 模块依赖于以下两部分：</p>
+<p><strong>a. Query Analysis（查询分析）</strong>：首先，对用户的查询进行语义分析，判断其类型和难度。例如，一个直接问答式的查询可能不需要复杂的检索过程，而一个涉及多步推理的复杂问题则可能需要走更长的检索路径。</p>
+<p><strong>b. Pipeline Selection（管道选择）</strong>：根据查询分析的结果，Routing 模块会动态选择合适的流程（Pipeline）。比如针对简单的查询，可以仅用大模型的知识来回答，效率高。而针对需要领域知识及复杂推理的查询，系统会使用更多的检索步骤，结合外部文档及知识进行深度检索生成。</p>
+</li>
+<li>
+<p><strong>Scheduling（调度）</strong></p>
+<p>调度的作用是管理查询的执行顺序，并动态调整检索和生成步骤。</p>
+<p><strong>a. Query Scheduling（查询调度）</strong>：当系统接收到查询时，调度模块会判断是否需要进行检索。调度模块根据查询的重要性、上下文信息、已有生成结果的质量等多维度因素进行评估。</p>
+<p><strong>b. Judgment of Retrieval Needs（检索需求判断）</strong>：调度还通过特定的判断节点来确定是否需要额外检索。在某些情况下，系统可能会多次判断是否有必要执行新一轮的检索。</p>
+</li>
+<li>
+<p><strong>Knowledge Guide（知识引导）</strong></p>
+<p>知识引导是结合知识图谱和推理路径来增强查询处理过程。</p>
+<p><strong>a. Knowledge Graph（知识图谱）</strong>：在处理复杂查询时，系统可以调用知识图谱来辅助检索。这不仅提升了检索结果的准确性，还可以通过知识图谱中的上下文关系来推导出更为精确的答案。例如，若查询涉及多个实体的关系或多个时间点，知识图谱能够提供更深层次的推理支持。</p>
+<p><strong>b. Reasoning Path（推理路径）</strong>：通过推理路径，系统可以设计出一条符合查询需求的推理链条，系统可以根据这一链条进行逐步地推理和检索。这在处理具有强逻辑性的问题时非常有效，例如跨多个文档的关系推理或时间序列推导。</p>
+</li>
+</ol>
+<p>Modular RAG 进一步增强了 RAG 系统的灵活性和适应性，允许通过不同模块的自由组合来应对多样化的应用场景，实现了更加智能的流程控制和动态决策。</p>
+<h2 id="3-GraphRAG解决向量检索面临的两个主要挑战（无法捕捉人类长期记忆的两个关键特征）">3. GraphRAG解决向量检索面临的两个主要挑战（无法捕捉人类长期记忆的两个关键特征）</h2>
+<p>• <strong>意义构建（sense-making）：即归纳总结，指理解大规模或复杂事件的能力</strong>，标准的RAG方法在处理需要理解大规模或复杂事件、经历或数据的能力（即情境理解）方面存在不足。<strong>这种能力对于理解和推理长篇故事或复杂文本至关重要</strong>。</p>
+<p>• <strong>关联性（associativity）：关联性则是指在不同知识片段之间建立多跳连接的能力</strong>，难以在多跳问答任务中表现出色，因为它们依赖于独立的向量检索，<strong>无法有效地在多个信息片段之间建立多跳连接</strong>。这对于需要从不同来源或段落中提取信息来回答问题是关键的限制。</p>
+<p>为了解决这些挑战，<strong>微软提出了 GraphRAG</strong>，通过利用大模型生成的知识图谱来改进 RAG 的检索部分。GraphRAG 的核心创新在于<strong>利用结构化的实体和关系信息</strong>，使检索过程更加精准和全面，特别在处理多跳问题和复杂文档分析时表现突出。</p>
+<h3 id="GraphRAG的原理：">GraphRAG的原理：</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/x1.png" alt="Refer to caption"></p>
+<h3 id="传统RAG和GraphRAG对比：">传统RAG和GraphRAG对比：</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401142025317.png" alt="image-20250401142025317"></p>
+<h3 id="9种GraphRAG对比：（并附上各种方法已有的开源实现）">9种GraphRAG对比：（并附上各种方法已有的开源实现）</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401145306424.png" alt="image-20250401145306424"></p>
+<p>以下是表格中所有方法的简要解释，按它们在表格中出现的顺序排列：</p>
+<hr>
+<h4 id="1-ZeroShot（基于HuggingFace-Transformers实现）"><strong>1. ZeroShot</strong>（<a target="_blank" rel="noopener" href="https://github.com/huggingface/transformers">基于HuggingFace Transformers实现</a>）</h4>
+<ul>
+<li><strong>定义</strong>：零样本方法（Zero-Shot）指模型在未经特定数据集训练的情况下直接进行预测或推理。</li>
+<li><strong>特点</strong>：依赖预训练模型的泛化能力，无需微调或示例（prompt engineering）。</li>
+<li><strong>适用场景</strong>：快速基线测试或资源受限的任务。</li>
+</ul>
+<hr>
+<h4 id="2-VanillaRAG（基于langchain库实现-https-github-com-langchain-ai-langchain）"><strong>2. VanillaRAG</strong>（基于langchain库实现 <a target="_blank" rel="noopener" href="https://github.com/langchain-ai/langchain%EF%BC%89">https://github.com/langchain-ai/langchain）</a></h4>
+<ul>
+<li><strong>定义</strong>：标准的检索增强生成（Retrieval-Augmented Generation）方法，结合检索模块（如BM25/Dense Retrieval）和生成模型（如LLM）。</li>
+<li><strong>特点</strong>：通过检索相关文档辅助生成答案，但未针对复杂任务优化。</li>
+<li><strong>适用场景</strong>：通用问答任务，性能中等。</li>
+</ul>
+<hr>
+<h4 id="3-G-retriever（https-github-com-XiaoxinHe-G-Retriever）"><strong>3. G-retriever</strong>（<a target="_blank" rel="noopener" href="https://github.com/XiaoxinHe/G-Retriever%EF%BC%89">https://github.com/XiaoxinHe/G-Retriever）</a></h4>
+<ul>
+<li><strong>定义</strong>：基于图的检索方法（Graph-based Retriever），可能利用知识图谱或文档间关系改进检索。</li>
+<li><strong>特点</strong>：强调结构化检索，但在表格中表现较差（部分数据集结果缺失）。</li>
+<li><strong>适用场景</strong>：需结构化信息的任务，但可能计算成本高。</li>
+</ul>
+<hr>
+<h4 id="4-TGG"><strong>4. TGG</strong></h4>
+<ul>
+<li><strong>定义</strong>：<strong>Transition-based Graph Generation</strong>，一种基于状态转移的图生成方法。</li>
+<li><strong>特点</strong>：通过动态构建图结构优化检索或生成，性能中等。</li>
+<li><strong>适用场景</strong>：多跳问答或复杂推理任务。</li>
+</ul>
+<hr>
+<h4 id="5-KGP"><strong>5. KGP</strong></h4>
+<ul>
+<li><strong>定义</strong>：<strong>Knowledge-Guided Prompting</strong>，利用外部知识库引导生成。</li>
+<li><strong>特点</strong>：结合显式知识增强模型，在PopQA等数据集表现较好。</li>
+<li><strong>适用场景</strong>：需要外部知识支持的问答。</li>
+</ul>
+<hr>
+<h4 id="6-DALK"><strong>6. DALK</strong></h4>
+<ul>
+<li><strong>定义</strong>：<strong>Dynamic Adaptive Latent Knowledge</strong>，动态调整潜在知识表示的方法。</li>
+<li><strong>特点</strong>：在MultihopQA和HotpotQA中表现突出（紫色标记），但其他任务不稳定。</li>
+<li><strong>适用场景</strong>：动态适应复杂查询的任务。</li>
+</ul>
+<hr>
+<h4 id="7-LLightRAG-GLightRAG-HLightRAG（https-github-com-HKUDS-LightRAG）"><strong>7. LLightRAG / GLightRAG / HLightRAG</strong>（<a target="_blank" rel="noopener" href="https://github.com/HKUDS/LightRAG%EF%BC%89">https://github.com/HKUDS/LightRAG）</a></h4>
+<ul>
+<li><strong>定义</strong>：轻量级RAG变体，可能通过不同优化策略（如<strong>Local</strong>、<strong>Global</strong>或<strong>Hybrid</strong>检索）降低计算成本。</li>
+<li><strong>特点</strong>：
+<ul>
+<li><strong>LLightRAG</strong>：局部优化，性能中等。</li>
+<li><strong>GLightRAG</strong>：全局优化，但在PopQA表现较差。</li>
+<li><strong>HLightRAG</strong>：混合策略，综合性能较好。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：资源受限环境下的平衡方案。</li>
+</ul>
+<hr>
+<h4 id="8-FastGraphRAG（https-github-com-circlemind-ai-fast-graphrag）"><strong>8. FastGraphRAG</strong>（<a target="_blank" rel="noopener" href="https://github.com/circlemind-ai/fast-graphrag%EF%BC%89">https://github.com/circlemind-ai/fast-graphrag）</a></h4>
+<ul>
+<li><strong>定义</strong>：快速图结构RAG，可能通过简化图构建或检索流程提升效率。</li>
+<li><strong>特点</strong>：在多个数据集（如MultihopQA、ALCE）表现接近最佳（橙色标记）。</li>
+<li><strong>适用场景</strong>：需速度和性能兼顾的任务。</li>
+</ul>
+<hr>
+<h4 id="9-HippoRAG（https-github-com-OSU-NLP-Group-HippoRAG）"><strong>9. HippoRAG</strong>（<a target="_blank" rel="noopener" href="https://github.com/OSU-NLP-Group/HippoRAG%EF%BC%89">https://github.com/OSU-NLP-Group/HippoRAG）</a></h4>
+<ul>
+<li><strong>定义</strong>：<strong>Hierarchical Iterative Path-based RAG</strong>，通过分层路径优化多跳推理，是一种受人类长期记忆启发的新型RAG框架，使 LLM 能够持续整合外部文档中的知识。RAG +知识图谱+个性化网页排名。</li>
+<li><strong>特点</strong>：在Quality和MusiqueQA中表现最佳（紫色标记），但其他任务一般。</li>
+<li><strong>适用场景</strong>：需要分层推理的复杂问答。</li>
+</ul>
+<hr>
+<h4 id="10-LGraphRAG（https-github-com-microsoft-graphrag）"><strong>10. LGraphRAG</strong>（<a target="_blank" rel="noopener" href="https://github.com/microsoft/graphrag%EF%BC%89">https://github.com/microsoft/graphrag）</a></h4>
+<ul>
+<li><strong>定义</strong>：<strong>Latent Graph RAG</strong>，隐式学习文档间关系构建图结构。</li>
+<li><strong>特点</strong>：在MultihopQA的Accuracy和Recall上最优（紫色标记）。</li>
+<li><strong>适用场景</strong>：隐式关系建模任务。</li>
+</ul>
+<hr>
+<h4 id="11-RAPTOR（https-github-com-parthsarthi03-raptor）"><strong>11. RAPTOR</strong>（<a target="_blank" rel="noopener" href="https://github.com/parthsarthi03/raptor%EF%BC%89">https://github.com/parthsarthi03/raptor）</a></h4>
+<ul>
+<li><strong>定义</strong>：<strong>Recursive Abstractive Processing for Tree-Organized Retrieval</strong>，递归处理树状检索结构的方法。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>在最大数据集上改用K-means（因Gaussian Mixture计算超时）。</li>
+<li>在MusiqueQA、ALCE等多项任务中全面领先（紫色/橙色标记）。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：大规模、复杂数据集上的高性能需求。</li>
+</ul>
+<hr>
+<h4 id="小结"><strong>小结</strong></h4>
+<ul>
+<li><strong>最佳方法</strong>：<strong>RAPTOR</strong>综合表现最强，<strong>DALK</strong>和<strong>LGraphRAG</strong>在特定任务领先。</li>
+<li><strong>轻量级选择</strong>：FastGraphRAG或HLightRAG适合效率优先场景。</li>
+<li><strong>知识依赖</strong>：KGP和HippoRAG在知识密集型任务中表现优异。</li>
+</ul>
+<h2 id="4-Agentic-RAG（详细内容可查看论文地址）">4. Agentic RAG（<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2501.09136">详细内容可查看论文地址</a>）</h2>
+<p><strong>Agentic RAG</strong>（基于智能代理的检索增强生成）是传统 <strong>RAG（Retrieval-Augmented Generation）</strong> 技术的增强版本，它通过引入 <strong>AI Agent（人工智能代理）</strong> 的动态规划、自主决策和多步推理能力，使RAG系统能够更智能地处理复杂查询任务。</p>
+<h3 id="Agentic-RAG-的核心特点"><strong>Agentic RAG 的核心特点</strong></h3>
+<ol>
+<li><strong>动态任务编排</strong>
+<ul>
+<li>根据用户查询的意图，自动选择不同的检索策略（如向量搜索、知识图谱查询、摘要索引等）714。</li>
+<li>支持多步骤推理（Multi-hop Reasoning），例如分解复杂问题为多个子查询并逐步解答58。</li>
+</ul>
+</li>
+<li><strong>查询优化与反馈机制</strong>
+<ul>
+<li>如果初始检索结果不理想，Agentic RAG 可以自动<strong>改写查询</strong>或调整检索策略214。</li>
+<li>具备 <strong>反思（Self-Reflection）</strong> 能力，评估检索结果的质量并决定是否需要重新检索14。</li>
+</ul>
+</li>
+<li><strong>多数据源与工具集成</strong>
+<ul>
+<li>可结合外部工具（如Web搜索、数据库查询、API调用）来增强回答的准确性8。</li>
+<li>支持跨文档、跨模态（文本、图像、结构化数据）的信息整合5。</li>
+</ul>
+</li>
+<li><strong>模块化架构</strong>
+<ul>
+<li>可采用<strong>单Agent</strong>（统一规划）或<strong>多Agent</strong>（分层协作）架构，例如：
+<ul>
+<li><strong>Tool Agent</strong>：负责特定知识库的检索（如向量索引、摘要引擎）。</li>
+<li><strong>Top Agent</strong>：协调多个Tool Agent，规划全局任务7。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="AI代理RAG系统的基本实现">AI代理RAG系统的基本实现</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401161858764.png" alt="image-20250401161858764"></p>
+<h3 id="多代理RAG系统">多代理RAG系统</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250401162540092.png" alt="image-20250401162540092"></p>
+<h2 id="5-最终总结">5. 最终总结</h2>
+<h3 id="RAG范式的对比分析"><strong>RAG范式的对比分析</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>范式</strong></th>
+<th><strong>核心特点</strong></th>
+<th><strong>优势</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>基础RAG</strong></td>
+<td>• 基于关键词的检索（如TF-IDF、BM25）</td>
+<td>• 简单易实现<br>• 适合事实型查询</td>
+</tr>
+<tr>
+<td><strong>高级RAG</strong></td>
+<td>• 稠密检索模型（如DPR）<br>• 神经排序与重排序<br>• 多跳检索</td>
+<td>• 检索精度高<br>• 上下文相关性更强</td>
+</tr>
+<tr>
+<td><strong>模块化RAG</strong></td>
+<td>• 混合检索（稀疏+稠密）<br>• 工具与API集成<br>• 可组合的领域专用流程</td>
+<td>• 灵活性和可定制性高<br>• 适合多样化应用场景<br>• 可扩展性强</td>
+</tr>
+<tr>
+<td><strong>图RAG</strong></td>
+<td>• 基于图结构的集成<br>• 多跳推理<br>• 通过节点实现上下文增强</td>
+<td>• 支持关系推理<br>• 减少幻觉生成<br>• 适合结构化数据任务</td>
+</tr>
+<tr>
+<td><strong>智能体RAG</strong></td>
+<td>• 自主智能体<br>• 动态决策<br>• 迭代优化与工作流调整</td>
+<td>• 实时适应变化<br>• 支持多领域任务扩展<br>• 准确性高</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="关键术语说明"><strong>关键术语说明</strong></h3>
+<ul>
+<li><strong>多跳检索（Multi-hop Retrieval）</strong>：通过多次检索逐步获取答案，适合复杂问题。</li>
+<li><strong>稠密检索（Dense Retrieval）</strong>：使用神经网络（如DPR）将查询和文档映射为向量进行相似度匹配。</li>
+<li><strong>图结构（Graph-based）</strong>：用节点和边表示数据关系，增强推理能力（如知识图谱）。</li>
+<li><strong>自主智能体（Autonomous Agents）</strong>：能独立规划、决策和优化的AI代理。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-widgets">
+      <div id="needsharebutton-postbottom">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.png" alt="AI模型研究所 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98.png" alt="AI模型研究所 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="douyin_qun">
+  <span>欢迎加入我的抖音粉丝群</span>
+  <br>
+  <!-- 这里添加你的二维码图片 -->
+  <img src ="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/c5950c23bf70f6443c863eb25722778.jpg">
+</div>
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>AI模型研究所
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2025/04/01/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82RAG%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" title="一文看懂RAG的前世今生">http://example.com/2025/04/01/一文看懂RAG的前世今生/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/RAG/" rel="tag"># RAG</a>
+              <a href="/tags/%E5%8F%91%E5%B1%95/" rel="tag"># 发展</a>
+              <a href="/tags/%E5%88%86%E4%BA%AB%E8%A7%84%E5%88%92/" rel="tag"># 分享规划</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/28/RAG%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/" rel="prev" title="RAG优化技术">
+                  <i class="fa fa-angle-left"></i> RAG优化技术
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">true</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">47k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:26</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/hfhfn" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js","integrity":"sha256-Us54+rSGDSTvIhKKUs4kygE2ipA0RXpWWh0/zLqw3bs="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
+
+
+
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js"></script>
+  <script>
+      pbOptions = {};
+        pbOptions.iconStyle = "box";
+        pbOptions.boxForm = "horizontal";
+        pbOptions.position = "bottomCenter";
+        pbOptions.networks = "Wechat,QQZone,Weibo,Douban,Twitter,Facebook";
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+  </script>
+  
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>
