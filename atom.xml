@@ -369,9 +369,9 @@
     
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
-    <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
     <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
+    
+    <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
@@ -495,9 +495,9 @@
     
     <category term="langchain" scheme="http://example.com/tags/langchain/"/>
     
-    <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
-    
     <category term="AI" scheme="http://example.com/tags/AI/"/>
+    
+    <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
     <category term="分块策略" scheme="http://example.com/tags/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
     
@@ -644,9 +644,9 @@
     <category term="大模型" scheme="http://example.com/categories/AI/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
     
     
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
-    
     <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
     
     <category term="生成模型方法" scheme="http://example.com/tags/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95/"/>
     
