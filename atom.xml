@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-04-01T14:32:36.240Z</updated>
+  <updated>2025-04-05T06:35:42.069Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Text2SQL的应用</title>
+    <link href="http://example.com/2025/04/04/Text2SQL%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://example.com/2025/04/04/Text2SQL%E7%9A%84%E5%BA%94%E7%94%A8/</id>
+    <published>2025-04-03T21:03:00.000Z</published>
+    <updated>2025-04-05T06:35:42.069Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;基本原理剖析&quot;&gt;基本原理剖析&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Text2SQL 的实现就是基于 RAG 技术&lt;/strong&gt; ，根据 Query 内容，从数据库中查询与 Query 有关的表 DDL 信息，然后将检索到的表 DDL 一起嵌入到预设的 Prompt 模板中，将 Prompt 和 Query 输入到 LLM 中，以生成最终的 SQL。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
+    
+    <category term="Text2SQL" scheme="http://example.com/categories/AI/RAG/Text2SQL/"/>
+    
+    
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="Text2SQL" scheme="http://example.com/tags/Text2SQL/"/>
+    
+  </entry>
   
   <entry>
     <title>一文看懂RAG的前世今生</title>
@@ -187,9 +215,9 @@
     
     <category term="生成" scheme="http://example.com/tags/%E7%94%9F%E6%88%90/"/>
     
-    <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
-    
     <category term="generate" scheme="http://example.com/tags/generate/"/>
+    
+    <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
     
   </entry>
   
@@ -220,9 +248,9 @@
     
     <category term="生成" scheme="http://example.com/tags/%E7%94%9F%E6%88%90/"/>
     
-    <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    
     <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
+    
+    <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
     
   </entry>
   
@@ -491,11 +519,11 @@
     <category term="分块策略" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
     
     
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
+    
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
     <category term="langchain" scheme="http://example.com/tags/langchain/"/>
-    
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
@@ -644,9 +672,9 @@
     <category term="大模型" scheme="http://example.com/categories/AI/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
     
     
-    <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    
     <category term="AI" scheme="http://example.com/tags/AI/"/>
+    
+    <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
     
     <category term="生成模型方法" scheme="http://example.com/tags/%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95/"/>
     
@@ -656,8 +684,8 @@
     <title>Text2SQL应用对比</title>
     <link href="http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/"/>
     <id>http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</id>
-    <published>2025-03-05T21:36:57.497Z</published>
-    <updated>2025-03-05T22:30:46.134Z</updated>
+    <published>2025-03-05T21:36:00.000Z</published>
+    <updated>2025-04-03T21:05:42.316Z</updated>
     
     
     <summary type="html">&lt;p&gt;Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：&lt;/p&gt;
@@ -667,8 +695,12 @@
     
     <category term="AI" scheme="http://example.com/categories/AI/"/>
     
-    <category term="AI工具" scheme="http://example.com/categories/AI/AI%E5%B7%A5%E5%85%B7/"/>
+    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
     
+    <category term="Text2SQL" scheme="http://example.com/categories/AI/RAG/Text2SQL/"/>
+    
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
     <category term="AI工具" scheme="http://example.com/tags/AI%E5%B7%A5%E5%85%B7/"/>
     
@@ -700,40 +732,6 @@
     <category term="翻墙机场," scheme="http://example.com/tags/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA/"/>
     
     <category term="魔法上网" scheme="http://example.com/tags/%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>rag-lesson-1</title>
-    <link href="http://example.com/2025/03/05/rag-lesson-1/"/>
-    <id>http://example.com/2025/03/05/rag-lesson-1/</id>
-    <published>2025-03-05T04:24:04.000Z</published>
-    <updated>2025-03-10T07:13:36.012Z</updated>
-    
-    
-    <summary type="html">&lt;h1&gt;从 0 到 1 快速搭建 RAG 应用&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h2 id=&quot;技术框架与选型&quot;&gt;技术框架与选型&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h3 id=&quot;RAG-技术框架：LangChain&quot;&gt;RAG 技术框架：&lt;strong&gt;LangChain&lt;/strong&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="AI" scheme="http://example.com/categories/AI/"/>
-    
-    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
-    
-    
-    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
-    
-    <category term="AI," scheme="http://example.com/tags/AI/"/>
     
   </entry>
   

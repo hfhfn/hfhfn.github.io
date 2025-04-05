@@ -24,33 +24,34 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
 <meta name="referrer" content="no-referrer" />
-    <meta name="description" content="Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：">
+    <meta name="description" content="基本原理剖析 Text2SQL 的实现就是基于 RAG 技术 ，根据 Query 内容，从数据库中查询与 Query 有关的表 DDL 信息，然后将检索到的表 DDL 一起嵌入到预设的 Prompt 模板中，将 Prompt 和 Query 输入到 LLM 中，以生成最终的 SQL。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Text2SQL应用对比">
-<meta property="og:url" content="http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/index.html">
+<meta property="og:title" content="Text2SQL的应用">
+<meta property="og:url" content="http://example.com/2025/04/04/Text2SQL%E7%9A%84%E5%BA%94%E7%94%A8/index.html">
 <meta property="og:site_name" content="打开AI世界的大门">
-<meta property="og:description" content="Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：">
+<meta property="og:description" content="基本原理剖析 Text2SQL 的实现就是基于 RAG 技术 ，根据 Query 内容，从数据库中查询与 Query 有关的表 DDL 信息，然后将检索到的表 DDL 一起嵌入到预设的 Prompt 模板中，将 Prompt 和 Query 输入到 LLM 中，以生成最终的 SQL。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-05T21:36:00.000Z">
-<meta property="article:modified_time" content="2025-04-03T21:05:42.316Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250405143455628.png">
+<meta property="article:published_time" content="2025-04-03T21:03:00.000Z">
+<meta property="article:modified_time" content="2025-04-05T06:35:42.069Z">
 <meta property="article:author" content="AI模型研究所">
+<meta property="article:tag" content="AI">
 <meta property="article:tag" content="RAG">
-<meta property="article:tag" content="AI工具">
 <meta property="article:tag" content="Text2SQL">
-<meta property="article:tag" content="自然语言操作数据库">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250405143455628.png">
 
 
-<link rel="canonical" href="http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/">
+<link rel="canonical" href="http://example.com/2025/04/04/Text2SQL%E7%9A%84%E5%BA%94%E7%94%A8/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/","path":"2025/03/06/Text2SQL应用对比/","title":"Text2SQL应用对比"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/04/04/Text2SQL%E7%9A%84%E5%BA%94%E7%94%A8/","path":"2025/04/04/Text2SQL的应用/","title":"Text2SQL的应用"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
 
-<meta name="referrer" content="no-referrer" /><title>Text2SQL应用对比 | 打开AI世界的大门</title>
+<meta name="referrer" content="no-referrer" /><title>Text2SQL的应用 | 打开AI世界的大门</title>
   
 
 
@@ -164,7 +165,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Postgres-new"><span class="nav-number">1.</span> <span class="nav-text">1. Postgres.new</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Vanna"><span class="nav-number">2.</span> <span class="nav-text">2. Vanna</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">对比总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%BB%BA%E8%AE%AE"><span class="nav-number">4.</span> <span class="nav-text">选择建议</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">基本原理剖析</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E7%9A%84%E6%B5%81%E7%A8%8B%E5%9B%BE%E5%A6%82%E4%B8%8B%EF%BC%88%E5%88%86%E4%B8%BA5%E4%B8%AA%E9%98%B6%E6%AE%B5%EF%BC%89%EF%BC%9A"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">整体的流程图如下（分为5个阶段）：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%85%83%E6%95%B0%E6%8D%AE%E7%B4%A2%E5%BC%95%E6%9E%84%E5%BB%BA%E3%80%82"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">第一步，元数据索引构建。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8C%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96%E3%80%82"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">第二步，信息提取。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E8%A1%A8%E5%92%8C%E6%A0%B7%E4%BE%8B%E5%8F%AC%E5%9B%9E%E3%80%82"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">第三步，表和样例召回。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%8CPrompt-%E5%8A%A8%E6%80%81%E7%BB%84%E8%A3%85%E3%80%82"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">第四步，Prompt 动态组装。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%8CSQL-%E7%94%9F%E6%88%90%E4%B8%8E%E8%BE%93%E5%87%BA%E3%80%82"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">第五步，SQL 生成与输出。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Text-to-SQL-%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AF%B9%E6%AF%94"><span class="nav-number">2.</span> <span class="nav-text">Text-to-SQL 项目介绍和对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9F%BA%E4%BA%8E-OpenAI-GPT-%E7%9A%84-Text2SQL-%E6%96%B9%E6%A1%88%EF%BC%88%E6%94%AF%E6%8C%81%E5%85%B6%E4%BB%96%E7%B1%BBOpenai%E6%8E%A5%E5%8F%A3%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">1. 基于 OpenAI &#x2F; GPT 的 Text2SQL 方案（支持其他类Openai接口）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%BC%80%E6%BA%90%E5%BE%AE%E8%B0%83%E6%A8%A1%E5%9E%8B%EF%BC%88%E5%8F%AF%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">2. 开源微调模型（可本地部署）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%95%86%E4%B8%9A-API-%E6%96%B9%E6%A1%88"><span class="nav-number">5.</span> <span class="nav-text">3. 商业 API 方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">对比总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E4%B8%8A%E6%9B%B4%E5%85%A8%E7%9A%84%E4%B8%BB%E6%B5%81%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94%EF%BC%9A"><span class="nav-number">7.</span> <span class="nav-text">附上更全的主流技术方案对比：</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -256,7 +257,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/04/Text2SQL%E7%9A%84%E5%BA%94%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.ico">
@@ -269,12 +270,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Text2SQL应用对比 | 打开AI世界的大门">
+      <meta itemprop="name" content="Text2SQL的应用 | 打开AI世界的大门">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Text2SQL应用对比
+          Text2SQL的应用
         </h1>
 
         <div class="post-meta-container">
@@ -285,14 +286,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2025-03-06 05:36:00" itemprop="dateCreated datePublished" datetime="2025-03-06T05:36:00+08:00">2025-03-06</time>
+      <time title="创建时间：2025-04-04 05:03:00" itemprop="dateCreated datePublished" datetime="2025-04-04T05:03:00+08:00">2025-04-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-04 05:05:42" itemprop="dateModified" datetime="2025-04-04T05:05:42+08:00">2025-04-04</time>
+      <time title="修改时间：2025-04-05 14:35:42" itemprop="dateModified" datetime="2025-04-05T14:35:42+08:00">2025-04-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -326,14 +327,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>787</span>
+      <span>3.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -343,47 +344,101 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
-<hr>
+    <div class="post-body" itemprop="articleBody"><h3 id="基本原理剖析">基本原理剖析</h3>
+<p><strong>Text2SQL 的实现就是基于 RAG 技术</strong> ，根据 Query 内容，从数据库中查询与 Query 有关的表 DDL 信息，然后将检索到的表 DDL 一起嵌入到预设的 Prompt 模板中，将 Prompt 和 Query 输入到 LLM 中，以生成最终的 SQL。</p>
 <span id="more"></span>
-<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
+<h6 id="整体的流程图如下（分为5个阶段）：">整体的流程图如下（分为5个阶段）：</h6>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250405143455628.png" alt=""></p>
+<h6 id="第一步，元数据索引构建。">第一步，元数据索引构建。</h6>
+<p>基于企业的业务库准备 AI 元数据，通过将数据库中的表结构、字段说明、约束关系等元数据经过 Vector Embedding 模型进行向量化处理，构建高效的语义检索体系，包括向量索引和 KV 索引。它们将被用来辅助后续的表召回过程。</p>
+<h6 id="第二步，信息提取。">第二步，信息提取。</h6>
+<p>通过语言大模型对输入 Query 进行信息提取，提取的内容主要包括 Query 句式（骨架）抽取、目标字段抽取、条件字段抽取、表名抽取。</p>
+<h6 id="第三步，表和样例召回。">第三步，表和样例召回。</h6>
+<p>将目标字段、条件字段、表名的抽取内容通过文本模型向量化后，基于第一步中准备的 AI 向量数据库进行向量相似性检索，结合表召回策略以及排序规则，得到召回的表名信息，以获得 Query 中涉及的所有表 DDL 信息。同时，将 Query 句式（骨架）抽取的内容通过文本模型向量化，与样例向量库数据集进行逐一相似度比对，结合样例召回策略，获取最终填充 Prompt 模版的样例。</p>
+<h6 id="第四步，Prompt-动态组装。">第四步，Prompt 动态组装。</h6>
+<p>将步骤三中得到的表 DDL 信息、样例信息按照模版进行 Prompt 生成组装。</p>
+<h6 id="第五步，SQL-生成与输出。">第五步，SQL 生成与输出。</h6>
+<p>将第四步中得到的 Prompt 和原始的 Query 一起输入大模型，并进行 SQL 语句生成，将生成的 SQL 语句返回给数据库执行，完成一次问答的流程闭环。</p>
+<h3 id="Text-to-SQL-项目介绍和对比">Text-to-SQL 项目介绍和对比</h3>
+<p>以下是几个 <strong>Text-to-SQL</strong> 项目，涵盖开源方案和商业 API 集成方式：</p>
+<h3 id="1-基于-OpenAI-GPT-的-Text2SQL-方案（支持其他类Openai接口）"><strong>1. 基于 OpenAI / GPT 的 Text2SQL 方案（支持其他类Openai接口）</strong></h3>
 <ul>
-<li><strong>类型</strong>：在线工具</li>
-<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
-<li><strong>特点</strong>：
+<li>
+<p><strong>LangChain SQLDatabaseChain</strong></p>
 <ul>
-<li>无需安装或配置，直接在浏览器中使用。</li>
-<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
-<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
-<li>支持标准的 PostgreSQL 功能。</li>
+<li>通过 <code>SQLDatabaseChain</code> 或 <code>SQLDatabaseSequentialChain</code> 直接调用 OpenAI 的 GPT 系列模型（如 <code>gpt-3.5-turbo</code> 或 <code>gpt-4</code>）生成 SQL。</li>
+<li>支持动态 schema 解析，适用于 MySQL、PostgreSQL 等数据库。</li>
+<li>示例代码：<pre><code class="language-python">from langchain.llms import OpenAI
+from langchain_experimental.sql import SQLDatabaseChain
+from langchain.utilities import SQLDatabase
+
+db = SQLDatabase.from_uri(&quot;sqlite:///mydatabase.db&quot;)
+llm = OpenAI(temperature=0)
+db_chain = SQLDatabaseChain.from_llm(llm, db, verbose=True)
+result = db_chain.run(&quot;查询销售额最高的产品&quot;)
+</code></pre>
+</li>
+<li><strong>优点</strong>：简单易用，适合快速对接 GPT API。</li>
+<li><strong>缺点</strong>：依赖 OpenAI 接口，可能涉及数据隐私问题，效果取决于接口大模型的能力。</li>
 </ul>
 </li>
-<li><strong>适用场景</strong>：
+<li>
+<p><strong>Vanna</strong>  （<a target="_blank" rel="noopener" href="https://github.com/vanna-ai/vanna%EF%BC%89">https://github.com/vanna-ai/vanna）</a></p>
 <ul>
-<li>快速测试 SQL 查询。</li>
-<li>教学或演示 PostgreSQL 功能。</li>
-<li>临时需要数据库环境的场景。</li>
+<li>提供 Python 库，支持 OpenAI、Anthropic Claude 等大模型，可本地部署或云端调用。</li>
+<li>支持 RAG（检索增强生成），结合向量数据库优化 SQL 生成。</li>
+<li>示例代码：<pre><code class="language-python">import vanna as vn
+vn.set_api_key(&quot;your_vanna_key&quot;)  # 申请 API Key
+vn.connect_to_sqlite(&quot;mydatabase.db&quot;)
+sql = vn.generate_sql(&quot;查询销售额最高的产品&quot;)
+</code></pre>
+</li>
+<li><strong>优点</strong>：支持多模型切换，提供 Web UI 交互界面，开源可以本地部署。</li>
+<li><strong>缺点</strong>：云端服务部分功能需付费。</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
+<h3 id="2-开源微调模型（可本地部署）"><strong>2. 开源微调模型（可本地部署）</strong></h3>
 <ul>
-<li><strong>类型</strong>：AI 驱动的工具</li>
-<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
-<li><strong>特点</strong>：
+<li>
+<p><strong>SQLCoder（<a target="_blank" rel="noopener" href="http://Defog.ai">Defog.ai</a>）</strong>  （<a target="_blank" rel="noopener" href="https://github.com/defog-ai/sqlcoder%EF%BC%89">https://github.com/defog-ai/sqlcoder）</a></p>
 <ul>
-<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
-<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
-<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
-<li>提供 Python 库，方便集成到数据工作流中。</li>
+<li>基于 StarCoder 微调，性能接近 GPT-4，支持 PostgreSQL、MySQL 等。</li>
+<li>可本地运行，避免数据外传。</li>
+<li>示例代码：<pre><code class="language-python">from transformers import AutoTokenizer, AutoModelForCausalLM
+model = AutoModelForCausalLM.from_pretrained(&quot;defog/sqlcoder&quot;)
+tokenizer = AutoTokenizer.from_pretrained(&quot;defog/sqlcoder&quot;)
+inputs = tokenizer(&quot;查询销售额最高的产品&quot;, return_tensors=&quot;pt&quot;)
+outputs = model.generate(**inputs)
+print(tokenizer.decode(outputs[0]))
+</code></pre>
+</li>
+<li><strong>优点</strong>：开源免费，性能强。</li>
+<li><strong>缺点</strong>：需较高 GPU 资源（如 A100）。</li>
 </ul>
 </li>
-<li><strong>适用场景</strong>：
+<li>
+<p><strong>DB-GPT-Hub</strong>  （<a target="_blank" rel="noopener" href="https://github.com/eosphoros-ai/DB-GPT-Hub%EF%BC%89">https://github.com/eosphoros-ai/DB-GPT-Hub）</a></p>
 <ul>
-<li>非技术用户需要查询数据库。</li>
-<li>快速生成复杂 SQL 查询。</li>
-<li>数据分析师或开发人员希望提高工作效率。</li>
+<li>支持 LLaMA-2、CodeLlama 等模型微调，适配 Spider、BIRD 等数据集。</li>
+<li>提供完整训练-推理流程，适合企业定制化需求。</li>
+<li><strong>优点</strong>：可私有化部署，支持 LoRA 低资源微调。</li>
+<li><strong>缺点</strong>：需自行训练模型。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-商业-API-方案"><strong>3. 商业 API 方案</strong></h3>
+<ul>
+<li><strong>Google Cloud’s Text-to-SQL</strong>（实验性）
+<ul>
+<li>集成 BigQuery，支持自然语言转 SQL。</li>
+</ul>
+</li>
+<li><strong>Microsoft Semantic Kernel + Azure OpenAI</strong>
+<ul>
+<li>结合 Azure 数据库服务，提供企业级 Text2SQL 方案。</li>
 </ul>
 </li>
 </ul>
@@ -392,51 +447,118 @@
 <table>
 <thead>
 <tr>
-<th>特性</th>
-<th>Postgres.new</th>
-<th>Vanna</th>
+<th>方案</th>
+<th>开源</th>
+<th>依赖大模型 API</th>
+<th>本地部署</th>
+<th>适用场景</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>类型</strong></td>
-<td>在线临时数据库工具</td>
-<td>AI 驱动的 SQL 生成工具</td>
+<td><strong>LangChain + OpenAI</strong></td>
+<td>❌/✅</td>
+<td>✅（GPT-4等）</td>
+<td>❌/✅</td>
+<td>快速原型开发</td>
 </tr>
 <tr>
-<td><strong>主要用途</strong></td>
-<td>创建临时 PostgreSQL 实例</td>
-<td>通过自然语言生成 SQL 查询</td>
+<td><strong>Vanna</strong></td>
+<td>✅（部分功能付费）</td>
+<td>✅（多模型）</td>
+<td>✅</td>
+<td>企业级 RAG 方案</td>
 </tr>
 <tr>
-<td><strong>用户群体</strong></td>
-<td>开发者、测试人员、学习者</td>
-<td>数据分析师、非技术用户、开发者</td>
+<td><strong>SQLCoder</strong></td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>高性能本地化需求</td>
 </tr>
 <tr>
-<td><strong>技术依赖</strong></td>
-<td>无需 AI，纯数据库工具</td>
-<td>依赖 AI 模型（如 GPT）</td>
-</tr>
-<tr>
-<td><strong>集成能力</strong></td>
-<td>无</td>
-<td>支持 Python 库，可集成到工作流</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>测试、演示、学习</td>
-<td>数据分析、快速生成 SQL、简化查询</td>
+<td><strong>DB-GPT-Hub</strong></td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>定制化微调</td>
 </tr>
 </tbody>
 </table>
-<hr>
-<h3 id="选择建议"><strong>选择建议</strong></h3>
+<p><strong>推荐选择</strong>：</p>
 <ul>
-<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
-<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
+<li><strong>快速尝试</strong>：用 LangChain + OpenAI 或 Vanna。</li>
+<li><strong>数据安全优先</strong>：用 SQLCoder 或 DB-GPT-Hub 本地部署。</li>
+<li><strong>企业级应用</strong>：结合 RAG（如 Vanna）或微调（如 DB-GPT-Hub）。</li>
 </ul>
-<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
+<hr>
+<h3 id="附上更全的主流技术方案对比：">附上更全的主流技术方案对比：</h3>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chat2db</strong></td>
+<td>人工智能驱动的数据管理平台，支持多种数据库</td>
+<td>支持多种数据库，提供7B开源模型</td>
+<td>需要集成多种数据库，可能存在兼容性问题</td>
+</tr>
+<tr>
+<td><strong>SQL Chat</strong></td>
+<td>基于聊天的SQL客户端，使用自然语言与数据库通信</td>
+<td>支持多种数据库系统，用户友好</td>
+<td>可能需要额外的配置来适应特定的数据库</td>
+</tr>
+<tr>
+<td><strong>Vanna</strong></td>
+<td>开源Python RAG框架，整合上下文和领域知识文档训练模型</td>
+<td>支持自定义可视化UI，灵活度高</td>
+<td>需要专业知识来训练和维护模型</td>
+</tr>
+<tr>
+<td><strong>Dataherald</strong></td>
+<td>自然语言到SQL引擎，用于企业级问答</td>
+<td>模块化设计，易于扩展和维护</td>
+<td>需要业务用户适应自然语言到SQL的转换</td>
+</tr>
+<tr>
+<td><strong>WrenAI</strong></td>
+<td>文本到SQL解决方案，无需编写SQL即可查询数据</td>
+<td>易于使用，安全可靠，高度准确</td>
+<td>需要用户适应自然语言查询的方式</td>
+</tr>
+<tr>
+<td><strong>SuperSonic</strong></td>
+<td>腾讯音乐开发的模型知识库和语义解析器</td>
+<td>强大的语义解析能力，支持多种数据库</td>
+<td>可能需要专业的知识来理解和使用</td>
+</tr>
+<tr>
+<td><strong>Awesome Text 2SQL</strong></td>
+<td>精选教程资源库，包含LMs、Text2SQL等方面的模型</td>
+<td>提供丰富的学习资源和模型</td>
+<td>主要作为资源库，可能需要额外的开发工作来集成实际应用中</td>
+</tr>
+<tr>
+<td><strong>DuckDB-NSQL</strong></td>
+<td>为DuckDB SQL分析任务构建的Text 2SQL LL M</td>
+<td>帮助用户利用DuckDB的全部功能</td>
+<td>特定于DuckDB，可能不适用于其他数据库系统</td>
+</tr>
+<tr>
+<td><strong>Langchain</strong></td>
+<td>在SQL数据库上构建问答链代理的应用框架</td>
+<td>支持构建问答链代理，运行生成的查询并从错误中恢复</td>
+<td>需要一定的技术背景来构建和维护问答系统</td>
+</tr>
+</tbody>
+</table>
 
     </div>
 
@@ -485,7 +607,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/" title="Text2SQL应用对比">http://example.com/2025/03/06/Text2SQL应用对比/</a>
+      <a href="http://example.com/2025/04/04/Text2SQL%E7%9A%84%E5%BA%94%E7%94%A8/" title="Text2SQL的应用">http://example.com/2025/04/04/Text2SQL的应用/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -494,24 +616,20 @@
 </div>
 
           <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
               <a href="/tags/RAG/" rel="tag"># RAG</a>
-              <a href="/tags/AI%E5%B7%A5%E5%85%B7/" rel="tag"># AI工具</a>
               <a href="/tags/Text2SQL/" rel="tag"># Text2SQL</a>
-              <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 自然语言操作数据库</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/" rel="prev" title="翻墙机场推荐（魔法上网）">
-                  <i class="fa fa-angle-left"></i> 翻墙机场推荐（魔法上网）
+                <a href="/2025/04/01/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82RAG%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/" rel="prev" title="一文看懂RAG的前世今生">
+                  <i class="fa fa-angle-left"></i> 一文看懂RAG的前世今生
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/" rel="next" title="扩散模型和 自回归模型的对比">
-                  扩散模型和 自回归模型的对比 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
