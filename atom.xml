@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-04-05T06:35:42.069Z</updated>
+  <updated>2025-04-14T12:52:35.373Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>常用的Unicode图标或Emoji简码</title>
+    <link href="http://example.com/2025/04/14/%E5%B8%B8%E7%94%A8%E7%9A%84Unicode%E5%9B%BE%E6%A0%87%E6%88%96Emoji%E7%AE%80%E7%A0%81/"/>
+    <id>http://example.com/2025/04/14/%E5%B8%B8%E7%94%A8%E7%9A%84Unicode%E5%9B%BE%E6%A0%87%E6%88%96Emoji%E7%AE%80%E7%A0%81/</id>
+    <published>2025-04-14T12:51:00.000Z</published>
+    <updated>2025-04-14T12:52:35.373Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在 Markdown 中，你可以使用 &lt;strong&gt;Unicode 字符&lt;/strong&gt; 或 &lt;strong&gt;Emoji 简码&lt;/strong&gt; 来插入各种常用图标。以下是一些常见的分类整理，适用于文档、链接、提示等场景：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;📌-常用图标分类&quot;&gt;📌 &lt;strong&gt;常用图标分类&lt;/strong&gt;&lt;/h3&gt;</summary>
+    
+    
+    
+    <category term="自媒体" scheme="http://example.com/categories/%E8%87%AA%E5%AA%92%E4%BD%93/"/>
+    
+    <category term="图标" scheme="http://example.com/categories/%E8%87%AA%E5%AA%92%E4%BD%93/%E5%9B%BE%E6%A0%87/"/>
+    
+    
+    <category term="自媒体" scheme="http://example.com/tags/%E8%87%AA%E5%AA%92%E4%BD%93/"/>
+    
+    <category term="图表" scheme="http://example.com/tags/%E5%9B%BE%E8%A1%A8/"/>
+    
+    <category term="表情" scheme="http://example.com/tags/%E8%A1%A8%E6%83%85/"/>
+    
+  </entry>
   
   <entry>
     <title>Text2SQL的应用</title>
@@ -36,9 +63,9 @@
     <category term="Text2SQL" scheme="http://example.com/categories/AI/RAG/Text2SQL/"/>
     
     
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
-    
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
+    
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
     
     <category term="Text2SQL" scheme="http://example.com/tags/Text2SQL/"/>
     
@@ -215,9 +242,9 @@
     
     <category term="生成" scheme="http://example.com/tags/%E7%94%9F%E6%88%90/"/>
     
-    <category term="generate" scheme="http://example.com/tags/generate/"/>
-    
     <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
+    
+    <category term="generate" scheme="http://example.com/tags/generate/"/>
     
   </entry>
   
@@ -248,9 +275,9 @@
     
     <category term="生成" scheme="http://example.com/tags/%E7%94%9F%E6%88%90/"/>
     
-    <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
-    
     <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
     
   </entry>
   
@@ -397,9 +424,9 @@
     
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
-    <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
-    
     <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
@@ -519,11 +546,11 @@
     <category term="分块策略" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
     
     
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
-    
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
     <category term="langchain" scheme="http://example.com/tags/langchain/"/>
+    
+    <category term="AI" scheme="http://example.com/tags/AI/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
@@ -702,36 +729,11 @@
     
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
-    <category term="AI工具" scheme="http://example.com/tags/AI%E5%B7%A5%E5%85%B7/"/>
-    
     <category term="Text2SQL" scheme="http://example.com/tags/Text2SQL/"/>
     
+    <category term="AI工具" scheme="http://example.com/tags/AI%E5%B7%A5%E5%85%B7/"/>
+    
     <category term="自然语言操作数据库" scheme="http://example.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>翻墙机场推荐（魔法上网）</title>
-    <link href="http://example.com/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/"/>
-    <id>http://example.com/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</id>
-    <published>2025-03-05T08:43:18.000Z</published>
-    <updated>2025-03-05T09:15:23.445Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;暂时推荐这两个机场（在没有魔法的情况下网站可以登录）&quot;&gt;暂时推荐这两个机场（在没有魔法的情况下网站可以登录）&lt;/h2&gt;
-&lt;h4 id=&quot;1-费用自己看着选，贵的速率和稳定性都好一些&quot;&gt;1. 费用自己看着选，贵的速率和稳定性都好一些&lt;/h4&gt;
-&lt;h4 id=&quot;2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）&quot;&gt;2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）&lt;/h4&gt;</summary>
-    
-    
-    
-    <category term="工具" scheme="http://example.com/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    <category term="网络" scheme="http://example.com/categories/%E5%B7%A5%E5%85%B7/%E7%BD%91%E7%BB%9C/"/>
-    
-    
-    <category term="翻墙机场," scheme="http://example.com/tags/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA/"/>
-    
-    <category term="魔法上网" scheme="http://example.com/tags/%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91/"/>
     
   </entry>
   
