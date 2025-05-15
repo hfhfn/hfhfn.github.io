@@ -225,6 +225,52 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
+    <title>LangChain链的类型及示例</title>
+    <url>/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/</url>
+    <content><![CDATA[<h1>LangChain 中的链（Chains）类型及示例</h1>
+<p>LangChain 提供了多种类型的链（Chains），用于将多个组件组合起来完成复杂任务。以下是主要的链类型及示例：</p>
+<h2 id="1-LLMChain（基础链）">1. LLMChain（基础链）</h2>
+<p>最基本的链类型，将提示模板、LLM和输出解析器组合在一起。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> LLMChain</span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> PromptTemplate</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0.9</span>)</span><br><span class="line">chain = LLMChain(llm=llm, prompt=prompt)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(chain.run(<span class="string">&quot;环保水杯&quot;</span>))</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="2-SequentialChain（顺序链）">2. SequentialChain（顺序链）</h2>
+<p>按顺序执行多个链，前一个链的输出作为下一个链的输入。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> SequentialChain, LLMChain</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一个链：生成广告文案</span></span><br><span class="line">prompt1 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain1 = LLMChain(llm=llm, prompt=prompt1, output_key=<span class="string">&quot;ad_copy&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个链：评估广告效果</span></span><br><span class="line">prompt2 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;ad_copy&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;评估以下广告的效果:\n&#123;ad_copy&#125;\n\n评估结果:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain2 = LLMChain(llm=llm, prompt=prompt2, output_key=<span class="string">&quot;review&quot;</span>)</span><br><span class="line"></span><br><span class="line">overall_chain = SequentialChain(</span><br><span class="line">    chains=[chain1, chain2],</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    output_variables=[<span class="string">&quot;ad_copy&quot;</span>, <span class="string">&quot;review&quot;</span>]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">result = overall_chain(&#123;<span class="string">&quot;product&quot;</span>: <span class="string">&quot;智能手表&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+<h2 id="3-TransformChain（转换链）">3. TransformChain（转换链）</h2>
+<p>对输入进行转换而不调用LLM。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> TransformChain</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform_func</span>(<span class="params">inputs: <span class="built_in">dict</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    text = inputs[<span class="string">&quot;text&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;output_text&quot;</span>: text.upper()&#125;</span><br><span class="line"></span><br><span class="line">transform_chain = TransformChain(</span><br><span class="line">    input_variables=[<span class="string">&quot;text&quot;</span>], </span><br><span class="line">    output_variables=[<span class="string">&quot;output_text&quot;</span>],</span><br><span class="line">    transform=transform_func</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">transform_chain.run(&#123;<span class="string">&quot;text&quot;</span>: <span class="string">&quot;hello world&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="4-RouterChain（路由链）">4. RouterChain（路由链）</h2>
+<p>根据输入决定使用哪个子链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains.router <span class="keyword">import</span> MultiPromptChain</span><br><span class="line"><span class="keyword">from</span> langchain.chains.router.llm_router <span class="keyword">import</span> LLMRouterChain, RouterOutputParser</span><br><span class="line"></span><br><span class="line">physics_template = <span class="string">&quot;&quot;&quot;你是一位物理专家。回答物理问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line">math_template = <span class="string">&quot;&quot;&quot;你是一位数学专家。回答数学问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">prompt_infos = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;physics&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答物理问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: physics_template</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;math&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答数学问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: math_template</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">router_chain = MultiPromptChain.from_prompts(</span><br><span class="line">    llm,</span><br><span class="line">    prompt_infos,</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;什么是相对论?&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;2+2等于几?&quot;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="5-APIChain（API链）">5. APIChain（API链）</h2>
+<p>与外部API交互的链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> APIChain</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">api_docs = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">API文档:</span></span><br><span class="line"><span class="string">BASE URL: https://api.example.com</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">端点:</span></span><br><span class="line"><span class="string">GET /weather?location=&#123;location&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">参数:</span></span><br><span class="line"><span class="string">- location: 城市名称</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">响应:</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;temp&quot;: 温度,</span></span><br><span class="line"><span class="string">    &quot;condition&quot;: 天气状况</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">chain = APIChain.from_llm_and_api_docs(llm, api_docs, verbose=<span class="literal">True</span>)</span><br><span class="line">chain.run(<span class="string">&quot;上海现在的天气如何?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="6-SQLDatabaseChain（数据库链）">6. SQLDatabaseChain（数据库链）</h2>
+<p>与SQL数据库交互的链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain <span class="keyword">import</span> SQLDatabase, SQLDatabaseChain</span><br><span class="line"></span><br><span class="line">db = SQLDatabase.from_uri(<span class="string">&quot;sqlite:///chinook.db&quot;</span>)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">db_chain = SQLDatabaseChain(llm=llm, database=db, verbose=<span class="literal">True</span>)</span><br><span class="line">db_chain.run(<span class="string">&quot;有多少位顾客?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="7-RetrievalQAChain（检索问答链）">7. RetrievalQAChain（检索问答链）</h2>
+<p>结合检索器和LLM的问答链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA</span><br><span class="line"><span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> TextLoader</span><br><span class="line"><span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> FAISS</span><br><span class="line"></span><br><span class="line">loader = TextLoader(<span class="string">&quot;state_of_the_union.txt&quot;</span>)</span><br><span class="line">documents = loader.load()</span><br><span class="line">text_splitter = CharacterTextSplitter(chunk_size=<span class="number">1000</span>, chunk_overlap=<span class="number">0</span>)</span><br><span class="line">texts = text_splitter.split_documents(documents)</span><br><span class="line"></span><br><span class="line">embeddings = OpenAIEmbeddings()</span><br><span class="line">docsearch = FAISS.from_documents(texts, embeddings)</span><br><span class="line"></span><br><span class="line">qa = RetrievalQA.from_chain_type(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    chain_type=<span class="string">&quot;stuff&quot;</span>,</span><br><span class="line">    retriever=docsearch.as_retriever()</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">query = <span class="string">&quot;总统提到了什么重要政策?&quot;</span></span><br><span class="line">qa.run(query)</span><br></pre></td></tr></table></figure>
+<h2 id="8-ConversationChain（对话链）">8. ConversationChain（对话链）</h2>
+<p>维护对话上下文的链。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> ConversationChain</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory</span><br><span class="line"></span><br><span class="line">conversation = ConversationChain(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    memory=ConversationBufferMemory(),</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;你好!&quot;</span>)</span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;我很好，谢谢!你呢?&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="9-MapReduceChain（映射归约链）">9. MapReduceChain（映射归约链）</h2>
+<p>处理长文档的链，先映射处理各部分，再归约总结。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> MapReduceChain</span><br><span class="line"></span><br><span class="line">map_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;page&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;总结以下文本:\n&#123;page&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line">reduce_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;summaries&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;结合以下总结写出最终总结:\n&#123;summaries&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">chain = MapReduceChain.from_params(</span><br><span class="line">    llm=llm,</span><br><span class="line">    map_prompt=map_prompt,</span><br><span class="line">    reduce_prompt=reduce_prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;long_document.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    long_text = f.read()</span><br><span class="line">    </span><br><span class="line">result = chain.run(&#123;<span class="string">&quot;input_text&quot;</span>: long_text&#125;)</span><br></pre></td></tr></table></figure>
+<p>这些链可以单独使用，也可以组合起来构建更复杂的应用。LangChain还允许创建自定义链以满足特定需求。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>langchain</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>langchain</tag>
+        <tag>chains</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Manus 首款通用AI智能体</title>
     <url>/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</url>
     <content><![CDATA[<h1>做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。</h1>
@@ -616,52 +662,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>LangChain链的类型及示例</title>
-    <url>/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/</url>
-    <content><![CDATA[<h1>LangChain 中的链（Chains）类型及示例</h1>
-<p>LangChain 提供了多种类型的链（Chains），用于将多个组件组合起来完成复杂任务。以下是主要的链类型及示例：</p>
-<h2 id="1-LLMChain（基础链）">1. LLMChain（基础链）</h2>
-<p>最基本的链类型，将提示模板、LLM和输出解析器组合在一起。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> LLMChain</span><br><span class="line"><span class="keyword">from</span> langchain.prompts <span class="keyword">import</span> PromptTemplate</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0.9</span>)</span><br><span class="line">chain = LLMChain(llm=llm, prompt=prompt)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(chain.run(<span class="string">&quot;环保水杯&quot;</span>))</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h2 id="2-SequentialChain（顺序链）">2. SequentialChain（顺序链）</h2>
-<p>按顺序执行多个链，前一个链的输出作为下一个链的输入。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> SequentialChain, LLMChain</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一个链：生成广告文案</span></span><br><span class="line">prompt1 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;为&#123;product&#125;写一个创意广告文案:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain1 = LLMChain(llm=llm, prompt=prompt1, output_key=<span class="string">&quot;ad_copy&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二个链：评估广告效果</span></span><br><span class="line">prompt2 = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;ad_copy&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;评估以下广告的效果:\n&#123;ad_copy&#125;\n\n评估结果:&quot;</span></span><br><span class="line">)</span><br><span class="line">chain2 = LLMChain(llm=llm, prompt=prompt2, output_key=<span class="string">&quot;review&quot;</span>)</span><br><span class="line"></span><br><span class="line">overall_chain = SequentialChain(</span><br><span class="line">    chains=[chain1, chain2],</span><br><span class="line">    input_variables=[<span class="string">&quot;product&quot;</span>],</span><br><span class="line">    output_variables=[<span class="string">&quot;ad_copy&quot;</span>, <span class="string">&quot;review&quot;</span>]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">result = overall_chain(&#123;<span class="string">&quot;product&quot;</span>: <span class="string">&quot;智能手表&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
-<h2 id="3-TransformChain（转换链）">3. TransformChain（转换链）</h2>
-<p>对输入进行转换而不调用LLM。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> TransformChain</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transform_func</span>(<span class="params">inputs: <span class="built_in">dict</span></span>) -&gt; <span class="built_in">dict</span>:</span><br><span class="line">    text = inputs[<span class="string">&quot;text&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;output_text&quot;</span>: text.upper()&#125;</span><br><span class="line"></span><br><span class="line">transform_chain = TransformChain(</span><br><span class="line">    input_variables=[<span class="string">&quot;text&quot;</span>], </span><br><span class="line">    output_variables=[<span class="string">&quot;output_text&quot;</span>],</span><br><span class="line">    transform=transform_func</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">transform_chain.run(&#123;<span class="string">&quot;text&quot;</span>: <span class="string">&quot;hello world&quot;</span>&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="4-RouterChain（路由链）">4. RouterChain（路由链）</h2>
-<p>根据输入决定使用哪个子链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains.router <span class="keyword">import</span> MultiPromptChain</span><br><span class="line"><span class="keyword">from</span> langchain.chains.router.llm_router <span class="keyword">import</span> LLMRouterChain, RouterOutputParser</span><br><span class="line"></span><br><span class="line">physics_template = <span class="string">&quot;&quot;&quot;你是一位物理专家。回答物理问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line">math_template = <span class="string">&quot;&quot;&quot;你是一位数学专家。回答数学问题:</span></span><br><span class="line"><span class="string">问题: &#123;input&#125;&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">prompt_infos = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;physics&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答物理问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: physics_template</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;math&quot;</span>,</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;适合回答数学问题&quot;</span>,</span><br><span class="line">        <span class="string">&quot;prompt_template&quot;</span>: math_template</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">router_chain = MultiPromptChain.from_prompts(</span><br><span class="line">    llm,</span><br><span class="line">    prompt_infos,</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;什么是相对论?&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(router_chain.run(<span class="string">&quot;2+2等于几?&quot;</span>))</span><br></pre></td></tr></table></figure>
-<h2 id="5-APIChain（API链）">5. APIChain（API链）</h2>
-<p>与外部API交互的链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> APIChain</span><br><span class="line"><span class="keyword">from</span> langchain.llms <span class="keyword">import</span> OpenAI</span><br><span class="line"></span><br><span class="line">api_docs = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">API文档:</span></span><br><span class="line"><span class="string">BASE URL: https://api.example.com</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">端点:</span></span><br><span class="line"><span class="string">GET /weather?location=&#123;location&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">参数:</span></span><br><span class="line"><span class="string">- location: 城市名称</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">响应:</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    &quot;temp&quot;: 温度,</span></span><br><span class="line"><span class="string">    &quot;condition&quot;: 天气状况</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">chain = APIChain.from_llm_and_api_docs(llm, api_docs, verbose=<span class="literal">True</span>)</span><br><span class="line">chain.run(<span class="string">&quot;上海现在的天气如何?&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="6-SQLDatabaseChain（数据库链）">6. SQLDatabaseChain（数据库链）</h2>
-<p>与SQL数据库交互的链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain <span class="keyword">import</span> SQLDatabase, SQLDatabaseChain</span><br><span class="line"></span><br><span class="line">db = SQLDatabase.from_uri(<span class="string">&quot;sqlite:///chinook.db&quot;</span>)</span><br><span class="line">llm = OpenAI(temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">db_chain = SQLDatabaseChain(llm=llm, database=db, verbose=<span class="literal">True</span>)</span><br><span class="line">db_chain.run(<span class="string">&quot;有多少位顾客?&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="7-RetrievalQAChain（检索问答链）">7. RetrievalQAChain（检索问答链）</h2>
-<p>结合检索器和LLM的问答链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA</span><br><span class="line"><span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> TextLoader</span><br><span class="line"><span class="keyword">from</span> langchain.embeddings <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> FAISS</span><br><span class="line"></span><br><span class="line">loader = TextLoader(<span class="string">&quot;state_of_the_union.txt&quot;</span>)</span><br><span class="line">documents = loader.load()</span><br><span class="line">text_splitter = CharacterTextSplitter(chunk_size=<span class="number">1000</span>, chunk_overlap=<span class="number">0</span>)</span><br><span class="line">texts = text_splitter.split_documents(documents)</span><br><span class="line"></span><br><span class="line">embeddings = OpenAIEmbeddings()</span><br><span class="line">docsearch = FAISS.from_documents(texts, embeddings)</span><br><span class="line"></span><br><span class="line">qa = RetrievalQA.from_chain_type(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    chain_type=<span class="string">&quot;stuff&quot;</span>,</span><br><span class="line">    retriever=docsearch.as_retriever()</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">query = <span class="string">&quot;总统提到了什么重要政策?&quot;</span></span><br><span class="line">qa.run(query)</span><br></pre></td></tr></table></figure>
-<h2 id="8-ConversationChain（对话链）">8. ConversationChain（对话链）</h2>
-<p>维护对话上下文的链。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> ConversationChain</span><br><span class="line"><span class="keyword">from</span> langchain.memory <span class="keyword">import</span> ConversationBufferMemory</span><br><span class="line"></span><br><span class="line">conversation = ConversationChain(</span><br><span class="line">    llm=OpenAI(),</span><br><span class="line">    memory=ConversationBufferMemory(),</span><br><span class="line">    verbose=<span class="literal">True</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;你好!&quot;</span>)</span><br><span class="line">conversation.predict(<span class="built_in">input</span>=<span class="string">&quot;我很好，谢谢!你呢?&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="9-MapReduceChain（映射归约链）">9. MapReduceChain（映射归约链）</h2>
-<p>处理长文档的链，先映射处理各部分，再归约总结。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> MapReduceChain</span><br><span class="line"></span><br><span class="line">map_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;page&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;总结以下文本:\n&#123;page&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line">reduce_prompt = PromptTemplate(</span><br><span class="line">    input_variables=[<span class="string">&quot;summaries&quot;</span>],</span><br><span class="line">    template=<span class="string">&quot;结合以下总结写出最终总结:\n&#123;summaries&#125;&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">chain = MapReduceChain.from_params(</span><br><span class="line">    llm=llm,</span><br><span class="line">    map_prompt=map_prompt,</span><br><span class="line">    reduce_prompt=reduce_prompt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;long_document.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    long_text = f.read()</span><br><span class="line">    </span><br><span class="line">result = chain.run(&#123;<span class="string">&quot;input_text&quot;</span>: long_text&#125;)</span><br></pre></td></tr></table></figure>
-<p>这些链可以单独使用，也可以组合起来构建更复杂的应用。LangChain还允许创建自定义链以满足特定需求。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>langchain</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>langchain</tag>
-        <tag>chains</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RAG检索流程（一）：混合检索</title>
     <url>/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/</url>
     <content><![CDATA[<h3 id="为什么需要混合检索？">为什么需要混合检索？</h3>
@@ -767,6 +767,56 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
+    <title>RAG生成（一）：大模型的选择</title>
+    <url>/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9/</url>
+    <content><![CDATA[<h4 id="RAG的生成流程">RAG的生成流程</h4>
+<p>生成流程中，首先需要<strong>组合指令</strong>，指令将<strong>携带查询问题及检索到的相关信息</strong>输入到大模型中，由<strong>大模型理解并生成最终的回复</strong>，从而完成整个应用过程。</p>
+<p>在这个过程中，有两个环节直接影响RAG系统的生成效果：</p>
+<p><strong>1. 大模型的选择</strong>：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。</p>
+<p><strong>2. 提示词工程</strong>：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。</p>
+<span id="more"></span>
+<h4 id="大模型的发展">大模型的发展</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322185744991.png" alt="image-20250322185744991"></p>
+<p><strong>SuperCLUE</strong> 组织发布的<strong>中文大模型全景图</strong>，展示了 2025 年值得关注的中文大模型，从<strong>文本、多模态、行业</strong>三个层面进行了详细分类，各领域的大模型应用层出不穷。<strong>RAG 中目前更关注通用大模型</strong>，比如<strong>闭源的文心一言、通义千问、腾讯混元、字节豆包</strong>、Kimi Chat 等都是可选择的大模型组件，如果需要<strong>私有化部署，Deepseek、Qwen 系列、GLM 系列</strong>、Baichuan 系列都在可考虑范围。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322190256861.png" alt="image-20250322190256861"></p>
+<p>更多包含机构和学术背景且具有明确来源的大模型信息，可以访问实时更新的 <a href="https://github.com/wgwang/awesome-LLMs-In-China"><strong>中国大模型列表</strong></a> 全面记录中国大模型的发展动态。</p>
+<h4 id="大模型原理">大模型原理</h4>
+<p>一切始于 Google 在 2017 年发表的论文 <strong>《Attention Is All You Need》</strong>，引入了 <strong>Transformer</strong> 模型，它是深度学习领域的一个突破性架构，大型语言模型的成功得益于对 Transformer 模型的应用。</p>
+<p>与传统的循环神经网络（RNN）相比，Transformer 模型<strong>不依赖于序列顺序</strong>，而是通过自注意力（Self-Attention）机制来捕捉序列中各元素之间的关系。Transformer 由多个堆叠的编码层（Encoder）和解码层（Decoder）组成，每一层包括自注意力层、前馈层和归一化层。这些层协同工作，逐步捕捉输入数据信息特征，从而<strong>预测输出</strong>，实现强大的语言理解和生成能力。</p>
+<p>Transformer 模型的<strong>核心创新在于位置编码和自注意力机制</strong>。位置编码帮助模型理解输入数据的顺序信息，而自注意力机制则允许模型根据输入的全局上下文，为每个词元分配不同的注意力权重，从而更准确地理解词与词之间的关联性。这种机制使得 Transformer 特别适用于语言模型，因为语言模型需要精确捕捉上下文中的细微差别，生成符合语义逻辑的文本。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322175522327.png" alt="image-20250322175522327"></p>
+<p>上图展示了 Transformer 模型的架构及其核心机制的可视化示例。左图中，Transformer 模型由编码器和解码器两部分组成。编码器负责理解输入信息的顺序和语义，解码器则输出概率最高的词元。</p>
+<p>右上图中的示例显示了输入句子中的填空任务，解码器依据输入句子的特征和已生成的部分句子，生成了“She”作为模型的预测结果。生成“She”的核心原因在于右下图所示的注意力机制，其中需要填空的部分对输入句子中的词元“The Doctor”和“Nurse”分配了较高的注意力权重，从而提高了“She”作为输出词元的生成概率。</p>
+<p><strong>大语言模型的突破</strong>始于 2022 年年底 OpenAI 发布的 <strong>ChatGPT。其核心优势体现在庞大的参数规模（数百亿甚至数千亿）、基于 PB 级别数据的训练所带来的卓越语言理解与生成能力，以及其显著的涌现能力。</strong>  大语言模型不仅在传统的自然语言处理任务中展现了卓越表现，还具备了解决复杂问题和进行逻辑推理等高级认知能力。</p>
+<h4 id="RAG中大模型的选择">RAG中大模型的选择</h4>
+<p>在如今大模型层出不穷的情况下，如何在 RAG 应用场景中选择合适的模型呢？我们面对的是<strong>开源与闭源</strong>的选择、<strong>大参数与小参数</strong>的对比，成本的考虑以及<strong>云端与私有化部署</strong>的抉择。针对这些问题，我们需要结合测评和具体的应用场景进行综合考量。</p>
+<p>从测评角度来看，前面已经介绍了<a href="https://www.cluebenchmarks.com/static/superclue.html"><strong>中文通用大模型的综合性测评基准 SuperCLUE</strong></a>，它对中文场景中的多个任务分支进行测试，涵盖基础能力、专业能力以及中文特性多个方面。每个任务分支又包含多个维度，例如语义理解、生成与创作、代数、生物、成语、诗词等。下图展示了这些维度的具体内容，SuperCLUE 每月都会更新测评结果，确保其反映大模型的最新表现。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322180251002.png" alt="image-20250322180251002"></p>
+<p>尤其需要关注的是 <a href="https://www.superclueai.com/"><strong>SuperCLUE-RAG 检索增强生成测评</strong></a>，在 RAG 场景中，大模型的检索能力表现是核心。SuperCLUE 针对 RAG 应用场景进行了独立测试，具体评估了大模型在检索和生成过程中的表现，测试数据如下图所示（最新为2024 年 11月数据）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322181526225.png" alt="image-20250322181526225"></p>
+<p>在 SuperCLUE 官网的 SuperCLUE-RAG 检索增强生成分支页面上，可以查看其总榜及四大基础任务的测评结果。选择模型时可以根据总分，以及模型在<strong>答案及时性、信息整合能力、拒答能力、检错和纠错能力</strong>等方面的表现，进行综合评估，作为场景选型参考。</p>
+<p>其次，也是最重要的，我们需要根据<strong>实际应用场景</strong>来考量并选择适合的大模型，以下几个维度是关键：</p>
+<p><strong>1. 开源与闭源</strong>：开源模型适用于<strong>数据敏感性</strong>高或有严格合规要求的场景，通过自托管实现对数据的完全掌控，确保<strong>隐私与安全</strong>。而闭源模型则适合数据敏感度较低的应用场景，其维护与服务相对完善，能够降低运维复杂度。</p>
+<p><strong>2. 模型参数规模</strong>：大参数模型在复杂任务中的<strong>推理与生成能力</strong>较强，但并非所有应用场景都需要高精度模型。小参数模型（如 7B）在满足简单逻辑任务时，具备更优的<strong>响应速度、成本控制和资源利用</strong>效率。因此，模型规模应依据应用复杂性及算力预算进行合理匹配。</p>
+<p><strong>3. 国内与国外部署</strong>：模型选择还需考虑部署环境。如果应用主要在国内进行，虽然调用国外大模型的接口是可行的，但可能会遇到<strong>稳定性、网络延迟</strong>、注册认证、充值付费等方面的实际问题。此外，数据合规性是重要考量，尤其对于需要遵循国内<strong>隐私和数据安全</strong>法规的场景，选择国内大模型或本地化部署更为合适。综上所述，模型的选择应结合 RAG 应用场景的需求和限制，更好地选择合适的大模型以最大化其效果。</p>
+<p>选择建议：</p>
+<p><strong>1. 闭源模型</strong>: 通义千问、文心一言、混元大模型、豆包大模型和 Kimi Chat 等旗舰模型实际差异不大，<strong>取决于成本</strong>。</p>
+<p><strong>2. 开源模型</strong>: 根据需求可以在<strong>千问系列，deepseek系列，百川系列，GLM系列</strong>这几个中选择。</p>
+<p><strong>参考</strong>：<a href="https://www.cluebenchmarks.com/superclue_2503"><strong>中文大模型基准评测2025年3月报告</strong></a></p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>生成</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>生成</tag>
+        <tag>大模型</tag>
+        <tag>提示词</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RAG生成（二）：提示词工程</title>
     <url>/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</url>
     <content><![CDATA[<h4 id="提示词概述">提示词概述</h4>
@@ -826,101 +876,8 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       <tags>
         <tag>RAG</tag>
         <tag>生成</tag>
-        <tag>generate</tag>
         <tag>提示词</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG索引（三）：嵌入（Embedding）技术</title>
-    <url>/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/</url>
-    <content><![CDATA[<h3 id="嵌入模型（Embedding-Model）负责将文本数据映射到高维向量空间中，将输入的文档片段转换为对应的嵌入向量（embedding-vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量，这些向量用于在向量数据库中通过向量检索（Vector-Retrieval）匹配最相似的文档片段。根据不同的场景需求，评估并选择最优的嵌入模型，以确保-RAG-的检索性能符合要求。"><mark>嵌入模型（Embedding Model）负责将文本数据映射到高维向量空间中</mark>，将输入的文档片段转换为对应的嵌入向量（embedding vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。<mark>用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量</mark>，这些向量用于在向量数据库中通过向量检索（Vector Retrieval）匹配最相似的文档片段。根据不同的场景需求，<mark>评估并选择最优的嵌入模型</mark>，以确保 RAG 的检索性能符合要求。</h3>
-<span id="more"></span>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9E%8B%E4%BD%9C%E7%94%A8.png" alt="嵌入模型作用" style="zoom: 67%;" />
-<ul>
-<li>
-<h4 id="什么是Embedding嵌入？">什么是Embedding嵌入？</h4>
-<ul>
-<li>Embedding 嵌入是指将文本、图像、音频、视频等形式的信息映射为高维空间中的密集向量表示。这些向量在语义空间中起到坐标的作用，捕捉对象之间的语义关系和隐含的意义。通过在向量空间中进行计算（例如余弦相似度），可以量化和衡量这些对象之间的<strong>语义相似性</strong>。</li>
-<li>在具体实现中，嵌入的每个维度通常对应文本的某种特征，例如性别、类别、数量等。通过多维度的数值表示，计算机能够理解并解析文本的复杂语义结构。例如，“man”和“woman”在描述性别维度上具有相似性，而“king”和“queen”则在性别和王室身份等维度上表现出相似的语义特征。</li>
-<li>向量是一组在高维空间中定义点的数值数组，而<strong>嵌入则是将信息（如文本）转化为这种向量表示的过程</strong>。这些向量能够捕捉数据的语义及其他重要特征，使得语义相近的对象在向量空间中彼此邻近，而语义相异的对象则相距较远。<strong>向量检索（Vector Retrieval）是一种基于向量表示的搜索技术</strong>，通过计算查询向量与已知文本向量的相似度来识别最相关的文本数据。向量检索的高效性在于，它能在大规模数据集中快速、准确地找到与查询最相关的内容，这得益于向量表示中蕴含的丰富语义信息。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112108258.png" alt="image-20250310112108258" style="zoom: 80%;" />
-</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-嵌入模型">Embedding Model 嵌入模型</h4>
-<ul>
-<li>自 2013 年以来，word2vec、GloVe、fastText 等嵌入模型通过分析大量文本数据，学习得出单词的嵌入向量。近年来，随着 transformer 模型的突破，嵌入技术以惊人的速度发展。BERT、RoBERTa、ELECTRA 等模型将词嵌入推进到上下文敏感的阶段。这些模型在为文本中的每个单词生成嵌入时，会充分考虑其上下文环境，因此同一个单词在不同语境下的嵌入向量可以有所不同，从而大大提升了模型理解复杂语言结构的能力。</li>
-<li>在 RAG 系统中，Embedding Model 嵌入模型扮演着关键角色，负责将文本数据映射到高维向量空间，以便高效检索和处理。具体而言，<strong>Embedding Model 将输入的文档片段（Chunks）和查询文本（Query）转换为嵌入向量（Vectors）</strong>，这些向量捕捉了文本的语义信息，并可在向量空间中与其他嵌入向量进行比较。</li>
-<li>在 RAG 流程中，文档首先被分割成多个片段，每个片段随后通过 Embedding Model 进行嵌入处理。生成的文档嵌入向量被存储在 VectorStore 中，供后续检索使用。用户查询会通过 Embedding Model 转换为查询嵌入向量，这些向量用于在向量数据库中匹配最相似的文档片段，最终组合生成指令（Prompt），大模型生成回答。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112648314.png" alt="image-20250310112648314" style="zoom:80%;" />
-</li>
-<li>正如图中所示，嵌入模型是 RAG 流程的核心。既然如此重要，市面上有非常多的嵌入模型，我们该如何为我们的业务场景选择最合适的嵌入模型呢？</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-嵌入模型评估与选择">Embedding Model 嵌入模型评估与选择</h4>
-<ul>
-<li>在选择适合的嵌入模型时，需要综合考虑多个因素，包括<strong>特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率</strong>等因素。同时以广泛受到认可的 **MTEB（Massive Text Embedding Benchmark）和 C-MTEB（Chinese Massive Text Embedding Benchmark）**榜单作为参考，通过涵盖分类、聚类、语义文本相似性、重排序和检索等多个数据集的评测，开发者可以根据不同任务的需求，评估并选择最优的向量模型，以确保在特定应用场景中的最佳性能。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310113405164.png" alt="image-20250310113405164" style="zoom:80%;" />
-</li>
-<li><a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB &amp; C-MTEB 榜单</a></li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310122014515.png" alt="image-20250310122014515" style="zoom:80%;" />
-</li>
-<li>榜单每日更新，可以切换语言为 中文，可以看到中文嵌入模型的排名。由于 RAG 是一项检索任务，我们需要按“Retrieval Average”（检索平均值）列对排行榜进行排序，图中显示的就是检索任务效果排序后的结果。在检索任务中，我们需要在榜单顶部看到最佳的检索模型，并且专注于以下几个关键列：</li>
-<li><strong>Retrieval Average 检索平均值</strong>：较高的检索平均值表示模型更擅长在检索结果列表中将相关项目排在较高的位置，检索效果更好。</li>
-<li><strong>Model Size 模型大小</strong>：模型的大小（以 GB 为单位）。虽然检索性能随模型大小而变化，但要注意，模型大小也会对延迟产生直接影响。因此，在选择模型时，建议筛选掉那些在硬件资源有限的情况下不可行的过大模型。在生产环境中，性能与效率之间的权衡尤为重要。</li>
-<li><strong>Max Tokens 最大 Token 数</strong>：可压缩到单个文本块中的最大 Token 数。因为文档块我们希望不要过大而降低目标信息块的精准度，因此，即使最大 tokens 数为 512 的模型在大部分场景下也足够使用。</li>
-<li><strong>Embedding Dimensions：嵌入向量的维度</strong>。越少的嵌入维度提供更快的推理速度，存储效率更高，而更多的维度可以捕获数据中的细微特征。我们需要在模型的性能和效率之间取得良好的权衡。</li>
-<li><strong>实验至关重要</strong>，在排行榜上表现良好的模型不一定在你的任务上表现良好，试验各种高得分的模型至关重要。我们参考 MTEB 排行榜，选择多个适合我们场景的嵌入模型作为备选，并在我们的业务场景数据集上进行评估测试，以选出最适合我们 RAG 系统的嵌入模型。</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-技术实战">Embedding Model 技术实战</h4>
-<ul>
-<li>
-<p>我们可以使用 SentenceTransformers 作为加载嵌入模型的 Python 模块。</p>
-</li>
-<li>
-<p>SentenceTransformers（又名 SBERT）是一个用于训练和推理文本嵌入模型的 Python 模块，可以在 RAG 系统中计算嵌入向量。使用 SentenceTransformers 进行文本嵌入转换非常简单：只需导入模块库、加载模型，并调用 encode 方法即可。执行时，SentenceTransformers 会自动下载相应的模型库，当然也可以手动下载并指定模型库的路径。所有可用的模型都可以在 <a href="https://www.sbert.net/docs/sentence_transformer/pretrained_models.html">SentenceTransformers 模型库</a> 查看，超过 8000 个发布在 Hugging Face 上的嵌入模型库可以被使用。</p>
-</li>
-<li>
-<p>在中文领域，智源研究院的 <a href="https://huggingface.co/collections/BAAI/bge-66797a74476eb1f085c7446d">BGE 系列模型</a> 是较为知名的开源嵌入模型，在 C-MTEB 上表现出色。BGE 系列目前包含 23 个嵌入模型，涵盖多种维度、多种最大 Token 数和模型大小，用户可以根据需求进行测试和使用。</p>
-</li>
-<li>
-<p><strong>load_embedding_model 方法中使用 SentenceTransformer 加载嵌入模型代码</strong>：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 绝对路径：SentenceTransformer读取绝对路径下的bge-large-zh-v1.5模型，如需使用其他模型，下载其他模型，并且更换绝对路径即可</span></span><br><span class="line">embedding_model = SentenceTransformer(os.path.abspath(<span class="string">&#x27;data/bge-large-zh-v1.5&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动下载：SentenceTransformer库自动下载BAAI/bge-large-zh-v1.5模型，如需下载其他模型，输入其他模型名称即可</span></span><br><span class="line"><span class="comment"># embedding_model = SentenceTransformer(&#x27;BAAI/bge-large-zh-v1.5&#x27;)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>indexing_process 方法中将文本转化为嵌入向量代码</strong>：</p>
- <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文本块转化为嵌入向量列表，normalize_embeddings表示对嵌入向量进行归一化，用于后续流程准确计算向量相似度</span></span><br><span class="line">embeddings = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> all_chunks:</span><br><span class="line">      embedding = embedding_model.encode(chunk, normalize_embeddings=<span class="literal">True</span>)</span><br><span class="line">      embeddings.append(embedding)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li>
-<h4 id="总结">总结</h4>
-<ul>
-<li>嵌入技术将文本数据映射到高维向量空间中，捕捉其语义信息，支持向量检索，从而在大规模数据中快速识别与查询最相关的文档片段。在选择嵌入模型时，需要综合考虑特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率等因素。</li>
-<li>通过参考 MTEB 和 C-MTEB 的评测榜单，可以评估多个高得分的模型，并在具体的业务场景中进行测试，最终选择最适合该场景的嵌入模型。同时，使用 SentenceTransformers Python 模块可以简化嵌入模型的加载和嵌入计算，进而高效率集成测试。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>索引</category>
-        <category>嵌入（Embedding）技术</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>索引</tag>
-        <tag>嵌入</tag>
-        <tag>embedding</tag>
+        <tag>generate</tag>
       </tags>
   </entry>
   <entry>
@@ -985,56 +942,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>langchain_community.document_loaders</tag>
         <tag>pdfplumber</tag>
         <tag>unstructured</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG生成（一）：大模型的选择</title>
-    <url>/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9/</url>
-    <content><![CDATA[<h4 id="RAG的生成流程">RAG的生成流程</h4>
-<p>生成流程中，首先需要<strong>组合指令</strong>，指令将<strong>携带查询问题及检索到的相关信息</strong>输入到大模型中，由<strong>大模型理解并生成最终的回复</strong>，从而完成整个应用过程。</p>
-<p>在这个过程中，有两个环节直接影响RAG系统的生成效果：</p>
-<p><strong>1. 大模型的选择</strong>：大模型相当于RAG系统的大脑，决定着RAG系统的响应质量。</p>
-<p><strong>2. 提示词工程</strong>：通过有效的指令的设计和组合，可以帮助大模型更好的理解内容和生成更加精确和相关的回答。</p>
-<span id="more"></span>
-<h4 id="大模型的发展">大模型的发展</h4>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322185744991.png" alt="image-20250322185744991"></p>
-<p><strong>SuperCLUE</strong> 组织发布的<strong>中文大模型全景图</strong>，展示了 2025 年值得关注的中文大模型，从<strong>文本、多模态、行业</strong>三个层面进行了详细分类，各领域的大模型应用层出不穷。<strong>RAG 中目前更关注通用大模型</strong>，比如<strong>闭源的文心一言、通义千问、腾讯混元、字节豆包</strong>、Kimi Chat 等都是可选择的大模型组件，如果需要<strong>私有化部署，Deepseek、Qwen 系列、GLM 系列</strong>、Baichuan 系列都在可考虑范围。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322190256861.png" alt="image-20250322190256861"></p>
-<p>更多包含机构和学术背景且具有明确来源的大模型信息，可以访问实时更新的 <a href="https://github.com/wgwang/awesome-LLMs-In-China"><strong>中国大模型列表</strong></a> 全面记录中国大模型的发展动态。</p>
-<h4 id="大模型原理">大模型原理</h4>
-<p>一切始于 Google 在 2017 年发表的论文 <strong>《Attention Is All You Need》</strong>，引入了 <strong>Transformer</strong> 模型，它是深度学习领域的一个突破性架构，大型语言模型的成功得益于对 Transformer 模型的应用。</p>
-<p>与传统的循环神经网络（RNN）相比，Transformer 模型<strong>不依赖于序列顺序</strong>，而是通过自注意力（Self-Attention）机制来捕捉序列中各元素之间的关系。Transformer 由多个堆叠的编码层（Encoder）和解码层（Decoder）组成，每一层包括自注意力层、前馈层和归一化层。这些层协同工作，逐步捕捉输入数据信息特征，从而<strong>预测输出</strong>，实现强大的语言理解和生成能力。</p>
-<p>Transformer 模型的<strong>核心创新在于位置编码和自注意力机制</strong>。位置编码帮助模型理解输入数据的顺序信息，而自注意力机制则允许模型根据输入的全局上下文，为每个词元分配不同的注意力权重，从而更准确地理解词与词之间的关联性。这种机制使得 Transformer 特别适用于语言模型，因为语言模型需要精确捕捉上下文中的细微差别，生成符合语义逻辑的文本。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322175522327.png" alt="image-20250322175522327"></p>
-<p>上图展示了 Transformer 模型的架构及其核心机制的可视化示例。左图中，Transformer 模型由编码器和解码器两部分组成。编码器负责理解输入信息的顺序和语义，解码器则输出概率最高的词元。</p>
-<p>右上图中的示例显示了输入句子中的填空任务，解码器依据输入句子的特征和已生成的部分句子，生成了“She”作为模型的预测结果。生成“She”的核心原因在于右下图所示的注意力机制，其中需要填空的部分对输入句子中的词元“The Doctor”和“Nurse”分配了较高的注意力权重，从而提高了“She”作为输出词元的生成概率。</p>
-<p><strong>大语言模型的突破</strong>始于 2022 年年底 OpenAI 发布的 <strong>ChatGPT。其核心优势体现在庞大的参数规模（数百亿甚至数千亿）、基于 PB 级别数据的训练所带来的卓越语言理解与生成能力，以及其显著的涌现能力。</strong>  大语言模型不仅在传统的自然语言处理任务中展现了卓越表现，还具备了解决复杂问题和进行逻辑推理等高级认知能力。</p>
-<h4 id="RAG中大模型的选择">RAG中大模型的选择</h4>
-<p>在如今大模型层出不穷的情况下，如何在 RAG 应用场景中选择合适的模型呢？我们面对的是<strong>开源与闭源</strong>的选择、<strong>大参数与小参数</strong>的对比，成本的考虑以及<strong>云端与私有化部署</strong>的抉择。针对这些问题，我们需要结合测评和具体的应用场景进行综合考量。</p>
-<p>从测评角度来看，前面已经介绍了<a href="https://www.cluebenchmarks.com/static/superclue.html"><strong>中文通用大模型的综合性测评基准 SuperCLUE</strong></a>，它对中文场景中的多个任务分支进行测试，涵盖基础能力、专业能力以及中文特性多个方面。每个任务分支又包含多个维度，例如语义理解、生成与创作、代数、生物、成语、诗词等。下图展示了这些维度的具体内容，SuperCLUE 每月都会更新测评结果，确保其反映大模型的最新表现。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322180251002.png" alt="image-20250322180251002"></p>
-<p>尤其需要关注的是 <a href="https://www.superclueai.com/"><strong>SuperCLUE-RAG 检索增强生成测评</strong></a>，在 RAG 场景中，大模型的检索能力表现是核心。SuperCLUE 针对 RAG 应用场景进行了独立测试，具体评估了大模型在检索和生成过程中的表现，测试数据如下图所示（最新为2024 年 11月数据）。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250322181526225.png" alt="image-20250322181526225"></p>
-<p>在 SuperCLUE 官网的 SuperCLUE-RAG 检索增强生成分支页面上，可以查看其总榜及四大基础任务的测评结果。选择模型时可以根据总分，以及模型在<strong>答案及时性、信息整合能力、拒答能力、检错和纠错能力</strong>等方面的表现，进行综合评估，作为场景选型参考。</p>
-<p>其次，也是最重要的，我们需要根据<strong>实际应用场景</strong>来考量并选择适合的大模型，以下几个维度是关键：</p>
-<p><strong>1. 开源与闭源</strong>：开源模型适用于<strong>数据敏感性</strong>高或有严格合规要求的场景，通过自托管实现对数据的完全掌控，确保<strong>隐私与安全</strong>。而闭源模型则适合数据敏感度较低的应用场景，其维护与服务相对完善，能够降低运维复杂度。</p>
-<p><strong>2. 模型参数规模</strong>：大参数模型在复杂任务中的<strong>推理与生成能力</strong>较强，但并非所有应用场景都需要高精度模型。小参数模型（如 7B）在满足简单逻辑任务时，具备更优的<strong>响应速度、成本控制和资源利用</strong>效率。因此，模型规模应依据应用复杂性及算力预算进行合理匹配。</p>
-<p><strong>3. 国内与国外部署</strong>：模型选择还需考虑部署环境。如果应用主要在国内进行，虽然调用国外大模型的接口是可行的，但可能会遇到<strong>稳定性、网络延迟</strong>、注册认证、充值付费等方面的实际问题。此外，数据合规性是重要考量，尤其对于需要遵循国内<strong>隐私和数据安全</strong>法规的场景，选择国内大模型或本地化部署更为合适。综上所述，模型的选择应结合 RAG 应用场景的需求和限制，更好地选择合适的大模型以最大化其效果。</p>
-<p>选择建议：</p>
-<p><strong>1. 闭源模型</strong>: 通义千问、文心一言、混元大模型、豆包大模型和 Kimi Chat 等旗舰模型实际差异不大，<strong>取决于成本</strong>。</p>
-<p><strong>2. 开源模型</strong>: 根据需求可以在<strong>千问系列，deepseek系列，百川系列，GLM系列</strong>这几个中选择。</p>
-<p><strong>参考</strong>：<a href="https://www.cluebenchmarks.com/superclue_2503"><strong>中文大模型基准评测2025年3月报告</strong></a></p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>生成</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>生成</tag>
-        <tag>提示词</tag>
-        <tag>大模型</tag>
       </tags>
   </entry>
   <entry>
@@ -1169,12 +1076,105 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <category>分块策略</category>
       </categories>
       <tags>
-        <tag>AI</tag>
         <tag>RAG</tag>
-        <tag>索引</tag>
         <tag>langchain</tag>
+        <tag>AI</tag>
+        <tag>索引</tag>
         <tag>分块策略</tag>
         <tag>Chunk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RAG索引（三）：嵌入（Embedding）技术</title>
+    <url>/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h3 id="嵌入模型（Embedding-Model）负责将文本数据映射到高维向量空间中，将输入的文档片段转换为对应的嵌入向量（embedding-vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量，这些向量用于在向量数据库中通过向量检索（Vector-Retrieval）匹配最相似的文档片段。根据不同的场景需求，评估并选择最优的嵌入模型，以确保-RAG-的检索性能符合要求。"><mark>嵌入模型（Embedding Model）负责将文本数据映射到高维向量空间中</mark>，将输入的文档片段转换为对应的嵌入向量（embedding vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。<mark>用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量</mark>，这些向量用于在向量数据库中通过向量检索（Vector Retrieval）匹配最相似的文档片段。根据不同的场景需求，<mark>评估并选择最优的嵌入模型</mark>，以确保 RAG 的检索性能符合要求。</h3>
+<span id="more"></span>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9E%8B%E4%BD%9C%E7%94%A8.png" alt="嵌入模型作用" style="zoom: 67%;" />
+<ul>
+<li>
+<h4 id="什么是Embedding嵌入？">什么是Embedding嵌入？</h4>
+<ul>
+<li>Embedding 嵌入是指将文本、图像、音频、视频等形式的信息映射为高维空间中的密集向量表示。这些向量在语义空间中起到坐标的作用，捕捉对象之间的语义关系和隐含的意义。通过在向量空间中进行计算（例如余弦相似度），可以量化和衡量这些对象之间的<strong>语义相似性</strong>。</li>
+<li>在具体实现中，嵌入的每个维度通常对应文本的某种特征，例如性别、类别、数量等。通过多维度的数值表示，计算机能够理解并解析文本的复杂语义结构。例如，“man”和“woman”在描述性别维度上具有相似性，而“king”和“queen”则在性别和王室身份等维度上表现出相似的语义特征。</li>
+<li>向量是一组在高维空间中定义点的数值数组，而<strong>嵌入则是将信息（如文本）转化为这种向量表示的过程</strong>。这些向量能够捕捉数据的语义及其他重要特征，使得语义相近的对象在向量空间中彼此邻近，而语义相异的对象则相距较远。<strong>向量检索（Vector Retrieval）是一种基于向量表示的搜索技术</strong>，通过计算查询向量与已知文本向量的相似度来识别最相关的文本数据。向量检索的高效性在于，它能在大规模数据集中快速、准确地找到与查询最相关的内容，这得益于向量表示中蕴含的丰富语义信息。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112108258.png" alt="image-20250310112108258" style="zoom: 80%;" />
+</li>
+</ul>
+</li>
+<li>
+<h4 id="Embedding-Model-嵌入模型">Embedding Model 嵌入模型</h4>
+<ul>
+<li>自 2013 年以来，word2vec、GloVe、fastText 等嵌入模型通过分析大量文本数据，学习得出单词的嵌入向量。近年来，随着 transformer 模型的突破，嵌入技术以惊人的速度发展。BERT、RoBERTa、ELECTRA 等模型将词嵌入推进到上下文敏感的阶段。这些模型在为文本中的每个单词生成嵌入时，会充分考虑其上下文环境，因此同一个单词在不同语境下的嵌入向量可以有所不同，从而大大提升了模型理解复杂语言结构的能力。</li>
+<li>在 RAG 系统中，Embedding Model 嵌入模型扮演着关键角色，负责将文本数据映射到高维向量空间，以便高效检索和处理。具体而言，<strong>Embedding Model 将输入的文档片段（Chunks）和查询文本（Query）转换为嵌入向量（Vectors）</strong>，这些向量捕捉了文本的语义信息，并可在向量空间中与其他嵌入向量进行比较。</li>
+<li>在 RAG 流程中，文档首先被分割成多个片段，每个片段随后通过 Embedding Model 进行嵌入处理。生成的文档嵌入向量被存储在 VectorStore 中，供后续检索使用。用户查询会通过 Embedding Model 转换为查询嵌入向量，这些向量用于在向量数据库中匹配最相似的文档片段，最终组合生成指令（Prompt），大模型生成回答。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112648314.png" alt="image-20250310112648314" style="zoom:80%;" />
+</li>
+<li>正如图中所示，嵌入模型是 RAG 流程的核心。既然如此重要，市面上有非常多的嵌入模型，我们该如何为我们的业务场景选择最合适的嵌入模型呢？</li>
+</ul>
+</li>
+<li>
+<h4 id="Embedding-Model-嵌入模型评估与选择">Embedding Model 嵌入模型评估与选择</h4>
+<ul>
+<li>在选择适合的嵌入模型时，需要综合考虑多个因素，包括<strong>特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率</strong>等因素。同时以广泛受到认可的 **MTEB（Massive Text Embedding Benchmark）和 C-MTEB（Chinese Massive Text Embedding Benchmark）**榜单作为参考，通过涵盖分类、聚类、语义文本相似性、重排序和检索等多个数据集的评测，开发者可以根据不同任务的需求，评估并选择最优的向量模型，以确保在特定应用场景中的最佳性能。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310113405164.png" alt="image-20250310113405164" style="zoom:80%;" />
+</li>
+<li><a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB &amp; C-MTEB 榜单</a></li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310122014515.png" alt="image-20250310122014515" style="zoom:80%;" />
+</li>
+<li>榜单每日更新，可以切换语言为 中文，可以看到中文嵌入模型的排名。由于 RAG 是一项检索任务，我们需要按“Retrieval Average”（检索平均值）列对排行榜进行排序，图中显示的就是检索任务效果排序后的结果。在检索任务中，我们需要在榜单顶部看到最佳的检索模型，并且专注于以下几个关键列：</li>
+<li><strong>Retrieval Average 检索平均值</strong>：较高的检索平均值表示模型更擅长在检索结果列表中将相关项目排在较高的位置，检索效果更好。</li>
+<li><strong>Model Size 模型大小</strong>：模型的大小（以 GB 为单位）。虽然检索性能随模型大小而变化，但要注意，模型大小也会对延迟产生直接影响。因此，在选择模型时，建议筛选掉那些在硬件资源有限的情况下不可行的过大模型。在生产环境中，性能与效率之间的权衡尤为重要。</li>
+<li><strong>Max Tokens 最大 Token 数</strong>：可压缩到单个文本块中的最大 Token 数。因为文档块我们希望不要过大而降低目标信息块的精准度，因此，即使最大 tokens 数为 512 的模型在大部分场景下也足够使用。</li>
+<li><strong>Embedding Dimensions：嵌入向量的维度</strong>。越少的嵌入维度提供更快的推理速度，存储效率更高，而更多的维度可以捕获数据中的细微特征。我们需要在模型的性能和效率之间取得良好的权衡。</li>
+<li><strong>实验至关重要</strong>，在排行榜上表现良好的模型不一定在你的任务上表现良好，试验各种高得分的模型至关重要。我们参考 MTEB 排行榜，选择多个适合我们场景的嵌入模型作为备选，并在我们的业务场景数据集上进行评估测试，以选出最适合我们 RAG 系统的嵌入模型。</li>
+</ul>
+</li>
+<li>
+<h4 id="Embedding-Model-技术实战">Embedding Model 技术实战</h4>
+<ul>
+<li>
+<p>我们可以使用 SentenceTransformers 作为加载嵌入模型的 Python 模块。</p>
+</li>
+<li>
+<p>SentenceTransformers（又名 SBERT）是一个用于训练和推理文本嵌入模型的 Python 模块，可以在 RAG 系统中计算嵌入向量。使用 SentenceTransformers 进行文本嵌入转换非常简单：只需导入模块库、加载模型，并调用 encode 方法即可。执行时，SentenceTransformers 会自动下载相应的模型库，当然也可以手动下载并指定模型库的路径。所有可用的模型都可以在 <a href="https://www.sbert.net/docs/sentence_transformer/pretrained_models.html">SentenceTransformers 模型库</a> 查看，超过 8000 个发布在 Hugging Face 上的嵌入模型库可以被使用。</p>
+</li>
+<li>
+<p>在中文领域，智源研究院的 <a href="https://huggingface.co/collections/BAAI/bge-66797a74476eb1f085c7446d">BGE 系列模型</a> 是较为知名的开源嵌入模型，在 C-MTEB 上表现出色。BGE 系列目前包含 23 个嵌入模型，涵盖多种维度、多种最大 Token 数和模型大小，用户可以根据需求进行测试和使用。</p>
+</li>
+<li>
+<p><strong>load_embedding_model 方法中使用 SentenceTransformer 加载嵌入模型代码</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 绝对路径：SentenceTransformer读取绝对路径下的bge-large-zh-v1.5模型，如需使用其他模型，下载其他模型，并且更换绝对路径即可</span></span><br><span class="line">embedding_model = SentenceTransformer(os.path.abspath(<span class="string">&#x27;data/bge-large-zh-v1.5&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动下载：SentenceTransformer库自动下载BAAI/bge-large-zh-v1.5模型，如需下载其他模型，输入其他模型名称即可</span></span><br><span class="line"><span class="comment"># embedding_model = SentenceTransformer(&#x27;BAAI/bge-large-zh-v1.5&#x27;)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>indexing_process 方法中将文本转化为嵌入向量代码</strong>：</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文本块转化为嵌入向量列表，normalize_embeddings表示对嵌入向量进行归一化，用于后续流程准确计算向量相似度</span></span><br><span class="line">embeddings = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> all_chunks:</span><br><span class="line">      embedding = embedding_model.encode(chunk, normalize_embeddings=<span class="literal">True</span>)</span><br><span class="line">      embeddings.append(embedding)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="总结">总结</h4>
+<ul>
+<li>嵌入技术将文本数据映射到高维向量空间中，捕捉其语义信息，支持向量检索，从而在大规模数据中快速识别与查询最相关的文档片段。在选择嵌入模型时，需要综合考虑特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率等因素。</li>
+<li>通过参考 MTEB 和 C-MTEB 的评测榜单，可以评估多个高得分的模型，并在具体的业务场景中进行测试，最终选择最适合该场景的嵌入模型。同时，使用 SentenceTransformers Python 模块可以简化嵌入模型的加载和嵌入计算，进而高效率集成测试。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>索引</category>
+        <category>嵌入（Embedding）技术</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>索引</tag>
+        <tag>嵌入</tag>
+        <tag>embedding</tag>
       </tags>
   </entry>
   <entry>
@@ -1512,8 +1512,8 @@ print(tokenizer.decode(outputs[0]))
         <category>Text2SQL</category>
       </categories>
       <tags>
-        <tag>AI</tag>
         <tag>RAG</tag>
+        <tag>AI</tag>
         <tag>Text2SQL</tag>
       </tags>
   </entry>
@@ -1536,6 +1536,239 @@ print(tokenizer.decode(outputs[0]))
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>markdown-it 的扩展插件</title>
+    <url>/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<p>这些插件是 <code>markdown-it</code> 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：</p>
+<hr>
+<h3 id="1-markdown-it-footnote">1. <strong>markdown-it-footnote</strong></h3>
+<ul>
+<li>
+<p><strong>功能</strong>：支持脚注功能。</p>
+</li>
+<li>
+<p><strong>用法</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">这是一个带有脚注的文本[^footnote]。</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^footnote</span>]: <span class="link">这是脚注内容。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>效果</strong>：<br>
+这是一个带有脚注的文本<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
+</li>
+</ul>
+<hr>
+<span id="more"></span>
+<h3 id="2-markdown-it-sub">2. <strong>markdown-it-sub</strong></h3>
+<ul>
+<li><strong>功能</strong>：支持下标文本。</li>
+<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">H~2~O</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>效果</strong>：<br>
+H<sub>2</sub>O</li>
+</ul>
+<hr>
+<h3 id="3-markdown-it-sup">3. <strong>markdown-it-sup</strong></h3>
+<ul>
+<li><strong>功能</strong>：支持上标文本。</li>
+<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">2^10^ = 1024</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>效果</strong>：<br>
+2<sup>10</sup> = 1024</li>
+</ul>
+<hr>
+<h3 id="4-markdown-it-deflist">4. <strong>markdown-it-deflist</strong></h3>
+<ul>
+<li>
+<p><strong>功能</strong>：支持定义列表。</p>
+</li>
+<li>
+<p><strong>用法</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">术语 1</span><br><span class="line">: 定义 1</span><br><span class="line"></span><br><span class="line">术语 2</span><br><span class="line">: 定义 2</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>效果</strong>：<br>
+术语 1<br>
+: 定义 1</p>
+<dl>
+<dt>术语 2</dt>
+<dd>定义 2</dd>
+</dl>
+</li>
+</ul>
+<hr>
+<h3 id="5-markdown-it-abbr">5. <strong>markdown-it-abbr</strong></h3>
+<ul>
+<li>
+<p><strong>功能</strong>：支持缩写词。</p>
+</li>
+<li>
+<p><strong>用法</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*[HTML]: HyperText Markup Language</span></span><br><span class="line"><span class="emphasis">*</span>[W3C]: World Wide Web Consortium</span><br><span class="line"></span><br><span class="line">HTML 是 W3C 的标准。</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>效果</strong>：</p>
+<p><abbr title="HyperText Markup Language">HTML</abbr> 是 <abbr title="World Wide Web Consortium">W3C</abbr> 的标准。</p>
+</li>
+</ul>
+<hr>
+<h3 id="6-markdown-it-emoji">6. <strong>markdown-it-emoji</strong></h3>
+<ul>
+<li><strong>功能</strong>：支持 Emoji 表情。</li>
+<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">:smile: :heart: :rocket:</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>效果</strong>：<br>
+😄 ❤️ 🚀</li>
+</ul>
+<hr>
+<h3 id="7-markdown-it-container">7. <strong>markdown-it-container</strong></h3>
+<ul>
+<li>
+<p><strong>功能</strong>：支持自定义容器块。</p>
+</li>
+<li>
+<p><strong>用法</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">::: warning</span><br><span class="line">这是一个警告框。</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: tip</span><br><span class="line">这是一个提示框。</span><br><span class="line">:::</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>效果</strong>：<br>
+::: warning<br>
+这是一个警告框。<br>
+:::</p>
+<p>::: tip<br>
+这是一个提示框。<br>
+:::</p>
+</li>
+</ul>
+<hr>
+<h3 id="8-markdown-it-ins">8. <strong>markdown-it-ins</strong></h3>
+<ul>
+<li><strong>功能</strong>：支持插入文本（下划线）。</li>
+<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">++插入的文本++</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>效果</strong>：<br>
+<ins>插入的文本</ins></li>
+</ul>
+<hr>
+<h3 id="9-markdown-it-mark">9. <strong>markdown-it-mark</strong></h3>
+<ul>
+<li><strong>功能</strong>：支持高亮文本。</li>
+<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">==高亮的文本==</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>效果</strong>：<br>
+<mark>高亮的文本</mark></li>
+</ul>
+<hr>
+<h3 id="10-配置方法">10. <strong>配置方法</strong></h3>
+<p>在 <code>_config.yml</code> 中配置 <code>hexo-renderer-markdown-it</code> 插件时，可以启用这些插件。例如：</p>
+   <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-footnote</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sub</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sup</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-deflist</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-abbr</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-emoji</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-container</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-ins</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-mark</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="11-安装插件">11. <strong>安装插件</strong></h3>
+<p>运行以下命令安装这些插件：</p>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pnpm install markdown-it-footnote markdown-it-sub markdown-it-sup markdown-it-deflist markdown-it-abbr markdown-it-emoji markdown-it-container markdown-it-ins markdown-it-mark --save</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="12-总结">12. <strong>总结</strong></h3>
+<ul>
+<li>这些插件可以增强 Markdown 的功能，例如支持脚注、上下标、定义列表、Emoji 表情等。</li>
+<li>在 <code>_config.yml</code> 中配置 <code>hexo-renderer-markdown-it</code> 插件时，启用这些插件即可使用。</li>
+</ul>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>这是脚注内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+      <categories>
+        <category>自媒体</category>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+        <tag>Hexo</tag>
+        <tag>Markdown插件</tag>
+        <tag>自媒体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下使用certify申请SSL证书配置https访问</title>
+    <url>/2025/04/25/windows%E4%B8%8B%E4%BD%BF%E7%94%A8certify%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AEhttps%E8%AE%BF%E9%97%AE/</url>
+    <content><![CDATA[<h5 id="certbot-已停止windows维护（虽然目前官方仍在更新），推荐使用-Certify-the-Web-Certify-工具来管理-SSL-证书。以下是-Certify-的详细使用指南，适用于-Windows-服务器（如果是-Linux，建议仍用-certbot-或-acme-sh）。"><code>certbot</code> 已停止windows维护（虽然目前官方仍在更新），推荐使用 **Certify the Web (Certify)**工具来管理 SSL 证书。以下是 <strong>Certify 的详细使用指南</strong>，适用于 Windows 服务器（如果是 Linux，建议仍用 <code>certbot</code> 或 <code>acme.sh</code>）。</h5>
+<span id="more"></span>
+<hr>
+<h2 id="1-Certify-the-Web-简介"><strong>1. Certify the Web 简介</strong></h2>
+<ul>
+<li><strong>适用平台</strong>：Windows（IIS / 其他 Web 服务器）</li>
+<li><strong>功能</strong>：
+<ul>
+<li>自动申请 <strong>Let’s Encrypt</strong> 证书（免费）。</li>
+<li>支持 <strong>通配符证书</strong>（Wildcard SSL）。</li>
+<li>自动续期（无需手动操作）。</li>
+<li>支持 DNS API 验证（如阿里云DNS、Cloudflare等）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-安装-Certify-the-Web"><strong>2. 安装 Certify the Web</strong></h2>
+<h3 id="下载与安装"><strong>下载与安装</strong></h3>
+<ol>
+<li><strong>访问官网</strong>：<a href="https://certifytheweb.com/">Certify the Web</a></li>
+<li>下载并安装 <strong>Certify The Web</strong>（支持 Windows Server 2012+）。</li>
+</ol>
+<hr>
+<h2 id="3-配置-Certify"><strong>3. 配置 Certify</strong></h2>
+<h5 id="新建证书">新建证书</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425022603557.png" alt="image-20250425022603557"></p>
+<h5 id="配置验证方式">配置验证方式</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425023900503.png" alt="image-20250425023900503"></p>
+<h5 id="申请DNS-Access-Key">申请DNS Access Key</h5>
+<ul>
+<li>登录 <a href="https://ram.console.aliyun.com/users">阿里云RAM控制台</a>。</li>
+<li>创建 <strong>用户</strong>，赋予 <code>AliyunDNSFullAccess</code> 权限。</li>
+<li>在 Certify 中配置 <strong>AccessKey ID</strong> 和 <strong>AccessKey Secret</strong>。</li>
+<li>最后在Certify界面，点击 <strong>Request Certificate</strong> ，就能自动完成申请证书了</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425030239523.png" alt=""></p>
+<hr>
+<h2 id="4-自动续期"><strong>4. 自动续期</strong></h2>
+<ul>
+<li>Certify 默认会 <strong>自动续期</strong>（证书到期前 30 天）。</li>
+</ul>
+<hr>
+<h2 id="5-在-Nginx-中使用证书"><strong>5. 在 Nginx 中使用证书</strong></h2>
+<p>如果后端是 <strong>Nginx</strong>（非IIS），需导出证书：</p>
+<ol>
+<li>
+<p><strong>导出证书</strong>：</p>
+<ul>
+<li>按照下图操作完证书就保存到本地目录了：
+<ul>
+<li><code>cert.pem</code>（证书）</li>
+<li><code>privkey.pem</code>（私钥）<br>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425033111550.png" alt="image-20250425033111550"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>配置 Nginx</strong>：简单示例，配置好重启nginx，就可以使用域名访问nginx转发的端口了</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">    <span class="attribute">server_name</span> 域名;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span> /path/to/cert.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /path/to/privkey.pem;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 其他配置...</span></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://localhost:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="6-如果本地启用了clash代理，可以配置域名绕过代理"><strong>6. 如果本地启用了clash代理，可以配置域名绕过代理</strong></h2>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425034209450.png" alt="image-20250425034209450"></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>网络服务</category>
+      </categories>
+      <tags>
+        <tag>申请certify证书</tag>
+        <tag>SSL证书</tag>
+        <tag>配置https访问</tag>
+        <tag>clash配置域名绕过代理</tag>
+      </tags>
   </entry>
   <entry>
     <title>rag-lesson-1</title>
@@ -1627,114 +1860,6 @@ print(tokenizer.decode(outputs[0]))
       <tags>
         <tag>RAG</tag>
         <tag>AI,</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下使用certify申请SSL证书配置https访问</title>
-    <url>/2025/04/25/windows%E4%B8%8B%E4%BD%BF%E7%94%A8certify%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AEhttps%E8%AE%BF%E9%97%AE/</url>
-    <content><![CDATA[<h5 id="certbot-已停止windows维护（虽然目前官方仍在更新），推荐使用-Certify-the-Web-Certify-工具来管理-SSL-证书。以下是-Certify-的详细使用指南，适用于-Windows-服务器（如果是-Linux，建议仍用-certbot-或-acme-sh）。"><code>certbot</code> 已停止windows维护（虽然目前官方仍在更新），推荐使用 **Certify the Web (Certify)**工具来管理 SSL 证书。以下是 <strong>Certify 的详细使用指南</strong>，适用于 Windows 服务器（如果是 Linux，建议仍用 <code>certbot</code> 或 <code>acme.sh</code>）。</h5>
-<span id="more"></span>
-<hr>
-<h2 id="1-Certify-the-Web-简介"><strong>1. Certify the Web 简介</strong></h2>
-<ul>
-<li><strong>适用平台</strong>：Windows（IIS / 其他 Web 服务器）</li>
-<li><strong>功能</strong>：
-<ul>
-<li>自动申请 <strong>Let’s Encrypt</strong> 证书（免费）。</li>
-<li>支持 <strong>通配符证书</strong>（Wildcard SSL）。</li>
-<li>自动续期（无需手动操作）。</li>
-<li>支持 DNS API 验证（如阿里云DNS、Cloudflare等）。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="2-安装-Certify-the-Web"><strong>2. 安装 Certify the Web</strong></h2>
-<h3 id="下载与安装"><strong>下载与安装</strong></h3>
-<ol>
-<li><strong>访问官网</strong>：<a href="https://certifytheweb.com/">Certify the Web</a></li>
-<li>下载并安装 <strong>Certify The Web</strong>（支持 Windows Server 2012+）。</li>
-</ol>
-<hr>
-<h2 id="3-配置-Certify"><strong>3. 配置 Certify</strong></h2>
-<h5 id="新建证书">新建证书</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425022603557.png" alt="image-20250425022603557"></p>
-<h5 id="配置验证方式">配置验证方式</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425023900503.png" alt="image-20250425023900503"></p>
-<h5 id="申请DNS-Access-Key">申请DNS Access Key</h5>
-<ul>
-<li>登录 <a href="https://ram.console.aliyun.com/users">阿里云RAM控制台</a>。</li>
-<li>创建 <strong>用户</strong>，赋予 <code>AliyunDNSFullAccess</code> 权限。</li>
-<li>在 Certify 中配置 <strong>AccessKey ID</strong> 和 <strong>AccessKey Secret</strong>。</li>
-<li>最后在Certify界面，点击 <strong>Request Certificate</strong> ，就能自动完成申请证书了</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425030239523.png" alt=""></p>
-<hr>
-<h2 id="4-自动续期"><strong>4. 自动续期</strong></h2>
-<ul>
-<li>Certify 默认会 <strong>自动续期</strong>（证书到期前 30 天）。</li>
-</ul>
-<hr>
-<h2 id="5-在-Nginx-中使用证书"><strong>5. 在 Nginx 中使用证书</strong></h2>
-<p>如果后端是 <strong>Nginx</strong>（非IIS），需导出证书：</p>
-<ol>
-<li>
-<p><strong>导出证书</strong>：</p>
-<ul>
-<li>按照下图操作完证书就保存到本地目录了：
-<ul>
-<li><code>cert.pem</code>（证书）</li>
-<li><code>privkey.pem</code>（私钥）<br>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425033111550.png" alt="image-20250425033111550"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>配置 Nginx</strong>：简单示例，配置好重启nginx，就可以使用域名访问nginx转发的端口了</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">    <span class="attribute">server_name</span> 域名;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span> /path/to/cert.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /path/to/privkey.pem;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 其他配置...</span></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://localhost:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h2 id="6-如果本地启用了clash代理，可以配置域名绕过代理"><strong>6. 如果本地启用了clash代理，可以配置域名绕过代理</strong></h2>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425034209450.png" alt="image-20250425034209450"></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-        <category>网络服务</category>
-      </categories>
-      <tags>
-        <tag>申请certify证书</tag>
-        <tag>SSL证书</tag>
-        <tag>配置https访问</tag>
-        <tag>clash配置域名绕过代理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>zerotier内网穿透</title>
-    <url>/2025/04/25/zerotier%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</url>
-    <content><![CDATA[<h4 id="zerotier一个操作简单的基于p2p的内网穿透方案：地址：https-my-zerotier-com">zerotier一个操作简单的基于p2p的内网穿透方案：地址：<a href="https://my.zerotier.com/">https://my.zerotier.com/</a></h4>
-<span id="more"></span>
-<h5 id="注册账号，然后创建网络">注册账号，然后创建网络</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425010852000.png" alt="image-20250425010852000"></p>
-<h5 id="配置流程">配置流程</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425011141517.png" alt="image-20250425011141517"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012257861.png" alt="image-20250425012257861"></p>
-<h6 id="下载页面">下载页面</h6>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425011422200.png" alt="image-20250425011422200"></p>
-<h6 id="安装好程序后进行配置">安装好程序后进行配置</h6>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012021676.png" alt="image-20250425012021676"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012825093.png" alt="image-20250425012825093"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425013650003.png" alt="image-20250425013650003"></p>
-<h6 id="然后使用下图中的IP就可以访问本地端口了">然后使用下图中的IP就可以访问本地端口了</h6>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425014142640.png" alt="image-20250425014142640"></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-        <category>网络服务</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>内网穿透</tag>
       </tags>
   </entry>
   <entry>
@@ -2007,6 +2132,34 @@ print(tokenizer.decode(outputs[0]))
       </tags>
   </entry>
   <entry>
+    <title>zerotier内网穿透</title>
+    <url>/2025/04/25/zerotier%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</url>
+    <content><![CDATA[<h4 id="zerotier一个操作简单的基于p2p的内网穿透方案：地址：https-my-zerotier-com">zerotier一个操作简单的基于p2p的内网穿透方案：地址：<a href="https://my.zerotier.com/">https://my.zerotier.com/</a></h4>
+<span id="more"></span>
+<h5 id="注册账号，然后创建网络">注册账号，然后创建网络</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425010852000.png" alt="image-20250425010852000"></p>
+<h5 id="配置流程">配置流程</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425011141517.png" alt="image-20250425011141517"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012257861.png" alt="image-20250425012257861"></p>
+<h6 id="下载页面">下载页面</h6>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425011422200.png" alt="image-20250425011422200"></p>
+<h6 id="安装好程序后进行配置">安装好程序后进行配置</h6>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012021676.png" alt="image-20250425012021676"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012825093.png" alt="image-20250425012825093"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425013650003.png" alt="image-20250425013650003"></p>
+<h6 id="然后使用下图中的IP就可以访问本地端口了">然后使用下图中的IP就可以访问本地端口了</h6>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425014142640.png" alt="image-20250425014142640"></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>网络服务</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>内网穿透</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>升级 Dify</title>
     <url>/2025/03/19/%E5%8D%87%E7%BA%A7dify/</url>
     <content><![CDATA[<h4 id="将社区版迁移至-v1-x-x（0-15-x版本迁移至1-x-x版本）">将社区版迁移至 v1.x.x（0.15.x版本迁移至1.x.x版本）</h4>
@@ -2035,264 +2188,6 @@ print(tokenizer.decode(outputs[0]))
         <tag>dify</tag>
         <tag>rag</tag>
         <tag>agent</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>markdown-it 的扩展插件</title>
-    <url>/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/</url>
-    <content><![CDATA[<p>这些插件是 <code>markdown-it</code> 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：</p>
-<hr>
-<h3 id="1-markdown-it-footnote">1. <strong>markdown-it-footnote</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持脚注功能。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">这是一个带有脚注的文本[^footnote]。</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^footnote</span>]: <span class="link">这是脚注内容。</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：<br>
-这是一个带有脚注的文本<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>.</p>
-</li>
-</ul>
-<hr>
-<span id="more"></span>
-<h3 id="2-markdown-it-sub">2. <strong>markdown-it-sub</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持下标文本。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">H~2~O</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-H<sub>2</sub>O</li>
-</ul>
-<hr>
-<h3 id="3-markdown-it-sup">3. <strong>markdown-it-sup</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持上标文本。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">2^10^ = 1024</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-2<sup>10</sup> = 1024</li>
-</ul>
-<hr>
-<h3 id="4-markdown-it-deflist">4. <strong>markdown-it-deflist</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持定义列表。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">术语 1</span><br><span class="line">: 定义 1</span><br><span class="line"></span><br><span class="line">术语 2</span><br><span class="line">: 定义 2</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：<br>
-术语 1<br>
-: 定义 1</p>
-<dl>
-<dt>术语 2</dt>
-<dd>定义 2</dd>
-</dl>
-</li>
-</ul>
-<hr>
-<h3 id="5-markdown-it-abbr">5. <strong>markdown-it-abbr</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持缩写词。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="emphasis">*[HTML]: HyperText Markup Language</span></span><br><span class="line"><span class="emphasis">*</span>[W3C]: World Wide Web Consortium</span><br><span class="line"></span><br><span class="line">HTML 是 W3C 的标准。</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：</p>
-<p><abbr title="HyperText Markup Language">HTML</abbr> 是 <abbr title="World Wide Web Consortium">W3C</abbr> 的标准。</p>
-</li>
-</ul>
-<hr>
-<h3 id="6-markdown-it-emoji">6. <strong>markdown-it-emoji</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持 Emoji 表情。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">:smile: :heart: :rocket:</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-😄 ❤️ 🚀</li>
-</ul>
-<hr>
-<h3 id="7-markdown-it-container">7. <strong>markdown-it-container</strong></h3>
-<ul>
-<li>
-<p><strong>功能</strong>：支持自定义容器块。</p>
-</li>
-<li>
-<p><strong>用法</strong>：</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">::: warning</span><br><span class="line">这是一个警告框。</span><br><span class="line">:::</span><br><span class="line"></span><br><span class="line">::: tip</span><br><span class="line">这是一个提示框。</span><br><span class="line">:::</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>效果</strong>：<br>
-::: warning<br>
-这是一个警告框。<br>
-:::</p>
-<p>::: tip<br>
-这是一个提示框。<br>
-:::</p>
-</li>
-</ul>
-<hr>
-<h3 id="8-markdown-it-ins">8. <strong>markdown-it-ins</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持插入文本（下划线）。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">++插入的文本++</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-<ins>插入的文本</ins></li>
-</ul>
-<hr>
-<h3 id="9-markdown-it-mark">9. <strong>markdown-it-mark</strong></h3>
-<ul>
-<li><strong>功能</strong>：支持高亮文本。</li>
-<li><strong>用法</strong>：<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">==高亮的文本==</span><br></pre></td></tr></table></figure>
-</li>
-<li><strong>效果</strong>：<br>
-<mark>高亮的文本</mark></li>
-</ul>
-<hr>
-<h3 id="10-配置方法">10. <strong>配置方法</strong></h3>
-<p>在 <code>_config.yml</code> 中配置 <code>hexo-renderer-markdown-it</code> 插件时，可以启用这些插件。例如：</p>
-   <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-footnote</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sub</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sup</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-deflist</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-abbr</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-emoji</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-container</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-ins</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-mark</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="11-安装插件">11. <strong>安装插件</strong></h3>
-<p>运行以下命令安装这些插件：</p>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pnpm install markdown-it-footnote markdown-it-sub markdown-it-sup markdown-it-deflist markdown-it-abbr markdown-it-emoji markdown-it-container markdown-it-ins markdown-it-mark --save</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="12-总结">12. <strong>总结</strong></h3>
-<ul>
-<li>这些插件可以增强 Markdown 的功能，例如支持脚注、上下标、定义列表、Emoji 表情等。</li>
-<li>在 <code>_config.yml</code> 中配置 <code>hexo-renderer-markdown-it</code> 插件时，启用这些插件即可使用。</li>
-</ul>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>这是脚注内容。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
-]]></content>
-      <categories>
-        <category>自媒体</category>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-        <tag>Hexo</tag>
-        <tag>Markdown插件</tag>
-        <tag>自媒体</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多智能体框架ChatDev与MetaGPT介绍</title>
-    <url>/2025/03/21/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<p>ChatDev、MetaGPT 等多智能体框架是近年来在人工智能领域，特别是多智能体系统（Multi-Agent Systems, MAS）和生成式 AI 领域的重要进展。这些框架旨在通过多个智能体（Agents）的协作，完成复杂的任务或生成高质量的内容。以下是对这些框架的简要介绍和对比：</p>
-<hr>
-<span id="more"></span>
-<h3 id="1-ChatDev"><strong>1. ChatDev</strong></h3>
-<p>ChatDev 是一个基于多智能体协作的软件开发框架，专注于通过多个智能体的交互来自动化软件开发流程。它模拟了软件开发生命周期中的不同角色（如产品经理、开发人员、测试人员等），并通过智能体之间的对话和协作来完成软件开发任务。</p>
-<h4 id="特点："><strong>特点：</strong></h4>
-<ul>
-<li><strong>多角色智能体</strong>：每个智能体扮演不同的角色，模拟真实的软件开发团队。</li>
-<li><strong>对话驱动</strong>：智能体之间通过自然语言对话进行协作，生成代码、文档和测试用例。</li>
-<li><strong>自动化流程</strong>：从需求分析到代码生成、测试和部署，整个过程高度自动化。</li>
-<li><strong>可扩展性</strong>：支持自定义角色和任务，适应不同的开发需求。</li>
-</ul>
-<h4 id="应用场景："><strong>应用场景：</strong></h4>
-<ul>
-<li>自动化代码生成</li>
-<li>快速原型开发</li>
-<li>教育和培训（模拟软件开发流程）</li>
-</ul>
-<hr>
-<h3 id="2-MetaGPT"><strong>2. MetaGPT</strong></h3>
-<p>MetaGPT 是一个多智能体框架，旨在通过多个智能体的协作生成高质量的内容或解决复杂问题。它结合了生成式 AI 和多智能体系统的优势，能够处理更复杂的任务。</p>
-<h4 id="特点：-2"><strong>特点：</strong></h4>
-<ul>
-<li><strong>任务分解</strong>：将复杂任务分解为多个子任务，由不同的智能体分别处理。</li>
-<li><strong>协作生成</strong>：智能体之间通过协作生成内容，确保输出的准确性和一致性。</li>
-<li><strong>知识共享</strong>：智能体可以共享知识和上下文，提高整体效率。</li>
-<li><strong>模块化设计</strong>：支持灵活的任务分配和智能体配置。</li>
-</ul>
-<h4 id="应用场景：-2"><strong>应用场景：</strong></h4>
-<ul>
-<li>内容生成（如文章、报告、代码）</li>
-<li>复杂问题求解</li>
-<li>多领域知识整合</li>
-</ul>
-<hr>
-<h3 id="3-对比与总结"><strong>3. 对比与总结</strong></h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>ChatDev</th>
-<th>MetaGPT</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>核心目标</strong></td>
-<td>自动化软件开发</td>
-<td>多领域任务协作与内容生成</td>
-</tr>
-<tr>
-<td><strong>智能体角色</strong></td>
-<td>软件开发相关角色（如开发、测试）</td>
-<td>通用角色（可自定义）</td>
-</tr>
-<tr>
-<td><strong>协作方式</strong></td>
-<td>对话驱动</td>
-<td>任务分解与协作生成</td>
-</tr>
-<tr>
-<td><strong>应用领域</strong></td>
-<td>软件开发</td>
-<td>多领域（内容生成、问题求解等）</td>
-</tr>
-<tr>
-<td><strong>可扩展性</strong></td>
-<td>支持自定义角色</td>
-<td>高度模块化，灵活配置</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="4-其他多智能体框架"><strong>4. 其他多智能体框架</strong></h3>
-<p>除了 ChatDev 和 MetaGPT，还有一些其他多智能体框架值得关注：</p>
-<ul>
-<li><strong>AutoGPT</strong>：通过多智能体协作实现自动化任务执行。</li>
-<li><strong>LangChain</strong>：支持多智能体协作的框架，专注于语言模型的应用。</li>
-<li><strong>Camel</strong>：专注于多智能体对话和协作的研究框架。</li>
-</ul>
-<hr>
-<h3 id="5-未来发展方向"><strong>5. 未来发展方向</strong></h3>
-<p>多智能体框架的未来发展可能集中在以下方面：</p>
-<ul>
-<li><strong>更高效的协作机制</strong>：提高智能体之间的协作效率，减少冗余。</li>
-<li><strong>领域适应性</strong>：增强框架在不同领域的通用性和适应性。</li>
-<li><strong>人机协作</strong>：支持人类与智能体的无缝协作。</li>
-<li><strong>伦理与安全</strong>：确保多智能体系统的决策和行为符合伦理和安全标准。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>智能体</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>智能体</tag>
-        <tag>多智能体</tag>
-        <tag>ChatDev</tag>
-        <tag>MetaGPT</tag>
       </tags>
   </entry>
   <entry>
@@ -2407,6 +2302,263 @@ H<sub>2</sub>O</li>
         <tag>自媒体</tag>
         <tag>图表</tag>
         <tag>表情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多智能体框架ChatDev与MetaGPT介绍</title>
+    <url>/2025/03/21/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<p>ChatDev、MetaGPT 等多智能体框架是近年来在人工智能领域，特别是多智能体系统（Multi-Agent Systems, MAS）和生成式 AI 领域的重要进展。这些框架旨在通过多个智能体（Agents）的协作，完成复杂的任务或生成高质量的内容。以下是对这些框架的简要介绍和对比：</p>
+<hr>
+<span id="more"></span>
+<h3 id="1-ChatDev"><strong>1. ChatDev</strong></h3>
+<p>ChatDev 是一个基于多智能体协作的软件开发框架，专注于通过多个智能体的交互来自动化软件开发流程。它模拟了软件开发生命周期中的不同角色（如产品经理、开发人员、测试人员等），并通过智能体之间的对话和协作来完成软件开发任务。</p>
+<h4 id="特点："><strong>特点：</strong></h4>
+<ul>
+<li><strong>多角色智能体</strong>：每个智能体扮演不同的角色，模拟真实的软件开发团队。</li>
+<li><strong>对话驱动</strong>：智能体之间通过自然语言对话进行协作，生成代码、文档和测试用例。</li>
+<li><strong>自动化流程</strong>：从需求分析到代码生成、测试和部署，整个过程高度自动化。</li>
+<li><strong>可扩展性</strong>：支持自定义角色和任务，适应不同的开发需求。</li>
+</ul>
+<h4 id="应用场景："><strong>应用场景：</strong></h4>
+<ul>
+<li>自动化代码生成</li>
+<li>快速原型开发</li>
+<li>教育和培训（模拟软件开发流程）</li>
+</ul>
+<hr>
+<h3 id="2-MetaGPT"><strong>2. MetaGPT</strong></h3>
+<p>MetaGPT 是一个多智能体框架，旨在通过多个智能体的协作生成高质量的内容或解决复杂问题。它结合了生成式 AI 和多智能体系统的优势，能够处理更复杂的任务。</p>
+<h4 id="特点：-2"><strong>特点：</strong></h4>
+<ul>
+<li><strong>任务分解</strong>：将复杂任务分解为多个子任务，由不同的智能体分别处理。</li>
+<li><strong>协作生成</strong>：智能体之间通过协作生成内容，确保输出的准确性和一致性。</li>
+<li><strong>知识共享</strong>：智能体可以共享知识和上下文，提高整体效率。</li>
+<li><strong>模块化设计</strong>：支持灵活的任务分配和智能体配置。</li>
+</ul>
+<h4 id="应用场景：-2"><strong>应用场景：</strong></h4>
+<ul>
+<li>内容生成（如文章、报告、代码）</li>
+<li>复杂问题求解</li>
+<li>多领域知识整合</li>
+</ul>
+<hr>
+<h3 id="3-对比与总结"><strong>3. 对比与总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>ChatDev</th>
+<th>MetaGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心目标</strong></td>
+<td>自动化软件开发</td>
+<td>多领域任务协作与内容生成</td>
+</tr>
+<tr>
+<td><strong>智能体角色</strong></td>
+<td>软件开发相关角色（如开发、测试）</td>
+<td>通用角色（可自定义）</td>
+</tr>
+<tr>
+<td><strong>协作方式</strong></td>
+<td>对话驱动</td>
+<td>任务分解与协作生成</td>
+</tr>
+<tr>
+<td><strong>应用领域</strong></td>
+<td>软件开发</td>
+<td>多领域（内容生成、问题求解等）</td>
+</tr>
+<tr>
+<td><strong>可扩展性</strong></td>
+<td>支持自定义角色</td>
+<td>高度模块化，灵活配置</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="4-其他多智能体框架"><strong>4. 其他多智能体框架</strong></h3>
+<p>除了 ChatDev 和 MetaGPT，还有一些其他多智能体框架值得关注：</p>
+<ul>
+<li><strong>AutoGPT</strong>：通过多智能体协作实现自动化任务执行。</li>
+<li><strong>LangChain</strong>：支持多智能体协作的框架，专注于语言模型的应用。</li>
+<li><strong>Camel</strong>：专注于多智能体对话和协作的研究框架。</li>
+</ul>
+<hr>
+<h3 id="5-未来发展方向"><strong>5. 未来发展方向</strong></h3>
+<p>多智能体框架的未来发展可能集中在以下方面：</p>
+<ul>
+<li><strong>更高效的协作机制</strong>：提高智能体之间的协作效率，减少冗余。</li>
+<li><strong>领域适应性</strong>：增强框架在不同领域的通用性和适应性。</li>
+<li><strong>人机协作</strong>：支持人类与智能体的无缝协作。</li>
+<li><strong>伦理与安全</strong>：确保多智能体系统的决策和行为符合伦理和安全标准。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>智能体</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>智能体</tag>
+        <tag>多智能体</tag>
+        <tag>ChatDev</tag>
+        <tag>MetaGPT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>快速上手MCP</title>
+    <url>/2025/05/14/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8BMCP/</url>
+    <content><![CDATA[<h2 id="1-MCP入门介绍">1. MCP入门介绍</h2>
+<ul>
+<li>MCP，全称是Model Context Protocol，模型上下文协议，由Claude母公司Anthropic于去年11月正式提出。
+<ul>
+<li>Anthropic MCP发布通告：<a href="https://www.anthropic.com/news/model-context-protocol">https://www.anthropic.com/news/model-context-protocol</a></li>
+<li>MCP GitHub主页：<a href="https://github.com/modelcontextprotocol">https://github.com/modelcontextprotocol</a></li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>总的来说 <strong>MCP解决的最大痛点，就是Agent开发中调用外部工具的技术门槛过高的问题。</strong>
+<ul>
+<li>我们都知道，<strong>能调用外部工具，是大模型进化为智能体Agent的关键</strong>，如果不能使用外部工具，大模型就只能是个简单的聊天机器人，甚至连查询天气都做不到。由于底层技术限制啊，大模型本身是无法和外部工具直接通信的，因此 <strong>Function calling</strong> 的思路，就是创建一个外部函数（function）作为中介，一边传递大模型的请求，另一边调用外部工具，最终让大模型能够间接的调用外部工具。</li>
+<li>MCP客户端对MCP服务器上的工具调用流程如下：
+<ul>
+<li><strong>Step 1. 建立和服务器的通信</strong>；</li>
+<li><strong>Step 2. 查询服务器上总共有多少个外部工具；</strong></li>
+<li><strong>Step 3. 将外部工具组成列表，带入到当前对话中；</strong></li>
+<li><strong>Step 4. 借助Function calling进行外部工具调用。</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154429464.png" alt="image-20250515154429464"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154406481.png" alt="image-20250515154406481"></p>
+<h4 id="MCP技术本质：Function-calling的更高层实现">MCP技术本质：Function calling的更高层实现</h4>
+<p>​         而近一段时间大火的MCP技术，其实就可以将其理解为Function calling技术的更高层封装和实现。传统的Function calling技术要求围绕不同的外部工具API单独创建一个外部函数，类似一把锁单独配一把钥匙，而一个智能体又往往涉及到多个外部工具设计，因此开发工作量很大。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154333871.png" alt="image-20250515154333871"></p>
+<p>而MCP技术，全称为Model Context Protocol，模型上下文协议，是一种开发者共同遵守的协议，在这个协议框架下，大家围绕某个API开发的外部工具就能够共用，从而大幅减少重复造轮子的时间。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154310284.png" alt="image-20250515154310284"></p>
+<h2 id="2-MCP服务器集合">2. MCP服务器集合</h2>
+<ul>
+<li>MCP官方服务器合集：<a href="https://github.com/modelcontextprotocol/servers">https://github.com/modelcontextprotocol/servers</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154222173.png" alt="image-20250515154222173"></p>
+<ul>
+<li>MCP Github热门导航：<a href="https://github.com/punkpeye/awesome-mcp-servers">https://github.com/punkpeye/awesome-mcp-servers</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154154901.png" alt="image-20250515154154901"></p>
+<ul>
+<li>Smithery：<a href="https://smithery.ai/">https://smithery.ai/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154128451.png" alt="image-20250515154128451"></p>
+<ul>
+<li>MCP导航：<a href="https://mcp.so/">https://mcp.so/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154033905.png" alt="image-20250515154033905"></p>
+<ul>
+<li>Composio 托管的 MCP 服务器: <a href="https://mcp.composio.dev/">https://mcp.composio.dev/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154000165.png" alt="image-20250515154000165"></p>
+<ul>
+<li>Zapier 托管的 MCP 服务器: <a href="https://actions.zapier.com/settings/mcp">https://actions.zapier.com/settings/mcp</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153934030.png" alt="image-20250515153934030"></p>
+<ul>
+<li>modelscope魔搭社区 mcp 广场：<a href="https://www.modelscope.cn/mcp">https://www.modelscope.cn/mcp</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153903975.png" alt="image-20250515153903975"></p>
+<h2 id="3-MCP目前热门客户端软件">3. MCP目前热门客户端软件</h2>
+<ul>
+<li>Cursor： <a href="https://www.cursor.com/cn">https://www.cursor.com/cn</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153753652.png" alt="image-20250515153753652"></p>
+<ul>
+<li>Claude Desktop： <a href="https://claude.ai/download">https://claude.ai/download</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153717742.png" alt="image-20250515153717742"></p>
+<ul>
+<li>Cherry Studio：<a href="https://www.cherry-ai.com/">https://www.cherry-ai.com/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153644985.png" alt="image-20250515153644985"></p>
+<ul>
+<li>Cline： <a href="https://cline.bot/">https://cline.bot/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515152400387.png" alt="image-20250515152400387"></p>
+<ul>
+<li>dify中基于MCP策略的Agent或MCP插件工具</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515152256956.png" alt="image-20250515152256956"></p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>Agent</category>
+        <category>MCP</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>大模型</tag>
+        <tag>MCP</tag>
+        <tag>Function Call</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>翻墙机场推荐（魔法上网）</title>
+    <url>/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
+<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
+<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
+<span id="more"></span>
+<ul>
+<li>
+<p>第一个 牡牛网：<a href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
+<ul>
+<li>
+<p>邀请码：mdSU</p>
+</li>
+<li>
+<p>推荐安装网页底部的Clash软件</p>
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
+</ul>
+</li>
+<li>
+<p>进入页面有详细安装教程，按照步骤操作就行</p>
+</li>
+<li>
+<p>资费：</p>
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>第二个 Radial VPN: <a href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
+<ul>
+<li>下载官网软件按着操作就行</li>
+<li>资费：
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>翻墙机场,</tag>
+        <tag>魔法上网</tag>
       </tags>
   </entry>
   <entry>
@@ -2582,158 +2734,6 @@ H<sub>2</sub>O</li>
         <tag>AI</tag>
         <tag>大模型</tag>
         <tag>生成模型方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>翻墙机场推荐（魔法上网）</title>
-    <url>/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
-<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
-<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
-<span id="more"></span>
-<ul>
-<li>
-<p>第一个 牡牛网：<a href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
-<ul>
-<li>
-<p>邀请码：mdSU</p>
-</li>
-<li>
-<p>推荐安装网页底部的Clash软件</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
-</ul>
-</li>
-<li>
-<p>进入页面有详细安装教程，按照步骤操作就行</p>
-</li>
-<li>
-<p>资费：</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>第二个 Radial VPN: <a href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
-<ul>
-<li>下载官网软件按着操作就行</li>
-<li>资费：
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具</category>
-        <category>网络</category>
-      </categories>
-      <tags>
-        <tag>翻墙机场,</tag>
-        <tag>魔法上网</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>快速上手MCP</title>
-    <url>/2025/05/14/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8BMCP/</url>
-    <content><![CDATA[<h2 id="1-MCP入门介绍">1. MCP入门介绍</h2>
-<ul>
-<li>MCP，全称是Model Context Protocol，模型上下文协议，由Claude母公司Anthropic于去年11月正式提出。
-<ul>
-<li>Anthropic MCP发布通告：<a href="https://www.anthropic.com/news/model-context-protocol">https://www.anthropic.com/news/model-context-protocol</a></li>
-<li>MCP GitHub主页：<a href="https://github.com/modelcontextprotocol">https://github.com/modelcontextprotocol</a></li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>总的来说 <strong>MCP解决的最大痛点，就是Agent开发中调用外部工具的技术门槛过高的问题。</strong>
-<ul>
-<li>我们都知道，<strong>能调用外部工具，是大模型进化为智能体Agent的关键</strong>，如果不能使用外部工具，大模型就只能是个简单的聊天机器人，甚至连查询天气都做不到。由于底层技术限制啊，大模型本身是无法和外部工具直接通信的，因此 <strong>Function calling</strong> 的思路，就是创建一个外部函数（function）作为中介，一边传递大模型的请求，另一边调用外部工具，最终让大模型能够间接的调用外部工具。</li>
-<li>MCP客户端对MCP服务器上的工具调用流程如下：
-<ul>
-<li><strong>Step 1. 建立和服务器的通信</strong>；</li>
-<li><strong>Step 2. 查询服务器上总共有多少个外部工具；</strong></li>
-<li><strong>Step 3. 将外部工具组成列表，带入到当前对话中；</strong></li>
-<li><strong>Step 4. 借助Function calling进行外部工具调用。</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWJiMjExOTI5MjBmNjhkNGIxM2Q2NzAxM2Q5NDgxNGVfblA4OUx5MUJpa3NkSzh3WDlDcnFaUGp1UVpCWHVLSUtfVG9rZW46VnZrV2I4WlZQb2dGZDJ4TDJiWWN0N0Mwbk9mXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=MzY2NmYzMGNjYWFmODM3ZGI3YjlmMDc3ZTVlYTBjZWJfVzRhalNzeDZkeTBVSU1wQUc3VEZRMkptcjQxT3ZUQjRfVG9rZW46WjBRcWJMTWtxb01aRzR4MlkwU2M3d2FNbnJmXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<h4 id="MCP技术本质：Function-calling的更高层实现">MCP技术本质：Function calling的更高层实现</h4>
-<p>​         而近一段时间大火的MCP技术，其实就可以将其理解为Function calling技术的更高层封装和实现。传统的Function calling技术要求围绕不同的外部工具API单独创建一个外部函数，类似一把锁单独配一把钥匙，而一个智能体又往往涉及到多个外部工具设计，因此开发工作量很大。</p>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=YzFlNTA2YzQ1N2FkMTEyOGJkNTgyNGJjNGYyMDZiOTRfMXZHeERjYVh0akJEb3JKeHo2TnFmcjlWZ0EwRFN6RTFfVG9rZW46TW82c2JEdHNqb2hIdXB4VlZEZWNteUFXbllkXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<p>而MCP技术，全称为Model Context Protocol，模型上下文协议，是一种开发者共同遵守的协议，在这个协议框架下，大家围绕某个API开发的外部工具就能够共用，从而大幅减少重复造轮子的时间。</p>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjQxMDcyNjkwODkwOTZhNmRiMGQzNDM1YzA5M2UxNTlfUlc2c0Z0NmU4VGp3Nm9UeWRvZWlOY2VQeU82amwzbnRfVG9rZW46VGZaaWJlZ2Y5b1RwR094YzVUUWNObk9Zbk5kXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<h2 id="2-MCP服务器集合">2. MCP服务器集合</h2>
-<ul>
-<li>MCP官方服务器合集：<a href="https://github.com/modelcontextprotocol/servers">https://github.com/modelcontextprotocol/servers</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=MTYwMzY3ZTMzYjVkYjY0OTI4MWFjNmQ1N2VmNDU1MmZfdGFXYkNKTXZXNHFyMXB2WE94cHlyRkZJSWN6YTZGRDBfVG9rZW46TVEwZ2JsbFBNb3VvdGJ4QVd5cWN6WVRRbjliXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<ul>
-<li>MCP Github热门导航：<a href="https://github.com/punkpeye/awesome-mcp-servers">https://github.com/punkpeye/awesome-mcp-servers</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=NDBkYjlmYmY1MjRlY2I2NzYzOTg2ODBiNTE5YjUyM2JfYTQ5ZUR6SmFxV0NTQU5RS0JyendBZFZzVFpRUU4zaHhfVG9rZW46VzRUa2JjQ1F3bzNneDZ4MUNtdmN1ZjhublhlXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<ul>
-<li>Smithery：<a href="https://smithery.ai/">https://smithery.ai/</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=MmQ5NTJlN2M1Njc3Y2IyODlhM2QwZmNlMTY1YTBlZTlfTEZpRFV2V3BGMUVEY2FEVURBM0t1eGpYZkE5NnlIdVRfVG9rZW46R0VpUGJBeXZ0b3AzMEh4eVp6M2NZNldYbmxlXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<ul>
-<li>MCP导航：<a href="https://mcp.so/">https://mcp.so/</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=OWNkMDAyMWMzNzk5ZjFlYjI2ZDY1MWY0N2UzMjUzYTJfRkV4djlpQ1h4S3VQU3lpNmltSDhrSG9CbllVYUprQUlfVG9rZW46VVNMVGJuWUprb0txOHl4MEFmUWNjNjlRbldmXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<ul>
-<li>Composio 托管的 MCP 服务器: <a href="https://mcp.composio.dev/">https://mcp.composio.dev/</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=NWUyYTE2ZTQyMzI1NzgzNjE0NmU5NzMwZGMyMDczMTNfVHZxakF5N2FYQUlzbDhiaGhUVTBVamxQa1J5Mm84UklfVG9rZW46WllQS2I3aU1Wb2tyTnN4REkyVGNJUDVBblljXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<ul>
-<li>Zapier 托管的 MCP 服务器: <a href="https://actions.zapier.com/settings/mcp">https://actions.zapier.com/settings/mcp</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=NmNiYzMxMTVjNTA4M2FiYzIzYzUwOWI5YTcwZTM1Y2VfYkl0dk9VNDFRQ3ZrV0twSk1WaDA2eXpNSUxjTkllTVJfVG9rZW46U2UyOGJlRzl3b0tYckJ4N2QySGNXeVF2bjJmXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<ul>
-<li>modelscope魔搭社区 mcp 广场：<a href="https://www.modelscope.cn/mcp">https://www.modelscope.cn/mcp</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=NjJhYWU5MTc1MGEwZTZjYmY4MTQxYmM0ZmM4NjA5ZWVfS0Z1Q3pxd0ZxdW10eTFVcHdmN3Z5Y3lMTEdJMEFzaGNfVG9rZW46UkFoSWJMamVLb0d6Y0l4cVlCc2N2UlVxbmhnXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<h2 id="3-MCP目前热门客户端软件">3. MCP目前热门客户端软件</h2>
-<ul>
-<li>Cursor： <a href="https://www.cursor.com/cn">https://www.cursor.com/cn</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=MjA5OTMyNGI0NGQzZDJjZTM2YjI3OTc0NjM0MmYyYzdfdVJXWVdvTkN5SktuUjhkcmlaelBDZUFqTWRXUUtuZERfVG9rZW46WmxoYmJoTzdHb2NQakx4c2JQU2NDTWlNbjBnXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<ul>
-<li>Claude Desktop： <a href="https://claude.ai/download">https://claude.ai/download</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=NGQyYTYwMmZkMDY4YTIzOGIyYzVmNDllMDA5YjBhY2ZfbVNRem9oVVFoOUZMc1EwOHp3ZUNMWHRnM0JGZWFXelJfVG9rZW46TU1lSWJrZ1VVb0tKeWl4U1RIaGNJZjg5bkNoXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<ul>
-<li>Cherry Studio：<a href="https://www.cherry-ai.com/">https://www.cherry-ai.com/</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=MjVjMTIyYjBlYzA4YjAwN2YwZjEyZGEyNmM4ZjFiN2JfOVg5d2tHaDE2aGUxbGxsOUdZbzZ0cGVNaWpGOEx6SllfVG9rZW46WHVncmJWaXZNb3RJeGJ4N2VDdGNKamxwbktiXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<ul>
-<li>Cline： <a href="https://cline.bot/">https://cline.bot/</a></li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=OGEwOTVkMmIyYTQyNGVkZDFmNWQ1M2UwNmZlMDk5OTJfTWxRb1kzeFQ4cXNyZmtWN2YxcjlOMmFuYXV3TVJzdnBfVG9rZW46R2M3dmJtRHpxb1poUGl4SUxYZGNrM2dxbjVlXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-<ul>
-<li>dify中基于MCP策略的Agent或MCP插件工具</li>
-</ul>
-<p><img src="https://za1q0ft5t7.feishu.cn/space/api/box/stream/download/asynccode/?code=YzI5MjUxYjM2MzBhNTdiMjgzMjAxOThkZmJmMzdiOGVfeko1OTFYSmF6cENtSTdKTHowWFBjSzJzekZvUG9RZk5fVG9rZW46SnlDNmJwNEwzb1YwdUh4QkdJU2NjOVlNbnpoXzE3NDcyMjMzMjA6MTc0NzIyNjkyMF9WNA" alt="img"></p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>Agent</category>
-        <category>MCP</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>Agent</tag>
-        <tag>大模型</tag>
-        <tag>MCP</tag>
-        <tag>Function Call</tag>
       </tags>
   </entry>
   <entry>
