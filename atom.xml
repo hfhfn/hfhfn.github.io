@@ -222,9 +222,9 @@
     <category term="Text2SQL" scheme="http://example.com/categories/AI/RAG/Text2SQL/"/>
     
     
-    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
-    
     <category term="AI" scheme="http://example.com/tags/AI/"/>
+    
+    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
     <category term="Text2SQL" scheme="http://example.com/tags/Text2SQL/"/>
     
@@ -401,9 +401,9 @@
     
     <category term="生成" scheme="http://example.com/tags/%E7%94%9F%E6%88%90/"/>
     
-    <category term="generate" scheme="http://example.com/tags/generate/"/>
-    
     <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
+    
+    <category term="generate" scheme="http://example.com/tags/generate/"/>
     
   </entry>
   
@@ -434,9 +434,9 @@
     
     <category term="生成" scheme="http://example.com/tags/%E7%94%9F%E6%88%90/"/>
     
-    <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
-    
     <category term="大模型" scheme="http://example.com/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="提示词" scheme="http://example.com/tags/%E6%8F%90%E7%A4%BA%E8%AF%8D/"/>
     
   </entry>
   
