@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2025-05-15T07:45:10.821Z</updated>
+  <updated>2025-06-04T11:52:29.355Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,60 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>微信接入LLM或工作流</title>
+    <link href="http://example.com/2025/06/04/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%85%A5LLM%E6%88%96%E5%B7%A5%E4%BD%9C%E6%B5%81/"/>
+    <id>http://example.com/2025/06/04/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%85%A5LLM%E6%88%96%E5%B7%A5%E4%BD%9C%E6%B5%81/</id>
+    <published>2025-06-04T11:49:00.000Z</published>
+    <updated>2025-06-04T11:52:29.355Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;1-WeChatPadPro-连接微信的工具&quot;&gt;1. WeChatPadPro 连接微信的工具&lt;/h3&gt;
+&lt;p&gt;项目地址：&lt;a href=&quot;https://github.com/WeChatPadPro/WeChatPadPro&quot;&gt;https://github.com/WeChatPadPro/WeChatPadPro&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;WeChatPadPro部署文档：&lt;a href=&quot;https://astrbot.app/deploy/platform/wechat/wechatpadpro.html&quot;&gt;https://astrbot.app/deploy/platform/wechat/wechatpadpro.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;默认登陆url：&lt;a href=&quot;http://localhost:38849&quot;&gt;http://localhost:38849&lt;/a&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="http://example.com/categories/AI/"/>
+    
+    <category term="Agent" scheme="http://example.com/categories/AI/Agent/"/>
+    
+    <category term="微信" scheme="http://example.com/categories/AI/Agent/%E5%BE%AE%E4%BF%A1/"/>
+    
+    
+    <category term="dify" scheme="http://example.com/tags/dify/"/>
+    
+    <category term="微信" scheme="http://example.com/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+    <category term="wechatpadpro" scheme="http://example.com/tags/wechatpadpro/"/>
+    
+    <category term="astrbot" scheme="http://example.com/tags/astrbot/"/>
+    
+    <category term="llm" scheme="http://example.com/tags/llm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2025/05/30/hello-world/"/>
+    <id>http://example.com/2025/05/30/hello-world/</id>
+    <published>2025-05-30T06:22:44.894Z</published>
+    <updated>2025-03-05T04:39:34.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>快速上手MCP</title>
     <link href="http://example.com/2025/05/14/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8BMCP/"/>
     <id>http://example.com/2025/05/14/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8BMCP/</id>
     <published>2025-05-14T09:15:00.000Z</published>
-    <updated>2025-05-15T07:45:10.821Z</updated>
+    <updated>2025-05-15T07:45:10.000Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;1-MCP入门介绍&quot;&gt;1. MCP入门介绍&lt;/h2&gt;
@@ -60,7 +109,7 @@
     <link href="http://example.com/2025/04/25/windows%E4%B8%8B%E4%BD%BF%E7%94%A8certify%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AEhttps%E8%AE%BF%E9%97%AE/"/>
     <id>http://example.com/2025/04/25/windows%E4%B8%8B%E4%BD%BF%E7%94%A8certify%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AEhttps%E8%AE%BF%E9%97%AE/</id>
     <published>2025-04-24T18:16:00.000Z</published>
-    <updated>2025-04-24T19:44:59.090Z</updated>
+    <updated>2025-04-24T19:44:59.000Z</updated>
     
     
     <summary type="html">&lt;h5 id=&quot;certbot-已停止windows维护（虽然目前官方仍在更新），推荐使用-Certify-the-Web-Certify-工具来管理-SSL-证书。以下是-Certify-的详细使用指南，适用于-Windows-服务器（如果是-Linux，建议仍用-certbot-或-acme-sh）。&quot;&gt;&lt;code&gt;certbot&lt;/code&gt; 已停止windows维护（虽然目前官方仍在更新），推荐使用 **Certify the Web (Certify)**工具来管理 SSL 证书。以下是 &lt;strong&gt;Certify 的详细使用指南&lt;/strong&gt;，适用于 Windows 服务器（如果是 Linux，建议仍用 &lt;code&gt;certbot&lt;/code&gt; 或 &lt;code&gt;acme.sh&lt;/code&gt;）。&lt;/h5&gt;</summary>
@@ -87,7 +136,7 @@
     <link href="http://example.com/2025/04/25/%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/"/>
     <id>http://example.com/2025/04/25/%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/</id>
     <published>2025-04-24T17:55:00.000Z</published>
-    <updated>2025-04-24T18:14:21.608Z</updated>
+    <updated>2025-04-24T18:14:21.000Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;申请到自己的域名后，解析到内网穿透的IP，实现本地服务的访问&quot;&gt;申请到自己的域名后，解析到内网穿透的IP，实现本地服务的访问&lt;/h4&gt;</summary>
@@ -108,7 +157,7 @@
     <link href="http://example.com/2025/04/25/zerotier%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
     <id>http://example.com/2025/04/25/zerotier%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</id>
     <published>2025-04-24T17:04:00.000Z</published>
-    <updated>2025-04-24T17:46:37.449Z</updated>
+    <updated>2025-04-24T17:46:37.000Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;zerotier一个操作简单的基于p2p的内网穿透方案：地址：https-my-zerotier-com&quot;&gt;zerotier一个操作简单的基于p2p的内网穿透方案：地址：&lt;a href=&quot;https://my.zerotier.com/&quot;&gt;https://my.zerotier.com/&lt;/a&gt;&lt;/h4&gt;</summary>
@@ -131,7 +180,7 @@
     <link href="http://example.com/2025/04/14/%E5%B8%B8%E7%94%A8%E7%9A%84Unicode%E5%9B%BE%E6%A0%87%E6%88%96Emoji%E7%AE%80%E7%A0%81/"/>
     <id>http://example.com/2025/04/14/%E5%B8%B8%E7%94%A8%E7%9A%84Unicode%E5%9B%BE%E6%A0%87%E6%88%96Emoji%E7%AE%80%E7%A0%81/</id>
     <published>2025-04-14T12:51:00.000Z</published>
-    <updated>2025-04-14T12:52:35.373Z</updated>
+    <updated>2025-04-14T12:52:35.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;在 Markdown 中，你可以使用 &lt;strong&gt;Unicode 字符&lt;/strong&gt; 或 &lt;strong&gt;Emoji 简码&lt;/strong&gt; 来插入各种常用图标。以下是一些常见的分类整理，适用于文档、链接、提示等场景：&lt;/p&gt;
@@ -158,7 +207,7 @@
     <link href="http://example.com/2025/04/04/Text2SQL%E7%9A%84%E5%BA%94%E7%94%A8/"/>
     <id>http://example.com/2025/04/04/Text2SQL%E7%9A%84%E5%BA%94%E7%94%A8/</id>
     <published>2025-04-03T21:03:00.000Z</published>
-    <updated>2025-04-05T06:35:42.069Z</updated>
+    <updated>2025-04-05T06:35:42.000Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;基本原理剖析&quot;&gt;基本原理剖析&lt;/h3&gt;
@@ -186,7 +235,7 @@
     <link href="http://example.com/2025/04/01/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82RAG%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"/>
     <id>http://example.com/2025/04/01/%E4%B8%80%E6%96%87%E7%9C%8B%E6%87%82RAG%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</id>
     <published>2025-04-01T04:38:00.000Z</published>
-    <updated>2025-04-01T14:32:36.240Z</updated>
+    <updated>2025-04-01T14:32:36.000Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;1-大语言模型（LLM）的局限性&quot;&gt;1. 大语言模型（LLM）的局限性&lt;/h2&gt;
@@ -219,7 +268,7 @@
     <link href="http://example.com/2025/03/28/RAG%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/"/>
     <id>http://example.com/2025/03/28/RAG%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/</id>
     <published>2025-03-27T23:35:00.000Z</published>
-    <updated>2025-03-28T03:57:35.648Z</updated>
+    <updated>2025-03-28T03:57:35.000Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：&quot;&gt;之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：&lt;/h4&gt;
@@ -300,7 +349,7 @@
     <link href="http://example.com/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/"/>
     <id>http://example.com/2025/03/25/LangChain%E9%93%BE%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E7%A4%BA%E4%BE%8B/</id>
     <published>2025-03-25T08:19:00.000Z</published>
-    <updated>2025-03-25T08:33:31.517Z</updated>
+    <updated>2025-03-25T08:33:31.000Z</updated>
     
     
     <summary type="html">&lt;h1&gt;LangChain 中的链（Chains）类型及示例&lt;/h1&gt;
@@ -331,7 +380,7 @@
     <link href="http://example.com/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/"/>
     <id>http://example.com/2025/03/23/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%B7%A5%E7%A8%8B/</id>
     <published>2025-03-22T23:34:00.000Z</published>
-    <updated>2025-03-23T03:15:16.765Z</updated>
+    <updated>2025-03-23T03:15:16.000Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;提示词概述&quot;&gt;提示词概述&lt;/h4&gt;
@@ -363,7 +412,7 @@
     <link href="http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9/"/>
     <id>http://example.com/2025/03/22/RAG%E7%94%9F%E6%88%90%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9/</id>
     <published>2025-03-22T09:31:00.000Z</published>
-    <updated>2025-03-22T12:46:10.395Z</updated>
+    <updated>2025-03-22T12:46:10.000Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;RAG的生成流程&quot;&gt;RAG的生成流程&lt;/h4&gt;
@@ -396,7 +445,7 @@
     <link href="http://example.com/2025/03/21/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E4%BB%8B%E7%BB%8D/"/>
     <id>http://example.com/2025/03/21/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E4%BB%8B%E7%BB%8D/</id>
     <published>2025-03-21T09:14:00.000Z</published>
-    <updated>2025-03-21T09:19:29.401Z</updated>
+    <updated>2025-03-21T09:19:29.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;ChatDev、MetaGPT 等多智能体框架是近年来在人工智能领域，特别是多智能体系统（Multi-Agent Systems, MAS）和生成式 AI 领域的重要进展。这些框架旨在通过多个智能体（Agents）的协作，完成复杂的任务或生成高质量的内容。以下是对这些框架的简要介绍和对比：&lt;/p&gt;
@@ -426,7 +475,7 @@
     <link href="http://example.com/2025/03/19/%E5%8D%87%E7%BA%A7dify/"/>
     <id>http://example.com/2025/03/19/%E5%8D%87%E7%BA%A7dify/</id>
     <published>2025-03-19T02:09:00.000Z</published>
-    <updated>2025-03-27T01:17:59.648Z</updated>
+    <updated>2025-03-27T01:17:59.000Z</updated>
     
     
       
@@ -455,7 +504,7 @@
     <link href="http://example.com/2025/03/19/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E9%87%8D%E6%8E%92%E5%BA%8F/"/>
     <id>http://example.com/2025/03/19/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E9%87%8D%E6%8E%92%E5%BA%8F/</id>
     <published>2025-03-19T01:20:00.000Z</published>
-    <updated>2025-03-21T07:12:16.809Z</updated>
+    <updated>2025-03-21T07:12:16.000Z</updated>
     
     
     <summary type="html">&lt;h4 id=&quot;重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。&quot;&gt;重排序（Reranking）的目的是将混合检索的结果进行整合，并将与用户问题语义最契合的结果排在前列。&lt;/h4&gt;
@@ -485,7 +534,7 @@
     <link href="http://example.com/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/"/>
     <id>http://example.com/2025/03/12/RAG%E6%A3%80%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E6%B7%B7%E5%90%88%E6%A3%80%E7%B4%A2/</id>
     <published>2025-03-12T02:04:00.000Z</published>
-    <updated>2025-03-12T06:31:56.299Z</updated>
+    <updated>2025-03-12T06:31:56.000Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;为什么需要混合检索？&quot;&gt;为什么需要混合检索？&lt;/h3&gt;
@@ -517,7 +566,7 @@
     <link href="http://example.com/2025/03/11/RAG%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%90%91%E9%87%8F%E5%BA%93/"/>
     <id>http://example.com/2025/03/11/RAG%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%90%91%E9%87%8F%E5%BA%93/</id>
     <published>2025-03-11T03:00:00.000Z</published>
-    <updated>2025-03-11T04:00:36.163Z</updated>
+    <updated>2025-03-11T04:00:36.000Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;在前面的课程中，我们已经学习了-RAG-检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。&quot;&gt;在前面的课程中，我们已经学习了 RAG 检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。&lt;/h3&gt;
@@ -547,7 +596,7 @@
     <link href="http://example.com/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/"/>
     <id>http://example.com/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/</id>
     <published>2025-03-10T03:01:00.000Z</published>
-    <updated>2025-03-10T07:07:49.869Z</updated>
+    <updated>2025-03-10T07:07:49.000Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;嵌入模型（Embedding-Model）负责将文本数据映射到高维向量空间中，将输入的文档片段转换为对应的嵌入向量（embedding-vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量，这些向量用于在向量数据库中通过向量检索（Vector-Retrieval）匹配最相似的文档片段。根据不同的场景需求，评估并选择最优的嵌入模型，以确保-RAG-的检索性能符合要求。&quot;&gt;&lt;mark&gt;嵌入模型（Embedding Model）负责将文本数据映射到高维向量空间中&lt;/mark&gt;，将输入的文档片段转换为对应的嵌入向量（embedding vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。&lt;mark&gt;用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量&lt;/mark&gt;，这些向量用于在向量数据库中通过向量检索（Vector Retrieval）匹配最相似的文档片段。根据不同的场景需求，&lt;mark&gt;评估并选择最优的嵌入模型&lt;/mark&gt;，以确保 RAG 的检索性能符合要求。&lt;/h3&gt;</summary>
@@ -578,7 +627,7 @@
     <link href="http://example.com/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/"/>
     <id>http://example.com/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/</id>
     <published>2025-03-09T02:52:00.000Z</published>
-    <updated>2025-03-09T02:57:26.481Z</updated>
+    <updated>2025-03-09T02:57:26.000Z</updated>
     
     
     <summary type="html">&lt;p&gt;这些插件是 &lt;code&gt;markdown-it&lt;/code&gt; 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：&lt;/p&gt;
@@ -613,115 +662,6 @@
     <category term="Markdown插件" scheme="http://example.com/tags/Markdown%E6%8F%92%E4%BB%B6/"/>
     
     <category term="自媒体" scheme="http://example.com/tags/%E8%87%AA%E5%AA%92%E4%BD%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RAG索引（二）：分块策略</title>
-    <link href="http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
-    <id>http://example.com/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/</id>
-    <published>2025-03-08T17:00:00.000Z</published>
-    <updated>2025-03-09T00:05:56.762Z</updated>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使-RAG-系统能够高效处理和精准检索这些片段信息。&quot;&gt;文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。&lt;/h3&gt;
-&lt;h3 id=&quot;选择适合特定场景的分块策略是提升-RAG-系统召回率的关键。&quot;&gt;选择适合特定场景的分块策略是提升 RAG 系统召回率的关键。&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h4 id=&quot;为什么说分块很重要？&quot;&gt;为什么说分块很重要？&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;分块的目标在于确保每个片段在&lt;strong&gt;保留核心语义&lt;/strong&gt;的同时，具备&lt;strong&gt;相对独立的语义完整性&lt;/strong&gt;，从而使模型在处理时不必依赖广泛的上下文信息，&lt;strong&gt;增强检索召回的准确性&lt;/strong&gt;。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;分块的重要性在于&lt;/strong&gt;它直接影响 RAG 系统的生成质量。首先，合理的分块能够确保&lt;strong&gt;检索到的片段与用户查询信息高度匹配&lt;/strong&gt;，避免信息冗余或丢失。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;好的分块有助于提升生成内容的连贯性&lt;/strong&gt;，精心设计的独立语义片段可以&lt;strong&gt;降低模型对上下文的依赖&lt;/strong&gt;，从而增强生成的逻辑性与一致性。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;分块策略的选择还会&lt;strong&gt;影响系统的响应速度与效率&lt;/strong&gt;，模型能够更快、更准确地处理和生成内容。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h4 id=&quot;分块策略最大的挑战在于确定分块的大小。&quot;&gt;分块策略最大的挑战在于确定分块的大小。&lt;/h4&gt;</summary>
-    
-    
-    
-    <category term="AI" scheme="http://example.com/categories/AI/"/>
-    
-    <category term="RAG" scheme="http://example.com/categories/AI/RAG/"/>
-    
-    <category term="索引" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/"/>
-    
-    <category term="分块策略" scheme="http://example.com/categories/AI/RAG/%E7%B4%A2%E5%BC%95/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
-    
-    
-    <category term="RAG" scheme="http://example.com/tags/RAG/"/>
-    
-    <category term="langchain" scheme="http://example.com/tags/langchain/"/>
-    
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
-    
-    <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
-    
-    <category term="分块策略" scheme="http://example.com/tags/%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/"/>
-    
-    <category term="Chunk" scheme="http://example.com/tags/Chunk/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Manus 首款通用AI智能体</title>
-    <link href="http://example.com/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/"/>
-    <id>http://example.com/2025/03/07/Manus-%E9%A6%96%E6%AC%BE%E9%80%9A%E7%94%A8AI%E6%99%BA%E8%83%BD%E4%BD%93/</id>
-    <published>2025-03-07T03:33:00.000Z</published>
-    <updated>2025-03-07T05:52:07.849Z</updated>
-    
-    
-    <summary type="html">&lt;h1&gt;做AI场景的知识分享，尤其是涉及头部的智能体平台，我前面主要介绍了Dify的使用，这里就不得不提这两天各种关于 Manus 炸裂的新闻。&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h2 id=&quot;首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。&quot;&gt;首先说清楚，我没拿到邀请码，申请的时候网站还崩了，所以我在官网看了下效果并查看了其他博主演示视频。&lt;/h2&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h3 id=&quot;说说我的想法&quot;&gt;说说我的想法&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h3 id=&quot;第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。&quot;&gt;第一点，Manus如果公测或者正式发布，效果不打折扣，那么它确实能从本质上帮助普通用户几乎没有门槛的使用AI技术。带来的可能是很多领域将实现技术平权。&lt;/h3&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h3 id=&quot;再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。&quot;&gt;再来说第二点，很快国内的大厂应该就会推出同类产品，市场将出现Agent技术的一次跃升。&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;从目前头部的几个集成平台说起：&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;字节的扣子&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;积累了大量的开发者和插件，再加上火山引擎算力支持，完全有能力实现弯道超车。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Dify&lt;/strong&gt;&lt;br&gt;
-一个可以私有化部署的开源框架，已经有很多企业和个人搭建了自己的AI平台，整合出一个通用Agent也是早晚得事。&lt;/li&gt;
-&lt;li&gt;再者还有腾讯的元宝或者说元器平台也是有机会的。&lt;/li&gt;
-&lt;li&gt;这里面因为Manus这种产品形态对算力要求太高了，所以大厂有资源不会放过这个机会。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="AI" scheme="http://example.com/categories/AI/"/>
-    
-    <category term="Agent" scheme="http://example.com/categories/AI/Agent/"/>
-    
-    
-    <category term="AI" scheme="http://example.com/tags/AI/"/>
-    
-    <category term="Agent" scheme="http://example.com/tags/Agent/"/>
-    
-    <category term="Manus" scheme="http://example.com/tags/Manus/"/>
-    
-    <category term="智能体" scheme="http://example.com/tags/%E6%99%BA%E8%83%BD%E4%BD%93/"/>
     
   </entry>
   

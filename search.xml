@@ -377,6 +377,123 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
+    <title>RAG向量数据库原理与常用向量库</title>
+    <url>/2025/03/11/RAG%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%90%91%E9%87%8F%E5%BA%93/</url>
+    <content><![CDATA[<h3 id="在前面的课程中，我们已经学习了-RAG-检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。">在前面的课程中，我们已经学习了 RAG 检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。</h3>
+<h3 id="在人工智能（AI）主导的时代，文字、图像、语音、视频等多模态数据的复杂性显著增加。由于这些数据具有非结构化和多维特征，向量表示能够有效表示语义和捕捉其潜在的语义关系，促使向量数据库成为存储、检索和分析高维数据向量的关键工具。">在人工智能（AI）主导的时代，文字、图像、语音、视频等多模态数据的复杂性显著增加。由于这些数据具有非结构化和多维特征，向量表示能够有效表示语义和捕捉其潜在的语义关系，促使向量数据库成为存储、检索和分析高维数据向量的关键工具。</h3>
+<span id="more"></span>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311110709348.png" alt="image-20250311110709348"></p>
+<h4 id="下图展示了向量数据库的分类，依据是否开源与是否为专用向量数据库，将其分为四类。">下图展示了向量数据库的分类，依据是否开源与是否为专用向量数据库，将其分为四类。</h4>
+<ol>
+<li>第一类是开源的专用向量数据库，如 Chroma、Vespa、LanceDB、Marqo、Qdrant 和 Milvus，这些数据库专门设计用于处理向量数据。</li>
+<li>第二类是支持向量搜索的开源数据库，如 OpenSearch、PostgreSQL、ClickHouse 和 Cassandra，它们是常规数据库，但支持向量搜索功能。</li>
+<li>第三类是商用的专用向量数据库，如 Weaviate 和 Pinecone，它们专门用于处理向量数据，但属于商业产品或通过商业许可获得源码。</li>
+<li>第四类是支持向量搜索的商用数据库，如 Elasticsearch、Redis、Rockset 和 SingleStore，这些常规数据库支持向量搜索功能，同时属于商业产品或可通过商业许可获得源码。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311110911756.png" alt="image-20250311110911756"></p>
+<h3 id="为什么需要向量数据库？">为什么需要向量数据库？</h3>
+<p><strong>传统数据库通常分为关系型（SQL）数据库和非关系型（NoSQL）数据库</strong>，其中存储复杂、非结构化或半结构化信息的需求主要依赖于非关系型数据库的能力。<strong>图中展示了三种非关系型数据库类型与向量数据库</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311111250193.png" alt="image-20250311111250193"></p>
+<ol>
+<li>键值数据库（Key-Value）：通常用于简单的数据存储，通过键来快速访问数据。</li>
+<li>文档数据库（Document）：用于存储文档结构的数据，如 JSON 格式。</li>
+<li>图数据库（Graph）：用于表示和存储复杂的关系数据，常用于社交网络、推荐等场景。</li>
+<li>向量数据库（Vector）：用于存储和检索基于向量表示的数据，用于 AI 模型的高维度和复杂的嵌入向量。</li>
+</ol>
+<h4 id="那在什么场景下该选择什么样的数据库呢？">那在什么场景下该选择什么样的数据库呢？</h4>
+<ul>
+<li>
+<p>举个例子，如果你想要找到一本特定的书，只需通过书名来精准定位信息，键值数据库是最理想的选择。而如果你需要查询一本书的详细章节内容、作者简介等复杂的结构化信息，文档数据库则更为适用。</p>
+</li>
+<li>
+<p>如果你的目标是了解书籍之间的推荐关系，或者探索作者之间的合作网络，图数据库可以高效存储和查询这些复杂的关系数据。</p>
+</li>
+<li>
+<p>最后，如果你希望找到与某本书内容相似的书籍，比如基于主题、风格等特征进行相似性搜索，向量数据库则能够通过计算书籍内容语义在向量空间中的距离，为你提供语义最相关的数据信息。</p>
+</li>
+<li>
+<p>向量数据库的核心在于其能够基于向量之间的相似性，快速、精确地定位和检索数据。这类数据库不仅为向量嵌入提供了优化的存储和查询功能，同时也继承了传统数据库的诸多优势，如性能、可扩展性和灵活性，满足了充分利用大规模数据的需求。相比之下，传统的基于标量的数据库由于无法应对数据复杂性和规模化处理的挑战，难以有效提取洞察并实现实时分析。</p>
+</li>
+</ul>
+<h4 id="向量数据库的主要优势体现在以下几个方面：">向量数据库的主要优势体现在以下几个方面：</h4>
+<ol>
+<li>数据管理：向量数据库提供了易于使用的数据存储功能，如插入、删除和更新操作。与独立的向量索引工具（如 Faiss）相比，这使得向量数据的管理和维护更加简便，因为 Faiss 需要额外的工作才能与存储解决方案集成。</li>
+<li>元数据存储和筛选：向量数据库能够<strong>存储与每个向量条目关联的元数据</strong>，用户可以基于这些元数据进行更细粒度的查询，从而提升查询的精确度和灵活性。</li>
+<li>可扩展性：向量数据库设计旨在应对不断增长的数据量和用户需求，支持分布式和并行处理，并通过无服务器架构优化大规模场景下的成本。</li>
+<li>实时更新：向量数据库通常支持实时数据更新，允许动态修改数据以确保检索结果的时效性和准确性。</li>
+<li>备份与恢复：向量数据库具备完善的备份机制，能够处理数据库中所有数据的例行备份操作，确保数据的安全性与持久性。</li>
+<li>生态系统集成：向量数据库能够与数据处理生态系统中的其他组件（如 ETL 管道中的 Spark、分析工具如 Tableau 和 Segment、可视化平台如 Grafana）轻松集成，从而简化数据管理工作流程。此外，它还能够无缝集成 AI 相关工具，如 <strong>LangChain、LlamaIndex</strong> 和 Cohere，进一步增强其应用潜力。</li>
+<li>数据安全与访问控制：向量数据库通常提供内置的数据安全功能和访问控制机制，以保护敏感信息。通过命名空间实现的多租户管理，允许用户对索引进行完全分区，甚至可以在各自的索引中创建完全隔离的分区，确保数据的安全性和访问的灵活性。</li>
+</ol>
+<p>由于其上述特性，向量数据库可以广泛应用于 <strong>LLM RAG 系统</strong>、推荐系统、异常检测、计算机视觉、自然语言处理等多种 AI 产品生产场景中。</p>
+<p>综上所述，向量数据库是一类专门为生产场景下的向量嵌入管理而构建的数据库。与传统的基于标量的数据库及独立的向量索引相比，向量数据库在性能、可扩展性、安全性和生态系统集成等方面展现了显著的优势，为现代数据管理提供了强有力的支持。</p>
+<h4 id="向量数据库是如何工作的？">向量数据库是如何工作的？</h4>
+<ul>
+<li>
+<p>向量数据库是一种专门用于存储和检索多维向量的数据库类型，与传统的基于行列结构的数据库不同，它主要处理高维空间中的数据点。<strong>传统数据库通常处理字符串、数字等标量数据，并通过<mark>精确匹配</mark>来查询数据</strong>。然而，<strong>向量数据库的操作逻辑则是基于<mark>相似性搜索</mark></strong>，即在查询时，应用特定的相似性度量（如余弦相似度、欧几里得距离等）来查找与查询向量最相似的向量。</p>
+</li>
+<li>
+<p>向量数据库的核心在于其高效的索引和搜索机制。为了优化查询性能，它采用了如哈希、量化和基于图形的多种算法。这些算法通过构建如<strong>层次化可导航小世界（HNSW）图、产品量化（PQ）和位置敏感哈希（LSH）等索引结构</strong>，显著提升了查询速度。这种搜索过程并非追求绝对精确，而是<strong>通过近似最近邻（ANN）算法在速度与准确性之间进行权衡</strong>，从而实现快速响应。</p>
+</li>
+<li>
+<p>向量数据库的索引结构可以理解为一种预处理步骤，类似于为图书馆中的书籍编制索引，方便快速找到所需内容。HNSW 图通过在多层结构中将相似向量连接在一起，快速缩小搜索范围。PQ 则通过压缩高维向量，减少内存占用并加速检索，而 LSH 则通过哈希函数将相似向量聚集在一起，便于快速定位。</p>
+</li>
+<li>
+<p>向量数据库的搜索机制不是追求精确匹配，而是通过近似最近邻（ANN）算法在速度与准确性之间找到最佳平衡。ANN 算法通过允许一定程度的误差，在显著提高搜索速度的同时，依然能够找到与查询相似度较高的向量。这种策略对于需要实时、高精度响应的应用场景尤为重要。</p>
+</li>
+</ul>
+<h5 id="向量数据库的工作流程涵盖了从向量存储、向量索引到最终检索的多环节操作，确保在复杂的数据环境中实现高效的存储、索引和相似性搜索。具体流程如下：">向量数据库的工作流程涵盖了从向量存储、向量索引到最终检索的多环节操作，确保在复杂的数据环境中实现高效的存储、索引和相似性搜索。具体流程如下：</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311112811861.png" alt="image-20250311112811861"></p>
+<ol>
+<li><strong>数据处理与向量化</strong>：原始数据首先被处理并转化为向量嵌入。这一步通过嵌入模型实现，模型利用深度学习算法提取数据的语义特征，生成适合后续处理的高维向量表示。</li>
+<li><strong>向量存储</strong>：转化后的向量嵌入存储在数据库中。这一环节确保数据在高效检索的同时，能够以优化的方式管理和维护存储资源，以适应不同规模和复杂度的应用需求。</li>
+<li><strong>向量索引</strong>：存储的向量嵌入需要经过索引处理，以便在后续查询中快速定位相关数据。索引过程通过构建特定的结构，使得数据库能够在大规模数据集上实现高效的查询响应。</li>
+<li><strong>向量搜索</strong>：在接收到查询后，数据库通过已建立的索引结构执行相似性搜索，找出与查询向量最为接近的数据点。这一阶段的重点在于平衡搜索的速度与准确性，确保在大数据环境下提供快速且相关的查询结果。常见的向量搜索方法包括余弦相似度、欧几里得距离和曼哈顿距离。其中，<strong>余弦相似度主要用于文本处理和信息检索</strong>，关注向量之间的角度，以捕捉语义相似性；欧几里得距离则测量向量之间的实际距离，适用于密集特征集的聚类或分类；而曼哈顿距离则通过计算笛卡尔坐标中的绝对差值之和，适用于稀疏数据的处理。</li>
+<li><strong>数据检索</strong>：最后，数据库从匹配的向量中检索出对应的原始数据，并根据特定的需求进行必要的后处理。这一步骤确保最终结果能够准确反映用户的查询意图，并提供有意义的输出。</li>
+</ol>
+<p>在 RAG 系统中，向量数据库起着重要的作用。其主要功能在于索引过程中，<strong>建立高效的向量索引结构</strong>，以便快速定位与查询相关的向量数据。在查询阶段，系统将输入的提示转化为向量表示形式，并从数据库中<strong>检索出与之最相关的向量及其对应的分块数据</strong>。通过这种索引和检索机制，检索到的向量为生成模型提供了必要的上下文信息，使模型能够依据当前的语义上下文生成更加精准和相关的响应。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311114141538.png" alt="image-20250311114141538"></p>
+<h3 id="常用的向量数据库">常用的向量数据库</h3>
+<p>下面列出十个目前主流的向量数据库，展示其数据库链接、介绍、优点与缺点。根据开发者具体的使用场景和技术需求，选择最适合的向量数据库解决方案是关键。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311114333810.png" alt="image-20250311114333810"></p>
+<p>根据上面所示特点：</p>
+<ul>
+<li>对于需要快速开发和轻量化部署的项目，Chroma、Qdrant 是不错的选择。</li>
+<li>而对于追求高性能和可扩展性的企业级应用，可以考虑 Milvus/Zilliz。</li>
+<li>FAISS 是适合对性能有极致要求、不要求持久化和数据管理的场景。</li>
+<li>Weaviate、LanceDB 在处理多模态数据方面表现突出，适用于需要管理多种数据类型（如图像、文本、音频等）的 AI 应用。</li>
+<li>如果需要无缝集成现有数据库并进行向量搜索，PGVector、Elasticsearch、Redis 是理想的方案。</li>
+<li>而不希望管理基础设施的用户则可以选择 Pinecone 这样的全托管服务。</li>
+</ul>
+<h3 id="向量数据库实战">向量数据库实战</h3>
+<ul>
+<li>
+<p>在实战中，我们使用 Chroma 作为 RAG 项目的向量库，以替代原先无法持久化的 Faiss 库。</p>
+</li>
+<li>
+<p>Chroma 是一种简单且易于持久化的向量数据库，它以轻量级、开箱即用的特性著称。Chroma 支持内存中操作和磁盘持久化，能够高效地管理和查询向量数据，非常适合快速集成和开发。其设计简洁且不需要复杂的配置，使开发者能够专注于核心功能的实现而无需担心底层存储的复杂性。</p>
+</li>
+</ul>
+<ol>
+<li>引入 Chroma 向量数据库 chromadb，引入 uuid 模块用于为每个文本块生成唯一的 ID。</li>
+<li>在 main 方法中，创建了 Chroma 本地存储实例 client 和存储集合 collection，实例数据库存储在项目根目录 rag_learning/chroma_db 下，数据存储在 documents 集合中。</li>
+<li>在 indexing_process 方法中，将文档切块后的文本块的 ID、嵌入向量和原始文本块内容存储到 ChromaDB 的 documents 集合中。</li>
+<li>在 retrieval_process 方法中，使用 Chroma 向量数据库检索与查询（query）最相似的 top_k 个文本块。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>索引/检索</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>向量数据库</tag>
+        <tag>检索</tag>
+        <tag>索引</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RAG优化技术</title>
     <url>/2025/03/28/RAG%E4%BC%98%E5%8C%96%E6%8A%80%E6%9C%AF/</url>
     <content><![CDATA[<h4 id="之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：">之前的课程我们已经学完了RAG的完整流程，这里先做个回顾：</h4>
@@ -542,123 +659,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>优化</tag>
         <tag>检索精度</tag>
         <tag>检索效率</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RAG向量数据库原理与常用向量库</title>
-    <url>/2025/03/11/RAG%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%90%91%E9%87%8F%E5%BA%93/</url>
-    <content><![CDATA[<h3 id="在前面的课程中，我们已经学习了-RAG-检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。">在前面的课程中，我们已经学习了 RAG 检索流程中如何将文档数据解析、分块并转换为嵌入向量的操作。本节课将进一步掌握如何存储这些向量及其文档元数据，并高效地进行相似度检索。</h3>
-<h3 id="在人工智能（AI）主导的时代，文字、图像、语音、视频等多模态数据的复杂性显著增加。由于这些数据具有非结构化和多维特征，向量表示能够有效表示语义和捕捉其潜在的语义关系，促使向量数据库成为存储、检索和分析高维数据向量的关键工具。">在人工智能（AI）主导的时代，文字、图像、语音、视频等多模态数据的复杂性显著增加。由于这些数据具有非结构化和多维特征，向量表示能够有效表示语义和捕捉其潜在的语义关系，促使向量数据库成为存储、检索和分析高维数据向量的关键工具。</h3>
-<span id="more"></span>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311110709348.png" alt="image-20250311110709348"></p>
-<h4 id="下图展示了向量数据库的分类，依据是否开源与是否为专用向量数据库，将其分为四类。">下图展示了向量数据库的分类，依据是否开源与是否为专用向量数据库，将其分为四类。</h4>
-<ol>
-<li>第一类是开源的专用向量数据库，如 Chroma、Vespa、LanceDB、Marqo、Qdrant 和 Milvus，这些数据库专门设计用于处理向量数据。</li>
-<li>第二类是支持向量搜索的开源数据库，如 OpenSearch、PostgreSQL、ClickHouse 和 Cassandra，它们是常规数据库，但支持向量搜索功能。</li>
-<li>第三类是商用的专用向量数据库，如 Weaviate 和 Pinecone，它们专门用于处理向量数据，但属于商业产品或通过商业许可获得源码。</li>
-<li>第四类是支持向量搜索的商用数据库，如 Elasticsearch、Redis、Rockset 和 SingleStore，这些常规数据库支持向量搜索功能，同时属于商业产品或可通过商业许可获得源码。</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311110911756.png" alt="image-20250311110911756"></p>
-<h3 id="为什么需要向量数据库？">为什么需要向量数据库？</h3>
-<p><strong>传统数据库通常分为关系型（SQL）数据库和非关系型（NoSQL）数据库</strong>，其中存储复杂、非结构化或半结构化信息的需求主要依赖于非关系型数据库的能力。<strong>图中展示了三种非关系型数据库类型与向量数据库</strong>：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311111250193.png" alt="image-20250311111250193"></p>
-<ol>
-<li>键值数据库（Key-Value）：通常用于简单的数据存储，通过键来快速访问数据。</li>
-<li>文档数据库（Document）：用于存储文档结构的数据，如 JSON 格式。</li>
-<li>图数据库（Graph）：用于表示和存储复杂的关系数据，常用于社交网络、推荐等场景。</li>
-<li>向量数据库（Vector）：用于存储和检索基于向量表示的数据，用于 AI 模型的高维度和复杂的嵌入向量。</li>
-</ol>
-<h4 id="那在什么场景下该选择什么样的数据库呢？">那在什么场景下该选择什么样的数据库呢？</h4>
-<ul>
-<li>
-<p>举个例子，如果你想要找到一本特定的书，只需通过书名来精准定位信息，键值数据库是最理想的选择。而如果你需要查询一本书的详细章节内容、作者简介等复杂的结构化信息，文档数据库则更为适用。</p>
-</li>
-<li>
-<p>如果你的目标是了解书籍之间的推荐关系，或者探索作者之间的合作网络，图数据库可以高效存储和查询这些复杂的关系数据。</p>
-</li>
-<li>
-<p>最后，如果你希望找到与某本书内容相似的书籍，比如基于主题、风格等特征进行相似性搜索，向量数据库则能够通过计算书籍内容语义在向量空间中的距离，为你提供语义最相关的数据信息。</p>
-</li>
-<li>
-<p>向量数据库的核心在于其能够基于向量之间的相似性，快速、精确地定位和检索数据。这类数据库不仅为向量嵌入提供了优化的存储和查询功能，同时也继承了传统数据库的诸多优势，如性能、可扩展性和灵活性，满足了充分利用大规模数据的需求。相比之下，传统的基于标量的数据库由于无法应对数据复杂性和规模化处理的挑战，难以有效提取洞察并实现实时分析。</p>
-</li>
-</ul>
-<h4 id="向量数据库的主要优势体现在以下几个方面：">向量数据库的主要优势体现在以下几个方面：</h4>
-<ol>
-<li>数据管理：向量数据库提供了易于使用的数据存储功能，如插入、删除和更新操作。与独立的向量索引工具（如 Faiss）相比，这使得向量数据的管理和维护更加简便，因为 Faiss 需要额外的工作才能与存储解决方案集成。</li>
-<li>元数据存储和筛选：向量数据库能够<strong>存储与每个向量条目关联的元数据</strong>，用户可以基于这些元数据进行更细粒度的查询，从而提升查询的精确度和灵活性。</li>
-<li>可扩展性：向量数据库设计旨在应对不断增长的数据量和用户需求，支持分布式和并行处理，并通过无服务器架构优化大规模场景下的成本。</li>
-<li>实时更新：向量数据库通常支持实时数据更新，允许动态修改数据以确保检索结果的时效性和准确性。</li>
-<li>备份与恢复：向量数据库具备完善的备份机制，能够处理数据库中所有数据的例行备份操作，确保数据的安全性与持久性。</li>
-<li>生态系统集成：向量数据库能够与数据处理生态系统中的其他组件（如 ETL 管道中的 Spark、分析工具如 Tableau 和 Segment、可视化平台如 Grafana）轻松集成，从而简化数据管理工作流程。此外，它还能够无缝集成 AI 相关工具，如 <strong>LangChain、LlamaIndex</strong> 和 Cohere，进一步增强其应用潜力。</li>
-<li>数据安全与访问控制：向量数据库通常提供内置的数据安全功能和访问控制机制，以保护敏感信息。通过命名空间实现的多租户管理，允许用户对索引进行完全分区，甚至可以在各自的索引中创建完全隔离的分区，确保数据的安全性和访问的灵活性。</li>
-</ol>
-<p>由于其上述特性，向量数据库可以广泛应用于 <strong>LLM RAG 系统</strong>、推荐系统、异常检测、计算机视觉、自然语言处理等多种 AI 产品生产场景中。</p>
-<p>综上所述，向量数据库是一类专门为生产场景下的向量嵌入管理而构建的数据库。与传统的基于标量的数据库及独立的向量索引相比，向量数据库在性能、可扩展性、安全性和生态系统集成等方面展现了显著的优势，为现代数据管理提供了强有力的支持。</p>
-<h4 id="向量数据库是如何工作的？">向量数据库是如何工作的？</h4>
-<ul>
-<li>
-<p>向量数据库是一种专门用于存储和检索多维向量的数据库类型，与传统的基于行列结构的数据库不同，它主要处理高维空间中的数据点。<strong>传统数据库通常处理字符串、数字等标量数据，并通过<mark>精确匹配</mark>来查询数据</strong>。然而，<strong>向量数据库的操作逻辑则是基于<mark>相似性搜索</mark></strong>，即在查询时，应用特定的相似性度量（如余弦相似度、欧几里得距离等）来查找与查询向量最相似的向量。</p>
-</li>
-<li>
-<p>向量数据库的核心在于其高效的索引和搜索机制。为了优化查询性能，它采用了如哈希、量化和基于图形的多种算法。这些算法通过构建如<strong>层次化可导航小世界（HNSW）图、产品量化（PQ）和位置敏感哈希（LSH）等索引结构</strong>，显著提升了查询速度。这种搜索过程并非追求绝对精确，而是<strong>通过近似最近邻（ANN）算法在速度与准确性之间进行权衡</strong>，从而实现快速响应。</p>
-</li>
-<li>
-<p>向量数据库的索引结构可以理解为一种预处理步骤，类似于为图书馆中的书籍编制索引，方便快速找到所需内容。HNSW 图通过在多层结构中将相似向量连接在一起，快速缩小搜索范围。PQ 则通过压缩高维向量，减少内存占用并加速检索，而 LSH 则通过哈希函数将相似向量聚集在一起，便于快速定位。</p>
-</li>
-<li>
-<p>向量数据库的搜索机制不是追求精确匹配，而是通过近似最近邻（ANN）算法在速度与准确性之间找到最佳平衡。ANN 算法通过允许一定程度的误差，在显著提高搜索速度的同时，依然能够找到与查询相似度较高的向量。这种策略对于需要实时、高精度响应的应用场景尤为重要。</p>
-</li>
-</ul>
-<h5 id="向量数据库的工作流程涵盖了从向量存储、向量索引到最终检索的多环节操作，确保在复杂的数据环境中实现高效的存储、索引和相似性搜索。具体流程如下：">向量数据库的工作流程涵盖了从向量存储、向量索引到最终检索的多环节操作，确保在复杂的数据环境中实现高效的存储、索引和相似性搜索。具体流程如下：</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311112811861.png" alt="image-20250311112811861"></p>
-<ol>
-<li><strong>数据处理与向量化</strong>：原始数据首先被处理并转化为向量嵌入。这一步通过嵌入模型实现，模型利用深度学习算法提取数据的语义特征，生成适合后续处理的高维向量表示。</li>
-<li><strong>向量存储</strong>：转化后的向量嵌入存储在数据库中。这一环节确保数据在高效检索的同时，能够以优化的方式管理和维护存储资源，以适应不同规模和复杂度的应用需求。</li>
-<li><strong>向量索引</strong>：存储的向量嵌入需要经过索引处理，以便在后续查询中快速定位相关数据。索引过程通过构建特定的结构，使得数据库能够在大规模数据集上实现高效的查询响应。</li>
-<li><strong>向量搜索</strong>：在接收到查询后，数据库通过已建立的索引结构执行相似性搜索，找出与查询向量最为接近的数据点。这一阶段的重点在于平衡搜索的速度与准确性，确保在大数据环境下提供快速且相关的查询结果。常见的向量搜索方法包括余弦相似度、欧几里得距离和曼哈顿距离。其中，<strong>余弦相似度主要用于文本处理和信息检索</strong>，关注向量之间的角度，以捕捉语义相似性；欧几里得距离则测量向量之间的实际距离，适用于密集特征集的聚类或分类；而曼哈顿距离则通过计算笛卡尔坐标中的绝对差值之和，适用于稀疏数据的处理。</li>
-<li><strong>数据检索</strong>：最后，数据库从匹配的向量中检索出对应的原始数据，并根据特定的需求进行必要的后处理。这一步骤确保最终结果能够准确反映用户的查询意图，并提供有意义的输出。</li>
-</ol>
-<p>在 RAG 系统中，向量数据库起着重要的作用。其主要功能在于索引过程中，<strong>建立高效的向量索引结构</strong>，以便快速定位与查询相关的向量数据。在查询阶段，系统将输入的提示转化为向量表示形式，并从数据库中<strong>检索出与之最相关的向量及其对应的分块数据</strong>。通过这种索引和检索机制，检索到的向量为生成模型提供了必要的上下文信息，使模型能够依据当前的语义上下文生成更加精准和相关的响应。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311114141538.png" alt="image-20250311114141538"></p>
-<h3 id="常用的向量数据库">常用的向量数据库</h3>
-<p>下面列出十个目前主流的向量数据库，展示其数据库链接、介绍、优点与缺点。根据开发者具体的使用场景和技术需求，选择最适合的向量数据库解决方案是关键。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250311114333810.png" alt="image-20250311114333810"></p>
-<p>根据上面所示特点：</p>
-<ul>
-<li>对于需要快速开发和轻量化部署的项目，Chroma、Qdrant 是不错的选择。</li>
-<li>而对于追求高性能和可扩展性的企业级应用，可以考虑 Milvus/Zilliz。</li>
-<li>FAISS 是适合对性能有极致要求、不要求持久化和数据管理的场景。</li>
-<li>Weaviate、LanceDB 在处理多模态数据方面表现突出，适用于需要管理多种数据类型（如图像、文本、音频等）的 AI 应用。</li>
-<li>如果需要无缝集成现有数据库并进行向量搜索，PGVector、Elasticsearch、Redis 是理想的方案。</li>
-<li>而不希望管理基础设施的用户则可以选择 Pinecone 这样的全托管服务。</li>
-</ul>
-<h3 id="向量数据库实战">向量数据库实战</h3>
-<ul>
-<li>
-<p>在实战中，我们使用 Chroma 作为 RAG 项目的向量库，以替代原先无法持久化的 Faiss 库。</p>
-</li>
-<li>
-<p>Chroma 是一种简单且易于持久化的向量数据库，它以轻量级、开箱即用的特性著称。Chroma 支持内存中操作和磁盘持久化，能够高效地管理和查询向量数据，非常适合快速集成和开发。其设计简洁且不需要复杂的配置，使开发者能够专注于核心功能的实现而无需担心底层存储的复杂性。</p>
-</li>
-</ul>
-<ol>
-<li>引入 Chroma 向量数据库 chromadb，引入 uuid 模块用于为每个文本块生成唯一的 ID。</li>
-<li>在 main 方法中，创建了 Chroma 本地存储实例 client 和存储集合 collection，实例数据库存储在项目根目录 rag_learning/chroma_db 下，数据存储在 documents 集合中。</li>
-<li>在 indexing_process 方法中，将文档切块后的文本块的 ID、嵌入向量和原始文本块内容存储到 ChromaDB 的 documents 集合中。</li>
-<li>在 retrieval_process 方法中，使用 Chroma 向量数据库检索与查询（query）最相似的 top_k 个文本块。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>索引/检索</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>向量数据库</tag>
-        <tag>检索</tag>
-        <tag>索引</tag>
       </tags>
   </entry>
   <entry>
@@ -945,6 +945,99 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
+    <title>RAG索引（三）：嵌入（Embedding）技术</title>
+    <url>/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h3 id="嵌入模型（Embedding-Model）负责将文本数据映射到高维向量空间中，将输入的文档片段转换为对应的嵌入向量（embedding-vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量，这些向量用于在向量数据库中通过向量检索（Vector-Retrieval）匹配最相似的文档片段。根据不同的场景需求，评估并选择最优的嵌入模型，以确保-RAG-的检索性能符合要求。"><mark>嵌入模型（Embedding Model）负责将文本数据映射到高维向量空间中</mark>，将输入的文档片段转换为对应的嵌入向量（embedding vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。<mark>用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量</mark>，这些向量用于在向量数据库中通过向量检索（Vector Retrieval）匹配最相似的文档片段。根据不同的场景需求，<mark>评估并选择最优的嵌入模型</mark>，以确保 RAG 的检索性能符合要求。</h3>
+<span id="more"></span>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9E%8B%E4%BD%9C%E7%94%A8.png" alt="嵌入模型作用" style="zoom: 67%;" />
+<ul>
+<li>
+<h4 id="什么是Embedding嵌入？">什么是Embedding嵌入？</h4>
+<ul>
+<li>Embedding 嵌入是指将文本、图像、音频、视频等形式的信息映射为高维空间中的密集向量表示。这些向量在语义空间中起到坐标的作用，捕捉对象之间的语义关系和隐含的意义。通过在向量空间中进行计算（例如余弦相似度），可以量化和衡量这些对象之间的<strong>语义相似性</strong>。</li>
+<li>在具体实现中，嵌入的每个维度通常对应文本的某种特征，例如性别、类别、数量等。通过多维度的数值表示，计算机能够理解并解析文本的复杂语义结构。例如，“man”和“woman”在描述性别维度上具有相似性，而“king”和“queen”则在性别和王室身份等维度上表现出相似的语义特征。</li>
+<li>向量是一组在高维空间中定义点的数值数组，而<strong>嵌入则是将信息（如文本）转化为这种向量表示的过程</strong>。这些向量能够捕捉数据的语义及其他重要特征，使得语义相近的对象在向量空间中彼此邻近，而语义相异的对象则相距较远。<strong>向量检索（Vector Retrieval）是一种基于向量表示的搜索技术</strong>，通过计算查询向量与已知文本向量的相似度来识别最相关的文本数据。向量检索的高效性在于，它能在大规模数据集中快速、准确地找到与查询最相关的内容，这得益于向量表示中蕴含的丰富语义信息。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112108258.png" alt="image-20250310112108258" style="zoom: 80%;" />
+</li>
+</ul>
+</li>
+<li>
+<h4 id="Embedding-Model-嵌入模型">Embedding Model 嵌入模型</h4>
+<ul>
+<li>自 2013 年以来，word2vec、GloVe、fastText 等嵌入模型通过分析大量文本数据，学习得出单词的嵌入向量。近年来，随着 transformer 模型的突破，嵌入技术以惊人的速度发展。BERT、RoBERTa、ELECTRA 等模型将词嵌入推进到上下文敏感的阶段。这些模型在为文本中的每个单词生成嵌入时，会充分考虑其上下文环境，因此同一个单词在不同语境下的嵌入向量可以有所不同，从而大大提升了模型理解复杂语言结构的能力。</li>
+<li>在 RAG 系统中，Embedding Model 嵌入模型扮演着关键角色，负责将文本数据映射到高维向量空间，以便高效检索和处理。具体而言，<strong>Embedding Model 将输入的文档片段（Chunks）和查询文本（Query）转换为嵌入向量（Vectors）</strong>，这些向量捕捉了文本的语义信息，并可在向量空间中与其他嵌入向量进行比较。</li>
+<li>在 RAG 流程中，文档首先被分割成多个片段，每个片段随后通过 Embedding Model 进行嵌入处理。生成的文档嵌入向量被存储在 VectorStore 中，供后续检索使用。用户查询会通过 Embedding Model 转换为查询嵌入向量，这些向量用于在向量数据库中匹配最相似的文档片段，最终组合生成指令（Prompt），大模型生成回答。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112648314.png" alt="image-20250310112648314" style="zoom:80%;" />
+</li>
+<li>正如图中所示，嵌入模型是 RAG 流程的核心。既然如此重要，市面上有非常多的嵌入模型，我们该如何为我们的业务场景选择最合适的嵌入模型呢？</li>
+</ul>
+</li>
+<li>
+<h4 id="Embedding-Model-嵌入模型评估与选择">Embedding Model 嵌入模型评估与选择</h4>
+<ul>
+<li>在选择适合的嵌入模型时，需要综合考虑多个因素，包括<strong>特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率</strong>等因素。同时以广泛受到认可的 **MTEB（Massive Text Embedding Benchmark）和 C-MTEB（Chinese Massive Text Embedding Benchmark）**榜单作为参考，通过涵盖分类、聚类、语义文本相似性、重排序和检索等多个数据集的评测，开发者可以根据不同任务的需求，评估并选择最优的向量模型，以确保在特定应用场景中的最佳性能。</li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310113405164.png" alt="image-20250310113405164" style="zoom:80%;" />
+</li>
+<li><a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB &amp; C-MTEB 榜单</a></li>
+<li>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310122014515.png" alt="image-20250310122014515" style="zoom:80%;" />
+</li>
+<li>榜单每日更新，可以切换语言为 中文，可以看到中文嵌入模型的排名。由于 RAG 是一项检索任务，我们需要按“Retrieval Average”（检索平均值）列对排行榜进行排序，图中显示的就是检索任务效果排序后的结果。在检索任务中，我们需要在榜单顶部看到最佳的检索模型，并且专注于以下几个关键列：</li>
+<li><strong>Retrieval Average 检索平均值</strong>：较高的检索平均值表示模型更擅长在检索结果列表中将相关项目排在较高的位置，检索效果更好。</li>
+<li><strong>Model Size 模型大小</strong>：模型的大小（以 GB 为单位）。虽然检索性能随模型大小而变化，但要注意，模型大小也会对延迟产生直接影响。因此，在选择模型时，建议筛选掉那些在硬件资源有限的情况下不可行的过大模型。在生产环境中，性能与效率之间的权衡尤为重要。</li>
+<li><strong>Max Tokens 最大 Token 数</strong>：可压缩到单个文本块中的最大 Token 数。因为文档块我们希望不要过大而降低目标信息块的精准度，因此，即使最大 tokens 数为 512 的模型在大部分场景下也足够使用。</li>
+<li><strong>Embedding Dimensions：嵌入向量的维度</strong>。越少的嵌入维度提供更快的推理速度，存储效率更高，而更多的维度可以捕获数据中的细微特征。我们需要在模型的性能和效率之间取得良好的权衡。</li>
+<li><strong>实验至关重要</strong>，在排行榜上表现良好的模型不一定在你的任务上表现良好，试验各种高得分的模型至关重要。我们参考 MTEB 排行榜，选择多个适合我们场景的嵌入模型作为备选，并在我们的业务场景数据集上进行评估测试，以选出最适合我们 RAG 系统的嵌入模型。</li>
+</ul>
+</li>
+<li>
+<h4 id="Embedding-Model-技术实战">Embedding Model 技术实战</h4>
+<ul>
+<li>
+<p>我们可以使用 SentenceTransformers 作为加载嵌入模型的 Python 模块。</p>
+</li>
+<li>
+<p>SentenceTransformers（又名 SBERT）是一个用于训练和推理文本嵌入模型的 Python 模块，可以在 RAG 系统中计算嵌入向量。使用 SentenceTransformers 进行文本嵌入转换非常简单：只需导入模块库、加载模型，并调用 encode 方法即可。执行时，SentenceTransformers 会自动下载相应的模型库，当然也可以手动下载并指定模型库的路径。所有可用的模型都可以在 <a href="https://www.sbert.net/docs/sentence_transformer/pretrained_models.html">SentenceTransformers 模型库</a> 查看，超过 8000 个发布在 Hugging Face 上的嵌入模型库可以被使用。</p>
+</li>
+<li>
+<p>在中文领域，智源研究院的 <a href="https://huggingface.co/collections/BAAI/bge-66797a74476eb1f085c7446d">BGE 系列模型</a> 是较为知名的开源嵌入模型，在 C-MTEB 上表现出色。BGE 系列目前包含 23 个嵌入模型，涵盖多种维度、多种最大 Token 数和模型大小，用户可以根据需求进行测试和使用。</p>
+</li>
+<li>
+<p><strong>load_embedding_model 方法中使用 SentenceTransformer 加载嵌入模型代码</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 绝对路径：SentenceTransformer读取绝对路径下的bge-large-zh-v1.5模型，如需使用其他模型，下载其他模型，并且更换绝对路径即可</span></span><br><span class="line">embedding_model = SentenceTransformer(os.path.abspath(<span class="string">&#x27;data/bge-large-zh-v1.5&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动下载：SentenceTransformer库自动下载BAAI/bge-large-zh-v1.5模型，如需下载其他模型，输入其他模型名称即可</span></span><br><span class="line"><span class="comment"># embedding_model = SentenceTransformer(&#x27;BAAI/bge-large-zh-v1.5&#x27;)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>indexing_process 方法中将文本转化为嵌入向量代码</strong>：</p>
+ <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文本块转化为嵌入向量列表，normalize_embeddings表示对嵌入向量进行归一化，用于后续流程准确计算向量相似度</span></span><br><span class="line">embeddings = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> all_chunks:</span><br><span class="line">      embedding = embedding_model.encode(chunk, normalize_embeddings=<span class="literal">True</span>)</span><br><span class="line">      embeddings.append(embedding)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="总结">总结</h4>
+<ul>
+<li>嵌入技术将文本数据映射到高维向量空间中，捕捉其语义信息，支持向量检索，从而在大规模数据中快速识别与查询最相关的文档片段。在选择嵌入模型时，需要综合考虑特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率等因素。</li>
+<li>通过参考 MTEB 和 C-MTEB 的评测榜单，可以评估多个高得分的模型，并在具体的业务场景中进行测试，最终选择最适合该场景的嵌入模型。同时，使用 SentenceTransformers Python 模块可以简化嵌入模型的加载和嵌入计算，进而高效率集成测试。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>索引</category>
+        <category>嵌入（Embedding）技术</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>索引</tag>
+        <tag>嵌入</tag>
+        <tag>embedding</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>RAG索引（二）：分块策略</title>
     <url>/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/</url>
     <content><![CDATA[<h3 id="文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使-RAG-系统能够高效处理和精准检索这些片段信息。">文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。</h3>
@@ -1085,99 +1178,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>RAG索引（三）：嵌入（Embedding）技术</title>
-    <url>/2025/03/10/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E5%B5%8C%E5%85%A5%EF%BC%88Embedding%EF%BC%89%E6%8A%80%E6%9C%AF/</url>
-    <content><![CDATA[<h3 id="嵌入模型（Embedding-Model）负责将文本数据映射到高维向量空间中，将输入的文档片段转换为对应的嵌入向量（embedding-vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量，这些向量用于在向量数据库中通过向量检索（Vector-Retrieval）匹配最相似的文档片段。根据不同的场景需求，评估并选择最优的嵌入模型，以确保-RAG-的检索性能符合要求。"><mark>嵌入模型（Embedding Model）负责将文本数据映射到高维向量空间中</mark>，将输入的文档片段转换为对应的嵌入向量（embedding vectors）。这些向量捕捉了文本的语义信息，并被存储在向量库（VectorStore）中，以便后续检索使用。<mark>用户查询（Query）同样通过嵌入模型的处理生成查询嵌入向量</mark>，这些向量用于在向量数据库中通过向量检索（Vector Retrieval）匹配最相似的文档片段。根据不同的场景需求，<mark>评估并选择最优的嵌入模型</mark>，以确保 RAG 的检索性能符合要求。</h3>
-<span id="more"></span>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/%E5%B5%8C%E5%85%A5%E6%A8%A1%E5%9E%8B%E4%BD%9C%E7%94%A8.png" alt="嵌入模型作用" style="zoom: 67%;" />
-<ul>
-<li>
-<h4 id="什么是Embedding嵌入？">什么是Embedding嵌入？</h4>
-<ul>
-<li>Embedding 嵌入是指将文本、图像、音频、视频等形式的信息映射为高维空间中的密集向量表示。这些向量在语义空间中起到坐标的作用，捕捉对象之间的语义关系和隐含的意义。通过在向量空间中进行计算（例如余弦相似度），可以量化和衡量这些对象之间的<strong>语义相似性</strong>。</li>
-<li>在具体实现中，嵌入的每个维度通常对应文本的某种特征，例如性别、类别、数量等。通过多维度的数值表示，计算机能够理解并解析文本的复杂语义结构。例如，“man”和“woman”在描述性别维度上具有相似性，而“king”和“queen”则在性别和王室身份等维度上表现出相似的语义特征。</li>
-<li>向量是一组在高维空间中定义点的数值数组，而<strong>嵌入则是将信息（如文本）转化为这种向量表示的过程</strong>。这些向量能够捕捉数据的语义及其他重要特征，使得语义相近的对象在向量空间中彼此邻近，而语义相异的对象则相距较远。<strong>向量检索（Vector Retrieval）是一种基于向量表示的搜索技术</strong>，通过计算查询向量与已知文本向量的相似度来识别最相关的文本数据。向量检索的高效性在于，它能在大规模数据集中快速、准确地找到与查询最相关的内容，这得益于向量表示中蕴含的丰富语义信息。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112108258.png" alt="image-20250310112108258" style="zoom: 80%;" />
-</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-嵌入模型">Embedding Model 嵌入模型</h4>
-<ul>
-<li>自 2013 年以来，word2vec、GloVe、fastText 等嵌入模型通过分析大量文本数据，学习得出单词的嵌入向量。近年来，随着 transformer 模型的突破，嵌入技术以惊人的速度发展。BERT、RoBERTa、ELECTRA 等模型将词嵌入推进到上下文敏感的阶段。这些模型在为文本中的每个单词生成嵌入时，会充分考虑其上下文环境，因此同一个单词在不同语境下的嵌入向量可以有所不同，从而大大提升了模型理解复杂语言结构的能力。</li>
-<li>在 RAG 系统中，Embedding Model 嵌入模型扮演着关键角色，负责将文本数据映射到高维向量空间，以便高效检索和处理。具体而言，<strong>Embedding Model 将输入的文档片段（Chunks）和查询文本（Query）转换为嵌入向量（Vectors）</strong>，这些向量捕捉了文本的语义信息，并可在向量空间中与其他嵌入向量进行比较。</li>
-<li>在 RAG 流程中，文档首先被分割成多个片段，每个片段随后通过 Embedding Model 进行嵌入处理。生成的文档嵌入向量被存储在 VectorStore 中，供后续检索使用。用户查询会通过 Embedding Model 转换为查询嵌入向量，这些向量用于在向量数据库中匹配最相似的文档片段，最终组合生成指令（Prompt），大模型生成回答。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310112648314.png" alt="image-20250310112648314" style="zoom:80%;" />
-</li>
-<li>正如图中所示，嵌入模型是 RAG 流程的核心。既然如此重要，市面上有非常多的嵌入模型，我们该如何为我们的业务场景选择最合适的嵌入模型呢？</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-嵌入模型评估与选择">Embedding Model 嵌入模型评估与选择</h4>
-<ul>
-<li>在选择适合的嵌入模型时，需要综合考虑多个因素，包括<strong>特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率</strong>等因素。同时以广泛受到认可的 **MTEB（Massive Text Embedding Benchmark）和 C-MTEB（Chinese Massive Text Embedding Benchmark）**榜单作为参考，通过涵盖分类、聚类、语义文本相似性、重排序和检索等多个数据集的评测，开发者可以根据不同任务的需求，评估并选择最优的向量模型，以确保在特定应用场景中的最佳性能。</li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310113405164.png" alt="image-20250310113405164" style="zoom:80%;" />
-</li>
-<li><a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB &amp; C-MTEB 榜单</a></li>
-<li>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250310122014515.png" alt="image-20250310122014515" style="zoom:80%;" />
-</li>
-<li>榜单每日更新，可以切换语言为 中文，可以看到中文嵌入模型的排名。由于 RAG 是一项检索任务，我们需要按“Retrieval Average”（检索平均值）列对排行榜进行排序，图中显示的就是检索任务效果排序后的结果。在检索任务中，我们需要在榜单顶部看到最佳的检索模型，并且专注于以下几个关键列：</li>
-<li><strong>Retrieval Average 检索平均值</strong>：较高的检索平均值表示模型更擅长在检索结果列表中将相关项目排在较高的位置，检索效果更好。</li>
-<li><strong>Model Size 模型大小</strong>：模型的大小（以 GB 为单位）。虽然检索性能随模型大小而变化，但要注意，模型大小也会对延迟产生直接影响。因此，在选择模型时，建议筛选掉那些在硬件资源有限的情况下不可行的过大模型。在生产环境中，性能与效率之间的权衡尤为重要。</li>
-<li><strong>Max Tokens 最大 Token 数</strong>：可压缩到单个文本块中的最大 Token 数。因为文档块我们希望不要过大而降低目标信息块的精准度，因此，即使最大 tokens 数为 512 的模型在大部分场景下也足够使用。</li>
-<li><strong>Embedding Dimensions：嵌入向量的维度</strong>。越少的嵌入维度提供更快的推理速度，存储效率更高，而更多的维度可以捕获数据中的细微特征。我们需要在模型的性能和效率之间取得良好的权衡。</li>
-<li><strong>实验至关重要</strong>，在排行榜上表现良好的模型不一定在你的任务上表现良好，试验各种高得分的模型至关重要。我们参考 MTEB 排行榜，选择多个适合我们场景的嵌入模型作为备选，并在我们的业务场景数据集上进行评估测试，以选出最适合我们 RAG 系统的嵌入模型。</li>
-</ul>
-</li>
-<li>
-<h4 id="Embedding-Model-技术实战">Embedding Model 技术实战</h4>
-<ul>
-<li>
-<p>我们可以使用 SentenceTransformers 作为加载嵌入模型的 Python 模块。</p>
-</li>
-<li>
-<p>SentenceTransformers（又名 SBERT）是一个用于训练和推理文本嵌入模型的 Python 模块，可以在 RAG 系统中计算嵌入向量。使用 SentenceTransformers 进行文本嵌入转换非常简单：只需导入模块库、加载模型，并调用 encode 方法即可。执行时，SentenceTransformers 会自动下载相应的模型库，当然也可以手动下载并指定模型库的路径。所有可用的模型都可以在 <a href="https://www.sbert.net/docs/sentence_transformer/pretrained_models.html">SentenceTransformers 模型库</a> 查看，超过 8000 个发布在 Hugging Face 上的嵌入模型库可以被使用。</p>
-</li>
-<li>
-<p>在中文领域，智源研究院的 <a href="https://huggingface.co/collections/BAAI/bge-66797a74476eb1f085c7446d">BGE 系列模型</a> 是较为知名的开源嵌入模型，在 C-MTEB 上表现出色。BGE 系列目前包含 23 个嵌入模型，涵盖多种维度、多种最大 Token 数和模型大小，用户可以根据需求进行测试和使用。</p>
-</li>
-<li>
-<p><strong>load_embedding_model 方法中使用 SentenceTransformer 加载嵌入模型代码</strong>：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 绝对路径：SentenceTransformer读取绝对路径下的bge-large-zh-v1.5模型，如需使用其他模型，下载其他模型，并且更换绝对路径即可</span></span><br><span class="line">embedding_model = SentenceTransformer(os.path.abspath(<span class="string">&#x27;data/bge-large-zh-v1.5&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动下载：SentenceTransformer库自动下载BAAI/bge-large-zh-v1.5模型，如需下载其他模型，输入其他模型名称即可</span></span><br><span class="line"><span class="comment"># embedding_model = SentenceTransformer(&#x27;BAAI/bge-large-zh-v1.5&#x27;)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>indexing_process 方法中将文本转化为嵌入向量代码</strong>：</p>
- <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文本块转化为嵌入向量列表，normalize_embeddings表示对嵌入向量进行归一化，用于后续流程准确计算向量相似度</span></span><br><span class="line">embeddings = []</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> all_chunks:</span><br><span class="line">      embedding = embedding_model.encode(chunk, normalize_embeddings=<span class="literal">True</span>)</span><br><span class="line">      embeddings.append(embedding)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li>
-<h4 id="总结">总结</h4>
-<ul>
-<li>嵌入技术将文本数据映射到高维向量空间中，捕捉其语义信息，支持向量检索，从而在大规模数据中快速识别与查询最相关的文档片段。在选择嵌入模型时，需要综合考虑特定领域的适用性、检索精度、支持的语言、文本块长度、模型大小以及检索效率等因素。</li>
-<li>通过参考 MTEB 和 C-MTEB 的评测榜单，可以评估多个高得分的模型，并在具体的业务场景中进行测试，最终选择最适合该场景的嵌入模型。同时，使用 SentenceTransformers Python 模块可以简化嵌入模型的加载和嵌入计算，进而高效率集成测试。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>索引</category>
-        <category>嵌入（Embedding）技术</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>索引</tag>
-        <tag>嵌入</tag>
-        <tag>embedding</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Text2SQL应用对比</title>
     <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
@@ -1286,6 +1286,26 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>Text2SQL</tag>
         <tag>自然语言操作数据库</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/05/30/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="Create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>Text2SQL的应用</title>
@@ -1518,26 +1538,6 @@ print(tokenizer.decode(outputs[0]))
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2025/03/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>markdown-it 的扩展插件</title>
     <url>/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/</url>
     <content><![CDATA[<p>这些插件是 <code>markdown-it</code> 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：</p>
@@ -1691,86 +1691,6 @@ H<sub>2</sub>O</li>
       </tags>
   </entry>
   <entry>
-    <title>windows下使用certify申请SSL证书配置https访问</title>
-    <url>/2025/04/25/windows%E4%B8%8B%E4%BD%BF%E7%94%A8certify%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AEhttps%E8%AE%BF%E9%97%AE/</url>
-    <content><![CDATA[<h5 id="certbot-已停止windows维护（虽然目前官方仍在更新），推荐使用-Certify-the-Web-Certify-工具来管理-SSL-证书。以下是-Certify-的详细使用指南，适用于-Windows-服务器（如果是-Linux，建议仍用-certbot-或-acme-sh）。"><code>certbot</code> 已停止windows维护（虽然目前官方仍在更新），推荐使用 **Certify the Web (Certify)**工具来管理 SSL 证书。以下是 <strong>Certify 的详细使用指南</strong>，适用于 Windows 服务器（如果是 Linux，建议仍用 <code>certbot</code> 或 <code>acme.sh</code>）。</h5>
-<span id="more"></span>
-<hr>
-<h2 id="1-Certify-the-Web-简介"><strong>1. Certify the Web 简介</strong></h2>
-<ul>
-<li><strong>适用平台</strong>：Windows（IIS / 其他 Web 服务器）</li>
-<li><strong>功能</strong>：
-<ul>
-<li>自动申请 <strong>Let’s Encrypt</strong> 证书（免费）。</li>
-<li>支持 <strong>通配符证书</strong>（Wildcard SSL）。</li>
-<li>自动续期（无需手动操作）。</li>
-<li>支持 DNS API 验证（如阿里云DNS、Cloudflare等）。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="2-安装-Certify-the-Web"><strong>2. 安装 Certify the Web</strong></h2>
-<h3 id="下载与安装"><strong>下载与安装</strong></h3>
-<ol>
-<li><strong>访问官网</strong>：<a href="https://certifytheweb.com/">Certify the Web</a></li>
-<li>下载并安装 <strong>Certify The Web</strong>（支持 Windows Server 2012+）。</li>
-</ol>
-<hr>
-<h2 id="3-配置-Certify"><strong>3. 配置 Certify</strong></h2>
-<h5 id="新建证书">新建证书</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425022603557.png" alt="image-20250425022603557"></p>
-<h5 id="配置验证方式">配置验证方式</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425023900503.png" alt="image-20250425023900503"></p>
-<h5 id="申请DNS-Access-Key">申请DNS Access Key</h5>
-<ul>
-<li>登录 <a href="https://ram.console.aliyun.com/users">阿里云RAM控制台</a>。</li>
-<li>创建 <strong>用户</strong>，赋予 <code>AliyunDNSFullAccess</code> 权限。</li>
-<li>在 Certify 中配置 <strong>AccessKey ID</strong> 和 <strong>AccessKey Secret</strong>。</li>
-<li>最后在Certify界面，点击 <strong>Request Certificate</strong> ，就能自动完成申请证书了</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425030239523.png" alt=""></p>
-<hr>
-<h2 id="4-自动续期"><strong>4. 自动续期</strong></h2>
-<ul>
-<li>Certify 默认会 <strong>自动续期</strong>（证书到期前 30 天）。</li>
-</ul>
-<hr>
-<h2 id="5-在-Nginx-中使用证书"><strong>5. 在 Nginx 中使用证书</strong></h2>
-<p>如果后端是 <strong>Nginx</strong>（非IIS），需导出证书：</p>
-<ol>
-<li>
-<p><strong>导出证书</strong>：</p>
-<ul>
-<li>按照下图操作完证书就保存到本地目录了：
-<ul>
-<li><code>cert.pem</code>（证书）</li>
-<li><code>privkey.pem</code>（私钥）<br>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425033111550.png" alt="image-20250425033111550"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>配置 Nginx</strong>：简单示例，配置好重启nginx，就可以使用域名访问nginx转发的端口了</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">    <span class="attribute">server_name</span> 域名;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span> /path/to/cert.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /path/to/privkey.pem;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 其他配置...</span></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://localhost:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h2 id="6-如果本地启用了clash代理，可以配置域名绕过代理"><strong>6. 如果本地启用了clash代理，可以配置域名绕过代理</strong></h2>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425034209450.png" alt="image-20250425034209450"></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-        <category>网络服务</category>
-      </categories>
-      <tags>
-        <tag>申请certify证书</tag>
-        <tag>SSL证书</tag>
-        <tag>配置https访问</tag>
-        <tag>clash配置域名绕过代理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>rag-lesson-1</title>
     <url>/2025/03/05/rag-lesson-1/</url>
     <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
@@ -1860,6 +1780,145 @@ H<sub>2</sub>O</li>
       <tags>
         <tag>RAG</tag>
         <tag>AI,</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows下使用certify申请SSL证书配置https访问</title>
+    <url>/2025/04/25/windows%E4%B8%8B%E4%BD%BF%E7%94%A8certify%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AEhttps%E8%AE%BF%E9%97%AE/</url>
+    <content><![CDATA[<h5 id="certbot-已停止windows维护（虽然目前官方仍在更新），推荐使用-Certify-the-Web-Certify-工具来管理-SSL-证书。以下是-Certify-的详细使用指南，适用于-Windows-服务器（如果是-Linux，建议仍用-certbot-或-acme-sh）。"><code>certbot</code> 已停止windows维护（虽然目前官方仍在更新），推荐使用 **Certify the Web (Certify)**工具来管理 SSL 证书。以下是 <strong>Certify 的详细使用指南</strong>，适用于 Windows 服务器（如果是 Linux，建议仍用 <code>certbot</code> 或 <code>acme.sh</code>）。</h5>
+<span id="more"></span>
+<hr>
+<h2 id="1-Certify-the-Web-简介"><strong>1. Certify the Web 简介</strong></h2>
+<ul>
+<li><strong>适用平台</strong>：Windows（IIS / 其他 Web 服务器）</li>
+<li><strong>功能</strong>：
+<ul>
+<li>自动申请 <strong>Let’s Encrypt</strong> 证书（免费）。</li>
+<li>支持 <strong>通配符证书</strong>（Wildcard SSL）。</li>
+<li>自动续期（无需手动操作）。</li>
+<li>支持 DNS API 验证（如阿里云DNS、Cloudflare等）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-安装-Certify-the-Web"><strong>2. 安装 Certify the Web</strong></h2>
+<h3 id="下载与安装"><strong>下载与安装</strong></h3>
+<ol>
+<li><strong>访问官网</strong>：<a href="https://certifytheweb.com/">Certify the Web</a></li>
+<li>下载并安装 <strong>Certify The Web</strong>（支持 Windows Server 2012+）。</li>
+</ol>
+<hr>
+<h2 id="3-配置-Certify"><strong>3. 配置 Certify</strong></h2>
+<h5 id="新建证书">新建证书</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425022603557.png" alt="image-20250425022603557"></p>
+<h5 id="配置验证方式">配置验证方式</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425023900503.png" alt="image-20250425023900503"></p>
+<h5 id="申请DNS-Access-Key">申请DNS Access Key</h5>
+<ul>
+<li>登录 <a href="https://ram.console.aliyun.com/users">阿里云RAM控制台</a>。</li>
+<li>创建 <strong>用户</strong>，赋予 <code>AliyunDNSFullAccess</code> 权限。</li>
+<li>在 Certify 中配置 <strong>AccessKey ID</strong> 和 <strong>AccessKey Secret</strong>。</li>
+<li>最后在Certify界面，点击 <strong>Request Certificate</strong> ，就能自动完成申请证书了</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425030239523.png" alt=""></p>
+<hr>
+<h2 id="4-自动续期"><strong>4. 自动续期</strong></h2>
+<ul>
+<li>Certify 默认会 <strong>自动续期</strong>（证书到期前 30 天）。</li>
+</ul>
+<hr>
+<h2 id="5-在-Nginx-中使用证书"><strong>5. 在 Nginx 中使用证书</strong></h2>
+<p>如果后端是 <strong>Nginx</strong>（非IIS），需导出证书：</p>
+<ol>
+<li>
+<p><strong>导出证书</strong>：</p>
+<ul>
+<li>按照下图操作完证书就保存到本地目录了：
+<ul>
+<li><code>cert.pem</code>（证书）</li>
+<li><code>privkey.pem</code>（私钥）<br>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425033111550.png" alt="image-20250425033111550"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>配置 Nginx</strong>：简单示例，配置好重启nginx，就可以使用域名访问nginx转发的端口了</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">    <span class="attribute">server_name</span> 域名;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span> /path/to/cert.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /path/to/privkey.pem;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 其他配置...</span></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://localhost:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="6-如果本地启用了clash代理，可以配置域名绕过代理"><strong>6. 如果本地启用了clash代理，可以配置域名绕过代理</strong></h2>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425034209450.png" alt="image-20250425034209450"></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>网络服务</category>
+      </categories>
+      <tags>
+        <tag>申请certify证书</tag>
+        <tag>SSL证书</tag>
+        <tag>配置https访问</tag>
+        <tag>clash配置域名绕过代理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>zerotier内网穿透</title>
+    <url>/2025/04/25/zerotier%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</url>
+    <content><![CDATA[<h4 id="zerotier一个操作简单的基于p2p的内网穿透方案：地址：https-my-zerotier-com">zerotier一个操作简单的基于p2p的内网穿透方案：地址：<a href="https://my.zerotier.com/">https://my.zerotier.com/</a></h4>
+<span id="more"></span>
+<h5 id="注册账号，然后创建网络">注册账号，然后创建网络</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425010852000.png" alt="image-20250425010852000"></p>
+<h5 id="配置流程">配置流程</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425011141517.png" alt="image-20250425011141517"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012257861.png" alt="image-20250425012257861"></p>
+<h6 id="下载页面">下载页面</h6>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425011422200.png" alt="image-20250425011422200"></p>
+<h6 id="安装好程序后进行配置">安装好程序后进行配置</h6>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012021676.png" alt="image-20250425012021676"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012825093.png" alt="image-20250425012825093"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425013650003.png" alt="image-20250425013650003"></p>
+<h6 id="然后使用下图中的IP就可以访问本地端口了">然后使用下图中的IP就可以访问本地端口了</h6>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425014142640.png" alt="image-20250425014142640"></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>网络服务</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>内网穿透</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>升级 Dify</title>
+    <url>/2025/03/19/%E5%8D%87%E7%BA%A7dify/</url>
+    <content><![CDATA[<h4 id="将社区版迁移至-v1-x-x（0-15-x版本迁移至1-x-x版本）">将社区版迁移至 v1.x.x（0.15.x版本迁移至1.x.x版本）</h4>
+<p>链接：<a href="https://docs.dify.ai/development/migration/migrate-to-v1">https://docs.dify.ai/development/migration/migrate-to-v1</a></p>
+<h4 id="小版本升级参考如下：">小版本升级参考如下：</h4>
+<ul>
+<li>
+<h5 id="进入dify源码的docker目录，执行以下命令：">进入dify源码的docker目录，执行以下命令：</h5>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd dify/docker</span><br><span class="line">cp docker-compose.yaml docker-compose.yaml.$(date +%s).bak  #备份compose文件（可选）</span><br><span class="line">docker compose down</span><br><span class="line">git checkout main</span><br><span class="line">git pull origin main</span><br><span class="line">tar -cvf volumes-$(date +%s).tgz volumes  # 备份数据（可选）</span><br><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<h5 id="同步环境变量配置（重要）">同步环境变量配置（重要）</h5>
+</li>
+</ul>
+<p>去到dify/docker目录下，查看.env.example文件的更新日期判断是否已更新</p>
+<p>如果.env.example文件已更新，请确保相应地修改本地的.env文件。</p>
+<p>根据需要检查并修改.env文件中的配置项，以确保它们与您的实际环境相匹配。您可能需要添加任何新变量从.env.example到.env文件中，并更新任何已更改的值。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>AI工具</category>
+      </categories>
+      <tags>
+        <tag>dify</tag>
+        <tag>rag</tag>
+        <tag>agent</tag>
       </tags>
   </entry>
   <entry>
@@ -2132,65 +2191,6 @@ H<sub>2</sub>O</li>
       </tags>
   </entry>
   <entry>
-    <title>zerotier内网穿透</title>
-    <url>/2025/04/25/zerotier%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</url>
-    <content><![CDATA[<h4 id="zerotier一个操作简单的基于p2p的内网穿透方案：地址：https-my-zerotier-com">zerotier一个操作简单的基于p2p的内网穿透方案：地址：<a href="https://my.zerotier.com/">https://my.zerotier.com/</a></h4>
-<span id="more"></span>
-<h5 id="注册账号，然后创建网络">注册账号，然后创建网络</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425010852000.png" alt="image-20250425010852000"></p>
-<h5 id="配置流程">配置流程</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425011141517.png" alt="image-20250425011141517"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012257861.png" alt="image-20250425012257861"></p>
-<h6 id="下载页面">下载页面</h6>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425011422200.png" alt="image-20250425011422200"></p>
-<h6 id="安装好程序后进行配置">安装好程序后进行配置</h6>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012021676.png" alt="image-20250425012021676"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425012825093.png" alt="image-20250425012825093"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425013650003.png" alt="image-20250425013650003"></p>
-<h6 id="然后使用下图中的IP就可以访问本地端口了">然后使用下图中的IP就可以访问本地端口了</h6>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425014142640.png" alt="image-20250425014142640"></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-        <category>网络服务</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
-        <tag>内网穿透</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>升级 Dify</title>
-    <url>/2025/03/19/%E5%8D%87%E7%BA%A7dify/</url>
-    <content><![CDATA[<h4 id="将社区版迁移至-v1-x-x（0-15-x版本迁移至1-x-x版本）">将社区版迁移至 v1.x.x（0.15.x版本迁移至1.x.x版本）</h4>
-<p>链接：<a href="https://docs.dify.ai/development/migration/migrate-to-v1">https://docs.dify.ai/development/migration/migrate-to-v1</a></p>
-<h4 id="小版本升级参考如下：">小版本升级参考如下：</h4>
-<ul>
-<li>
-<h5 id="进入dify源码的docker目录，执行以下命令：">进入dify源码的docker目录，执行以下命令：</h5>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd dify/docker</span><br><span class="line">cp docker-compose.yaml docker-compose.yaml.$(date +%s).bak  #备份compose文件（可选）</span><br><span class="line">docker compose down</span><br><span class="line">git checkout main</span><br><span class="line">git pull origin main</span><br><span class="line">tar -cvf volumes-$(date +%s).tgz volumes  # 备份数据（可选）</span><br><span class="line">docker compose pull</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></table></figure>
-<ul>
-<li>
-<h5 id="同步环境变量配置（重要）">同步环境变量配置（重要）</h5>
-</li>
-</ul>
-<p>去到dify/docker目录下，查看.env.example文件的更新日期判断是否已更新</p>
-<p>如果.env.example文件已更新，请确保相应地修改本地的.env文件。</p>
-<p>根据需要检查并修改.env文件中的配置项，以确保它们与您的实际环境相匹配。您可能需要添加任何新变量从.env.example到.env文件中，并更新任何已更改的值。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>AI工具</category>
-      </categories>
-      <tags>
-        <tag>dify</tag>
-        <tag>rag</tag>
-        <tag>agent</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>常用的Unicode图标或Emoji简码</title>
     <url>/2025/04/14/%E5%B8%B8%E7%94%A8%E7%9A%84Unicode%E5%9B%BE%E6%A0%87%E6%88%96Emoji%E7%AE%80%E7%A0%81/</url>
     <content><![CDATA[<p>在 Markdown 中，你可以使用 <strong>Unicode 字符</strong> 或 <strong>Emoji 简码</strong> 来插入各种常用图标。以下是一些常见的分类整理，适用于文档、链接、提示等场景：</p>
@@ -2302,6 +2302,49 @@ H<sub>2</sub>O</li>
         <tag>自媒体</tag>
         <tag>图表</tag>
         <tag>表情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信接入LLM或工作流</title>
+    <url>/2025/06/04/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%85%A5LLM%E6%88%96%E5%B7%A5%E4%BD%9C%E6%B5%81/</url>
+    <content><![CDATA[<h3 id="1-WeChatPadPro-连接微信的工具">1. WeChatPadPro 连接微信的工具</h3>
+<p>项目地址：<a href="https://github.com/WeChatPadPro/WeChatPadPro">https://github.com/WeChatPadPro/WeChatPadPro</a></p>
+<p>WeChatPadPro部署文档：<a href="https://astrbot.app/deploy/platform/wechat/wechatpadpro.html">https://astrbot.app/deploy/platform/wechat/wechatpadpro.html</a></p>
+<p>默认登陆url：<a href="http://localhost:38849">http://localhost:38849</a></p>
+<span id="more"></span>
+<h3 id="2-AstrBot-接入-WeChatPadPro-和-LLM及其应用">2. AstrBot 接入 WeChatPadPro 和 LLM及其应用</h3>
+<p>项目地址：<a href="https://github.com/AstrBotDevs/AstrBot">https://github.com/AstrBotDevs/AstrBot</a></p>
+<p>默认登陆url：<a href="http://localhost:6185">http://localhost:6185</a></p>
+<h4 id="几个基础命令：">几个基础命令：</h4>
+<ul>
+<li>获取斜杠内置指令：/help</li>
+<li>更换大模型或者工作流：/provider</li>
+<li>查看好友或群成员 账号ID（可以添加为管理员）或者会话ID（可以添加为白名单）：/sid</li>
+<li>详细说明可查看AstrBot平台的配置文件页面</li>
+</ul>
+<p>配置 WeChatPadPro 截图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250604181410937.png" alt="image-20250604181410937"></p>
+<p>以下是配置好后非第一次启动的日志，如果你第一次配置，保存后，需要按照图片说明扫码登陆。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250604183736180.png" alt="image-20250604183736180"></p>
+<p>配置 LLM 示例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250604181605046.png" alt="image-20250604181605046"></p>
+<p>配置dify的chatflow工作流：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250604184351532.png" alt="image-20250604184351532"></p>
+<p>如果大家是本地部署，可能需要修改域名 localhost 为 host.docker.internal，这个自己看一下。（我是做了内网穿透的域名，不需要更改）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250604185343518.png" alt="image-20250604185343518"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250604185454772.png" alt="image-20250604185454772"></p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>Agent</category>
+        <category>微信</category>
+      </categories>
+      <tags>
+        <tag>dify</tag>
+        <tag>微信</tag>
+        <tag>wechatpadpro</tag>
+        <tag>astrbot</tag>
+        <tag>llm</tag>
       </tags>
   </entry>
   <entry>
@@ -2509,59 +2552,6 @@ H<sub>2</sub>O</li>
       </tags>
   </entry>
   <entry>
-    <title>翻墙机场推荐（魔法上网）</title>
-    <url>/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
-<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
-<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
-<span id="more"></span>
-<ul>
-<li>
-<p>第一个 牡牛网：<a href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
-<ul>
-<li>
-<p>邀请码：mdSU</p>
-</li>
-<li>
-<p>推荐安装网页底部的Clash软件</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
-</ul>
-</li>
-<li>
-<p>进入页面有详细安装教程，按照步骤操作就行</p>
-</li>
-<li>
-<p>资费：</p>
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>第二个 Radial VPN: <a href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
-<ul>
-<li>下载官网软件按着操作就行</li>
-<li>资费：
-<ul>
-<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>工具</category>
-        <category>网络</category>
-      </categories>
-      <tags>
-        <tag>翻墙机场,</tag>
-        <tag>魔法上网</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>扩散模型和 自回归模型的对比</title>
     <url>/2025/03/06/%E6%89%A9%E6%95%A3%E6%A8%A1%E5%9E%8B%E5%92%8C-%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<p>扩散模型（Diffusion Models）和自回归模型（Autoregressive Models）是生成模型中的两种重要方法，广泛应用于图像、文本和音频生成任务。它们各有特点，适用于不同的场景。</p>
@@ -2734,6 +2724,59 @@ H<sub>2</sub>O</li>
         <tag>AI</tag>
         <tag>大模型</tag>
         <tag>生成模型方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>翻墙机场推荐（魔法上网）</title>
+    <url>/2025/03/05/%E7%BF%BB%E5%A2%99%E6%9C%BA%E5%9C%BA%E6%8E%A8%E8%8D%90%EF%BC%88%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="暂时推荐这两个机场（在没有魔法的情况下网站可以登录）">暂时推荐这两个机场（在没有魔法的情况下网站可以登录）</h2>
+<h4 id="1-费用自己看着选，贵的速率和稳定性都好一些">1. 费用自己看着选，贵的速率和稳定性都好一些</h4>
+<h4 id="2-如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）">2. 如果大家有好的机场也可以给我推荐一下（最好在没有魔法时可以登录）</h4>
+<span id="more"></span>
+<ul>
+<li>
+<p>第一个 牡牛网：<a href="https://xn--11xxa.com/auth/register?code=mdSU">https://牧牛.com/auth/register?code=mdSU</a></p>
+<ul>
+<li>
+<p>邀请码：mdSU</p>
+</li>
+<li>
+<p>推荐安装网页底部的Clash软件</p>
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305165344389.png" alt="image-20250305165344389"></li>
+</ul>
+</li>
+<li>
+<p>进入页面有详细安装教程，按照步骤操作就行</p>
+</li>
+<li>
+<p>资费：</p>
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170236304.png" alt="image-20250305170236304"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>第二个 Radial VPN: <a href="https://radialvpn.io/?invite=z0m5v9">https://radialvpn.io/?invite=z0m5v9</a></p>
+<ul>
+<li>下载官网软件按着操作就行</li>
+<li>资费：
+<ul>
+<li><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250305170103021.png" alt="image-20250305170103021"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具</category>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>翻墙机场,</tag>
+        <tag>魔法上网</tag>
       </tags>
   </entry>
   <entry>
