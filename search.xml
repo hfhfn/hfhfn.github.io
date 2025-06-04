@@ -1038,116 +1038,6 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
       </tags>
   </entry>
   <entry>
-    <title>Text2SQL应用对比</title>
-    <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
-    <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
-<hr>
-<span id="more"></span>
-<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
-<ul>
-<li><strong>类型</strong>：在线工具</li>
-<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
-<li><strong>特点</strong>：
-<ul>
-<li>无需安装或配置，直接在浏览器中使用。</li>
-<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
-<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
-<li>支持标准的 PostgreSQL 功能。</li>
-</ul>
-</li>
-<li><strong>适用场景</strong>：
-<ul>
-<li>快速测试 SQL 查询。</li>
-<li>教学或演示 PostgreSQL 功能。</li>
-<li>临时需要数据库环境的场景。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
-<ul>
-<li><strong>类型</strong>：AI 驱动的工具</li>
-<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
-<li><strong>特点</strong>：
-<ul>
-<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
-<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
-<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
-<li>提供 Python 库，方便集成到数据工作流中。</li>
-</ul>
-</li>
-<li><strong>适用场景</strong>：
-<ul>
-<li>非技术用户需要查询数据库。</li>
-<li>快速生成复杂 SQL 查询。</li>
-<li>数据分析师或开发人员希望提高工作效率。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="对比总结"><strong>对比总结</strong></h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Postgres.new</th>
-<th>Vanna</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>类型</strong></td>
-<td>在线临时数据库工具</td>
-<td>AI 驱动的 SQL 生成工具</td>
-</tr>
-<tr>
-<td><strong>主要用途</strong></td>
-<td>创建临时 PostgreSQL 实例</td>
-<td>通过自然语言生成 SQL 查询</td>
-</tr>
-<tr>
-<td><strong>用户群体</strong></td>
-<td>开发者、测试人员、学习者</td>
-<td>数据分析师、非技术用户、开发者</td>
-</tr>
-<tr>
-<td><strong>技术依赖</strong></td>
-<td>无需 AI，纯数据库工具</td>
-<td>依赖 AI 模型（如 GPT）</td>
-</tr>
-<tr>
-<td><strong>集成能力</strong></td>
-<td>无</td>
-<td>支持 Python 库，可集成到工作流</td>
-</tr>
-<tr>
-<td><strong>适用场景</strong></td>
-<td>测试、演示、学习</td>
-<td>数据分析、快速生成 SQL、简化查询</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="选择建议"><strong>选择建议</strong></h3>
-<ul>
-<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
-<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
-</ul>
-<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-        <category>Text2SQL</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>AI工具</tag>
-        <tag>Text2SQL</tag>
-        <tag>自然语言操作数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RAG索引（二）：分块策略</title>
     <url>/2025/03/09/RAG%E7%B4%A2%E5%BC%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%86%E5%9D%97%E7%AD%96%E7%95%A5/</url>
     <content><![CDATA[<h3 id="文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使-RAG-系统能够高效处理和精准检索这些片段信息。">文档数据（Documents）经过解析后，通过分块技术将信息内容划分为适当大小的文档片段（chunks），从而使 RAG 系统能够高效处理和精准检索这些片段信息。</h3>
@@ -1285,6 +1175,116 @@ Hexo 默认使用 <code>hexo-renderer-marked</code>，它不支持 LaTeX 公式�
         <tag>索引</tag>
         <tag>分块策略</tag>
         <tag>Chunk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Text2SQL应用对比</title>
+    <url>/2025/03/06/Text2SQL%E5%BA%94%E7%94%A8%E5%AF%B9%E6%AF%94/</url>
+    <content><![CDATA[<p>Postgres.new 和 Vanna 是两个不同的工具，分别用于不同的场景和目的。以下是它们的对比：</p>
+<hr>
+<span id="more"></span>
+<h3 id="1-Postgres-new"><strong>1. Postgres.new</strong></h3>
+<ul>
+<li><strong>类型</strong>：在线工具</li>
+<li><strong>用途</strong>：快速创建一个临时的 PostgreSQL 数据库实例，用于测试、演示或学习。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>无需安装或配置，直接在浏览器中使用。</li>
+<li>提供临时的数据库实例，通常有时间限制（例如 1 小时）。</li>
+<li>适合快速测试 SQL 查询、数据库设计或演示。</li>
+<li>支持标准的 PostgreSQL 功能。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>快速测试 SQL 查询。</li>
+<li>教学或演示 PostgreSQL 功能。</li>
+<li>临时需要数据库环境的场景。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-Vanna"><strong>2. Vanna</strong></h3>
+<ul>
+<li><strong>类型</strong>：AI 驱动的工具</li>
+<li><strong>用途</strong>：通过自然语言生成 SQL 查询，帮助用户与数据库交互。</li>
+<li><strong>特点</strong>：
+<ul>
+<li>基于 AI 模型（如 OpenAI 的 GPT）生成 SQL。</li>
+<li>支持自然语言输入，用户可以用简单的语言描述查询需求。</li>
+<li>可以连接到多种数据库（如 PostgreSQL、MySQL、Snowflake 等）。</li>
+<li>提供 Python 库，方便集成到数据工作流中。</li>
+</ul>
+</li>
+<li><strong>适用场景</strong>：
+<ul>
+<li>非技术用户需要查询数据库。</li>
+<li>快速生成复杂 SQL 查询。</li>
+<li>数据分析师或开发人员希望提高工作效率。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="对比总结"><strong>对比总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Postgres.new</th>
+<th>Vanna</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>类型</strong></td>
+<td>在线临时数据库工具</td>
+<td>AI 驱动的 SQL 生成工具</td>
+</tr>
+<tr>
+<td><strong>主要用途</strong></td>
+<td>创建临时 PostgreSQL 实例</td>
+<td>通过自然语言生成 SQL 查询</td>
+</tr>
+<tr>
+<td><strong>用户群体</strong></td>
+<td>开发者、测试人员、学习者</td>
+<td>数据分析师、非技术用户、开发者</td>
+</tr>
+<tr>
+<td><strong>技术依赖</strong></td>
+<td>无需 AI，纯数据库工具</td>
+<td>依赖 AI 模型（如 GPT）</td>
+</tr>
+<tr>
+<td><strong>集成能力</strong></td>
+<td>无</td>
+<td>支持 Python 库，可集成到工作流</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>测试、演示、学习</td>
+<td>数据分析、快速生成 SQL、简化查询</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="选择建议"><strong>选择建议</strong></h3>
+<ul>
+<li>如果你需要快速创建一个临时的 PostgreSQL 数据库实例进行测试或学习，选择 <strong>Postgres.new</strong>。</li>
+<li>如果你希望通过自然语言生成 SQL 查询，简化与数据库的交互，选择 <strong>Vanna</strong>。</li>
+</ul>
+<p>两者可以结合使用：例如，用 Postgres.new 创建一个临时数据库，然后用 Vanna 生成 SQL 查询并执行。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+        <category>Text2SQL</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>AI工具</tag>
+        <tag>Text2SQL</tag>
+        <tag>自然语言操作数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -1538,6 +1538,98 @@ print(tokenizer.decode(outputs[0]))
 ]]></content>
   </entry>
   <entry>
+    <title>rag-lesson-1</title>
+    <url>/2025/03/05/rag-lesson-1/</url>
+    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
+<ul>
+<li>
+<h2 id="技术框架与选型">技术框架与选型</h2>
+<ul>
+<li>
+<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
+<ul>
+<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
+<ul>
+<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
+<ul>
+<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
+<ul>
+<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
+</ul>
+</li>
+<li>
+<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
+<ul>
+<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
+</ul>
+</li>
+<li>
+<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
+<ul>
+<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
+</ul>
+</li>
+<li>
+<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
+<ul>
+<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
+<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
+<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
+<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h2 id="开发环境与技术库">开发环境与技术库</h2>
+<ul>
+<li>
+<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
+</li>
+<li>
+<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="安装技术依赖库">安装技术依赖库</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
+<ol>
+<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>RAG</category>
+      </categories>
+      <tags>
+        <tag>RAG</tag>
+        <tag>AI,</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>markdown-it 的扩展插件</title>
     <url>/2025/03/09/markdown-it-%E7%9A%84%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6/</url>
     <content><![CDATA[<p>这些插件是 <code>markdown-it</code> 的扩展插件，用于增强 Markdown 的功能。以下是每个插件的功能说明和使用方法：</p>
@@ -1688,178 +1780,6 @@ H<sub>2</sub>O</li>
         <tag>Hexo</tag>
         <tag>Markdown插件</tag>
         <tag>自媒体</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rag-lesson-1</title>
-    <url>/2025/03/05/rag-lesson-1/</url>
-    <content><![CDATA[<h1>从 0 到 1 快速搭建 RAG 应用</h1>
-<ul>
-<li>
-<h2 id="技术框架与选型">技术框架与选型</h2>
-<ul>
-<li>
-<h3 id="RAG-技术框架：LangChain">RAG 技术框架：<strong>LangChain</strong></h3>
-<ul>
-<li>LangChain 是专为开发基于大型语言模型（LLM）应用而设计的全面框架，其核心目标是简化开发者的构建流程，使其能够高效创建 LLM 驱动的应用。</li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>
-<h3 id="索引流程-文档解析模块：pypdf">索引流程 - 文档解析模块：pypdf</h3>
-<ul>
-<li>pypdf 是一个开源的 Python 库，专门用于处理 PDF 文档。pypdf 支持 PDF 文档的创建、读取、编辑和转换操作，能够有效提取和处理文本、图像及页面内容。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引流程-文档分块模块：RecursiveCharacterTextSplitter">索引流程 - 文档分块模块：RecursiveCharacterTextSplitter</h3>
-<ul>
-<li>采用 LangChain 默认的文本分割器 -RecursiveCharacterTextSplitter。该分割器通过层次化的分隔符（从双换行符到单字符）拆分文本，旨在保持文本的结构和连贯性，优先考虑自然边界如段落和句子。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量化模型：BAAI-bge-m3">索引 / 检索流程 - 向量化模型：BAAI/bge-m3</h3>
-<ul>
-<li>bge-m3 是由北京人工智能研究院（BAAI，智源）开发的开源向量模型。能够提供高精度和高效的中文向量检索。该模型的向量维度为 1024，最大输入长度同样为 8k。</li>
-</ul>
-</li>
-<li>
-<h3 id="索引-检索流程-向量库：Faiss">索引 / 检索流程 - 向量库：Faiss</h3>
-<ul>
-<li>Faiss 全称 Facebook AI Similarity Search，由 Facebook AI Research 团队开源的向量库，因其稳定性和高效性在向量检索领域广受欢迎。</li>
-</ul>
-</li>
-<li>
-<h3 id="生成流程-大语言模型：SiliconCloud-硅基流动-的-Qwen-Qwen2-5-7B-Instruct">生成流程 - 大语言模型：SiliconCloud(硅基流动)的 Qwen/Qwen2.5-7B-Instruct</h3>
-<ul>
-<li>Qwen/Qwen2.5-7B-Instruct 是阿里开源的一款 chat 大语言模型，支持对话、文案创作、逻辑推理、以及多语言处理，在模型性能和工程应用中表现出色。</li>
-</ul>
-</li>
-<li>
-<h3 id="上述选型在-RAG-流程图中的应用如下所示：">上述选型在 RAG 流程图中的应用如下所示：</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/RAG%E6%B5%81%E7%A8%8B.png" alt="RAG流程"></p>
-<ul>
-<li>LangChain：提供用于构建 LLM RAG 的应用程序框架。</li>
-<li>索引流程：使用 pypdf 对文档进行解析并提取信息；随后，采用 RecursiveCharacterTextSplitter 对文档内容进行分块（chunks）；最后，利用 bge-3m 将分块内容进行向量化处理，并将生成的向量存储在 Faiss 向量库中。</li>
-<li>检索流程：使用 bge-3m 对用户的查询（Query）进行向量化处理；然后，通过 Faiss 向量库对查询向量和文本块向量进行相似度匹配，从而检索出与用户查询最相似的前 top-k 个文本块（chunk）。</li>
-<li>生成流程：通过设定提示模板（Prompt），将用户的查询与检索到的参考文本块组合输入到 Qwen 大模型中，生成最终的 RAG 回答。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<h2 id="开发环境与技术库">开发环境与技术库</h2>
-<ul>
-<li>
-<h3 id="准备windows系统，-pycharm开发工具，-Miniconda（python环境管理工具）">准备windows系统， pycharm开发工具， Miniconda（python环境管理工具）</h3>
-</li>
-<li>
-<h3 id="创建并激活虚拟环境">创建并激活虚拟环境</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n rag python=<span class="number">3.11</span>  <span class="comment"># 创建名为rag的虚拟环境</span></span><br><span class="line">conda activate rag  <span class="comment"># 激活虚拟环境</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="安装技术依赖库">安装技术依赖库</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu</span><br><span class="line"><span class="comment"># 无法安装，可以使用国内镜像源，命令如下：</span></span><br><span class="line">pip install langchain langchain_community pypdf sentence-transformers faiss-cpu -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<h3 id="课程中用到的代码和pdf文件分享在github上：">课程中用到的代码和pdf文件分享在github上：</h3>
-<ol>
-<li>[x] <a href="https://github.com/hfhfn/rag_learning">https://github.com/hfhfn/rag_learning</a></li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>RAG</category>
-      </categories>
-      <tags>
-        <tag>RAG</tag>
-        <tag>AI,</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows下使用certify申请SSL证书配置https访问</title>
-    <url>/2025/04/25/windows%E4%B8%8B%E4%BD%BF%E7%94%A8certify%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AEhttps%E8%AE%BF%E9%97%AE/</url>
-    <content><![CDATA[<h5 id="certbot-已停止windows维护（虽然目前官方仍在更新），推荐使用-Certify-the-Web-Certify-工具来管理-SSL-证书。以下是-Certify-的详细使用指南，适用于-Windows-服务器（如果是-Linux，建议仍用-certbot-或-acme-sh）。"><code>certbot</code> 已停止windows维护（虽然目前官方仍在更新），推荐使用 **Certify the Web (Certify)**工具来管理 SSL 证书。以下是 <strong>Certify 的详细使用指南</strong>，适用于 Windows 服务器（如果是 Linux，建议仍用 <code>certbot</code> 或 <code>acme.sh</code>）。</h5>
-<span id="more"></span>
-<hr>
-<h2 id="1-Certify-the-Web-简介"><strong>1. Certify the Web 简介</strong></h2>
-<ul>
-<li><strong>适用平台</strong>：Windows（IIS / 其他 Web 服务器）</li>
-<li><strong>功能</strong>：
-<ul>
-<li>自动申请 <strong>Let’s Encrypt</strong> 证书（免费）。</li>
-<li>支持 <strong>通配符证书</strong>（Wildcard SSL）。</li>
-<li>自动续期（无需手动操作）。</li>
-<li>支持 DNS API 验证（如阿里云DNS、Cloudflare等）。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="2-安装-Certify-the-Web"><strong>2. 安装 Certify the Web</strong></h2>
-<h3 id="下载与安装"><strong>下载与安装</strong></h3>
-<ol>
-<li><strong>访问官网</strong>：<a href="https://certifytheweb.com/">Certify the Web</a></li>
-<li>下载并安装 <strong>Certify The Web</strong>（支持 Windows Server 2012+）。</li>
-</ol>
-<hr>
-<h2 id="3-配置-Certify"><strong>3. 配置 Certify</strong></h2>
-<h5 id="新建证书">新建证书</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425022603557.png" alt="image-20250425022603557"></p>
-<h5 id="配置验证方式">配置验证方式</h5>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425023900503.png" alt="image-20250425023900503"></p>
-<h5 id="申请DNS-Access-Key">申请DNS Access Key</h5>
-<ul>
-<li>登录 <a href="https://ram.console.aliyun.com/users">阿里云RAM控制台</a>。</li>
-<li>创建 <strong>用户</strong>，赋予 <code>AliyunDNSFullAccess</code> 权限。</li>
-<li>在 Certify 中配置 <strong>AccessKey ID</strong> 和 <strong>AccessKey Secret</strong>。</li>
-<li>最后在Certify界面，点击 <strong>Request Certificate</strong> ，就能自动完成申请证书了</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425030239523.png" alt=""></p>
-<hr>
-<h2 id="4-自动续期"><strong>4. 自动续期</strong></h2>
-<ul>
-<li>Certify 默认会 <strong>自动续期</strong>（证书到期前 30 天）。</li>
-</ul>
-<hr>
-<h2 id="5-在-Nginx-中使用证书"><strong>5. 在 Nginx 中使用证书</strong></h2>
-<p>如果后端是 <strong>Nginx</strong>（非IIS），需导出证书：</p>
-<ol>
-<li>
-<p><strong>导出证书</strong>：</p>
-<ul>
-<li>按照下图操作完证书就保存到本地目录了：
-<ul>
-<li><code>cert.pem</code>（证书）</li>
-<li><code>privkey.pem</code>（私钥）<br>
-<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425033111550.png" alt="image-20250425033111550"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>配置 Nginx</strong>：简单示例，配置好重启nginx，就可以使用域名访问nginx转发的端口了</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">    <span class="attribute">server_name</span> 域名;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span> /path/to/cert.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /path/to/privkey.pem;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 其他配置...</span></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://localhost:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h2 id="6-如果本地启用了clash代理，可以配置域名绕过代理"><strong>6. 如果本地启用了clash代理，可以配置域名绕过代理</strong></h2>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425034209450.png" alt="image-20250425034209450"></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-        <category>网络服务</category>
-      </categories>
-      <tags>
-        <tag>申请certify证书</tag>
-        <tag>SSL证书</tag>
-        <tag>配置https访问</tag>
-        <tag>clash配置域名绕过代理</tag>
       </tags>
   </entry>
   <entry>
@@ -2191,108 +2111,83 @@ H<sub>2</sub>O</li>
       </tags>
   </entry>
   <entry>
-    <title>多智能体框架ChatDev与MetaGPT介绍</title>
-    <url>/2025/03/21/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<p>ChatDev、MetaGPT 等多智能体框架是近年来在人工智能领域，特别是多智能体系统（Multi-Agent Systems, MAS）和生成式 AI 领域的重要进展。这些框架旨在通过多个智能体（Agents）的协作，完成复杂的任务或生成高质量的内容。以下是对这些框架的简要介绍和对比：</p>
-<hr>
+    <title>windows下使用certify申请SSL证书配置https访问</title>
+    <url>/2025/04/25/windows%E4%B8%8B%E4%BD%BF%E7%94%A8certify%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6%E9%85%8D%E7%BD%AEhttps%E8%AE%BF%E9%97%AE/</url>
+    <content><![CDATA[<h5 id="certbot-已停止windows维护（虽然目前官方仍在更新），推荐使用-Certify-the-Web-Certify-工具来管理-SSL-证书。以下是-Certify-的详细使用指南，适用于-Windows-服务器（如果是-Linux，建议仍用-certbot-或-acme-sh）。"><code>certbot</code> 已停止windows维护（虽然目前官方仍在更新），推荐使用 **Certify the Web (Certify)**工具来管理 SSL 证书。以下是 <strong>Certify 的详细使用指南</strong>，适用于 Windows 服务器（如果是 Linux，建议仍用 <code>certbot</code> 或 <code>acme.sh</code>）。</h5>
 <span id="more"></span>
-<h3 id="1-ChatDev"><strong>1. ChatDev</strong></h3>
-<p>ChatDev 是一个基于多智能体协作的软件开发框架，专注于通过多个智能体的交互来自动化软件开发流程。它模拟了软件开发生命周期中的不同角色（如产品经理、开发人员、测试人员等），并通过智能体之间的对话和协作来完成软件开发任务。</p>
-<h4 id="特点："><strong>特点：</strong></h4>
+<hr>
+<h2 id="1-Certify-the-Web-简介"><strong>1. Certify the Web 简介</strong></h2>
 <ul>
-<li><strong>多角色智能体</strong>：每个智能体扮演不同的角色，模拟真实的软件开发团队。</li>
-<li><strong>对话驱动</strong>：智能体之间通过自然语言对话进行协作，生成代码、文档和测试用例。</li>
-<li><strong>自动化流程</strong>：从需求分析到代码生成、测试和部署，整个过程高度自动化。</li>
-<li><strong>可扩展性</strong>：支持自定义角色和任务，适应不同的开发需求。</li>
+<li><strong>适用平台</strong>：Windows（IIS / 其他 Web 服务器）</li>
+<li><strong>功能</strong>：
+<ul>
+<li>自动申请 <strong>Let’s Encrypt</strong> 证书（免费）。</li>
+<li>支持 <strong>通配符证书</strong>（Wildcard SSL）。</li>
+<li>自动续期（无需手动操作）。</li>
+<li>支持 DNS API 验证（如阿里云DNS、Cloudflare等）。</li>
 </ul>
-<h4 id="应用场景："><strong>应用场景：</strong></h4>
-<ul>
-<li>自动化代码生成</li>
-<li>快速原型开发</li>
-<li>教育和培训（模拟软件开发流程）</li>
+</li>
 </ul>
 <hr>
-<h3 id="2-MetaGPT"><strong>2. MetaGPT</strong></h3>
-<p>MetaGPT 是一个多智能体框架，旨在通过多个智能体的协作生成高质量的内容或解决复杂问题。它结合了生成式 AI 和多智能体系统的优势，能够处理更复杂的任务。</p>
-<h4 id="特点：-2"><strong>特点：</strong></h4>
+<h2 id="2-安装-Certify-the-Web"><strong>2. 安装 Certify the Web</strong></h2>
+<h3 id="下载与安装"><strong>下载与安装</strong></h3>
+<ol>
+<li><strong>访问官网</strong>：<a href="https://certifytheweb.com/">Certify the Web</a></li>
+<li>下载并安装 <strong>Certify The Web</strong>（支持 Windows Server 2012+）。</li>
+</ol>
+<hr>
+<h2 id="3-配置-Certify"><strong>3. 配置 Certify</strong></h2>
+<h5 id="新建证书">新建证书</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425022603557.png" alt="image-20250425022603557"></p>
+<h5 id="配置验证方式">配置验证方式</h5>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425023900503.png" alt="image-20250425023900503"></p>
+<h5 id="申请DNS-Access-Key">申请DNS Access Key</h5>
 <ul>
-<li><strong>任务分解</strong>：将复杂任务分解为多个子任务，由不同的智能体分别处理。</li>
-<li><strong>协作生成</strong>：智能体之间通过协作生成内容，确保输出的准确性和一致性。</li>
-<li><strong>知识共享</strong>：智能体可以共享知识和上下文，提高整体效率。</li>
-<li><strong>模块化设计</strong>：支持灵活的任务分配和智能体配置。</li>
+<li>登录 <a href="https://ram.console.aliyun.com/users">阿里云RAM控制台</a>。</li>
+<li>创建 <strong>用户</strong>，赋予 <code>AliyunDNSFullAccess</code> 权限。</li>
+<li>在 Certify 中配置 <strong>AccessKey ID</strong> 和 <strong>AccessKey Secret</strong>。</li>
+<li>最后在Certify界面，点击 <strong>Request Certificate</strong> ，就能自动完成申请证书了</li>
 </ul>
-<h4 id="应用场景：-2"><strong>应用场景：</strong></h4>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425030239523.png" alt=""></p>
+<hr>
+<h2 id="4-自动续期"><strong>4. 自动续期</strong></h2>
 <ul>
-<li>内容生成（如文章、报告、代码）</li>
-<li>复杂问题求解</li>
-<li>多领域知识整合</li>
+<li>Certify 默认会 <strong>自动续期</strong>（证书到期前 30 天）。</li>
 </ul>
 <hr>
-<h3 id="3-对比与总结"><strong>3. 对比与总结</strong></h3>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>ChatDev</th>
-<th>MetaGPT</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>核心目标</strong></td>
-<td>自动化软件开发</td>
-<td>多领域任务协作与内容生成</td>
-</tr>
-<tr>
-<td><strong>智能体角色</strong></td>
-<td>软件开发相关角色（如开发、测试）</td>
-<td>通用角色（可自定义）</td>
-</tr>
-<tr>
-<td><strong>协作方式</strong></td>
-<td>对话驱动</td>
-<td>任务分解与协作生成</td>
-</tr>
-<tr>
-<td><strong>应用领域</strong></td>
-<td>软件开发</td>
-<td>多领域（内容生成、问题求解等）</td>
-</tr>
-<tr>
-<td><strong>可扩展性</strong></td>
-<td>支持自定义角色</td>
-<td>高度模块化，灵活配置</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="4-其他多智能体框架"><strong>4. 其他多智能体框架</strong></h3>
-<p>除了 ChatDev 和 MetaGPT，还有一些其他多智能体框架值得关注：</p>
+<h2 id="5-在-Nginx-中使用证书"><strong>5. 在 Nginx 中使用证书</strong></h2>
+<p>如果后端是 <strong>Nginx</strong>（非IIS），需导出证书：</p>
+<ol>
+<li>
+<p><strong>导出证书</strong>：</p>
 <ul>
-<li><strong>AutoGPT</strong>：通过多智能体协作实现自动化任务执行。</li>
-<li><strong>LangChain</strong>：支持多智能体协作的框架，专注于语言模型的应用。</li>
-<li><strong>Camel</strong>：专注于多智能体对话和协作的研究框架。</li>
-</ul>
-<hr>
-<h3 id="5-未来发展方向"><strong>5. 未来发展方向</strong></h3>
-<p>多智能体框架的未来发展可能集中在以下方面：</p>
+<li>按照下图操作完证书就保存到本地目录了：
 <ul>
-<li><strong>更高效的协作机制</strong>：提高智能体之间的协作效率，减少冗余。</li>
-<li><strong>领域适应性</strong>：增强框架在不同领域的通用性和适应性。</li>
-<li><strong>人机协作</strong>：支持人类与智能体的无缝协作。</li>
-<li><strong>伦理与安全</strong>：确保多智能体系统的决策和行为符合伦理和安全标准。</li>
+<li><code>cert.pem</code>（证书）</li>
+<li><code>privkey.pem</code>（私钥）<br>
+<img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425033111550.png" alt="image-20250425033111550"></li>
 </ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>配置 Nginx</strong>：简单示例，配置好重启nginx，就可以使用域名访问nginx转发的端口了</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">    <span class="attribute">server_name</span> 域名;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span> /path/to/cert.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /path/to/privkey.pem;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 其他配置...</span></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://localhost:3000;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="6-如果本地启用了clash代理，可以配置域名绕过代理"><strong>6. 如果本地启用了clash代理，可以配置域名绕过代理</strong></h2>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250425034209450.png" alt="image-20250425034209450"></p>
 ]]></content>
       <categories>
-        <category>AI</category>
-        <category>智能体</category>
+        <category>工具</category>
+        <category>网络服务</category>
       </categories>
       <tags>
-        <tag>AI</tag>
-        <tag>智能体</tag>
-        <tag>多智能体</tag>
-        <tag>ChatDev</tag>
-        <tag>MetaGPT</tag>
+        <tag>申请certify证书</tag>
+        <tag>SSL证书</tag>
+        <tag>配置https访问</tag>
+        <tag>clash配置域名绕过代理</tag>
       </tags>
   </entry>
   <entry>
@@ -2410,6 +2305,111 @@ H<sub>2</sub>O</li>
       </tags>
   </entry>
   <entry>
+    <title>多智能体框架ChatDev与MetaGPT介绍</title>
+    <url>/2025/03/21/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<p>ChatDev、MetaGPT 等多智能体框架是近年来在人工智能领域，特别是多智能体系统（Multi-Agent Systems, MAS）和生成式 AI 领域的重要进展。这些框架旨在通过多个智能体（Agents）的协作，完成复杂的任务或生成高质量的内容。以下是对这些框架的简要介绍和对比：</p>
+<hr>
+<span id="more"></span>
+<h3 id="1-ChatDev"><strong>1. ChatDev</strong></h3>
+<p>ChatDev 是一个基于多智能体协作的软件开发框架，专注于通过多个智能体的交互来自动化软件开发流程。它模拟了软件开发生命周期中的不同角色（如产品经理、开发人员、测试人员等），并通过智能体之间的对话和协作来完成软件开发任务。</p>
+<h4 id="特点："><strong>特点：</strong></h4>
+<ul>
+<li><strong>多角色智能体</strong>：每个智能体扮演不同的角色，模拟真实的软件开发团队。</li>
+<li><strong>对话驱动</strong>：智能体之间通过自然语言对话进行协作，生成代码、文档和测试用例。</li>
+<li><strong>自动化流程</strong>：从需求分析到代码生成、测试和部署，整个过程高度自动化。</li>
+<li><strong>可扩展性</strong>：支持自定义角色和任务，适应不同的开发需求。</li>
+</ul>
+<h4 id="应用场景："><strong>应用场景：</strong></h4>
+<ul>
+<li>自动化代码生成</li>
+<li>快速原型开发</li>
+<li>教育和培训（模拟软件开发流程）</li>
+</ul>
+<hr>
+<h3 id="2-MetaGPT"><strong>2. MetaGPT</strong></h3>
+<p>MetaGPT 是一个多智能体框架，旨在通过多个智能体的协作生成高质量的内容或解决复杂问题。它结合了生成式 AI 和多智能体系统的优势，能够处理更复杂的任务。</p>
+<h4 id="特点：-2"><strong>特点：</strong></h4>
+<ul>
+<li><strong>任务分解</strong>：将复杂任务分解为多个子任务，由不同的智能体分别处理。</li>
+<li><strong>协作生成</strong>：智能体之间通过协作生成内容，确保输出的准确性和一致性。</li>
+<li><strong>知识共享</strong>：智能体可以共享知识和上下文，提高整体效率。</li>
+<li><strong>模块化设计</strong>：支持灵活的任务分配和智能体配置。</li>
+</ul>
+<h4 id="应用场景：-2"><strong>应用场景：</strong></h4>
+<ul>
+<li>内容生成（如文章、报告、代码）</li>
+<li>复杂问题求解</li>
+<li>多领域知识整合</li>
+</ul>
+<hr>
+<h3 id="3-对比与总结"><strong>3. 对比与总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>ChatDev</th>
+<th>MetaGPT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心目标</strong></td>
+<td>自动化软件开发</td>
+<td>多领域任务协作与内容生成</td>
+</tr>
+<tr>
+<td><strong>智能体角色</strong></td>
+<td>软件开发相关角色（如开发、测试）</td>
+<td>通用角色（可自定义）</td>
+</tr>
+<tr>
+<td><strong>协作方式</strong></td>
+<td>对话驱动</td>
+<td>任务分解与协作生成</td>
+</tr>
+<tr>
+<td><strong>应用领域</strong></td>
+<td>软件开发</td>
+<td>多领域（内容生成、问题求解等）</td>
+</tr>
+<tr>
+<td><strong>可扩展性</strong></td>
+<td>支持自定义角色</td>
+<td>高度模块化，灵活配置</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="4-其他多智能体框架"><strong>4. 其他多智能体框架</strong></h3>
+<p>除了 ChatDev 和 MetaGPT，还有一些其他多智能体框架值得关注：</p>
+<ul>
+<li><strong>AutoGPT</strong>：通过多智能体协作实现自动化任务执行。</li>
+<li><strong>LangChain</strong>：支持多智能体协作的框架，专注于语言模型的应用。</li>
+<li><strong>Camel</strong>：专注于多智能体对话和协作的研究框架。</li>
+</ul>
+<hr>
+<h3 id="5-未来发展方向"><strong>5. 未来发展方向</strong></h3>
+<p>多智能体框架的未来发展可能集中在以下方面：</p>
+<ul>
+<li><strong>更高效的协作机制</strong>：提高智能体之间的协作效率，减少冗余。</li>
+<li><strong>领域适应性</strong>：增强框架在不同领域的通用性和适应性。</li>
+<li><strong>人机协作</strong>：支持人类与智能体的无缝协作。</li>
+<li><strong>伦理与安全</strong>：确保多智能体系统的决策和行为符合伦理和安全标准。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>智能体</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>智能体</tag>
+        <tag>多智能体</tag>
+        <tag>ChatDev</tag>
+        <tag>MetaGPT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>微信接入LLM或工作流</title>
     <url>/2025/06/04/%E5%BE%AE%E4%BF%A1%E6%8E%A5%E5%85%A5LLM%E6%88%96%E5%B7%A5%E4%BD%9C%E6%B5%81/</url>
     <content><![CDATA[<h3 id="1-WeChatPadPro-连接微信的工具">1. WeChatPadPro 连接微信的工具</h3>
@@ -2438,6 +2438,11 @@ H<sub>2</sub>O</li>
 <p>如果大家是本地部署，可能需要修改域名 localhost 为 host.docker.internal，这个自己看一下。（我是做了内网穿透的域名，不需要更改）</p>
 <p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250604185343518.png" alt="image-20250604185343518"></p>
 <p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250604185454772.png" alt="image-20250604185454772"></p>
+<p>微信群对话示例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/1.png" alt="1"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/2.png" alt="2"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/3.png" alt="3"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/4.png" alt="4"></p>
 ]]></content>
       <categories>
         <category>AI</category>
@@ -2450,105 +2455,6 @@ H<sub>2</sub>O</li>
         <tag>wechatpadpro</tag>
         <tag>astrbot</tag>
         <tag>llm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>快速上手MCP</title>
-    <url>/2025/05/14/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8BMCP/</url>
-    <content><![CDATA[<h2 id="1-MCP入门介绍">1. MCP入门介绍</h2>
-<ul>
-<li>MCP，全称是Model Context Protocol，模型上下文协议，由Claude母公司Anthropic于去年11月正式提出。
-<ul>
-<li>Anthropic MCP发布通告：<a href="https://www.anthropic.com/news/model-context-protocol">https://www.anthropic.com/news/model-context-protocol</a></li>
-<li>MCP GitHub主页：<a href="https://github.com/modelcontextprotocol">https://github.com/modelcontextprotocol</a></li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-<ul>
-<li>总的来说 <strong>MCP解决的最大痛点，就是Agent开发中调用外部工具的技术门槛过高的问题。</strong>
-<ul>
-<li>我们都知道，<strong>能调用外部工具，是大模型进化为智能体Agent的关键</strong>，如果不能使用外部工具，大模型就只能是个简单的聊天机器人，甚至连查询天气都做不到。由于底层技术限制啊，大模型本身是无法和外部工具直接通信的，因此 <strong>Function calling</strong> 的思路，就是创建一个外部函数（function）作为中介，一边传递大模型的请求，另一边调用外部工具，最终让大模型能够间接的调用外部工具。</li>
-<li>MCP客户端对MCP服务器上的工具调用流程如下：
-<ul>
-<li><strong>Step 1. 建立和服务器的通信</strong>；</li>
-<li><strong>Step 2. 查询服务器上总共有多少个外部工具；</strong></li>
-<li><strong>Step 3. 将外部工具组成列表，带入到当前对话中；</strong></li>
-<li><strong>Step 4. 借助Function calling进行外部工具调用。</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154429464.png" alt="image-20250515154429464"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154406481.png" alt="image-20250515154406481"></p>
-<h4 id="MCP技术本质：Function-calling的更高层实现">MCP技术本质：Function calling的更高层实现</h4>
-<p>​         而近一段时间大火的MCP技术，其实就可以将其理解为Function calling技术的更高层封装和实现。传统的Function calling技术要求围绕不同的外部工具API单独创建一个外部函数，类似一把锁单独配一把钥匙，而一个智能体又往往涉及到多个外部工具设计，因此开发工作量很大。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154333871.png" alt="image-20250515154333871"></p>
-<p>而MCP技术，全称为Model Context Protocol，模型上下文协议，是一种开发者共同遵守的协议，在这个协议框架下，大家围绕某个API开发的外部工具就能够共用，从而大幅减少重复造轮子的时间。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154310284.png" alt="image-20250515154310284"></p>
-<h2 id="2-MCP服务器集合">2. MCP服务器集合</h2>
-<ul>
-<li>MCP官方服务器合集：<a href="https://github.com/modelcontextprotocol/servers">https://github.com/modelcontextprotocol/servers</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154222173.png" alt="image-20250515154222173"></p>
-<ul>
-<li>MCP Github热门导航：<a href="https://github.com/punkpeye/awesome-mcp-servers">https://github.com/punkpeye/awesome-mcp-servers</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154154901.png" alt="image-20250515154154901"></p>
-<ul>
-<li>Smithery：<a href="https://smithery.ai/">https://smithery.ai/</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154128451.png" alt="image-20250515154128451"></p>
-<ul>
-<li>MCP导航：<a href="https://mcp.so/">https://mcp.so/</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154033905.png" alt="image-20250515154033905"></p>
-<ul>
-<li>Composio 托管的 MCP 服务器: <a href="https://mcp.composio.dev/">https://mcp.composio.dev/</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154000165.png" alt="image-20250515154000165"></p>
-<ul>
-<li>Zapier 托管的 MCP 服务器: <a href="https://actions.zapier.com/settings/mcp">https://actions.zapier.com/settings/mcp</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153934030.png" alt="image-20250515153934030"></p>
-<ul>
-<li>modelscope魔搭社区 mcp 广场：<a href="https://www.modelscope.cn/mcp">https://www.modelscope.cn/mcp</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153903975.png" alt="image-20250515153903975"></p>
-<h2 id="3-MCP目前热门客户端软件">3. MCP目前热门客户端软件</h2>
-<ul>
-<li>Cursor： <a href="https://www.cursor.com/cn">https://www.cursor.com/cn</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153753652.png" alt="image-20250515153753652"></p>
-<ul>
-<li>Claude Desktop： <a href="https://claude.ai/download">https://claude.ai/download</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153717742.png" alt="image-20250515153717742"></p>
-<ul>
-<li>Cherry Studio：<a href="https://www.cherry-ai.com/">https://www.cherry-ai.com/</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153644985.png" alt="image-20250515153644985"></p>
-<ul>
-<li>Cline： <a href="https://cline.bot/">https://cline.bot/</a></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515152400387.png" alt="image-20250515152400387"></p>
-<ul>
-<li>dify中基于MCP策略的Agent或MCP插件工具</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515152256956.png" alt="image-20250515152256956"></p>
-]]></content>
-      <categories>
-        <category>AI</category>
-        <category>Agent</category>
-        <category>MCP</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>Agent</tag>
-        <tag>大模型</tag>
-        <tag>MCP</tag>
-        <tag>Function Call</tag>
       </tags>
   </entry>
   <entry>
@@ -2777,6 +2683,105 @@ H<sub>2</sub>O</li>
         <tag>AI</tag>
         <tag>大模型</tag>
         <tag>生成模型方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>快速上手MCP</title>
+    <url>/2025/05/14/%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8BMCP/</url>
+    <content><![CDATA[<h2 id="1-MCP入门介绍">1. MCP入门介绍</h2>
+<ul>
+<li>MCP，全称是Model Context Protocol，模型上下文协议，由Claude母公司Anthropic于去年11月正式提出。
+<ul>
+<li>Anthropic MCP发布通告：<a href="https://www.anthropic.com/news/model-context-protocol">https://www.anthropic.com/news/model-context-protocol</a></li>
+<li>MCP GitHub主页：<a href="https://github.com/modelcontextprotocol">https://github.com/modelcontextprotocol</a></li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>总的来说 <strong>MCP解决的最大痛点，就是Agent开发中调用外部工具的技术门槛过高的问题。</strong>
+<ul>
+<li>我们都知道，<strong>能调用外部工具，是大模型进化为智能体Agent的关键</strong>，如果不能使用外部工具，大模型就只能是个简单的聊天机器人，甚至连查询天气都做不到。由于底层技术限制啊，大模型本身是无法和外部工具直接通信的，因此 <strong>Function calling</strong> 的思路，就是创建一个外部函数（function）作为中介，一边传递大模型的请求，另一边调用外部工具，最终让大模型能够间接的调用外部工具。</li>
+<li>MCP客户端对MCP服务器上的工具调用流程如下：
+<ul>
+<li><strong>Step 1. 建立和服务器的通信</strong>；</li>
+<li><strong>Step 2. 查询服务器上总共有多少个外部工具；</strong></li>
+<li><strong>Step 3. 将外部工具组成列表，带入到当前对话中；</strong></li>
+<li><strong>Step 4. 借助Function calling进行外部工具调用。</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154429464.png" alt="image-20250515154429464"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154406481.png" alt="image-20250515154406481"></p>
+<h4 id="MCP技术本质：Function-calling的更高层实现">MCP技术本质：Function calling的更高层实现</h4>
+<p>​         而近一段时间大火的MCP技术，其实就可以将其理解为Function calling技术的更高层封装和实现。传统的Function calling技术要求围绕不同的外部工具API单独创建一个外部函数，类似一把锁单独配一把钥匙，而一个智能体又往往涉及到多个外部工具设计，因此开发工作量很大。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154333871.png" alt="image-20250515154333871"></p>
+<p>而MCP技术，全称为Model Context Protocol，模型上下文协议，是一种开发者共同遵守的协议，在这个协议框架下，大家围绕某个API开发的外部工具就能够共用，从而大幅减少重复造轮子的时间。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154310284.png" alt="image-20250515154310284"></p>
+<h2 id="2-MCP服务器集合">2. MCP服务器集合</h2>
+<ul>
+<li>MCP官方服务器合集：<a href="https://github.com/modelcontextprotocol/servers">https://github.com/modelcontextprotocol/servers</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154222173.png" alt="image-20250515154222173"></p>
+<ul>
+<li>MCP Github热门导航：<a href="https://github.com/punkpeye/awesome-mcp-servers">https://github.com/punkpeye/awesome-mcp-servers</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154154901.png" alt="image-20250515154154901"></p>
+<ul>
+<li>Smithery：<a href="https://smithery.ai/">https://smithery.ai/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154128451.png" alt="image-20250515154128451"></p>
+<ul>
+<li>MCP导航：<a href="https://mcp.so/">https://mcp.so/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154033905.png" alt="image-20250515154033905"></p>
+<ul>
+<li>Composio 托管的 MCP 服务器: <a href="https://mcp.composio.dev/">https://mcp.composio.dev/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515154000165.png" alt="image-20250515154000165"></p>
+<ul>
+<li>Zapier 托管的 MCP 服务器: <a href="https://actions.zapier.com/settings/mcp">https://actions.zapier.com/settings/mcp</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153934030.png" alt="image-20250515153934030"></p>
+<ul>
+<li>modelscope魔搭社区 mcp 广场：<a href="https://www.modelscope.cn/mcp">https://www.modelscope.cn/mcp</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153903975.png" alt="image-20250515153903975"></p>
+<h2 id="3-MCP目前热门客户端软件">3. MCP目前热门客户端软件</h2>
+<ul>
+<li>Cursor： <a href="https://www.cursor.com/cn">https://www.cursor.com/cn</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153753652.png" alt="image-20250515153753652"></p>
+<ul>
+<li>Claude Desktop： <a href="https://claude.ai/download">https://claude.ai/download</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153717742.png" alt="image-20250515153717742"></p>
+<ul>
+<li>Cherry Studio：<a href="https://www.cherry-ai.com/">https://www.cherry-ai.com/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515153644985.png" alt="image-20250515153644985"></p>
+<ul>
+<li>Cline： <a href="https://cline.bot/">https://cline.bot/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515152400387.png" alt="image-20250515152400387"></p>
+<ul>
+<li>dify中基于MCP策略的Agent或MCP插件工具</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/hfhfn/image_storage@img/img/image-20250515152256956.png" alt="image-20250515152256956"></p>
+]]></content>
+      <categories>
+        <category>AI</category>
+        <category>Agent</category>
+        <category>MCP</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>Agent</tag>
+        <tag>大模型</tag>
+        <tag>MCP</tag>
+        <tag>Function Call</tag>
       </tags>
   </entry>
   <entry>
