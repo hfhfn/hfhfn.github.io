@@ -583,9 +583,9 @@
     
     <category term="RAG" scheme="http://example.com/tags/RAG/"/>
     
-    <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
-    
     <category term="向量数据库" scheme="http://example.com/tags/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="检索" scheme="http://example.com/tags/%E6%A3%80%E7%B4%A2/"/>
     
     <category term="索引" scheme="http://example.com/tags/%E7%B4%A2%E5%BC%95/"/>
     
@@ -659,9 +659,9 @@
     
     <category term="Hexo" scheme="http://example.com/tags/Hexo/"/>
     
-    <category term="Markdown插件" scheme="http://example.com/tags/Markdown%E6%8F%92%E4%BB%B6/"/>
-    
     <category term="自媒体" scheme="http://example.com/tags/%E8%87%AA%E5%AA%92%E4%BD%93/"/>
+    
+    <category term="Markdown插件" scheme="http://example.com/tags/Markdown%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   
